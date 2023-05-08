@@ -68,6 +68,7 @@ body {
 .navigation .navbar .logo-toggle-container a img {
     width: 275px;
     padding-left: 70px;
+    margin-right: 50px;
     padding-top: 8px;
 }
 
@@ -99,6 +100,9 @@ body {
 .navigation .menu li:nth-child(7),
 .navigation .menu li:nth-child(8) {
     padding-right: 20px;
+}
+.navigation .menu li:nth-child(5){
+    margin-right: -20px;
 }
 
 .navigation .menu li ul {
