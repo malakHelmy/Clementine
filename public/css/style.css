@@ -669,6 +669,7 @@ span.minus1 {
     background: transparent;
     border-width: 1.5px;
     cursor: pointer;
+    padding-bottom: 32px;
 
 }
 
