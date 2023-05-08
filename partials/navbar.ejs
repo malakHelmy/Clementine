@@ -1,1 +1,129 @@
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
+    <!-- to access font awesome cdn icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <script src="./js/trial.js"></script>
+    <title>Clementine</title>   
+   <!-- Navigation Bar Start -->
+    <section id="navigationbar">
+        <div class="navigation">
+            <div class="container">
+                <div class="navbar">
+                    <div class="logo-toggle-container">
+                        <a href="index.html">
+                            <img src="./Images/logoo copy.png">
+                        </a>
+                        <span class="toggle-box">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+
+                    <ul class="menu">
+                        <li><a href="./index.html">HOME</a></li>
+                        <li><a href="./newin.html">NEW IN</a></li>
+                        <li><a href="#">DIAMOND +</a>
+                            <ul>
+                                <li><a href="./products.html">RINGS</a></li>
+                                <li><a href="./dearrings.html">EARRINGS</a></li>
+                                <li><a href="./dNecklaces.html">NECKLACES</a></li>
+                                <li><a href="./dbracelets.html">BRACELETS</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">GOLD +</a>
+                            <ul>
+                                <li><a href="./grings.html">RINGS</a></li>
+                                <li><a href="./dearrings.html">EARRINGS</a></li>
+                                <li><a href="./gnecklaces.html">NECKLACES</a></li>
+                                <li><a href="./gbracelets.html">BRACELETS</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./contactus.html">CONTACT US</a></li>
+
+                        <li><a href="#"><i class="ri-search-line"></i></a></li>
+                        <li><a href="./login.html"><i class="ri-account-circle-line"></i></a></li>
+                        <!-- wishlist start -->
+                        <li><a href="./wishlist.html"><i class="ri-heart-line"></i></a>
+                            
+                            <!-- wishlist end -->
+
+                            <!--Cart Start-->
+                        <li><a href="#" id="cart-icon"><i class="ri-shopping-bag-line"></i></a>
+                            <div class="cart" id="cart">
+                                <div class="cart-window hide" id="sidebar">
+                                    <button id="closesidebarbtn" onclick="closesidebar()"><span
+                                            class="material-icons">close</span></button>
+                                    <div class="cart-wrapper">
+                                        <h2 class="ShopBag">My Shopping Bag</h2>
+                                        <div class="line"></div>
+                                        <div class="cart-item">
+                                            <button class="remove-btn" onclick=""><i class="ri-close-line"></i></button>
+                                            <img src="./Images/whiteRook.jpg" alt="">
+                                            <div class="details">
+                                                <div class="name"> Clementine Silver White Rook</div>
+                                                <div class="btn-wrapper">
+                                                    <span class="minus">-</span>
+                                                    <span class="num">1</span>
+                                                    <span class="add">+</span>
+                                                </div>
+                                                <button class="wishlist-btn" onclick="">Add to Wishlist</p></button>
+                                                <div class="price"> Price: EGP15200</div>
+                                            </div>
+                                        </div>
+                                        <!--Item 2-->
+                                        <div class="cart-item">
+                                            <button class="remove-btn" onclick=""><i class="ri-close-line"></i></button>
+                                            <img src="./Images/r5.png" alt="">
+                                            <div class="details">
+                                                <div class="name">Clementine Silver Snowflake</div>
+                                                <div class="btn-wrapper">
+                                                    <span class="minus1">-</span>
+                                                    <span class="num1">1</span>
+                                                    <span class="add1">+</span>
+                                                </div>
+                                                <button class="wishlist-btn" onclcik="">Add to Wishlist</p></button>
+                                                <div class="price" id="pie"> Price: EGP11000</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="total">
+                                            <div class="shipping">
+                                                <p><span>Subtotal</span> <span>EGP <span id="total-before">
+                                                            262000</span></span></p>
+                                                <p><span>Shipping</span> <span>EGP <span>100</span></span></p>
+                                            </div>
+                                            <p><span>Total</span> <span>EGP <span id="total-after">2620100</span></span>
+                                            </p>
+                                        </div>
+                                        <div class="checkout-btn">
+                                            <button class="checkout"
+                                                onclick="location.href='./cart.html'">CHECKOUT</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Cart End-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".navigation .navbar .logo-toggle-container .toggle-box").click(function () {
+                $(".navigation .menu").stop().slideToggle();
+            });
+        });
+    </script>
+    <!-- Navigation Bar End -->
