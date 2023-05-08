@@ -1,13 +1,22 @@
-var express = require('express')
+require("dotenv").config();
+
+var express = require('express');
+const session = require("express-session");
 var ejs = require('ejs');
 var bodyparser=require('body-parser');
+const mongoose = require("mongoose");
+const app = express();
+const port = process.env.PORT || 8080;
 
-var app = express();
+mongoose.connect(process.env.DB_URI, {userNewParser: true, useUnifiedTopology: true});
+const db = mongoose.connection;
+db.on("error", (error) => console.log(error));
+db.once("open", () => console.log("connected to database"));
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-app.listen(8080);
+app.listen(port);
 app.use(bodyparser.urlencoded({extended:true}));
 
 app.get('/',function(req,res){
