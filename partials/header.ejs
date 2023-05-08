@@ -1,0 +1,56 @@
+ <!-- slideshow start -->
+ <section id="imageslideshow">
+    <!-- slider start -->
+    <div id="slider">
+
+        <div class="slideshow">
+            <!-- radiobuttons start -->
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+            <!-- radiobuttons end -->
+
+            <!-- slideshow images start -->
+            <div class="slide first">
+                <img src="./Images/titleheader.png">
+            </div>
+            <div class="slide">
+                <img src="./Images/header2.png">
+            </div>
+            <div class="slide">
+                <img src="./Images/header3.png">
+            </div>
+
+
+            <!-- slideshow images end -->
+            <!-- auto nav start -->
+            <div class="navauto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+            </div>
+            <!-- auto nav end -->
+            <!-- manual nav start -->
+            <div class="navmanual">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+            </div>
+            <!-- manual nav end -->
+        </div>
+
+    </div>
+    <!-- slider end -->
+
+    <script type="text/javascript">
+        var counter = 1;
+        setInterval(function () {
+            document.getElementById('radio' + counter).checked = true;
+            counter++;
+            if (counter > 3) {
+                counter = 1;
+            }
+        }, 5000);
+    </script>
+</section>
+<!-- slideshow end -->
