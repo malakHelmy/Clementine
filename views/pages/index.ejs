@@ -1,0 +1,491 @@
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!-- to access font awesome cdn icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <script src="./js/trial.js"></script>
+    <title>Clementine</title>
+</head>
+
+<body>
+    <!-- Navigation Bar Start -->
+    <section id="navigationbar">
+        <div class="navigation">
+            <div class="container">
+                <div class="navbar">
+                    <div class="logo-toggle-container">
+                        <a href="index.html">
+                            <img src="./Images/logoo copy.png">
+                        </a>
+                        <span class="toggle-box">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+
+                    <ul class="menu">
+                        <li><a href="./index.html">HOME</a></li>
+                        <li><a href="./newin.html">NEW IN</a></li>
+                        <li><a href="#">DIAMOND +</a>
+                            <ul>
+                                <li><a href="./products.html">RINGS</a></li>
+                                <li><a href="./dearrings.html">EARRINGS</a></li>
+                                <li><a href="./dNecklaces.html">NECKLACES</a></li>
+                                <li><a href="./dbracelets.html">BRACELETS</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">GOLD +</a>
+                            <ul>
+                                <li><a href="./grings.html">RINGS</a></li>
+                                <li><a href="./dearrings.html">EARRINGS</a></li>
+                                <li><a href="./gnecklaces.html">NECKLACES</a></li>
+                                <li><a href="./gbracelets.html">BRACELETS</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./contactus.html">CONTACT US</a></li>
+
+                        <li><a href="#"><i class="ri-search-line"></i></a></li>
+                        <li><a href="./login.html"><i class="ri-account-circle-line"></i></a></li>
+                        <!-- wishlist start -->
+                        <li><a href="./wishlist.html"><i class="ri-heart-line"></i></a>
+                            
+                            <!-- wishlist end -->
+
+                            <!--Cart Start-->
+                        <li><a href="#" id="cart-icon"><i class="ri-shopping-bag-line"></i></a>
+                            <div class="cart" id="cart">
+                                <div class="cart-window hide" id="sidebar">
+                                    <button id="closesidebarbtn" onclick="closesidebar()"><span
+                                            class="material-icons">close</span></button>
+                                    <div class="cart-wrapper">
+                                        <h2 class="ShopBag">My Shopping Bag</h2>
+                                        <div class="line"></div>
+                                        <div class="cart-item">
+                                            <button class="remove-btn" onclick=""><i class="ri-close-line"></i></button>
+                                            <img src="./Images/whiteRook.jpg" alt="">
+                                            <div class="details">
+                                                <div class="name"> Clementine Silver White Rook</div>
+                                                <div class="btn-wrapper">
+                                                    <span class="minus">-</span>
+                                                    <span class="num">1</span>
+                                                    <span class="add">+</span>
+                                                </div>
+                                                <button class="wishlist-btn" onclick="">Add to Wishlist</p></button>
+                                                <div class="price"> Price: EGP15200</div>
+                                            </div>
+                                        </div>
+                                        <!--Item 2-->
+                                        <div class="cart-item">
+                                            <button class="remove-btn" onclick=""><i class="ri-close-line"></i></button>
+                                            <img src="./Images/r5.png" alt="">
+                                            <div class="details">
+                                                <div class="name">Clementine Silver Snowflake</div>
+                                                <div class="btn-wrapper">
+                                                    <span class="minus1">-</span>
+                                                    <span class="num1">1</span>
+                                                    <span class="add1">+</span>
+                                                </div>
+                                                <button class="wishlist-btn" onclcik="">Add to Wishlist</p></button>
+                                                <div class="price" id="pie"> Price: EGP11000</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="total">
+                                            <div class="shipping">
+                                                <p><span>Subtotal</span> <span>EGP <span id="total-before">
+                                                            262000</span></span></p>
+                                                <p><span>Shipping</span> <span>EGP <span>100</span></span></p>
+                                            </div>
+                                            <p><span>Total</span> <span>EGP <span id="total-after">2620100</span></span>
+                                            </p>
+                                        </div>
+                                        <div class="checkout-btn">
+                                            <button class="checkout"
+                                                onclick="location.href='./cart.html'">CHECKOUT</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Cart End-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".navigation .navbar .logo-toggle-container .toggle-box").click(function () {
+                $(".navigation .menu").stop().slideToggle();
+            });
+        });
+    </script>
+    <!-- Navigation Bar End -->
+    <!-- slideshow start -->
+    <section id="imageslideshow">
+        <!-- slider start -->
+        <div id="slider">
+
+            <div class="slideshow">
+                <!-- radiobuttons start -->
+                <input type="radio" name="radio-btn" id="radio1">
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+                <!-- radiobuttons end -->
+
+                <!-- slideshow images start -->
+                <div class="slide first">
+                    <img src="./Images/titleheader.png">
+                </div>
+                <div class="slide">
+                    <img src="./Images/header2.png">
+                </div>
+                <div class="slide">
+                    <img src="./Images/header3.png">
+                </div>
+
+
+                <!-- slideshow images end -->
+                <!-- auto nav start -->
+                <div class="navauto">
+                    <div class="auto-btn1"></div>
+                    <div class="auto-btn2"></div>
+                    <div class="auto-btn3"></div>
+                </div>
+                <!-- auto nav end -->
+                <!-- manual nav start -->
+                <div class="navmanual">
+                    <label for="radio1" class="manual-btn"></label>
+                    <label for="radio2" class="manual-btn"></label>
+                    <label for="radio3" class="manual-btn"></label>
+                </div>
+                <!-- manual nav end -->
+            </div>
+
+        </div>
+        <!-- slider end -->
+
+        <script type="text/javascript">
+            var counter = 1;
+            setInterval(function () {
+                document.getElementById('radio' + counter).checked = true;
+                counter++;
+                if (counter > 3) {
+                    counter = 1;
+                }
+            }, 5000);
+        </script>
+    </section>
+    <!-- slideshow end -->
+
+
+    <section id="intro">
+        <h1 class="intro-title">Infinite (Re)Invention</h1>
+        <p class="intro-p">Since 2000, our passion for innovation and design, and mastery of crystal cutting has defined
+            Clementine as the leading jewelry and accessories brand.
+        </p>
+    </section>
+
+
+    <!--intro starts-->
+
+
+
+
+
+    <!--row 1 star-->
+    <section class="row1-maintitle reveal">
+        <h1>Crystals In Mesmerizing Constellations </h1>
+    </section>
+    <section class="row1-container reveal">
+        <a href="./gnecklaces.html" class="row1-title">
+            <img src="./Images/y2.png" alt="necklaces">
+            <class="row1-neck">Necklaces</h3>
+                <div>
+                    <button href="./gnecklaces.html" class="row1btn">Shop Now</button>
+                </div>
+        </a>
+        <a href="./dearrings.html" class="row1-title">
+            <img src="./Images/y1.png" alt="earrings">
+            <class="row1-neck">Earrings</h3>
+                <div>
+                    <button href="./dearrings.html" class="row1btn">Shop Now</button>
+                </div>
+        </a>
+    </section>
+
+
+
+
+
+    <!-- homepage products start -->
+    <section class="homepage-products reveal">
+
+        <h1 class="homepage-p-title">New Collection</h1>
+        <img src="Images/arrow2.png" width="10px" class="prev_arrow" onclick="newcollectionslider()"></button>
+        <img src="Images/arrow.png" width="10px" class="next_arrow" onclick="newcollectionslider()"></button>
+
+
+        <div class="product-container">
+
+
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-tag">50% off</span>
+                    <img src="./Images/r1.png" class="product-thumb" alt="">
+                    <button class="card-btn">add to cart</button>
+                </div>
+                <div class="product-info">
+                    <h2 class="product-brand">Ring 1</h2>
+                    <p class="product-short-des">ring detail</p>
+                    <span class="price">10700 LE</span><span class="actual-price">24000 LE</span>
+                </div>
+            </div>
+
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="./Images/r2.png" class="product-thumb" alt="">
+                    <button class="card-btn">add to cart</button>
+                </div>
+                <div class="product-info">
+                    <h2 class="product-brand">Ring 2</h2>
+                    <p class="product-short-des">ring detail</p>
+                    <span class="price">27000 LE</span>
+                </div>
+            </div>
+
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="./Images/r3.png" class="product-thumb" alt="">
+                    <button class="card-btn">add to cart</button>
+                </div>
+                <div class="product-info">
+                    <h2 class="product-brand">Neck 3</h2>
+                    <p class="product-short-des">neck detail</p>
+                    <span class="price">34000 LE</span>
+                </div>
+            </div>
+
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="./Images/r3.png" class="product-thumb" alt="">
+                    <button class="card-btn">add to cart</button>
+                </div>
+                <div class="product-info">
+                    <h2 class="product-brand">Neck 4</h2>
+                    <p class="product-short-des">neck detail</p>
+                    <span class="price">34500 LE</span>
+                </div>
+            </div>
+
+
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-tag">30% off</span>
+                    <img src="./Images/r5.png" class="product-thumb" alt="">
+                    <button class="card-btn">add to cart</button>
+                </div>
+                <div class="product-info">
+                    <h2 class="product-brand">Ring 5</h2>
+                    <p class="product-short-des">ring detail</p>
+                    <span class="price">11000 LE</span><span class="actual-price">19000 LE</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="./Images/r6.png" class="product-thumb" alt="">
+                    <button class="card-btn">add to cart</button>
+                </div>
+                <div class="product-info">
+                    <h2 class="product-brand">Neck 6</h2>
+                    <p class="product-short-des">neck detail</p>
+                    <span class="price">19500 LE</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="./Images/r7.png" class="product-thumb" alt="">
+                    <button class="card-btn">add to cart</button>
+                </div>
+                <div class="product-info">
+                    <h2 class="product-brand">Neck 7</h2>
+                    <p class="product-short-des">neck detail</p>
+                    <span class="price">24500 LE</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <div class="videobreak reveal">
+        <div class="vidmain-title">
+            <h1>IGNITE <div class="br1">YOUR</div>DREAMS </h1>
+        </div>
+        <video ctontrols autoplay muted loop class="vidmain">
+            <source src="./Images/vidmain.mp4" type="video/mp4">
+        </video>
+    </div>
+
+
+    <!-- homepage end -->
+
+
+    <!-- further ads start -->
+
+    <div class="ad1-container reveal">
+        <div class="ad1-img">
+            <img src="./Images/ad1.png">
+        </div>
+        <div class="ad1-text">
+            <h1>Pieces of Pure Wonder </h1>
+            <p>Our Millenia family is a contemporary interpretation of our heritage and expertise. The science of
+                crystal cutting meets the magic of light refraction in bold designs that go right to the heart of who we
+                are.
+            </p>
+            <button class="ad1-btn">
+                Discover More
+            </button>
+        </div>
+    </div>
+    <div class="ad2-container reveal">
+        <div class="ad2-text">
+            <h1>Kaleidoscopic Hues</h1>
+            <p>Step inside a vibrant wonderland, where confidence is colorful and coordinating crystals make
+                <br> every look pop. Push the boundaries in party pink, shine bright in bold metallics, bring positive
+                vibes in sunshine yellow, deep dive into a spectrum of blues, or channel your inner goddess in emerald
+                green.
+            </p>
+            <button class="ad2-btn">
+                Discover More
+            </button>
+        </div>
+        <div class="ad2-img">
+            <img src="./Images/ad2.png">
+        </div>
+
+    </div>
+
+
+
+    <!-- collection ad start -->
+    <!-- <section class="mid-ad">
+        <img src="Images/valentinesheader.png" href="" alt="newcollection" class="ad1">
+
+    </section> */ -->
+
+    <h1 class="categories-title reveal">SHOP BY CATEGORY</h1>
+    <!-- collection ad end  -->
+
+    <!-- categories start -->
+    <section class="categories-container reveal">
+        <a href="./dbracelets.html" class="category">
+            <img src="./Images/diacat.jpg" alt="">
+            <p class="category-title">DIAMOND <br> JEWELRY</p>
+        </a>
+        <a href="./gnecklaces.html" class="category">
+            <img src="./Images/goldcatt.jpg" alt="">
+            <p class="category-title">GOLD <br> JEWELRY</p>
+        </a>
+    </section>
+    <!-- categories end -->
+
+
+
+    <!-- services start -->
+    <section class="services reveal">
+        <div class="serwrap">
+            <div class="listing-01">
+                <h2>Quality for our jewelry creations</h2>
+                <p>Our top priority is producing top-notch jewelry.</p>
+            </div>
+            <div class="listing-02">
+                <h2>Our jewelry services</h2>
+                <p>Personalize, adjust or revive your jewelry creations thanks to our services offer.</p>
+            </div>
+            <div class="listing-03">
+                <h2>Our watchmaking services</h2>
+                <p>Ensure optimal maintenance of your watchmaking creations over the years.</p>
+            </div>
+        </div>
+    </section>
+    <!-- services end -->
+
+    <!-- contact us start-->
+    <section class="contact-footer" id="contact-footer">
+
+        <h1 class="contact-heading"> Have any questions?</h1>
+        <div class="c-button ">
+            <button class="sub-contact-btn"> <a href="./contactus.html"
+                    style="text-decoration: none; color:white">CONTACT US </a></button>
+
+        </div>
+    </section>
+    <!-- contact us end-->
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="fcontainer">
+            <div class="row">
+
+                <div class="f-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="#">19012</a></li>
+                        <li><a href="#">Clementine@gmail.com</a></li>
+                        <p>Operating hours are from 7am – 2am EST,</p>
+                        <p>7 days a week, excluding holidays.</p>
+                    </ul>
+                </div>
+                <div class="f-col">
+                    <h3>About Us</h3>
+                    <p>We are a boutique jewellery studio based in</p>
+                    <p>Cairo, Egypt. We create pieces to order using a combination </p>
+                    <p>of modern technology and traditional jewellery practises,</p>
+                    <p>each piece is finished carefully by hand.</p>
+
+                </div>
+                <div class="f-col">
+                    <h3>Follow us</h3>
+                    <div class="social-links">
+
+                        <!-- gets the icons mn font awesome online library -->
+                        <a href="#">
+                            <p class="fab fa-facebook-f"></p>
+                        </a>
+                        <a href="#">
+                            <p class="fab fa-twitter"></p>
+                        </a>
+                        <a href="#">
+                            <p class="fab fa-instagram"></p>
+                        </a>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/trial.js"></script>
+    <script src="./js/cart.js"></script>
+
+</body>
+
+</html>
