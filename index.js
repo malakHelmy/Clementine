@@ -13,7 +13,6 @@ const usersRouter = require('./routers/users');
 const categoriesRouter = require('./routers/categories');
 const ordersRouter = require('./routers/orders');
 
-
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
 const app = express();
@@ -23,12 +22,14 @@ const port = process.env.PORT || 8080;
 app.use(express.json());
 app.use(morgan('tiny')); //displays log requests
 
+
 app.use(express.static('public'));
-app.set('view engine', 'ejs');//set the template engine
+app.set('view engine', 'ejs'); //set the template engine
 app.use(express.urlencoded({ extended: true }));
 
 //Routers
 app.use(`${api}/products`, productsRouter);
+app.use(`${api}/categories`, categoriesRouter);
 
 //Database connection
 mongoose
@@ -44,6 +45,9 @@ mongoose
         console.log(err);
     });
 
+app.get(`/`, function (req, res) {
+    res.render('pages/categories');
+});
 app.listen(port, () => {
     console.log(api);
 });
