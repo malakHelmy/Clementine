@@ -46,6 +46,10 @@ mongoose
     });
 
 app.get(`/`, function (req, res) {
+    res.render('pages/index');
+});
+app.get(`/categories`, function (req, res)
+{
     res.render('pages/categories');
 });
 app.listen(port, () => {
