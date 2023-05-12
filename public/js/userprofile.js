@@ -22,15 +22,7 @@ function welcomeUser(email){
         us_name.innerHTML = customer.name;
     }
 }
-window.onload = function(){
-    welcomeUser2('user');
- }
-function welcomeUser2(name){
-    var customer = userlist.find((val,idx,arr) => {return val.name = name});
-    if(user){
-        us_email.innerHTML = customer.email;
-    }
-}
+
 
 
 
