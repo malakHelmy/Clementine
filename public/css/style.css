@@ -101,7 +101,8 @@ body {
 .navigation .menu li:nth-child(8) {
     padding-right: 20px;
 }
-.navigation .menu li:nth-child(5){
+
+.navigation .menu li:nth-child(5) {
     margin-right: -20px;
 }
 
@@ -251,7 +252,7 @@ body {
     box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.568);
 }
 
-.hide{
+.hide {
     display: none;
 }
 
@@ -1121,7 +1122,9 @@ span.minus1 {
     justify-content: space-between;
 }
 
-.serwrap div {
+.serwrap .listing-01,
+.serwrap .listing-02,
+.serwrap .listing-03 {
     margin: 8%;
 }
 
@@ -1138,8 +1141,10 @@ span.minus1 {
 
 
 @media screen and (max-width:1050px) {
+
     .serwrap {
-        flex-wrap: wrap;
+        display: block;
+        margin: 5%;
     }
 
 }
