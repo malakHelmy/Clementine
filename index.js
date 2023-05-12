@@ -46,7 +46,7 @@ mongoose
     });
 
 app.get(`/`, function (req, res) {
-    res.render('pages/categories');
+    res.render('pages/userprofile');
 });
 app.listen(port, () => {
     console.log(api);
