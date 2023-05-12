@@ -3,7 +3,6 @@ const express = require('express');
 const {Category} = require('../models/category');
 const router = express.Router();
 
-
 router.get(`/`, async function (req, res) {
 
     const categories = await Category.find();
@@ -22,8 +21,8 @@ router.post(`/`, function (req, res) {
     //catching errors method #2
     cat
         .save()
-        .then((categ) => {
-            res.status(201).json(categ);
+        .then((cat) => {
+            res.status(201).json(cat);
         })
         .catch((err) => {
             res.status(500).json({
