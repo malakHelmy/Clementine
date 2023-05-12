@@ -1,11 +1,12 @@
 
 const express = require('express');
-const category = require('../models/category');
+const {Category} = require('../models/category');
 const router = express.Router();
+
 
 router.get(`/`, async function (req, res) {
 
-    const categories = await category.find();
+    const categories = await Category.find();
 
     //catching errors method #1
     if (!categories) {
@@ -14,7 +15,7 @@ router.get(`/`, async function (req, res) {
     res.send(categories);
 });
 router.post(`/`, function (req, res) {
-    const cat = new category({
+    const cat = new Category({
         id: req.body.id,
         name: req.body.name,
     });
@@ -22,7 +23,7 @@ router.post(`/`, function (req, res) {
     cat
         .save()
         .then((categ) => {
-            res.status(201).json(createdProduct);
+            res.status(201).json(categ);
         })
         .catch((err) => {
             res.status(500).json({
