@@ -6,6 +6,7 @@ const ejs = require('ejs');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const path = require('path')
 
 //Routes
 const productsRouter = require('./routers/products');
@@ -23,7 +24,8 @@ app.use(express.json());
 app.use(morgan('tiny')); //displays log requests
 
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.set('view engine', 'ejs'); //set the template engine
 app.use(express.urlencoded({ extended: true }));
 
@@ -47,10 +49,15 @@ mongoose
 
 app.get(`/`, function (req, res) {
     res.render('pages/index');
+    res.render('pages/index');
 });
 app.get(`/categories`, function (req, res)
 {
     res.render('pages/categories');
+});
+app.get(`/userprofile`, function (req, res)
+{
+    res.render('pages/userprofile');
 });
 app.listen(port, () => {
     console.log(api);
