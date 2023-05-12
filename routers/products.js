@@ -41,8 +41,8 @@ router.post(`/`, function (req, res) {
     //catching errors method #2
     product
         .save()
-        .then((product) => {
-            res.status(201).json(product);
+        .then((createdProduct) => {
+            res.status(201).json(createdProduct);
         })
         .catch((err) => {
             res.status(500).json({

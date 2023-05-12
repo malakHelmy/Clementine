@@ -21,8 +21,8 @@ router.post(`/`, function (req, res) {
     //catching errors method #2
     cat
         .save()
-        .then((cat) => {
-            res.status(201).json(cat);
+        .then((categ) => {
+            res.status(201).json(categ);
         })
         .catch((err) => {
             res.status(500).json({
