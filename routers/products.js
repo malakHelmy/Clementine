@@ -2,10 +2,8 @@
 routers are responsible for creating/ storing/ Importing and exporting APIs between the files
 */
 const express = require('express');
-const {Product} = require('../models/product');
+const { Product } = require('../models/product');
 const router = express.Router();
-
-
 
 router.get(`/`, async function (req, res) {
     /*sending an object from backend to API/Postman
@@ -28,9 +26,17 @@ router.get(`/`, async function (req, res) {
 });
 router.post(`/`, function (req, res) {
     const product = new Product({
+        id: req.body.id,
         name: req.body.name,
         image: req.body.image,
+        images: req.body.images,
+        price: req.body.price,
+        description: req.body.description,
+        material: req.body.material,
+        category: req.body.category,
         countInStock: req.body.countInStock,
+        featured: req.body.featured,
+        date: req.body.date,
     });
     //catching errors method #2
     product
