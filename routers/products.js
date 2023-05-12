@@ -52,5 +52,19 @@ router.post(`/`, function (req, res) {
         });
 });
 
+router.delete('/:id', function (req,res) {
+    Product.findByIdAndRemove(req.params.id).then(product =>{
+        if(product){
+            return res.status(200).json({success: true, message: 'the product has been deleted'});
+        }
+        else 
+        {
+            return res.status(404).json({success: false, message: 'the product was not found'});
+        }
+    }).catch(err=>{
+        return res.status(400).json({success: false, error: err});
+    });
+})
+
 //exporting method #2
 module.exports = router;
