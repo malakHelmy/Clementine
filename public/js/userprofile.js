@@ -7,31 +7,29 @@ const userlist =[
     { "name":"Marina Nader", "id": "#054054", "email":"marina@gmail.com", "age": 51,"number":"01174743","password":"psw6"},
     { "name":"Rawan Belal", "id": "#054054", "email":"rawa@gmail.com", "age": 38,"number":"01124943","password":"psw7"},
 ]
-var us_name = document.getElementById("user");
-var us_email = document.getElementById("usemail");
-
+const us_name = document.getElementById("user");
+const us_email = document.getElementById("usemail");
 
 window.onload = function(){
     welcomeUser('user@gmail.com');
+    displayEmail('Lana');
+
  }
 
- 
+
 function welcomeUser(email){
-    var customer = userlist.find((val,idx,arr) => {return val.email = email});
-    if(user){
+    const customer = userlist.find((val,idx,arr) => {return val.email = email});
+    if(customer){
         us_name.innerHTML = customer.name;
     }
 }
-window.onload = function(){
-    welcomeUser2('user');
- }
-function welcomeUser2(name){
-    var customer = userlist.find((val,idx,arr) => {return val.name = name});
-    if(user){
+
+
+
+function displayEmail(name){
+    const customer = userlist.find((val,idx,arr) => {return val.name = name});
+    if(customer){
         us_email.innerHTML = customer.email;
     }
 }
-
-
-
 
