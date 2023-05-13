@@ -1,0 +1,173 @@
+@font-face {
+    font-family: 'Zapf';
+    src: url(Fonts/Zapf.ttf);
+    font-weight: 100;
+    font-style: normal;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.logo-toggle-container img{
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    font-family:'Zapf';
+}
+
+
+.signIn {
+    width: 30%;
+    position: relative;
+    top: 65%;
+    margin-bottom: 6%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.signIn h3 {
+    text-align: center;
+}
+
+.signIn h2 {
+    padding-top: 100px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid #adadad;
+}
+
+.submit {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #be8a20;
+    text-align: center;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    display: inline-block;
+    font-size: 19px;
+    width: 90%;
+}
+
+.submit:hover {
+    letter-spacing: 10px;
+    background: #e0bd78;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+
+.signInform {
+
+    padding: 0 20px;
+
+}
+
+.textfield {
+    position: relative;
+    border-bottom: 1px solid #adadad;
+    margin: 30px 0;
+}
+
+.textfield input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font: 16px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    }
+.textfield label{
+
+    position: absolute;
+    
+    top: 50%;
+    left: 5px;
+    pointer-events: none;
+    transform: translateY(-120%);
+    font-size: 20px;
+    transition: .4s;
+    font-weight: 590;
+    }
+    
+
+.textfield input:focus~label {
+    /* top: -5px; */
+    color: rgb(128, 99, 7);
+
+}
+
+.textfield span::before {
+
+    content: '';
+    position: absolute;
+    background-color: rgb(128, 99, 7);
+    width: 0%;
+    height: 2px;
+    top: 40px;
+
+
+}
+a{
+    text-decoration: none;
+}
+.textfield input:focus~span::before {
+    width: 100%;
+}
+
+.disclaimer {
+    color: #808080;
+    font-size: 14px;
+    padding-bottom: 20px;
+    font-style: italic;
+}
+
+#loginlink {
+    
+    padding-left: 20px;
+    padding-bottom: 100px;
+}
+
+.loginlink {
+    color: rgb(128, 99, 7);
+    cursor: pointer;
+    
+}
+
+@media screen and (max-width: 900px)
+{
+    .signIn{
+        top: 65%;
+        width: 90%;
+    }
+}
+
+.textfield.success img.true{
+
+    visibility: visible;
+}
+.textfield img{
+
+    visibility: hidden;
+}
+.textfield.failed img.false{
+
+    visibility: visible;
+}
+#firstnamelabel,#lastnamelabel,#emaillabel,
+#passlabel,#confirmpasslabel,#phonelabel{
+    top: 60px;
+    font-size: 13px;
+    color: rgb(90, 64, 64);
+    font-style: italic;
+}
+.textfield img{
+    position: absolute;
+    top: 21px;
+    left: 100%;
+}
