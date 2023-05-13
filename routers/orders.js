@@ -26,22 +26,23 @@ router.get(`/`, async function (req, res) {
 });
 router.post(`/`, function (req, res) {
     const order = new Order({
-        id: req.body.id,
-        name: req.body.name,
-        totalAmount: req.body.totalAmount,
+        order_id: req.body.order_id,
+        userID: req.body.userID,
+        userName: req.body.userName,
+        orderitems: req.body.orderitems,
+        shippingAddress1: req.body.shippingAddress1,
+        shippingAddress2: req.body.shippingAddress2,
         city: req.body.city,
         zip: req.body.zip,
-        phone: req.body.phone,
-        orderitems: req.body.orderitems,
-        shippingaddress1: req.body.shippingaddress1,
-        shippingaddress2: req.body.shippingaddress2,
         status: req.body.status,
-        userID:req.body.userID,
-        date: req.body.date,
+        totalAmount: req.body.totalAmount,
+        phone_num: req.body.phone_num,
+        dateOrdered: req.body.dateOrdered,
     });
     //catching errors method #2
-    order.save()
-        .then((createdProduct) => {
+    order
+        .save()
+        .then((createdOrder) => {
             res.status(201).json(createdOrder);
         })
         .catch((err) => {
@@ -52,19 +53,29 @@ router.post(`/`, function (req, res) {
         });
 });
 
-router.delete('/:id', function (req,res) {
-    Order.findByIdAndRemove(req.params.id).then(order =>{
-        if(order){
-            return res.status(200).json({success: true, message: 'the order has been deleted'});
-        }
-        else 
-        {
-            return res.status(404).json({success: false, message: 'the order was not found'});
-        }
-    }).catch(err=>{
-        return res.status(400).json({success: false, error: err});
-    });
-})
+router.delete('/:id', function (req, res) {
+    Order.findByIdAndRemove(req.params.id)
+        .then((order) => {
+            if (order) {
+                return res
+                    .status(200)
+                    .json({
+                        success: true,
+                        message: 'the order has been deleted',
+                    });
+            } else {
+                return res
+                    .status(404)
+                    .json({
+                        success: false,
+                        message: 'the order was not found',
+                    });
+            }
+        })
+        .catch((err) => {
+            return res.status(400).json({ success: false, error: err });
+        });
+});
 
 //exporting method #2
 module.exports = router;

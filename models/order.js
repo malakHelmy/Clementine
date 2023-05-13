@@ -1,9 +1,17 @@
 const mongoose = require('mongoose');
 
 const orderSchema = mongoose.Schema({
-    id: {
+    order_id: {
         type: String,
         required: true,
+    },
+    userID: {
+        type: String,
+        required: true
+    },
+    userName:{
+        type: String,
+        required: true
     },
     orderitems: {
         type: Array,
@@ -11,33 +19,37 @@ const orderSchema = mongoose.Schema({
     },
     shippingAddress1:{
         type: String,
+        required: true
     },
     shippingAddress2:{
         type: String,
     },
     city: {
         type: String,
+        required: true
     },
     zip: {
         type: String,
+        required: true
     },
     status: {
         type: String,
+        required: true
     },
     totalAmount: {
         type: Number,
         required: true,
         default: 0,
     },
-    userID: {
-        type: String,
-    },
-    phone: {
+    
+    phone_num: {
         type: Number,
+        required: true
     },
     dateOrdered: {
         type: Date,
         default: Date.now,
+        required: true
     },
 });
 

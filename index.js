@@ -33,6 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 //Routers
 app.use(`${api}/products`, productsRouter);
 app.use(`${api}/categories`, categoriesRouter);
+app.use(`${api}/orders`, ordersRouter);
 
 //Database connection
 mongoose
