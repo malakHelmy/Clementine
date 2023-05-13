@@ -6,7 +6,7 @@ const ejs = require('ejs');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const path = require('path')
+const path = require('path');
 
 //Routes
 const productsRouter = require('./routers/products');
@@ -22,7 +22,6 @@ const port = process.env.PORT || 8080;
 // middleware
 app.use(express.json());
 app.use(morgan('tiny')); //displays log requests
-
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -51,19 +50,15 @@ mongoose
 
 app.get(`/`, function (req, res) {
     res.render('pages/index');
-    res.render('pages/index');
 });
-app.get(`/categories`, function (req, res)
-{
+app.get(`/categories`, function (req, res) {
     res.render('pages/categories');
 });
-app.get(`/userprofile`, function (req, res)
-{
+app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile');
 });
-app.get(`/signup`, function (req, res)
-{
-    res.render('pages/signup.ejs');
+app.get(`/signup`, function (req, res) {
+    res.render('pages/signup');
 });
 app.listen(port, () => {
     console.log(api);
