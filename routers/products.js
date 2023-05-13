@@ -3,6 +3,7 @@ routers are responsible for creating/ storing/ Importing and exporting APIs betw
 */
 const express = require('express');
 const { Product } = require('../models/product');
+const { Category } = require('../models/category');
 const router = express.Router();
 
 router.get(`/`, async function (req, res) {
@@ -24,7 +25,12 @@ router.get(`/`, async function (req, res) {
     }
     res.send(prodList);
 });
-router.post(`/`, function (req, res) {
+router.post(`/`, async (req, res) => {
+    const cat = await Category.findById(req.body.category);
+    if (!cat) {
+        return res.status(400).send('This Category does not exist');
+    }
+
     const product = new Product({
         id: req.body.id,
         name: req.body.name,
@@ -38,6 +44,7 @@ router.post(`/`, function (req, res) {
         featured: req.body.featured,
         date: req.body.date,
     });
+
     //catching errors method #2
     product
         .save()
@@ -52,19 +59,38 @@ router.post(`/`, function (req, res) {
         });
 });
 
-router.delete('/:id', function (req,res) {
-    Product.findByIdAndRemove(req.params.id).then(product =>{
-        if(product){
-            return res.status(200).json({success: true, message: 'the product has been deleted'});
-        }
-        else 
-        {
-            return res.status(404).json({success: false, message: 'the product was not found'});
-        }
-    }).catch(err=>{
-        return res.status(400).json({success: false, error: err});
-    });
-})
+router.delete('/:id', function (req, res) {
+    Product.findByIdAndRemove(req.params.id)
+        .then((product) => {
+            if (product) {
+                return res.status(200).json({
+                    success: true,
+                    message: 'the product has been deleted',
+                });
+            } else {
+                return res.status(404).json({
+                    success: false,
+                    message: 'the product was not found',
+                });
+            }
+        })
+        .catch((err) => {
+            return res.status(400).json({ success: false, error: err });
+        });
+});
+
+router.get('/:id', async (req, res) => {
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+        return res.status(500).json({
+            message:
+                'The Product with the given ID was not found please check for the validity of the ID',
+        });
+    }
+
+    res.status(200).send(product);
+});
 
 //exporting method #2
 module.exports = router;
