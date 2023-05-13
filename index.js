@@ -61,6 +61,10 @@ app.get(`/userprofile`, function (req, res)
 {
     res.render('pages/userprofile');
 });
+app.get(`/signup`, function (req, res)
+{
+    res.render('pages/signup.ejs');
+});
 app.listen(port, () => {
     console.log(api);
 });
