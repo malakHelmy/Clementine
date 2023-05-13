@@ -27,6 +27,7 @@ app.use(morgan('tiny')); //displays log requests
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs'); //set the template engine
+//app.use(express.static(path.join(process.cwd(), "/images")));
 app.use(express.urlencoded({ extended: true }));
 
 //Routers
