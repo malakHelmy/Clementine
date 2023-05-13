@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../public/css/Signup.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include(../partials/navbar) %>
+    <%- include('../partials/header') %>
+
+
+    <section class="signIn">
+
+        <h2>Sign Up Information </h2>
+        <form action="" class="signInform" id="signInform">
+
+             <div class="textfield"> 
+                 <input type="text" name="fisrtname" id="firstname">
+                  <label for="firstname" id="firstnamelabel"></label>
+                 <img src="./Images/right.png" alt="" width="15px" height="15px" class="true">
+                 <img src="./Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                 <span class="sp1"></span>
+                 <label for=""> First Name</label> 
+             </div>
+             <div class="textfield" > 
+                 <input type="text" name="lastname" id="lastname">
+                 <label for="firstname" id="lastnamelabel"></label>
+                 <img src="./Images/right.png" alt="" width="15px" height="15px" class="true">
+                 <img src="./Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                 <span class="sp1"></span>
+                 <label for=""> Last Name</label>
+                </div>
+             <div class="textfield"> 
+                 <input type="email" name="email" id="email" >  
+                 <label for="firstname" id="emaillabel"></label>
+                 <img src="./Images/right.png" alt="" width="15px" height="15px" class="true">
+                 <img src="./Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                 <span class="sp1"></span>          
+                 <label for="">E-mail</label>      
+             </div>
+             <div class="textfield"> 
+                 <input type="password" name="password" id="pass" >
+                 <label for="firstname" id="passlabel"></label>
+                 <img src="./Images/right.png" alt="" width="15px" height="15px" class="true">
+                 <img src="./Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                 <span class="sp1"></span>
+                 <label for="">Password</label>      
+             </div>
+             <div class="textfield" >  
+                <input type="password" name="confirmpassword" id="confirmpass" >
+                <label for="firstname" id="confirmpasslabel"></label>
+                <img src="./Images/right.png" alt="" width="15px" height="15px" class="true">
+                <img src="./Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                <span class="sp1"></span>
+                 <label for="">Confirm Password</label>
+            </div>
+             <!-- <div class="textfield">
+                  <input type="date" name="dob">     
+             </div> -->
+             <div class="textfield">
+                   <input type="text" name="phone" id="phone" >
+                   <label for="firstname" id="phonelabel"></label>
+                   <img src="./Images/right.png" alt="" width="15px" height="15px" class="true">
+                   <img src="./Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                   <span class="sp1"></span>
+                    <label for="">Phone </label>   
+             </div>
+             <p class="disclaimer">By providing your personal information, you agreed to our Privacy & Cookies Policy.
+            </p>
+             <input type="submit" class="submit">
+             <br><br>
+        </form>
+
+        <p id="loginlink">Already have an account?
+            <a href="login.html" class="loginlink"> Log In </a> </p>
+            <script src="validation.js"></script>
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+    <%- include('../partials/footer') -%>
+
+    
+</body>
+</html>
