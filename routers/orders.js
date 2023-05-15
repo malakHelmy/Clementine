@@ -6,25 +6,70 @@ const { Order } = require('../models/order');
 const router = express.Router();
 
 router.get(`/`, async function (req, res) {
-    /*sending an object from backend to API/Postman
-    const order = {
-        id: '1',
-        name: 'example',
-    };
-    res.send(order);*/
-
-    /*read objects from database and display them in the front-end,
-    async + await are required since the database wasn't ready when it was called for
-    , these keywords urge the system to wait til the database is ready*/
+   
     const ordersList = await Order.find();
 
-    //catching errors method #1
     if (!ordersList) {
         res.status(500).json({ success: false });
     }
-    res.send(ordersList);
+    res.status(200).send(ordersList);
 });
-router.post(`/`, function (req, res) {
+
+//to display a specific object (order id, etc) from db:
+
+router.get('/:id', async (req, res) => {
+    const ordersList = await Order.findById(req.params.order_id);
+
+    if (!ordersList) {
+        return res.status(500).json({
+            message:
+                'The order with the given ID was not found.',
+        });
+    }
+
+    res.status(200).send(ordersList);
+});
+
+//adding a new object to the schema
+router.post(`/`, async function (req, res) {
+    let add_order = new Order({
+        order_id: req.body.order_id,
+        orderitems: req.body.ordersList,
+        userName: req.body.userName,
+    });
+
+    //catching errors method #2
+    add_order = await add_order.save();
+    if (!add_order) {
+        return res.status(404).send('The order cannot be added');
+    }
+
+    res.status(200).send(add_order);
+});
+
+//editing and updating objects
+router.patch('/:id', async (req, res) => {
+    const order = await Order.findByIdAndUpdate(req.params.order_id, {
+        id: req.body.order_id,
+    },
+    {
+        new: true         //returns updated data
+
+    });
+
+    if(!order)
+    {
+        return res.status(404).send('The order cannot be updated');
+    }
+
+    res.status(200).send(order);
+});
+
+
+
+
+
+/* router.post(`/`, function (req, res) {
     const order = new Order({
         order_id: req.body.order_id,
         userID: req.body.userID,
@@ -52,14 +97,12 @@ router.post(`/`, function (req, res) {
             });
         });
 });
-
+*/
 router.delete('/:id', function (req, res) {
-    Order.findByIdAndRemove(req.params.id)
+    Order.findByIdAndRemove(req.params.order_id)
         .then((order) => {
             if (order) {
-                return res
-                    .status(200)
-                    .json({
+                return res.status(200).json({
                         success: true,
                         message: 'the order has been deleted',
                     });
