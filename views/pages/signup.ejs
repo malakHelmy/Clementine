@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/Signup.css">
+    
     <title>Document</title>
 </head>
 <body>
@@ -13,45 +14,45 @@
     <section class="signIn">
 
         <h2>Sign Up Information </h2>
-        <form action="" class="signInform" id="signInform">
+        <form action="/categories" method="post" onsubmit="return checkinputs()" class="signInform" id="signInform">
 
              <div class="textfield"> 
                  <input type="text" name="fisrtname" id="firstname">
                   <label for="firstname" id="firstnamelabel"></label>
-                 <img src="../../public/Images/right.png" alt="" width="15px" height="15px" class="true">
-                 <img src="../../public/Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                 <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                 <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                  <span class="sp1"></span>
                  <label for=""> First Name</label> 
              </div>
              <div class="textfield" > 
                  <input type="text" name="lastname" id="lastname">
                  <label for="firstname" id="lastnamelabel"></label>
-                 <img src="../../public/Images/right.png" alt="" width="15px" height="15px" class="true">
-                 <img src="../../public/Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                 <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                 <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                  <span class="sp1"></span>
                  <label for=""> Last Name</label>
                 </div>
              <div class="textfield"> 
                  <input type="email" name="email" id="email" >  
                  <label for="firstname" id="emaillabel"></label>
-                 <img src="../../public/Images/right.png" alt="" width="15px" height="15px" class="true">
-                 <img src="../../public/Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                 <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                 <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                  <span class="sp1"></span>          
                  <label for="">E-mail</label>      
              </div>
              <div class="textfield"> 
                  <input type="password" name="password" id="pass" >
                  <label for="firstname" id="passlabel"></label>
-                 <img src="../../public/Images/right.png" alt="" width="15px" height="15px" class="true">
-                 <img src="../../public/Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                 <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                 <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                  <span class="sp1"></span>
                  <label for="">Password</label>      
              </div>
              <div class="textfield" >  
                 <input type="password" name="confirmpassword" id="confirmpass" >
                 <label for="firstname" id="confirmpasslabel"></label>
-                <img src="../../public/Images/right.png" alt="" width="15px" height="15px" class="true">
-                <img src="../../public/Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                 <span class="sp1"></span>
                  <label for="">Confirm Password</label>
             </div>
@@ -61,8 +62,8 @@
              <div class="textfield">
                    <input type="text" name="phone" id="phone" >
                    <label for="firstname" id="phonelabel"></label>
-                   <img src="../../public/Images/right.png" alt="" width="15px" height="15px" class="true">
-                   <img src="../../public/Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                   <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                   <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                    <span class="sp1"></span>
                     <label for="">Phone </label>   
              </div>
@@ -74,10 +75,10 @@
 
         <p id="loginlink">Already have an account?
             <a href="login.html" class="loginlink"> Log In </a> </p>
-            <script src="../../public/js/validation.js"></script>
-
+          <script src="js/validation.js"></script>
+       
     </section>
-
+  
 
     <%- include('../partials/footer') -%>
 
