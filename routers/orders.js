@@ -3,11 +3,10 @@ routers are responsible for creating/ storing/ Importing and exporting APIs betw
 */
 const express = require('express');
 const { Order } = require('../models/order');
-const { orderItem } = require('../models/order-items');
+const { OrderItem } = require('../models/order-items');
 const router = express.Router();
 
 router.get(`/`, async function (req, res) {
-   
     const ordersList = await Order.find();
 
     if (!ordersList) {
@@ -23,8 +22,7 @@ router.get('/:id', async (req, res) => {
 
     if (!ordersList) {
         return res.status(500).json({
-            message:
-                'The order with the given ID was not found.',
+            message: 'The order with the given ID was not found.',
         });
     }
 
@@ -33,20 +31,33 @@ router.get('/:id', async (req, res) => {
 
 //adding a new object to the schema
 router.post(`/`, async (req, res) => {
-    const orderItemIDS = req.body.orderItemSchema.map(orderItem => {
-        let newOrderItem = new orderItem ({
-            quantity: orderItem.quantity,
-            product: orderItem.product
-
+    const orderItemsIds = Promise.all(
+        req.body.orderItems.map(async (orderItem) => {
+            let newOrderItem = new OrderItem({
+                quantity: orderItem.quantity,
+                product: orderItem.product,
+            });
+            newOrderItem = await newOrderItem.save();
+            return newOrderItem._id;
         })
-        newOrderItem = await newOrderItem.save();
-})
+    );
 
+    const orderItemIdsresolved = await orderItemsIds;
+    console.log(orderItemIdsresolved);
 
     let add_order = new Order({
         order_id: req.body.order_id,
-        orderitems: orderItemIDS,
+        userID: req.body.userID,
         userName: req.body.userName,
+        orderItems: orderItemIdsresolved,
+        shippingAddress1: req.body.shippingAddress1,
+        shippingAddress2: req.body.shippingAddress2,
+        city: req.body.city,
+        zip: req.body.zip,
+        status: req.body.status,
+        totalAmount: req.body.totalAmount,
+        phone_num: req.body.phone_num,
+        dateOrdered: req.body.dateOrdered,
     });
 
     //catching errors method #2
@@ -60,25 +71,22 @@ router.post(`/`, async (req, res) => {
 
 //editing and updating objects
 router.patch('/:id', async (req, res) => {
-    const order = await Order.findByIdAndUpdate(req.params.order_id, {
-        id: req.body.order_id,
-    },
-    {
-        new: true         //returns updated data
+    const order = await Order.findByIdAndUpdate(
+        req.params.order_id,
+        {
+            id: req.body.order_id,
+        },
+        {
+            new: true, //returns updated data
+        }
+    );
 
-    });
-
-    if(!order)
-    {
+    if (!order) {
         return res.status(404).send('The order cannot be updated');
     }
 
     res.status(200).send(order);
 });
-
-
-
-
 
 /* router.post(`/`, function (req, res) {
     const order = new Order({
@@ -114,16 +122,14 @@ router.delete('/:id', function (req, res) {
         .then((order) => {
             if (order) {
                 return res.status(200).json({
-                        success: true,
-                        message: 'the order has been deleted',
-                    });
+                    success: true,
+                    message: 'the order has been deleted',
+                });
             } else {
-                return res
-                    .status(404)
-                    .json({
-                        success: false,
-                        message: 'the order was not found',
-                    });
+                return res.status(404).json({
+                    success: false,
+                    message: 'the order was not found',
+                });
             }
         })
         .catch((err) => {
