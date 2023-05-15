@@ -21,15 +21,21 @@ router.get(`/`, async function (req, res) {
 //to display a specific object (order id, etc) from db:
 
 router.get('/:id', async (req, res) => {
-    const ordersList = await Order.findById(req.params.order_id);
+    const orders = await Order.findById(req.params.id).populate({
+        path: 'orderItems',
+        populate: {
+            path: 'product',
+            populate: 'category',
+        },
+    });
 
-    if (!ordersList) {
+    if (!orders) {
         return res.status(500).json({
             message: 'The order with the given ID was not found.',
         });
     }
 
-    res.status(200).send(ordersList);
+    res.status(200).send(orders);
 });
 
 //adding a new object to the schema
@@ -70,12 +76,12 @@ router.post(`/`, async (req, res) => {
     res.status(200).send(add_order);
 });
 
-//editing and updating objects
-router.patch('/:id', async (req, res) => {
-    const order = await Order.findByIdAndUpdate(
-        req.params.order_id,
+//editing and updating status
+router.put('/:id', async (req, res) => {
+    let order = await Order.findByIdAndUpdate(
+        req.params.id,
         {
-            id: req.body.order_id,
+            status: req.body.status,
         },
         {
             new: true, //returns updated data
@@ -119,9 +125,12 @@ router.patch('/:id', async (req, res) => {
 });
 */
 router.delete('/:id', function (req, res) {
-    Order.findByIdAndRemove(req.params.order_id)
-        .then((order) => {
+    Order.findByIdAndRemove(req.params.id)
+        .then(async (order) => {
             if (order) {
+                await order.orderItems.map(async (orderItem) => {
+                    await OrderItem.findByIdAndRemove(orderItem);
+                });
                 return res.status(200).json({
                     success: true,
                     message: 'the order has been deleted',
@@ -134,7 +143,7 @@ router.delete('/:id', function (req, res) {
             }
         })
         .catch((err) => {
-            return res.status(400).json({ success: false, error: err });
+            return res.status(500).json({ success: false, error: err });
         });
 });
 

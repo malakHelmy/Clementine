@@ -9,7 +9,7 @@ const orderItemSchema = mongoose.Schema({
     //order item is referring to product
     product: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
+        ref: 'products'
     }
 })
 
