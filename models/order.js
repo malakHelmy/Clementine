@@ -5,14 +5,18 @@ const orderSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    // referring to the user who ordered
     userID: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User',
+
     },
     userName:{
         type: String,
-        required: true
+        required: true,
     },
+    //order is referrig to order items
     orderitems: [{
 
         type: mongoose.Schema.Types.ObjectId,
@@ -22,22 +26,24 @@ const orderSchema = mongoose.Schema({
     }],
     shippingAddress1:{
         type: String,
-        required: true
+        required: true,
     },
     shippingAddress2:{
         type: String,
     },
     city: {
         type: String,
-        required: true
+        required: true,
     },
     zip: {
         type: String,
-        required: true
+        required: true,
     },
     status: {
         type: String,
-        required: true
+        required: true,
+        default: 'Pending',
+
     },
     totalAmount: {
         type: Number,
@@ -47,13 +53,19 @@ const orderSchema = mongoose.Schema({
     
     phone_num: {
         type: Number,
-        required: true
+        required: true,
     },
     dateOrdered: {
         type: Date,
         default: Date.now,
-        required: true
+        required: true,
     },
+});
+
+// virtual id
+
+orderSchema.virtual('id').get(function () {
+    return this.order_id.toHexString();
 });
 
 /*model is the equivalent of 'collection' in node.js,
