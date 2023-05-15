@@ -3,6 +3,7 @@ routers are responsible for creating/ storing/ Importing and exporting APIs betw
 */
 const express = require('express');
 const { Order } = require('../models/order');
+const { orderItem } = require('../models/order-items');
 const router = express.Router();
 
 router.get(`/`, async function (req, res) {
@@ -31,10 +32,20 @@ router.get('/:id', async (req, res) => {
 });
 
 //adding a new object to the schema
-router.post(`/`, async function (req, res) {
+router.post(`/`, async (req, res) => {
+    const orderItemIDS = req.body.orderItemSchema.map(orderItem => {
+        let newOrderItem = new orderItem ({
+            quantity: orderItem.quantity,
+            product: orderItem.product
+
+        })
+        newOrderItem = await newOrderItem.save();
+})
+
+
     let add_order = new Order({
         order_id: req.body.order_id,
-        orderitems: req.body.ordersList,
+        orderitems: orderItemIDS,
         userName: req.body.userName,
     });
 
