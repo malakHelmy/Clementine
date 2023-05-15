@@ -1,6 +1,7 @@
+
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const userSchema = new Schema({
+
+const userSchema = mongoose.Schema({
     firstname: {
         type: String,
         required: true,
@@ -18,13 +19,15 @@ const userSchema = new Schema({
         required: true,
     },
     phone: {
-        type: Number,
+        type: String,
         required: true,
     },
-    address: String,
+    address: {
+        type: String
+    },
 });
 
-exports.user = mongoose.model('User', userSchema);
+exports.User = mongoose.model('users', userSchema);
 
 /*model is the equivalent of 'collection' in node.js,
 'exports' will allow Product to be seen in other files using the 'require' method,
