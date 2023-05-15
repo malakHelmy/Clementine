@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(`${api}/products`, productsRouter);
 app.use(`${api}/categories`, categoriesRouter);
 app.use(`${api}/orders`, ordersRouter);
-
+app.use(`${api}/users`, usersRouter);
 //Database connection
 mongoose
     .connect(process.env.DB_URI, {
