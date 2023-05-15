@@ -5,6 +5,8 @@ const orderItemSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    
+    //order item is referring to product
     product: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product'
