@@ -13,10 +13,13 @@ const orderSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    orderitems: {
-        type: Array,
+    orderitems: [{
+
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'OrderItem',
         required: true,
-    },
+
+    }],
     shippingAddress1:{
         type: String,
         required: true
