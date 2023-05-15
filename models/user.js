@@ -25,6 +25,10 @@ const userSchema = mongoose.Schema({
     address: {
         type: String
     },
+    isAdmin:{
+        type: Boolean,
+        default: false,
+    }
 });
 
 exports.User = mongoose.model('users', userSchema);

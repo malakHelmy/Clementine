@@ -7,7 +7,7 @@ const { OrderItem } = require('../models/order-items');
 const router = express.Router();
 
 router.get(`/`, async function (req, res) {
-    const ordersList = await Order.find();
+    const ordersList = await Order.find().populate('userID');
 
     if (!ordersList) {
         res.status(500).json({ success: false });
@@ -43,7 +43,6 @@ router.post(`/`, async (req, res) => {
     );
 
     const orderItemIdsresolved = await orderItemsIds;
-    console.log(orderItemIdsresolved);
 
     let add_order = new Order({
         order_id: req.body.order_id,

@@ -11,6 +11,7 @@ router.post(`/`, async (req, res) => {
         password: req.body.password,
         phone: req.body.phone,
         address: req.body.address,
+        isAdmin: req.body.isAdmin
     });
 
     //catching errors method #2
