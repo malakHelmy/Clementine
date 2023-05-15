@@ -7,7 +7,10 @@ const { OrderItem } = require('../models/order-items');
 const router = express.Router();
 
 router.get(`/`, async function (req, res) {
-    const ordersList = await Order.find().populate('userID');
+    //display the first and last name for the user + sort by date from newest to oldest
+    const ordersList = await Order.find()
+        .populate('userID', 'firstname + lastname')
+        .sort({ dateOrdered: -1 });
 
     if (!ordersList) {
         res.status(500).json({ success: false });
@@ -47,7 +50,6 @@ router.post(`/`, async (req, res) => {
     let add_order = new Order({
         order_id: req.body.order_id,
         userID: req.body.userID,
-        userName: req.body.userName,
         orderItems: orderItemIdsresolved,
         shippingAddress1: req.body.shippingAddress1,
         shippingAddress2: req.body.shippingAddress2,

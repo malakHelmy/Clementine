@@ -11,10 +11,6 @@ const orderSchema = mongoose.Schema({
         required: true,
         ref: 'users',
     },
-    userName: {
-        type: String,
-        required: true,
-    },
     //order is referrig to order items
     orderItems: [
         {
