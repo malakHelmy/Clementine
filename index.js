@@ -60,6 +60,9 @@ app.get(`/userprofile`, function (req, res) {
 app.get(`/signup`, function (req, res) {
     res.render('pages/signup');
 });
+app.get(`/dashboard`, function (req, res) {
+    res.render('pages/dashboard');
+});
 app.listen(port, () => {
     console.log(api);
 });
