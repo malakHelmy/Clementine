@@ -2,13 +2,11 @@ require('dotenv/config');
 
 const express = require('express');
 const session = require('express-session');
-const fileUpload = require('express-fileupload');
 const ejs = require('ejs');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
-const fileUpload = require('express-fileupload');
 
 
 //Routes
