@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(`${api}/products`, productsRouter);
 app.use(`${api}/categories`, categoriesRouter);
 app.use(`${api}/orders`, ordersRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 
 
 //Database connection
@@ -59,9 +59,9 @@ app.use('/users', usersRouter);
       console.log(err);
     });
 
-app.use(express.urlencoded({extended: true}));
 
-app.use(fileUpload());
+
+// app.use(fileUpload());
 app.use(session({ secret: 'Your_secret_key'}))
 
 
@@ -90,6 +90,12 @@ app.get(`/signup`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
+
+
+
+
+
+
 
 // app.get(`/dashboard`, (req, res) => {
 //     if (req.session.user !== undefined) {
