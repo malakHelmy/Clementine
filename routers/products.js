@@ -95,7 +95,6 @@ router.post('/drings', async (req, res) => {
     try {
         let products = await Product.find({});
         res.render('pages/products', { products });
-        res.render('pages/products');
     } catch (error) {
         res.status(500).send({ message: error.message || 'ERROR OCCURED' });
     }
