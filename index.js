@@ -101,7 +101,7 @@ app.get(`/login`, function (req, res) {
     res.render('pages/login');
 });
 app.get(`/chat`, function (req, res) {
-    res.render('pages/chat');
+    res.render('pages/chatbot');
 });
 app.post('/sign-up-action', (req,res)=>{
 
