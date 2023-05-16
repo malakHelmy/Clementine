@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/contactus.css">
+    <!-- to access font awesome cdn icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <title>Clementine</title>
+</head>
+
+<body>
+      
+    <%- include('../partials/navbar') %>
+
+    <section>
+        <div class="bodyimage">
+            <img src="Images/contact.jpeg" alt="">
+        </div>
+    </section>
+    <section class="contact">
+        <div class="content">
+
+            <h2>Contact us</h2>
+            <p>If you have a question or require further information,
+                then please feel free to contact us using the form below. We would be happy to help.
+            </p>
+            <div class="containers">
+                <div class="contactInfo">
+                    <div class="box">
+                        <div class="icon"><i class="ri-map-pin-line"></i></div>
+                        <div class="text">
+                            <h3>Address</h3>
+                            <p>S4, Area (A) city center, 5th District, Road 90,
+                                <br>New Cairo Store No.22 Building, Cairo Governorate<br>11211
+                            </p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="icon"><i class="ri-mail-open-line"></i></div>
+                        <div class="text">
+                            <h3>Email</h3>
+                            <p>
+                                Clementine@gmail.com
+                            </p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="icon"><i class="ri-phone-line"></i></div>
+                        <div class="text">
+                            <h3>Phone Number</h3>
+                            <p>
+                                19012
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contactForm">
+                    <h2>Send us a message</h2>
+                    <form action="">
+
+                        <div class="inputBox">
+                            <input type="text" name="" required="required">
+                            <span>Full Name</span>
+                        </div>
+
+                        <div class="inputBox">
+                            <input type="text" name="" required="required">
+                            <span>Email</span>
+                        </div>
+
+                        <div class="inputBox">
+                            <textarea required="required"></textarea>
+                            <span>Message</span>
+                        </div>
+                        <div class="inputBox">
+                            <input type="submit" name="" value="SEND">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer') -%>
+    
+    <script src="../../public/js/trial.js"></script>
+    <script src="../../public/js/cart.js"></script>
+</body>
+
+</html>

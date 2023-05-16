@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* margin-top: 0; */
+    /* overflow: hidden; */
+}
+
+
+body {
+    width: 100%;
+    height: 100vh;
+    font-family: 'Zapf';
+}
+
+
+.signIn {
+    margin: 5%;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.signIn h2 {
+    margin: 5%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #adadad;
+}
+
+.left {
+    flex: 50%;
+}
+
+.lgbutton {
+    margin: 5%;
+    background-color: black;
+    text-align: center;
+    border: none;
+    color: white;
+    line-height: 40px;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 4px;
+    height: 40px;
+    width: 54%;
+}
+
+.lgbutton:hover {
+    background: #b58422;
+    transition: 0.7s ease;
+    cursor: pointer;
+    letter-spacing: 6px;
+}
+
+
+.signInform {
+
+    padding-right: 7%;
+    padding-left: 30%;
+    border-right: 1px solid #adadad;
+}
+
+.textfield {
+    position: relative;
+    border-bottom: 1px solid #adadad;
+    margin: 5%;
+}
+
+.textfield input {
+    width: 100%;
+    padding-top: 20px;
+    height: 40px;
+    font: 16px;
+    font-size: 16.5px;
+    border: none;
+    outline: none;
+}
+
+.textfield label {
+
+    position: absolute;
+    top: 70%;
+    left: 5px;
+    padding-top: 20px;
+    pointer-events: none;
+    transform: translateY(-125%);
+    font-size: 19px;
+    font-weight: 530;
+    transition: .4s;
+}
+
+.textfield input:focus~label {
+    /* top: -5px; */
+    color: rgb(128, 99, 7);
+
+}
+
+.textfield span::before {
+
+    content: '';
+    position: absolute;
+    background-color: rgb(128, 99, 7);
+    width: 0%;
+    height: 2px;
+    top: 40px;
+    left: -1px;
+}
+
+.textfield input:focus~span::before {
+    width: 100%;
+}
+
+.right {
+    padding-left: 1%;
+    display: block;
+    flex: 50%;
+    width: 100%;
+}
+
+.header1 {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 5%;
+}
+
+.header2 {
+    margin-bottom: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.ulist {
+    font-style: italic;
+    color: #686868;
+    margin-bottom: 7%;
+    margin-left: 7%;
+    margin-right: 5%;
+}
+
+.subutton {
+    margin-top: -5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: black;
+    text-align: center;
+    border: none;
+    color: white;
+    line-height: 40px;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 5px;
+    height: 40px;
+    width: 42%;
+}
+
+.subutton:hover {
+    background: #b58422;
+    transition: 0.7s ease;
+    cursor: pointer;
+    letter-spacing: 6px;
+}
+
+#passlabel {
+    font-size: 15px;
+    position: absolute;
+    top: 68px;
+    color: rgb(131, 6, 6);
+}
+
+
+@media screen and (max-width: 900px) {
+    .signIn {
+        width: 90%;
+        display: block;
+    }
+
+    .signInform {
+        border-right: none;
+        padding: 0;
+        width: 80%;
+    }
+
+    .left {
+        margin-top: 5%;
+        border-bottom: 1px solid #adadad;
+        width: 100%;
+
+    }
+
+    .right {
+        margin-top: 5%;
+        width: 100%;
+        padding: 0;
+    }
+}
+
+.su-link {
+    color: white;
+    text-decoration: none;
+}
