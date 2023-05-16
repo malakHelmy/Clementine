@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <%- include('../partials/navbar') %>
+
+        <div class="sorting">
+            <label for="">Sort by</label>
+            <select name="sort" id="sort">
+                <option value="">Highest price</option>
+                <option value="">Lowest price</option>
+                <option value="">New Arrivals</option>
+
+            </select>
+
+        </div>
+
+        <section id="rings-intro">
+            <h1 class="rings-intro-title">Rings</h1>
+            <p class="snip">Whether you’re looking for a diamond ring or stackable rings, we have styles to suit every
+                taste. For something classic, our signet rings are a great option. With a flat surface, most of the
+                styles can be personalised with an engraving or stone setting of your choice.</p>
+        </section>
+        <section class="container">
+            <% if(products !='' ) {%>
+                <% products.forEach((products,index)=> {%>
+                    <div class="box">
+                        <img src="./Images/fav.png" alt="" class="fav">
+                        <a href="./productPdetails.html">
+
+                            <img class="imgg" src="../../public/Images/<% products.image %>" alt="">
+                        </a>
+                        <div class="items">
+                            <div class="prodetails">
+                                <p>
+                                    <%products.title%>
+                                </p>
+                                <p class="price">
+                                    <%products.price%>
+                                </p>
+                            </div>
+                            <button>Add to cart</button>
+                        </div>
+                    </div>
+                    <% }) %>
+                        <% } %>
+        </section>
+
+        <%- include('../partials/footer') -%>
+
+</body>
+
+</html>

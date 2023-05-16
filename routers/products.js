@@ -91,6 +91,44 @@ router.get('/:id', async (req, res) => {
 
     res.status(200).send(product);
 });
+router.post('/drings', async (req, res) => {
+    try {
+        let products = await Product.find({});
+        res.render('../views/pages/products', { products });
+    } catch (error) {
+        res.status(500).send({ message: error.message || 'ERROR OCCURED' });
+    }
+});
 
 //exporting method #2
 module.exports = router;
+// exports.homepage = async (req, res) => {
+//     try {
+//         const products = await Product.find({});
+//         res.render('products', { products });
+//     } catch (error) {
+//         res.status(500).send({ message: error.message || 'ERROR OCCURED' });
+//     }
+// };
+
+// async function insertProduct() {
+//     try {
+//         await Product.insertMany({
+
+//                 "id":"dring",
+//             "name":"Daisy Flower Crown Ring",
+//             "image":"ringg2.png",
+//             "images":["ringg2.png"],
+//             "price":"21000",
+//             "description":"The most feminine spring ring",
+//             "material":"diamond",
+//             "category":"ring",
+//             "countInStock":"6",
+//             "featured":false,
+
+//         });
+//     } catch (error) {
+//         console.log('err' + error);
+//     }
+// }
+// insertProduct();
