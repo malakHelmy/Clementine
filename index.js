@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(`${api}/products`, productsRouter);
 app.use(`${api}/categories`, categoriesRouter);
 app.use(`${api}/orders`, ordersRouter);
-app.use(`${api}/users`, usersRouter);
+app.use('/users', usersRouter);
 
 
 //Database connection
