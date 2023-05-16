@@ -14,7 +14,7 @@
     <section class="signIn">
 
         <h2>Sign Up Information </h2>
-        <form action="/categories" method="post" onsubmit="return checkinputs()" class="signInform" id="signInform" enctype="multipart/form-data">
+        <form action="/sign-up-action" method="post" onsubmit="return checkinputs()" class="signInform" id="signInform" enctype="multipart/form-data">
 
              <div class="textfield"> 
                  <input type="text" name="fisrtname" id="firstname">
@@ -73,6 +73,7 @@
              <br><br>
 
         </form>
+        <%= error %>
 
         <p id="loginlink">Already have an account?
             <a href="login.html" class="loginlink"> Log In </a> </p>

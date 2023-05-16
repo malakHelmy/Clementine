@@ -83,7 +83,7 @@ app.get(`/dashboard`, (req, res) => {
             });
         }
         else {
-            res.send("Access Denied.")
+            res.send("Acess Denied.")
         }
     }
     else {
@@ -99,10 +99,10 @@ app.post('/sign-up-action', (req,res)=>{
 
 })
 
-app.get('/logout', (req, res)) => {
+app.get('/logout', (req, res) => {
 req.session.destroy();
 res.redirect('/');
-}
+})
 app.listen(port, () => {
     console.log(api);
 });
