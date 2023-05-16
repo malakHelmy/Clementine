@@ -69,29 +69,31 @@ app.get(`/userprofile`, function (req, res) {
 app.get(`/signup`, function (req, res) {
     res.render('pages/signup', { user: (req.session.user === undefined ? "" : req.session.user)});
 });
-app.get(`/dashboard`, (req, res) => {
-    if (req.session.user !== undefined) {
-        if (req.session.user.type === 'admin') {
-            Admins.find().then( result => {
-                res.render('pages/dashboard', {employees : result, user: (req.session.user === undefined ? "" : req.session.user)});
+// app.get(`/dashboard`, (req, res) => {
+//     if (req.session.user !== undefined) {
+//         if (req.session.user.type === 'admin') {
+//             Admins.find().then( result => {
+//                 res.render('pages/dashboard', {employees : result, user: (req.session.user === undefined ? "" : req.session.user)});
 
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        }
-        else {
-            res.send("Acess Denied.")
-        }
-    }
-    else {
-        res.send("Access Denied.")
-    }
+//             })
+//             .catch(err => {
+//                 console.log(err);
+//             });
+//         }
+//         else {
+//             res.send("Acess Denied.")
+//         }
+//     }
+//     else {
+//         res.send("Access Denied.")
+//     }
+// });
+
+// app.post('/profile', (req, res) => {
+// })
+app.get(`/dashboard`, function (req, res) {
+    res.render('pages/dashboard');
 });
-
-app.post('/profile', (req, res) => {
-})
-
 
 app.post('/sign-up-action', (req,res)=>{
 
