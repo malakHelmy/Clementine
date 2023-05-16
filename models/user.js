@@ -1,39 +1,12 @@
-
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const userSchema = new Schema({
+    firstname:String,
+    lastname:String,
+    email: String, 
+    password: String,
+    phone: String,
+  });
 
-const userSchema = mongoose.Schema({
-    firstname: {
-        type: String,
-        required: true,
-    },
-    lastname: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-    phone: {
-        type: String,
-        required: true,
-    },
-    address: {
-        type: String
-    },
-    isAdmin:{
-        type: Boolean,
-        default: false,
-    },
-},    { timestamps: true });
-
-
-exports.User = mongoose.model('users', userSchema);
-
-/*model is the equivalent of 'collection' in node.js,
-'exports' will allow Product to be seen in other files using the 'require' method,
-exporting method #1*/
+  const user=mongoose.model("User",userSchema);
+  module.exports=user;

@@ -1,26 +1,19 @@
 
 const express = require('express');
-const { User } = require('../models/user');
+const  User  = require('../models/user');
 const router = express.Router();
 
-router.post(`/`, async (req, res) => {
-    let user = new User({
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        email: req.body.email,
-        password: req.body.password,
-        phone: req.body.phone,
-        address: req.body.address,
-        isAdmin: req.body.isAdmin
-    });
-
-    //catching errors method #2
-    user = await user.save();
-    if (!user) {
-        return res.status(404).send('User cannot be created');
-    }
-
-    res.send(user);
+router.post(`/`,   (req, res) => {
+    const users=new User(req.body);
+   
+    users
+        .save( )
+        .then( result => {
+            res.render('pages/index');
+        })
+        .catch( err => {
+          console.log(err);
+        });
 });
 
 module.exports = router;

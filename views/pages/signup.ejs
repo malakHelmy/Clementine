@@ -14,10 +14,10 @@
     <section class="signIn">
 
         <h2>Sign Up Information </h2>
-        <form action="/sign-up-action" method="post" onsubmit="return checkinputs()" class="signInform" id="signInform" enctype="multipart/form-data">
+        <form action="/user" method="post" onsubmit="return checkinputs()" class="signInform" id="signInform" >
 
              <div class="textfield"> 
-                 <input type="text" name="fisrtname" id="firstname">
+                 <input type="text" name="firstname" id="firstname">
                   <label for="firstname" id="firstnamelabel"></label>
                  <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
                  <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
@@ -73,7 +73,7 @@
              <br><br>
 
         </form>
-        <%= error %>
+        
 
         <p id="loginlink">Already have an account?
             <a href="login.html" class="loginlink"> Log In </a> </p>
@@ -82,7 +82,7 @@
     </section>
   
 
-    <%- include('../partials/footer') -%>
+    <%- include('../partials/footer') %>
 
     
 </body>

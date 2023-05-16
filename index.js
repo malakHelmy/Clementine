@@ -14,7 +14,7 @@ const productsRouter = require('./routers/products');
 const usersRouter = require('./routers/users');
 const categoriesRouter = require('./routers/categories');
 const ordersRouter = require('./routers/orders');
-const fileUpload = require('express-fileupload');
+// const fileUpload = require('express-fileupload');
 
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
@@ -35,25 +35,35 @@ app.use(express.urlencoded({ extended: true }));
 app.use(`${api}/products`, productsRouter);
 app.use(`${api}/categories`, categoriesRouter);
 app.use(`${api}/orders`, ordersRouter);
-app.use(`${api}/users`, usersRouter);
+app.use(`/user`, usersRouter);
+
 
 //Database connection
-mongoose
-    .connect(process.env.DB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        dbName: 'clementine',
+// mongoose
+//     .connect(process.env.DB_URI, {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//         dbName: 'clementine',
+//     })
+//     .then(() => {
+//         console.log('database connection succeeded');
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
+
+    mongoose.connect(process.env.DB_URI)
+    .then( (result) => {
+    console.log("database success");
     })
-    .then(() => {
-        console.log('database connection succeeded');
-    })
-    .catch((err) => {
-        console.log(err);
+    .catch( err => {
+      console.log(err);
     });
+  
 
-app.use(express.urlencoded({extended: true}));
 
-app.use(fileUpload());
+
+// app.use(fileUpload());
 app.use(session({ secret: 'Your_secret_key'}))
 
 
@@ -69,6 +79,7 @@ app.get(`/userprofile`, function (req, res) {
 app.get(`/signup`, function (req, res) {
     res.render('pages/signup', { user: (req.session.user === undefined ? "" : req.session.user)});
 });
+
 // app.get(`/dashboard`, (req, res) => {
 //     if (req.session.user !== undefined) {
 //         if (req.session.user.type === 'admin') {
@@ -103,9 +114,7 @@ app.get(`/login`, function (req, res) {
 app.get(`/chat`, function (req, res) {
     res.render('pages/chatbot');
 });
-app.post('/sign-up-action', (req,res)=>{
 
-})
 
 app.get('/logout', (req, res) => {
 req.session.destroy();
