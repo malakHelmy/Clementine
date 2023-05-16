@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
 
-
 //Routes
 const productsRouter = require('./routers/products');
 const usersRouter = require('./routers/users');
@@ -32,10 +31,10 @@ app.set('view engine', 'ejs'); //set the template engine
 app.use(express.urlencoded({ extended: true }));
 
 //Routers
-app.use(`${api}/products`, productsRouter);
-app.use(`${api}/categories`, categoriesRouter);
-app.use(`${api}/orders`, ordersRouter);
-app.use(`${api}/users`, usersRouter);
+app.use(`/drings`, productsRouter);
+app.use(`/categories`, categoriesRouter);
+app.use(`/orders`, ordersRouter);
+app.use(`/users`, usersRouter);
 
 //Database connection
 mongoose
@@ -51,23 +50,35 @@ mongoose
         console.log(err);
     });
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(fileUpload());
-app.use(session({ secret: 'Your_secret_key'}))
-
+app.use(session({ secret: 'Your_secret_key' }));
 
 app.get(`/`, function (req, res) {
-    res.render('pages/index', { user: (req.session.user === undefined ? "" : req.session.user)});
+    res.render('pages/index', {
+        user: req.session.user === undefined ? '' : req.session.user,
+    });
 });
 app.get(`/categories`, function (req, res) {
-    res.render('pages/categories', { user: (req.session.user === undefined ? "" : req.session.user)});
+    res.render('pages/categories', {
+        user: req.session.user === undefined ? '' : req.session.user,
+    });
+});
+app.get(`/drings`, function (req, res) {
+    res.render('pages/products', {
+        user: req.session.user === undefined ? '' : req.session.user,
+    });
 });
 app.get(`/userprofile`, function (req, res) {
-    res.render('pages/userprofile', { user: (req.session.user === undefined ? "" : req.session.user)});
+    res.render('pages/userprofile', {
+        user: req.session.user === undefined ? '' : req.session.user,
+    });
 });
 app.get(`/signup`, function (req, res) {
-    res.render('pages/signup', { user: (req.session.user === undefined ? "" : req.session.user)});
+    res.render('pages/signup', {
+        user: req.session.user === undefined ? '' : req.session.user,
+    });
 });
 // app.get(`/dashboard`, (req, res) => {
 //     if (req.session.user !== undefined) {
@@ -103,14 +114,12 @@ app.get(`/login`, function (req, res) {
 app.get(`/chat`, function (req, res) {
     res.render('pages/chatbot');
 });
-app.post('/sign-up-action', (req,res)=>{
-
-})
+app.post('/sign-up-action', (req, res) => {});
 
 app.get('/logout', (req, res) => {
-req.session.destroy();
-res.redirect('/');
-})
+    req.session.destroy();
+    res.redirect('/');
+});
 app.listen(port, () => {
     console.log(api);
 });
