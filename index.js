@@ -94,7 +94,9 @@ app.get(`/signup`, function (req, res) {
 app.get(`/dashboard`, function (req, res) {
     res.render('pages/dashboard');
 });
-
+app.get(`/chat`, function (req, res) {
+    res.render('pages/chat');
+});
 app.post('/sign-up-action', (req,res)=>{
 
 })

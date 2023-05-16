@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat App</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    .user-message {
+      background-color: #cce5ff;
+    }
+    .response-message {
+      background-color: #e2e3e5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Chat App</h1>
+    <div id="chat" class="mt-4"></div>
+    <div class="mt-4">
+      <input type="text" id="messageInput" class="form-control" placeholder="Type your message">
+      <button id="sendButton" class="btn btn-primary mt-2">Send</button>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Send message when send button is clicked
+      $('#sendButton').click(function() {
+        var message = $('#messageInput').val();
+        sendMessage(message);
+      });
+
+      // Send message when Enter key is pressed
+      $('#messageInput').keypress(function(event) {
+        if (event.which == 13) {
+          var message = $('#messageInput').val();
+          sendMessage(message);
+        }
+      });
+
+      // Function to send message as a POST request to the server
+      function sendMessage(message) {
+        // Clear input field
+        $('#messageInput').val('');
+
+        // Display user message in the chat
+        var userMessage = $('<div>').addClass('user-message').text('You: ' + message);
+        $('#chat').append(userMessage);
+
+        // Send message to the server
+        $.post('/api', { message: message }, function(response) {
+          // Display server response in the chat
+          var responseMessage = $('<div>').addClass('response-message').text('Server: ' + response);
+          $('#chat').append(responseMessage);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
