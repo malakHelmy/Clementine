@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+
+</head>
+
+<body>
+
+    <%- include('../partials/navbar') %>
+
+        <!-- Sign in form -->
+        <div class="signIn">
+            <div class="left">
+                <form action="" class="signInform" id="signInform">
+                    <h2>Login</h2>
+
+                    <div class="textfield">
+                        <input type="email" name="email">
+                        <span class="sp1"></span>
+                        <label for="">E-mail</label>
+                    </div>
+                    <div class="textfield">
+                        <input type="password" name="password" id="pass">
+                        <label for="" id="passlabel"></label>
+
+                        <span class="sp1"></span>
+                        <label for="">Password</label>
+                    </div>
+
+                    <input type="submit" class="lgbutton" value="LOG IN">
+                    <br><br>
+                </form>
+                <script>
+                    const form = document.getElementById('signInform');
+                    const pass = document.getElementById('pass');
+                    form.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        if (pass.value.trim() == '') {
+                            let label = document.getElementById('passlabel');
+                            label.innerHTML = 'Please enter password';
+                        }
+                    });
+                </script>
+
+            </div>
+
+            <div class="right">
+                <p class="header1">Don't have an account?</p>
+                <p class="header2">Create one to:</p>
+                <ul class="ulist">
+                    <li>Checkout faster</li>
+                    <li>Manage your preferences</li>
+                    <li>Save your wishlist across devices</li>
+                </ul>
+                <button class="subutton"><a href="./signup.html" class="su-link">SIGN UP </a></button>
+            </div>
+        </div>
+
+        <%- include('../partials/footer') -%>
+
+</body>
+
+</html>
