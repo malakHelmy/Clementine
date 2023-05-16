@@ -49,7 +49,8 @@ const productSchema = mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-});
+},    { timestamps: true });
+
 
 /*model is the equivalent of 'collection' in node.js,
 'exports' will allow Product to be seen in other files using the 'require' method,
