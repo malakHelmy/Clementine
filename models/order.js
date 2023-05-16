@@ -53,7 +53,8 @@ const orderSchema = mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-});
+},    { timestamps: true });
+
 
 // virtual id
 
