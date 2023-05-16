@@ -14,7 +14,7 @@
     <section class="signIn">
 
         <h2>Sign Up Information </h2>
-        <form action="/categories" method="post" onsubmit="return checkinputs()" class="signInform" id="signInform">
+        <form action="/categories" method="post" onsubmit="return checkinputs()" class="signInform" id="signInform" enctype="multipart/form-data">
 
              <div class="textfield"> 
                  <input type="text" name="fisrtname" id="firstname">
@@ -71,6 +71,7 @@
             </p>
              <input type="submit" class="submit">
              <br><br>
+
         </form>
 
         <p id="loginlink">Already have an account?
