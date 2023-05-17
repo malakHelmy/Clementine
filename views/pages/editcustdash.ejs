@@ -73,22 +73,22 @@
             <h1>Customers</h1>
             <div id="customers-container">
                 <div class="addcust" id="addcust">
-                    <form class="form">
+                    <form action = "/editcustdash" method="POST" class="form">
                     <div class="add">
                         <h2 class="add-title">Add A Customer</h2>
                     </div>
                     <div class="customers-container" style="display: block;">
                         
                         <div class="input-group">
-                        <label for="email">First Name</label>
-                        <div><input id="custemail" type="email" placeholder="Customer's Email" name="email" >
+                        <label for="firstname">First Name</label>
+                        <div><input id="firstname" type="text" placeholder="First Name" name="firstname" >
                         </div>
                         <span class="errormsg"></span>
                         </div>
 
                         <div class="input-group">
-                            <label for="email">Email</label>
-                            <div><input id="custemail" type="email" placeholder="Customer's Email" name="email" >
+                            <label for="lastname">Last Name</label>
+                            <div><input id="lastname" type="text" placeholder="Customer's Last Name" name="lastname" >
                             </div>
                             <span class="errormsg"></span>
                             </div>
@@ -108,11 +108,11 @@
                         </div>
         
                         <div class="input-group">
-                        <label for="pass">Password Confirmation</label>
-                        <div><input id="passconf" type="password" placeholder="Confirm Password" name="psw">
-                        </div>
-                        <span class="errormsg"></span>
-                        </div>
+                            <label for="phone">Phone</label>
+                            <div><input id="phone" type="text" placeholder="Customer's Phone Number" name="phone" >
+                            </div>
+                            <span class="errormsg"></span>
+                            </div>
 
                         <button type="add" id="add">Add</button><span><button id="cancel" href="editcustdash.html">Cancel</button></span>
                         

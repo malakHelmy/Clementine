@@ -82,6 +82,9 @@ app.get(`/dashboard`, function (req, res) {
 app.get(`/editcustdash`, function (req, res) {
     res.render('pages/editcustdash');
 });
+app.post(`/editcustdash`, function (req, res) {
+    res.render('pages/editcustdash');
+});
 app.get(`/updatecustdash`, function (req, res) {
     res.render('pages/updatecustdash');
 });
