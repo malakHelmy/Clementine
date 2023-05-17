@@ -25,6 +25,9 @@ const api = process.env.API_URL;
 const app = express();
 const port = process.env.PORT || 8080;
 
+
+
+
 // middleware
 app.use(express.json());
 app.use(morgan('tiny')); //displays log requests
@@ -36,30 +39,26 @@ app.set('view engine', 'ejs'); //set the template engine
 app.use(express.urlencoded({ extended: true }));
 
 //Routers
-app.use(`/products`, productsRouter);
-app.use(`/categories`, categoriesRouter);
-app.use(`/orders`, ordersRouter);
+app.use(`${api}/products`, productsRouter);
+app.use(`${api}/categories`, categoriesRouter);
+app.use(`${api}/orders`, ordersRouter);
 app.use('/user', usersRouter);
 app.use('/login', users_loginRouter);
 
-mongoose
-    .connect(process.env.DB_URI)
+mongoose.connect(process.env.DB_URI)
     .then((result) => {
-        console.log('database success');
+        console.log("database success");
     })
-    .catch((err) => {
+    .catch(err => {
         console.log(err);
     });
 
+
 // app.use(fileUpload());
-app.use(session({ secret: 'Your_secret_key' }));
+app.use(session({ secret: 'Your_secret_key' }))
+
 
 app.get(`/`, function (req, res) {
-    res.render('pages/index', {
-        user: req.session.user === undefined ? '' : req.session.user,
-    });
-});
-app.get(`/home`, function (req, res) {
     res.render('pages/index', {
         user: req.session.user === undefined ? '' : req.session.user,
     });
@@ -74,6 +73,8 @@ app.get(`/drings`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
+
+
 
 /* --------- DASHBOARDS -----*/
 app.get(`/dashboard`, function (req, res) {
@@ -92,6 +93,7 @@ app.get(`/userprofile`, function (req, res) {
 });
 /* --------- DASHBOARDS END -----*/
 
+
 /* --------- SIGN UP AND LOG IN ---*/
 app.get(`/signup`, function (req, res) {
     res.render('pages/signup', {
@@ -102,12 +104,16 @@ app.get(`/signup`, function (req, res) {
 app.get(`/login`, function (req, res) {
     res.render('pages/login');
 });
-app.post('/sign-up-action', (req, res) => {});
+app.post('/sign-up-action', (req, res) => {
+
+})
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
 /* --------- SIGN UP AND LOG IN END ---*/
+
+
 
 /* --------- CHATPOT API ----------*/
 
@@ -116,6 +122,10 @@ app.get(`/chat`, function (req, res) {
 });
 
 /* --------- CHATPOT API END----------*/
+
+
+
+
 
 /* ---------CONTACT US FORM MAILER --------*/
 app.get(`/contactus`, function (req, res) {
@@ -130,20 +140,24 @@ app.post(`/contactus`, function (req, res) {
     var subject = req.body.subject;
     var message = req.body.message;
 
+
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: 'clementineco2023@gmail.com',
-            pass: 'lmkwmjbyftpuzwhz',
-        },
-    });
+            pass: 'lmkwmjbyftpuzwhz'
+        }
+
+    })
 
     var mailOptions = {
         from: uemail,
         to: 'clementineco2023@gmail.com',
         subject: subject,
-        text: message,
-    };
+        text: message
+
+    }
+
 
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
@@ -151,12 +165,17 @@ app.post(`/contactus`, function (req, res) {
             res.send('Error.');
         } else {
             console.log('Email sent:' + info.response);
-            res.send('Successfully sent.');
+            res.send('Successfully sent.')
+
         }
-        express.response.redirect('/');
-    });
+        express.response.redirect("/")
+    })
+
+
 });
 /* ---------CONTACT US FORM MAILER END --------*/
+
+
 
 app.listen(port, () => {
     console.log(api);

@@ -91,10 +91,10 @@ router.get('/:id', async (req, res) => {
 
     res.status(200).send(product);
 });
-router.get('/drings', async (req, res) => {
+router.post('/drings', async (req, res) => {
     try {
         let products = await Product.find({});
-        res.render('../views/pages/products', { Product: products });
+        res.render('../views/pages/products', { products });
     } catch (error) {
         res.status(500).send({ message: error.message || 'ERROR OCCURED' });
     }
