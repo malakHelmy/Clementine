@@ -66,38 +66,62 @@ app.get(`/drings`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
+
+
+
+/* --------- DASHBOARDS -----*/
+app.get(`/dashboard`, function (req, res) {
+    res.render('pages/dashboard');
+});
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
+/* --------- DASHBOARDS END -----*/
+
+
+/* --------- SIGN UP AND LOG IN ---*/
 app.get(`/signup`, function (req, res) {
     res.render('pages/signup', {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
 
-
-app.get(`/dashboard`, function (req, res) {
-    res.render('pages/dashboard');
-});
-app.get(`/contactus`, function (req, res) {
-    res.render('pages/contactus');
-});
 app.get(`/login`, function (req, res) {
     res.render('pages/login');
-});
-app.get(`/chat`, function (req, res) {
-    res.render('pages/chatbot');
 });
 app.post('/sign-up-action', (req,res)=>{
 
 })
-
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
+/* --------- SIGN UP AND LOG IN END ---*/
+
+
+
+/* --------- CHATPOT API ----------*/
+
+app.get(`/chat`, function (req, res) {
+    res.render('pages/chatbot');
+});
+
+/* --------- CHATPOT API END----------*/
+
+
+
+
+
+/* ---------CONTACT US FORM MAILER --------*/
+app.get(`/contactus`, function (req, res) {
+    res.render('pages/contactus');
+});
+/* ---------CONTACT US FORM MAILER END --------*/
+
+
+
 app.listen(port, () => {
     console.log(api);
 });
