@@ -165,5 +165,5 @@ app.post(`/contactus`, function (req, res) {
 /* ---------CONTACT US FORM MAILER END --------*/
 
 app.listen(port, () => {
-    console.log(api);
+    console.log('running on http://localhost:8080');
 });
