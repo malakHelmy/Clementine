@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- material icons cdn -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+    <link rel="stylesheet" href="css/editcustdash.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Admin Dashboard</title>
+</head>
+
+
+
+
+<body>
+
+
+    <div class="container">
+
+        <!-- sidebar start -->
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="./Images/logoo copy.png" alt="logo">
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-symbols-sharp">close</span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="./dashborad.html"><span class="material-symbols-sharp">dashboard</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="editcustdash.html"><span class="material-symbols-sharp">person</span>
+                    <h3>Customers</h3>
+                </a>
+                <a href="orders.html"><span class="material-symbols-sharp">receipt_long</span>
+                    <h3>Orders</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">insights</span>
+                    <h3>Analytics</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">chat</span>
+                    <h3>Chat</h3><span class="message-count">3</span>
+                </a>
+                <a href="./editproducts.html"  class="active"><span class="material-symbols-sharp">inventory</span>
+                    <h3>Products</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">report</span>
+                    <h3>Reports</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">Settings</span>
+                    <h3>Settings</h3>
+                </a>
+                
+                <a href=""><span class="material-symbols-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a>
+
+            </div>
+        </aside>
+        <!-- sidebar end -->
+
+
+
+
+        <main>
+            <h1>Jewelry</h1>
+            <div id="products-container">
+                <div class="addcust" id="addcust">
+                    <form class="form">
+                    <div class="add">
+                        <h2 class="add-title">Add A Product</h2>
+                    </div>
+                    <div class="products-container" style="display: block;">
+                        
+                        <div class="input-group">
+                        <label for="email">Product Name</label>
+                        <div><input id="custemail" type="email" placeholder="Product Name" name="pname" >
+                        </div>
+                        <span class="errormsg"></span>
+                        </div>
+                        
+                        <div class="input-group">
+                        <label for="pass">Product ID</label>
+                        <div> <input id="password" type="text" placeholder="Product ID" name="pid">                       
+                        </div>
+                        <span class="errormsg"></span>
+                        </div>
+        
+                        <div class="input-group">
+                        <label for="pass">Product Model</label>
+                        <div><input id="passconf" type="text" placeholder="Prodct Model" name="pmod">
+                        </div>
+                        <span class="errormsg"></span>
+                        </div>
+                        <div class="input-group">
+                            <label for="pass">Product Images</label>
+                          <div>
+                            <label class="add-photo-btn">Upload Image<span>
+                                <input type="file" id="myfile" name="myfile"></span>
+                            </label>
+                        </div>
+                            <span class="errormsg"></span>
+                            </div>
+
+                        <div class="input-group">
+                            <label for="pass">Product Description</label>
+                            <div><input id="passconf" type="text" placeholder="Prodct Description" name="pdes" class="pdes">
+                            </div>
+                            <span class="errormsg"></span>
+                            </div>
+
+                            
+
+                        <button type="add" id="add">Add</button><span><button id="cancel" href="editproducts.html">Cancel</button></span>
+                        
+                    </div>
+                    </form>
+                </div>
+
+
+                
+                <main class="table">
+                    <section class="table_header">
+                        <h1>Products List</h1>
+                        <div class="search_orders">
+                            <input type="search" placeholder="Search existing products...">
+                        </div>
+                       
+                    </section>
+                    <section class="table_body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th> Product ID <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> Product Image <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> Product Name <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> Model <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> Edit/Delete <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> Availability <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> Price <span class="icon-arrow">&UpArrow;</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> #182383C </td>
+                                    <td> <img src="Images/r2.png" alt="" id="prod_img"></td>
+                                    <td> Clementine Daisy Ring </td>
+                                    <td> Diamond </td>
+                                    <td><button class = "btn" > <i class="fa fa-edit" ></i> </button> <button class="btn"><i class="fa fa-trash"> </i></button ></a></li>
+                                    </td>
+                                    <td>
+                                        <p class="status_delivered">In Stock</p> <p class="avail_amount">*Available: 100 Pieces</p>
+                                    </td>
+                                    <td> <strong> EGP 12890 </strong></td>
+                                </tr>
+                                <tr>
+                                    <td> #843WRFH </td>
+                                    <td> <img src="Images/r3.png" alt="" id="prod_img"></td>
+                                    <td> Clementine Sweetheart Necklace </td>
+                                    <td> Diamond </td>
+                                    <td><button class = "btn" > <i class="fa fa-edit" ></i> </button> <button class="btn"><i class="fa fa-trash"> </i></button ></a></li>
+                                    </td>
+                                    <td>
+                                        <p class="status_delivered">In Stock</p> <p class="avail_amount">*Available: 90 Pieces</p>
+                                    </td>
+                                    <td> <strong>EGP 535050</strong> </td>
+                                </tr>
+                                <tr>
+                                    <td> #129EDJHN</td>
+                                    <td> <img src="Images/gr6.png" alt=""id="prod_img"></td>
+                                    <td> Clementine Royal Ring </td>
+                                    <td> Gold </td>
+                                    <td><button class = "btn" > <i class="fa fa-edit" ></i> </button> <button class="btn"><i class="fa fa-trash"> </i></button ></a></li>
+                                    </td>
+                                    <td>
+                                        <p class="status_cancelled">Out Of Stock</p> <p class="avail_amount">*Available: 0 Pieces</p>
+                                    </td>
+                                    <td> <strong>EGP 210040</strong> </td>
+                                </tr>
+                                <tr>
+                                    <td> #8I2UWNC</td>
+                                    <td> <img src="Images/b4.jpg" alt=""id="prod_img"></td>
+                                    <td> Clementine Diamond Bracelet </td>
+                                    <td> Diamond </td>
+                                    <td><button class = "btn" > <i class="fa fa-edit" ></i> </button> <button class="btn"><i class="fa fa-trash"> </i></button ></a></li>
+                                    </td>
+                                    <td>
+                                        <p class="status_delivered">In Stock</p> <p class="avail_amount">*Available: 23 Pieces</p>
+                                    </td>
+                                    <td> <strong>EGP 14970</strong> </td>
+                                </tr>
+                                <tr>
+                                    <td> #3R4NFC</td>
+                                    <td> <img src="Images/gn3.png" alt=""id="prod_img"></td>
+                                    <td> Clementine Gold Necklace </td>
+                                    <td> Gold </td>
+                                    <td><button class = "btn" > <i class="fa fa-edit" ></i> </button> <button class="btn"><i class="fa fa-trash"> </i></button ></a></li>
+                                    </td>
+                                    <td>
+                                        <p class="status_cancelled">Out Of Stock</p> <p class="avail_amount">*Available: 0 Pieces</p>
+                                    </td>
+                                    <td> <strong>EGP 39999</strong> </td>
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+                    </section>
+           
+                </main>
+            
+                <div id="update-msg">
+                    <span>Product Updated Successfully.</span>
+                 </div>
+                 <div id="delete-msg">
+                    <span>Product Deleted Successfully.</span>
+                 </div>
+
+
+
+       
+
+
+
+
+
+             
+
+    <script src="js/orders.js"></script>
+
+</body>
+
+</html>
