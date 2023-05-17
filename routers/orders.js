@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
 
 //adding a new object to the schema
 router.post(`/`, async (req, res) => {
-    const orderItemsIds = (
+    const orderItemsIds = Promise.all(
         req.body.orderItems.map(async (orderItem) => {
             let newOrderItem = new OrderItem({
                 quantity: orderItem.quantity,
