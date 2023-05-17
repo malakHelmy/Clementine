@@ -24,7 +24,7 @@ body {
 .signIn {
     width: 30%;
     position: relative;
-    top: 65%;
+    top: 400px;
     margin-bottom: 6%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -40,6 +40,7 @@ body {
     border-bottom: 1px solid #adadad;
     font-family: 'Zapf';
     letter-spacing: 2px;
+    text-align: center;
 }
 
 .submit {
@@ -79,9 +80,7 @@ body {
 
 .textfield input{
     width: 100%;
-    padding: 0 5px;
     height: 40px;
-    font: 16px;
     font-size: 16px;
     border: none;
     outline: none;
@@ -89,7 +88,7 @@ body {
 .textfield label{
 
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 5px;
     pointer-events: none;
     transform: translateY(-120%);

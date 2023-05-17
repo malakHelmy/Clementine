@@ -14,12 +14,6 @@ const productSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-        images: [
-            {
-                type: String,
-                required: true,
-            },
-        ],
         price: {
             type: Number,
             required: true,
@@ -29,31 +23,17 @@ const productSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-        material: {
-            type: String,
-            required: true,
-        },
         category: {
             type: String,
             required: true,
         },
-
         countInStock: {
             type: Number,
             required: true,
             min: 0,
             max: 20,
         },
-        featured: {
-            type: Boolean,
-            default: false,
-        },
-        date: {
-            type: Date,
-            default: Date.now,
-        },
-    },
-    { timestamps: true }
+    }
 );
 
 /*model is the equivalent of 'collection' in node.js,
