@@ -82,8 +82,8 @@ app.get(`/dashboard`, function (req, res) {
 app.get(`/editcustdash`, function (req, res) {
     res.render('pages/editcustdash');
 });
-app.get(`/btn`, function (req, res) {
-    res.render('pages/editcustdash');
+app.get(`/updatecustdash`, function (req, res) {
+    res.render('pages/updatecustdash');
 });
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
