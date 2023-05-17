@@ -121,9 +121,14 @@ app.get('/logout', (req, res) => {
 
 /* --------- CHATPOT API ----------*/
 
+
 app.get(`/chat`, function (req, res) {
     res.render('pages/chatbot');
 });
+
+
+
+
 
 /* --------- CHATPOT API END----------*/
 
