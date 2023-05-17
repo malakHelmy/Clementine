@@ -81,6 +81,13 @@ app.get(`/drings`, function (req, res) {
 app.get(`/dashboard`, function (req, res) {
     res.render('pages/dashboard');
 });
+app.get(`/editcustdash`, function (req, res) {
+    res.render('pages/editcustdash');
+});
+app.get(`/updatecustdash`, function (req, res) {
+    res.render('pages/updatecustdash');
+});
+
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
         user: req.session.user === undefined ? '' : req.session.user,
