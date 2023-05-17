@@ -7,6 +7,10 @@ const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
+const nodemailer = require('nodemailer');
+const hbars = require('nodemailer-express-handlebars');
+const { resolveHostname } = require('nodemailer/lib/shared');
+const Mailgen = require('mailgen');
 
 //Routes
 const productsRouter = require('./routers/products');
@@ -20,6 +24,9 @@ const ordersRouter = require('./routers/orders');
 const api = process.env.API_URL;
 const app = express();
 const port = process.env.PORT || 8080;
+
+
+
 
 // middleware
 app.use(express.json());
@@ -36,19 +43,19 @@ app.use(`${api}/products`, productsRouter);
 app.use(`${api}/categories`, categoriesRouter);
 app.use(`${api}/orders`, ordersRouter);
 app.use('/user', usersRouter);
-app.use('/login',users_loginRouter);
+app.use('/login', users_loginRouter);
 
-    mongoose.connect(process.env.DB_URI)
-    .then( (result) => {
-    console.log("database success");
+mongoose.connect(process.env.DB_URI)
+    .then((result) => {
+        console.log("database success");
     })
-    .catch( err => {
-      console.log(err);
+    .catch(err => {
+        console.log(err);
     });
 
 
 // app.use(fileUpload());
-app.use(session({ secret: 'Your_secret_key'}))
+app.use(session({ secret: 'Your_secret_key' }))
 
 
 app.get(`/`, function (req, res) {
@@ -91,7 +98,7 @@ app.get(`/signup`, function (req, res) {
 app.get(`/login`, function (req, res) {
     res.render('pages/login');
 });
-app.post('/sign-up-action', (req,res)=>{
+app.post('/sign-up-action', (req, res) => {
 
 })
 app.get('/logout', (req, res) => {
@@ -117,6 +124,48 @@ app.get(`/chat`, function (req, res) {
 /* ---------CONTACT US FORM MAILER --------*/
 app.get(`/contactus`, function (req, res) {
     res.render('pages/contactus');
+});
+
+app.post(`/contactus`, function (req, res) {
+    // res.render('pages/contactus');
+
+    var fullname = req.body.name;
+    var uemail = req.body.email;
+    var subject = req.body.subject;
+    var message = req.body.message;
+
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'clementineco2023@gmail.com',
+            pass: 'lmkwmjbyftpuzwhz'
+        }
+
+    })
+
+    var mailOptions = {
+        from: uemail,
+        to: 'clementineco2023@gmail.com',
+        subject: subject,
+        text: message
+
+    }
+
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+            res.send('Error.');
+        } else {
+            console.log('Email sent:' + info.response);
+            res.send('Successfully sent.')
+
+        }
+        express.response.redirect("/")
+    })
+
+
 });
 /* ---------CONTACT US FORM MAILER END --------*/
 
