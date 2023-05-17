@@ -15,8 +15,8 @@ router.post(`/`, async  (req, res) => {
         }
         const users=new User(user);
     users
-        .save( )
-        .then( result => {
+        .save()
+        .then( (result) => {
             res.render('pages/index');
         })
         .catch( err => {

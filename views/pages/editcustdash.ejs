@@ -73,7 +73,7 @@
             <h1>Customers</h1>
             <div id="customers-container">
                 <div class="addcust" id="addcust">
-                    <form action = "/editcustdash" method="POST" class="form">
+                    <form action = "/editcustdash" method="post" class="signInform" onsubmit="return checkinputs()">
                     <div class="add">
                         <h2 class="add-title">Add A Customer</h2>
                     </div>
@@ -102,22 +102,30 @@
                         
                         <div class="input-group">
                         <label for="pass">Password</label>
-                        <div> <input id="password" type="password" placeholder="Customer's Password" name="psw">                       
+                        <div> <input id="password" type="password" placeholder="Customer's Password" name="password">                       
                         </div>
                         <span class="errormsg"></span>
                         </div>
-        
+
+                        <div class="input-group">
+                            <label for="pass">Confirm password</label>
+                            <div> <input id="password" type="password" placeholder="Customer's Password" name="confirmpass">                       
+                            </div>
+                            <span class="errormsg"></span>
+                            </div>
+
                         <div class="input-group">
                             <label for="phone">Phone</label>
                             <div><input id="phone" type="text" placeholder="Customer's Phone Number" name="phone" >
                             </div>
                             <span class="errormsg"></span>
                             </div>
-
-                        <button type="add" id="add">Add</button><span><button id="cancel" href="editcustdash.html">Cancel</button></span>
+                        <input type="submit" value="Add" id="add" >
+                       
                         
                     </div>
                     </form>
+                     <script src="js/validation.js"></script>
                 </div>
 
 

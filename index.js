@@ -15,6 +15,7 @@ const Mailgen = require('mailgen');
 const productsRouter = require('./routers/products');
 const usersRouter = require('./routers/users');
 const users_loginRouter = require('./routers/login');
+const cust_contRouter = require('./routers/editcustdash');
 const categoriesRouter = require('./routers/categories');
 const ordersRouter = require('./routers/orders');
 const contactmailerRouter = require ('./routers/mailController')
@@ -41,6 +42,8 @@ app.use(`/categories`, categoriesRouter);
 app.use(`/orders`, ordersRouter);
 app.use('/user', usersRouter);
 app.use('/login', users_loginRouter);
+app.use('/editcustdash', cust_contRouter);
+
 
 mongoose
     .connect(process.env.DB_URI)
