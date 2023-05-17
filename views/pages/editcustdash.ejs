@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- material icons cdn -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+    <link rel="stylesheet" href="css/editcustdash.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Admin Dashboard</title>
+</head>
+
+
+
+
+<body>
+
+
+    <div class="container">
+
+        <!-- sidebar start -->
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="./Images/logoo copy.png" alt="logo">
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-symbols-sharp">close</span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="./dashborad.html"><span class="material-symbols-sharp">dashboard</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="editcustdash.html" class="active"><span class="material-symbols-sharp">person</span>
+                    <h3>Customers</h3>
+                </a>
+                <a href="orders.html"><span class="material-symbols-sharp">receipt_long</span>
+                    <h3>Orders</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">insights</span>
+                    <h3>Analytics</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">chat</span>
+                    <h3>Chat</h3><span class="message-count">3</span>
+                </a>
+                <a href="editproducts.html"><span class="material-symbols-sharp">inventory</span>
+                    <h3>Products</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">report</span>
+                    <h3>Reports</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">Settings</span>
+                    <h3>Settings</h3>
+                </a>
+              
+                <a href=""><span class="material-symbols-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a>
+
+            </div>
+        </aside>
+        <!-- sidebar end -->
+
+
+
+
+        <main>
+            <h1>Customers</h1>
+            <div id="customers-container">
+                <div class="addcust" id="addcust">
+                    <form class="form">
+                    <div class="add">
+                        <h2 class="add-title">Add A Customer</h2>
+                    </div>
+                    <div class="customers-container" style="display: block;">
+                        
+                        <div class="input-group">
+                        <label for="email">Email</label>
+                        <div><input id="custemail" type="email" placeholder="Customer's Email" name="email" >
+                        </div>
+                        <span class="errormsg"></span>
+                        </div>
+                        
+                        <div class="input-group">
+                        <label for="pass">Password</label>
+                        <div> <input id="password" type="password" placeholder="Customer's Password" name="psw">                       
+                        </div>
+                        <span class="errormsg"></span>
+                        </div>
+        
+                        <div class="input-group">
+                        <label for="pass">Password Confirmation</label>
+                        <div><input id="passconf" type="password" placeholder="Confirm Password" name="psw">
+                        </div>
+                        <span class="errormsg"></span>
+                        </div>
+
+                        <button type="add" id="add">Add</button><span><button id="cancel" href="editcustdash.html">Cancel</button></span>
+                        
+                    </div>
+                    </form>
+                </div>
+
+
+                
+                <div class="search-container" >
+                    <div>
+                    <h2 class="search-title">Search For A Customer</h2>
+                    </div>
+                        <div id="search">
+                        <input type="text" id="searchinput" onkeyup="search_cust()" placeholder="Search...">
+                        <div>
+                    </div>
+                   </div>
+                    <ul id="custlist">
+                    <li><a href="#" id="c1"> Nada M. Farouk
+                         <div><button class = "btn" > <i class="fa fa-edit" ></i> </button> <button class="btn"><i class="fa fa-trash"> </i></button ></div></a></li>
+                    <li><a href="#" id="c2"> Mohamed A. Othman                  
+                        <div><button class = "btn"> <i class="fa fa-edit"></i> </button> <button class="btn"><i class="fa fa-trash"></i></button ></div></a></li>
+                    <li><a href="#" id="c3">Lana S. Hendawy                         
+                        <div><button class = "btn"> <i class="fa fa-edit"></i> </button> <button class="btn"><i class="fa fa-trash"></i></button></div></a></li>
+                    <li><a href="#" id="c4">Karim L. Mohsen                         
+                        <div><button class = "btn"> <i class="fa fa-edit"></i> </button> <button class="btn"><i class="fa fa-trash"></i></button ></div></a></li>
+                    </ul>
+                </div>
+            
+            
+                <div id="update-msg">
+                    <span>Customer Updated Successfully.</span>
+                 </div>
+                 <div id="delete-msg">
+                    <span>Customer Deleted Successfully.</span>
+                 </div>
+
+
+
+           <div class="info">
+                 <h3 >New CUSTOMERS</h3>
+                    <small class="text-muted">Last 24 Hours</small>
+                        </div>
+                        <h5 class="success">+25%</h5>
+                        <h3>845</h3>
+                    </div>
+             </div>
+
+
+
+
+
+             
+
+    <script src="/js/editcustdash.js"></script>
+
+</body>
+
+</html>
