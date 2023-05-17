@@ -9,7 +9,6 @@ const morgan = require('morgan');
 const path = require('path');
 const nodemailer = require('nodemailer');
 const hbars = require('nodemailer-express-handlebars');
-const { resolveHostname } = require('nodemailer/lib/shared');
 const Mailgen = require('mailgen');
 
 //Routes
@@ -80,6 +79,12 @@ app.get(`/drings`, function (req, res) {
 /* --------- DASHBOARDS -----*/
 app.get(`/dashboard`, function (req, res) {
     res.render('pages/dashboard');
+});
+app.get(`/editcustdash`, function (req, res) {
+    res.render('pages/editcustdash');
+});
+app.get(`/btn`, function (req, res) {
+    res.render('pages/editcustdash');
 });
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
