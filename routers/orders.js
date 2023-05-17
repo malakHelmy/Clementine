@@ -51,14 +51,14 @@ router.post(`/`, async (req, res) => {
         })
     );
 
-    const orderItemsIdsresolved = await orderItemsIds;
-    console.log(orderItemsIdsresolved);
+    const orderItemIdsresolved = await orderItemsIds;
+    console.log(orderItemIdsresolved);
 
 
 
     let add_order = new Order({
-
-        orderItems: orderItemsIdsresolved,
+        
+        orderItems: orderItemIdsresolved,
         order_id: req.body.order_id,
         userID: req.body.userID,
         shippingAddress1: req.body.shippingAddress1,
