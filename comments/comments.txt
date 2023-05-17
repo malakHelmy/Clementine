@@ -1,0 +1,40 @@
+// any one who want to comment a code and use it again , put your code here <3 
+
+
+//Database connection
+// mongoose
+//     .connect(process.env.DB_URI, {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//         dbName: 'clementine',
+//     })
+//     .then(() => {
+//         console.log('database connection succeeded');
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
+
+
+// app.get(`/dashboard`, (req, res) => {
+//     if (req.session.user !== undefined) {
+//         if (req.session.user.type === 'admin') {
+//             Admins.find().then( result => {
+//                 res.render('pages/dashboard', {employees : result, user: (req.session.user === undefined ? "" : req.session.user)});
+
+//             })
+//             .catch(err => {
+//                 console.log(err);
+//             });
+//         }
+//         else {
+//             res.send("Acess Denied.")
+//         }
+//     }
+//     else {
+//         res.send("Access Denied.")
+//     }
+// });
+
+// app.post('/profile', (req, res) => {
+// })
