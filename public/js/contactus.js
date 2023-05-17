@@ -18,7 +18,6 @@ contactForm.addEventListener('submit', (e)=> {
     requested.open('POST', '/contactus');
     requested.setRequestHeader('content-type', 'application/json');
     requested.onload = function() {
-        console.log(requested.responseText);
         if (requested.responseText == 'success') {
             alert('Email sent.');
             fullname.value='';
@@ -26,9 +25,7 @@ contactForm.addEventListener('submit', (e)=> {
             uemail.value='';
             message.value='';
         }
-        else {
-            alert('We are sorry, something went wrong.')
-        }
+        
     }
 
     requested.send(JSON.stringify(formData));

@@ -18,6 +18,7 @@ const usersRouter = require('./routers/users');
 const users_loginRouter = require('./routers/login');
 const categoriesRouter = require('./routers/categories');
 const ordersRouter = require('./routers/orders');
+const contactmailerRouter = require ('./routers/mailController')
 // const fileUpload = require('express-fileupload');
 
 // http://localhost:8080/api/v1/products
@@ -117,7 +118,7 @@ app.get(`/contactus`, function (req, res) {
 });
 
 app.post(`/contactus`, function (req, res) {
-    // res.render('pages/contactus');
+    res.render('pages/contactus');
 
     var fullname = req.body.name;
     var uemail = req.body.email;
