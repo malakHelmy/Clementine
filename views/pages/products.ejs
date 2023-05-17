@@ -36,20 +36,20 @@
         </section>
         <section class="container">
             <% if(products !='' ) {%>
-                <% products.forEach((products,index)=> {%>
+                <% products.forEach((items)=> {%>
                     <div class="box">
                         <img src="./Images/fav.png" alt="" class="fav">
                         <a href="./productPdetails.html">
 
-                            <img class="imgg" src="../../public/Images/<% products.image %>" alt="">
+                            <img class="imgg" src="Images/<%- items.image %>" alt="">
                         </a>
                         <div class="items">
                             <div class="prodetails">
                                 <p>
-                                    <%products.title%>
+                                    <%= items.description%>
                                 </p>
                                 <p class="price">
-                                    <%products.price%>
+                                    <%= items.price%>
                                 </p>
                             </div>
                             <button>Add to cart</button>
