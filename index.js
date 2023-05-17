@@ -82,16 +82,9 @@ app.get(`/dashboard`, function (req, res) {
 app.get(`/editcustdash`, function (req, res) {
     res.render('pages/editcustdash');
 });
-<<<<<<< HEAD
 app.get(`/updatecustdash`, function (req, res) {
     res.render('pages/updatecustdash');
 });
-
-=======
-app.get(`/btn`, function (req, res) {
-    res.render('pages/editcustdash');
-});
->>>>>>> d78685d3d40d458935e2425ba2494eac39dea561
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
         user: req.session.user === undefined ? '' : req.session.user,
