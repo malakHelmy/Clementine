@@ -11,6 +11,7 @@ const path = require('path');
 //Routes
 const productsRouter = require('./routers/products');
 const usersRouter = require('./routers/users');
+const users_loginRouter = require('./routers/login');
 const categoriesRouter = require('./routers/categories');
 const ordersRouter = require('./routers/orders');
 // const fileUpload = require('express-fileupload');
@@ -35,21 +36,7 @@ app.use(`${api}/products`, productsRouter);
 app.use(`${api}/categories`, categoriesRouter);
 app.use(`${api}/orders`, ordersRouter);
 app.use('/user', usersRouter);
-
-
-//Database connection
-// mongoose
-//     .connect(process.env.DB_URI, {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//         dbName: 'clementine',
-//     })
-//     .then(() => {
-//         console.log('database connection succeeded');
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     });
+app.use('/login',users_loginRouter);
 
     mongoose.connect(process.env.DB_URI)
     .then( (result) => {
@@ -58,7 +45,6 @@ app.use('/user', usersRouter);
     .catch( err => {
       console.log(err);
     });
-
 
 
 // app.use(fileUpload());
@@ -92,33 +78,6 @@ app.get(`/signup`, function (req, res) {
 });
 
 
-
-
-
-
-
-// app.get(`/dashboard`, (req, res) => {
-//     if (req.session.user !== undefined) {
-//         if (req.session.user.type === 'admin') {
-//             Admins.find().then( result => {
-//                 res.render('pages/dashboard', {employees : result, user: (req.session.user === undefined ? "" : req.session.user)});
-
-//             })
-//             .catch(err => {
-//                 console.log(err);
-//             });
-//         }
-//         else {
-//             res.send("Acess Denied.")
-//         }
-//     }
-//     else {
-//         res.send("Access Denied.")
-//     }
-// });
-
-// app.post('/profile', (req, res) => {
-// })
 app.get(`/dashboard`, function (req, res) {
     res.render('pages/dashboard');
 });
