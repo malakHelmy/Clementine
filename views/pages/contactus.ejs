@@ -67,17 +67,22 @@
                     <form class="contact-form">
 
                         <div class="inputBox">
-                            <input type="text" name="" required="required">
+                            <input type="text" id="name" name="name" required="required">
                             <span>Full Name</span>
                         </div>
 
                         <div class="inputBox">
-                            <input type="text" name="" required="required">
+                            <input type="text" id="subject" name="subject" required="required">
+                            <span>Subject</span>
+                        </div>
+
+                        <div class="inputBox">
+                            <input type="text" id="email" name="email" required="required">
                             <span>Email</span>
                         </div>
 
                         <div class="inputBox">
-                            <textarea id = "message" cols="30" rows="5" required="required"></textarea>
+                            <textarea id = "message" name="message" cols="30" rows="5" required="required"></textarea>
                             <span>Message</span>
                         </div>
                         <div class="inputBox">
@@ -91,8 +96,9 @@
 
     <%- include('../partials/footer') -%>
     
-    <script src="../../public/js/trial.js"></script>
-    <script src="../../public/js/cart.js"></script>
+    <script src="/js/contactus.js"></script> 
+    <script src="/js/trial.js"></script>
+    <script src="/js/cart.js"></script>
 </body>
 
 </html>
