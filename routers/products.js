@@ -11,7 +11,7 @@ router.get('/:id',  (req, res) => {
     Product.find()
     .then( (result) => { 
                  
-        res.render('pages/products', {products:result} )
+        res.render('pages/products', {products:result , Id: req.params.id } )
     }
     )
     .catch((err) => {
