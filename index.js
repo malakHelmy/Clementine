@@ -12,6 +12,7 @@ const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
 
 //Routes
+const editProdRouter= require('./routers/editproducts');
 const productsRouter = require('./routers/products');
 const usersRouter = require('./routers/users');
 const users_loginRouter = require('./routers/login');
@@ -43,7 +44,7 @@ app.use(`/orders`, ordersRouter);
 app.use('/user', usersRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
-
+app.use('/editproducts',editProdRouter);
 
 mongoose
     .connect(process.env.DB_URI)
@@ -81,6 +82,9 @@ app.get(`/drings`, function (req, res) {
 /* --------- DASHBOARDS -----*/
 app.get(`/dashboard`, function (req, res) {
     res.render('pages/dashboard');
+});
+app.get(`/editproducts`, function (req, res) {
+    res.render('pages/editproducts');
 });
 app.get(`/editcustdash`, function (req, res) {
     res.render('pages/editcustdash');
