@@ -21,8 +21,10 @@ router.get(`/`, async function (req, res) {
 //to display a specific object (order id, etc) from db:
 
 router.get('/:id', async (req, res) => {
+    //populate to see order details
     const orders = await Order.findById(req.params.id).populate({
         path: 'orderItems',
+        //populat will be an object to get all info about product items
         populate: {
             path: 'product',
             populate: 'category',
@@ -84,6 +86,7 @@ router.put('/:id', async (req, res) => {
     let order = await Order.findByIdAndUpdate(
         req.params.id,
         {
+            //i only need to update the status of the order
             status: req.body.status,
         },
         {
@@ -131,6 +134,7 @@ router.delete('/:id', function (req, res) {
     Order.findByIdAndRemove(req.params.id)
         .then(async (order) => {
             if (order) {
+                //will use map to get every order item and find it and delete it
                 await order.orderItems.map(async (orderItem) => {
                     await OrderItem.findByIdAndRemove(orderItem);
                 });
