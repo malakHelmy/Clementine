@@ -1,13 +1,13 @@
-/*for every model, there are routers. 
-routers are responsible for creating/ storing/ Importing and exporting APIs between the files
-*/
 const express = require('express');
 const { Order } = require('../models/order');
 const { OrderItem } = require('../models/order-items');
 const router = express.Router();
 
 router.get(`/`, async function (req, res) {
-    //display the first and last name for the user + sort by date from newest to oldest
+
+
+    //.pupulate -> if i want to know the user who ordered
+    //displays the first and last name for the user + sort by date from newest to oldest
     const ordersList = await Order.find()
         .populate('userID', 'firstname + lastname')
         .sort({ dateOrdered: -1 });
@@ -52,7 +52,6 @@ router.post(`/`, async (req, res) => {
     );
 
     const orderItemIdsresolved = await orderItemsIds;
-    console.log(orderItemIdsresolved);
 
 
 
