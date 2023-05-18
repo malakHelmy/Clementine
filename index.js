@@ -47,13 +47,14 @@ app.use('/editcustdash', cust_contRouter);
 app.use('/editproducts',editProdRouter);
 
 mongoose
-    .connect(process.env.DB_URI)
-    .then((result) => {
-        console.log('database success');
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+.connect(process.env.DB_URI)
+.then((result) => {
+    console.log('database success');
+})
+.catch((err) => {
+    console.log(err);
+});
+
 
 // app.use(fileUpload());
 app.use(session({ secret: 'Your_secret_key' }));
@@ -174,5 +175,5 @@ app.post(`/contactus`, function (req, res) {
 /* ---------CONTACT US FORM MAILER END --------*/
 
 app.listen(port, () => {
-    console.log('running on http://localhost:8080');
+    console.log(api);
 });
