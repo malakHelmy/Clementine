@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/checkout">
+    <title>Clementine</title>
+</head>
+<body>
+     <%- include('../partials/navbar') %>
+    <li><a href="#" id="cart"><i class="ri-shopping-bag-line"></i></a></li>
+                       
+    <div class="cart-window hide">
+        <h2 class="ShopBag">Shopping Bag</h2>
+        <div class="cart-wrapper">
+        <div class="cart-item">
+            <img src="Images/whiteRook.jpg" alt="">
+             <div class="details">
+                <span class="name"> Clementine Silver White Rook</span>
+                <div class="btn-wrapper">
+                    <span class="minus">-</span>
+                    <span class="num">1</span>
+                    <span class="add">+</span>
+                </div> 
+                <span class="price"> Price: 15200 LE</span>
+             </div>
+        </div>
+        <!--Item 2-->
+        <div class="cart-item">
+            <img src="Images/r5.png" alt="">
+             <div class="details">
+                <span class="name">Clementine Silver Snowflake</span>
+                <div class="btn-wrapper">
+                    <span class="minus1">-</span>
+                    <span class="num1">1</span>
+                    <span class="add1">+</span>
+                </div>                                 
+                 <span class="price"> Price: 11000 LE</span>
+             </div>
+        </div>
+        </div>
+        <div class="total">Total: 26200 LE</div>
+        <button class="checkout" href="#checkout.html">Checkout</button>
+    </div>
+    
+    <!--Cart End-->
+    
+    
+       <li><a href="./login.html"><i class="ri-account-circle-line"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".navigation .navbar .logo-toggle-container .toggle-box").click(function () {
+                    $(".navigation .menu").stop().slideToggle();
+                });
+            });
+        </script>
+        <!-- Navigation Bar End -->
+    
+    
+                <section id="checkout-container">
+                    <h2>Billing Address </h2>
+                    <form action="" class="checkoutform" id="checkoutform">
+        
+                         <div class="textfield"> 
+                             <input type="text" name="fisrtname" id="firstname">
+                              <label for="firstname" id="firstnamelabel"></label>
+                             <img src="./Images/right.png" alt="" width="15px" height="15px" class="true">
+                             <img src="./Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                             <span class="sp1"></span>
+                             <label for=""> Full Name</label> 
+                         </div>
+                         
+                         <div class="textfield"> 
+                             <input type="text" name="email" id="email" >  
+                             <label for="email" id="emaillabel"></label>
+                             <img src="./Images/right.png" alt="" width="15px" height="15px" class="true">
+                             <img src="./Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                             <span class="sp1"></span>          
+                             <label for="">E-mail</label>      
+                         </div>
+                         <div class="textfield"> 
+                             <input type="text" name="address" id="address" >
+                             <label for="address" id="addlabel"></label>
+                             <span class="sp1"></span>
+                             <label for="">Address</label>      
+                         </div>
+                         <div class="textfield" >  
+                            <input type="text" name="city" id="city" >
+                            <label for="city" id="citylabel"></label>
+                            <span class="sp1"></span> 
+                            <label for="">City</label>
+                        </div>
+             
+                           
+                        <div id="zip">
+                            <label>
+                                <h4>State</h4>
+                                <select id="statetype"> 
+                                    <option value="selectstate">Choose State..</option>
+                                    <option>Cairo</option>
+                                    <option>Giza</option>
+                                    <option>Alexandria</option>
+                                    <option>Sinai</option>
+                                </select>
+                                <div class="textfield" >  
+                                    <input type="zipcode" name="zipcode" id="zipcode" >
+                                    <label for="zipcode" id="ziplabel"></label>
+                                    <span class="sp1"></span>
+                                     <label for="">Zip Code</label>
+                                </div>
+                            </label> 
+                        </div>
+    
+                        <div class="right">
+                            <h2>PAYMENT</h2>
+                               <h4 class="accepted">Accepted Cards</h4>  <br>
+                                <img src="Images/card1.png" width="100">
+                                <img src="Images/card2.png" width="50">
+                                <br><br>
+        
+        
+                                <div class="textfield" >  
+                                    <input type="text" name="card" id="card" >
+                                    <label for="card" id="cardlabel"></label>
+                                    <span class="sp1"></span>
+                                    <label for="">Credit Card Number</label>
+                                </div>
+        
+                                <div class="textfield" >  
+                                    <input type="text" name="card" id="cardexp" >
+                                    <label for="cardexp" id="cardexlabel"></label>
+                                    <span class="sp1"></span>
+                                    <label for="">Expiry Month</label>
+                                </div>
+                                    
+                                    <div id="zip">
+                                        <label>
+                                            <h4>Exp year</h4>
+                                            <select id="expyeardate">
+                                                <option value="selectyear">Choose Year..</option>
+                                                <option>2024</option>
+                                                <option>2025</option>
+                                                <option>2026</option>
+                                                <option>2027</option>
+                                            </select>
+                                        </label>
+        
+                                        <div class="textfield" >  
+                                            <input type="card" name="card" id="cardcvv" >
+                                            <label for="caedcvv" id="cardcvvlabel"></label>
+                                            <span class="sp1"></span>
+                                            <label for="">CVV</label>
+                                        </div>
+                                            
+                                    </div>
+                                    <label>
+                                        <input type="checkbox" checked="checked"  class="sameadr" name="sameadr"> Shipping address same as billing
+                                      </label>
+                                      <input type="submit" class="submit" value="Place Order" class="place-order"><a class="place-link" href="./index.html">Place Order</a></button>
+                                 </div>
+                        </div>
+                        
+                    </form>
+    
+                </section>
+        
+                <%- include('../partials/footer') %>
+
+</body>
+</html>

@@ -50,7 +50,7 @@ app.use('/editproducts',editProdRouter);
 app.use('/chat', chatRouter);
 
 mongoose
-.connect(process.env.DB_URI)
+.connect("mongodb+srv://clementine:wifeys2023@clementine.xfv9xzu.mongodb.net/?retryWrites=true&w=majority")
 .then((result) => {
     console.log('database success');
 })
@@ -77,8 +77,8 @@ app.get(`/categories`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
-app.get(`/drings`, function (req, res) {
-    res.render('pages/products', {
+app.get(`/checkout`, function (req, res) {
+    res.render('pages/checkout', {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
