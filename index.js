@@ -10,7 +10,7 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
-
+//poenai api key
 const api_key= process.env.OPENAI_API_KEY;
 
 //Routes
