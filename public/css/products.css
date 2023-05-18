@@ -73,7 +73,7 @@ body {
   color: rgb(123, 123, 123);
 }
 
-button {
+.btn {
   width: 100%;
   border: none;
   height: 30px;
@@ -91,11 +91,11 @@ button {
   transform: translateY(-0.1px);
 }
 
-.box:hover button {
+.box:hover .btn {
   transform: translateY(-0.1px);
 }
 
-button:hover {
+.btn:hover {
   background-color: whitesmoke;
   color: rgb(150, 96, 3);
   cursor: pointer;
