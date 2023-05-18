@@ -18,8 +18,8 @@ const users_loginRouter = require('./routers/login');
 const cust_contRouter = require('./routers/editcustdash');
 const categoriesRouter = require('./routers/categories');
 const ordersRouter = require('./routers/orders');
-const contactmailerRouter = require ('./routers/mailController')
-// const fileUpload = require('express-fileupload');
+const contactmailerRouter = require ('./routers/mailController');
+const chatRouter = require('./routers/chat');
 
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
@@ -36,14 +36,14 @@ app.set('view engine', 'ejs'); //set the template engine
 //app.use(express.static(path.join(process.cwd(), "/images")));
 app.use(express.urlencoded({ extended: true }));
 
-//Routers
+// Routers
 app.use(`/products`, productsRouter);
 app.use(`/categories`, categoriesRouter);
 app.use(`/orders`, ordersRouter);
 app.use('/user', usersRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
-
+app.use('/chat', chatRouter);
 
 mongoose
     .connect(process.env.DB_URI)
@@ -115,58 +115,6 @@ app.get('/logout', (req, res) => {
 });
 /* --------- SIGN UP AND LOG IN END ---*/
 
-/* --------- CHATPOT API ----------*/
-
-
-app.get(`/chat`, function (req, res) {
-    res.render('pages/chatbot');
-});
-
-
-
-
-
-/* --------- CHATPOT API END----------*/
-
-/* ---------CONTACT US FORM MAILER --------*/
-app.get(`/contactus`, function (req, res) {
-    res.render('pages/contactus');
-});
-
-app.post(`/contactus`, function (req, res) {
-    res.render('pages/contactus');
-
-    var fullname = req.body.name;
-    var uemail = req.body.email;
-    var subject = req.body.subject;
-    var message = req.body.message;
-
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'clementineco2023@gmail.com',
-            pass: 'lmkwmjbyftpuzwhz',
-        },
-    });
-
-    var mailOptions = {
-        from: uemail,
-        to: 'clementineco2023@gmail.com',
-        subject: subject,
-        text: message,
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
-            res.send('Error.');
-        } else {
-            console.log('Email sent:' + info.response);
-            res.send('Successfully sent.');
-        }
-        express.response.redirect('/');
-    });
-});
 /* ---------CONTACT US FORM MAILER END --------*/
 
 app.listen(port, () => {
