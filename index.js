@@ -12,6 +12,7 @@ const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
 
 //Routes
+const editProdRouter= require('./routers/editproducts');
 const productsRouter = require('./routers/products');
 const usersRouter = require('./routers/users');
 const users_loginRouter = require('./routers/login');
@@ -43,16 +44,18 @@ app.use(`/orders`, ordersRouter);
 app.use('/user', usersRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
+app.use('/editproducts',editProdRouter);
 app.use('/chat', chatRouter);
 
 mongoose
-    .connect(process.env.DB_URI)
-    .then((result) => {
-        console.log('database success');
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+.connect(process.env.DB_URI)
+.then((result) => {
+    console.log('database success');
+})
+.catch((err) => {
+    console.log(err);
+});
+
 
 // app.use(fileUpload());
 app.use(session({ secret: 'Your_secret_key' }));
@@ -81,6 +84,9 @@ app.get(`/drings`, function (req, res) {
 /* --------- DASHBOARDS -----*/
 app.get(`/dashboard`, function (req, res) {
     res.render('pages/dashboard');
+});
+app.get(`/editproducts`, function (req, res) {
+    res.render('pages/editproducts');
 });
 app.get(`/editcustdash`, function (req, res) {
     res.render('pages/editcustdash');
@@ -118,5 +124,5 @@ app.get('/logout', (req, res) => {
 /* ---------CONTACT US FORM MAILER END --------*/
 
 app.listen(port, () => {
-    console.log('running on http://localhost:8080');
+    console.log(api);
 });
