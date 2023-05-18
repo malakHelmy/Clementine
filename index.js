@@ -11,6 +11,8 @@ const nodemailer = require('nodemailer');
 const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
 
+const api_key= process.env.OPENAI_API_KEY;
+
 //Routes
 const editProdRouter= require('./routers/editproducts');
 const productsRouter = require('./routers/products');
