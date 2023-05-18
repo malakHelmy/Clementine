@@ -15,6 +15,7 @@ const api_key= process.env.OPENAI_API_KEY;
 
 //Routes
 const editProdRouter= require('./routers/editproducts');
+const cartRouter= require('./routers/cart');
 const productsRouter = require('./routers/products');
 const usersRouter = require('./routers/users');
 const users_loginRouter = require('./routers/login');
@@ -48,9 +49,9 @@ app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
 app.use('/editproducts',editProdRouter);
 app.use('/chat', chatRouter);
-
+app.use('/cart', cartRouter);
 mongoose
-.connect("mongodb+srv://clementine:wifeys2023@clementine.xfv9xzu.mongodb.net/?retryWrites=true&w=majority")
+.connect("mongodb+srv://clementine:wifeys2023@clementine.xfv9xzu.mongodb.net/clementine?retryWrites=true&w=majority")
 .then((result) => {
     console.log('database success');
 })
@@ -82,6 +83,12 @@ app.get(`/checkout`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
+app.get(`/cart`, function (req, res) {
+    res.render('pages/cart', {
+        user: req.session.user === undefined ? '' : req.session.user,
+    });
+});
+
 
 /* --------- DASHBOARDS -----*/
 app.get(`/dashboard`, function (req, res) {
