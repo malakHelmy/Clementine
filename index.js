@@ -126,5 +126,5 @@ app.get('/logout', (req, res) => {
 /* ---------CONTACT US FORM MAILER END --------*/
 
 app.listen(port, () => {
-    console.log(api);
+    console.log("http://localhost:8080");
 });
