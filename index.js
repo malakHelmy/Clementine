@@ -13,6 +13,7 @@ const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
 const User = require('./models/user');
 const customersController = require('./controllers/customersController');
+const bcrypt = require('bcrypt');
 
 //poenai api key
 const api_key = process.env.OPENAI_API_KEY;
@@ -35,6 +36,7 @@ const chatRouter = require('./routers/chat');
 const api = process.env.API_URL;
 const app = express();
 const port = process.env.PORT || 8080;
+let jsonParser = bodyparser.json();
 
 // middleware
 app.use(express.json());
@@ -160,27 +162,22 @@ app.get(`/login`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
-app.post(`/user-login`, async (req, res) => {
+app.post(`/login`, async (req, res) => {
     const lgemail = req.body.email;
     const lgpassword = req.body.password;
-    console.log(req.session.user);
+    console.log(lgpassword);
     try {
-        const users = await User.findOne({ email: lgemail });
+        const users = await User.findOne({
+            email: lgemail,
+            password: await bcrypt.hash(lgpassword, 12),
+        });
         if (users) {
-            if (await bcrypt.compare(users.password, lgpassword)) {
-                console.log(users.firstname + ' has logged in');
-                req.session.user = users.firstname;
-                console.log(req.session.user);
-                res.render('pages/index', {
-                    user:
-                        req.session.user === undefined ? '' : req.session.user,
-                });
-            } else {
-                res.render('pages/login', {
-                    user:
-                        req.session.user === undefined ? '' : req.session.user,
-                });
-            }
+            console.log(users.firstname + ' has logged in');
+            req.session.user = users.firstname;
+            console.log(req.session.user);
+            res.render('pages/index', {
+                user: req.session.user === undefined ? '' : req.session.user,
+            });
         } else {
             res.render('pages/login', {
                 user: req.session.user === undefined ? '' : req.session.user,
