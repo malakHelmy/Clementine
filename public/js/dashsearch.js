@@ -14,23 +14,9 @@ function searchTable() {
         row.style.setProperty('--delay', i / 25 + 's');
     });
     
-}
-
-function delete_product(){
-    var table = document.getElementById("product_list");
-    var rowCount = table_rows.length;
-    while(table_rows.length > 0) {
-        table.deleteRow(0);
-      }
- }
- 
-
- function del() {
-    table_rows.forEach((row, i) => {
-        let table_data = row.textContent.toLowerCase();
-        while(table_rows.length > 0) {
-            table_rows.deleteRow(0);
-          }
+    document.querySelectorAll('tbody tr:not(.hide)').forEach((visible_row, i) => {
+        visible_row.style.backgroundColor = (i % 2 == 0) ? 'transparent' : '#0000000b';
     });
-    
 }
+
+
