@@ -52,6 +52,7 @@ app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
 app.use('/updatecustdash', cust_contRouter);
 app.use('/editproducts',editProdRouter);
+app.use('/addproducts', editProdRouter);
 app.use('/ordersdash', ordersRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
