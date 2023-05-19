@@ -88,7 +88,9 @@ app.get(`/cart`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
-
+app.get(`/wishlist`, function(req,res) {
+    res.render('pages/wishlist');
+});
 
 /* --------- DASHBOARDS -----*/
 app.get(`/dashboard`, function (req, res) {
