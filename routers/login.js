@@ -5,29 +5,25 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 
-router.get(`/login`, function (req, res) {
-    res.render('pages/login', {
-        user: req.session.user === undefined ? '' : req.session.user,
-    });
-});
+// router.post(`/user-login`, async (req, res) => {
+//     let result = { email: req.body.email, password: req.body.password };
+//     const user = await User.findOne({ email: result.email }, async (err, foundResults) => {
+//         if (err) {
+//             console.log(err);
+            // res.render('pages/login', {
+            //     user: req.session.user === undefined ? '' : '',
+            // });
+        // } else if ( await bcrypt.compare(req.body.password, items.password)) {
+        //     console.log(foundResults.firstname + ' has logged in');
+//             req.session.user = foundResults[0];
+//             res.render('pages/index', {
+//                 user: req.session.user === undefined ? '' : req.session.user,
+//             });
+//         }
+//     });
+// });
 
-router.post(`/user-login`, async (req, res) => {
-    let result = { email: req.body.email, password: req.body.password };
-    await User.findOne({ email: result.email }, (err, foundResults) => {
-        if (err) {
-            console.log(err);
-            res.render('pages/login', {
-                user: req.session.user === '',
-            });
-        } else if (bcrypt.compare(req.body.password, items.password)) {
-            console.log(foundResults.firstname + ' has logged in');
-            req.session.user = foundResults[0];
-            res.render('pages/index', {
-                user: req.session.user === undefined ? '' : req.session.user,
-            });
-        }
-    });
-});
+
 
 // router.post(`/user-login`, async (req, res) => {
 //     let result = { email: req.body.email, password: req.body.password };
