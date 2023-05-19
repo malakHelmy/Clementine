@@ -57,8 +57,8 @@ const orderSchema = mongoose.Schema({
 
 // virtual id
 
-orderSchema.virtual('id').get(function () {
-    return this.order_id.toHexString();
+orderSchema.virtual('._id').get(function () {
+    return this._id.toHexString();
 });
 
 exports.Order = mongoose.model('orders', orderSchema);

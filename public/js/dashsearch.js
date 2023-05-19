@@ -1,4 +1,3 @@
-
 const search = document.querySelector('.search_orders input'),
 table_rows = document.querySelectorAll('tbody tr'),
 table_headings = document.querySelectorAll('thead th');

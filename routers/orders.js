@@ -1,29 +1,56 @@
 const express = require('express');
 const { Order } = require('../models/order');
+const { User } = require('../models/user');
 const { OrderItem } = require('../models/order-items');
 const router = express.Router();
 
-router.get(`/`, async function (req, res) {
 
 
-    //.pupulate -> if i want to know the user who ordered
+
+router.get(`/`, async (req, res) => {
+
+    Order.find()
+    .then(async (orderslist) => {          
+    res.render('pages/ordersdash', {
+      order: orderslist
+    })
+
+    })
+    .catch((err) => {
+        
+      console.log(err);
+    });
+  });
+
+/* router.get(`/`, async (req, res) => {
+ //.pupulate -> if i want to know the user who ordered
     //displays the first and last name for the user + sort by date from newest to oldest
     const ordersList = await Order.find()
         .populate('userID', 'firstname + lastname')
-        .sort({ dateOrdered: -1 });
+        .sort({ dateOrdered: -1 })
+    .then(async (ordersList) => {          
+    res.render('pages/editcustdash', {
+      order: ordersList
+    })
 
-    if (!ordersList) {
-        res.status(500).json({ success: false });
-    }
-    res.status(200).send(ordersList);
-});
+    })
+    .catch((err) => {
+        
+      console.log(err);
+    });
+  
+  });
+
+
+
 
 //to display a specific object (order id, etc) from db:
 
-router.get('/:id', async (req, res) => {
+/* router.get('/:id', async (req, res) => {
     //populate to see order details
     const orders = await Order.findById(req.params.id).populate({
         path: 'orderItems',
+
         //populat will be an object to get all info about product items
         populate: {
             path: 'product',
@@ -130,7 +157,7 @@ router.put('/:id', async (req, res) => {
         });
 });
 */
-router.delete('/:id', function (req, res) {
+/* router.delete('/:id', function (req, res) {
     Order.findByIdAndRemove(req.params.id)
         .then(async (order) => {
             if (order) {
@@ -153,6 +180,6 @@ router.delete('/:id', function (req, res) {
             return res.status(500).json({ success: false, error: err });
         });
 });
-
+*/
 //exporting method #2
 module.exports = router;
