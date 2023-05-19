@@ -2,6 +2,7 @@
 const express = require('express');
 const User = require('../models/user');
 const router = express.Router();
+const customersController= require('../controllers/customersController');
 
 router.post(`/`, async (req, res) => {
 
@@ -24,7 +25,24 @@ router.post(`/`, async (req, res) => {
     });
 });
 
+ 
 
+/* router.get(`/:id`, async (req,res)=> {
+    
+  User.findOne({_id: req.params.id})
+  .then(async (updatecust) => {
+    res.render('pages/updatedeletecust', {
+      customer: updatecust
+    })
+  })
+  .catch((err) => {
+    console.log(err);
+    })
+    
+
+});
+
+*/
 
 router.get(`/`, async (req, res) => {
 
@@ -33,14 +51,22 @@ router.get(`/`, async (req, res) => {
     res.render('pages/editcustdash', {
       viewTitle: "Customers List",
       users: customerslist
+
     })
 
     })
+    
     .catch((err) => {
         
       console.log(err);
     });
+
+    
+    
+    
   });
 
+
+  //router.get(`/updatedeletecust/:id`, customersController.updatecust);
 
 module.exports = router;

@@ -12,6 +12,8 @@ const nodemailer = require('nodemailer');
 const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
 const User = require('./models/user');
+const customersController = require('./controllers/customersController');
+const bcrypt = require('bcrypt');
 
 //poenai api key
 const api_key = process.env.OPENAI_API_KEY;
@@ -29,10 +31,13 @@ const ordersRouter = require('./routers/orders');
 const contactmailerRouter = require('./routers/mailController');
 const chatRouter = require('./routers/chat');
 
+
+
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
 const app = express();
 const port = process.env.PORT || 8080;
+let jsonParser = bodyparser.json();
 
 // middleware
 app.use(express.json());
@@ -51,11 +56,15 @@ app.use(`/orders`, ordersRouter);
 app.use('/users', usersRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
+app.use('/updatedeletecust', cust_contRouter);
+app.use('/editproducts',editProdRouter);
 app.use('/addproducts', addProdRouter);
 app.use('/editproducts',editProdRouter)
 app.use('/ordersdash', ordersRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
+//app.use('/updatedeletecust/:id', customersController.updatecust);
+
 mongoose
     .connect(
         'mongodb+srv://clementine:wifeys2023@clementine.xfv9xzu.mongodb.net/clementine?retryWrites=true&w=majority'
@@ -128,9 +137,10 @@ app.get(`/editcustdash`, function (req, res) {
 app.post(`/editcustdash`, function (req, res) {
     res.render('pages/editcustdash');
 });
-app.get(`/updatecustdash`, function (req, res) {
-    res.render('pages/updatecustdash');
+app.get(`/updatedeletecust`, function (req, res) {
+    res.render('pages/updatedeletecust');
 });
+
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
         user: req.session.user === undefined ? '' : req.session.user,
@@ -154,27 +164,22 @@ app.get(`/login`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
-app.post(`/user-login`, async (req, res) => {
+app.post(`/login`, async (req, res) => {
     const lgemail = req.body.email;
     const lgpassword = req.body.password;
-    console.log(req.session.user);
+    console.log(lgpassword);
     try {
-        const users = await User.findOne({ email: lgemail });
+        const users = await User.findOne({
+            email: lgemail,
+            password: await bcrypt.hash(lgpassword, 12),
+        });
         if (users) {
-            if (await bcrypt.compare(users.password, lgpassword)) {
-                console.log(users.firstname + ' has logged in');
-                req.session.user = users.firstname;
-                console.log(req.session.user);
-                res.render('pages/index', {
-                    user:
-                        req.session.user === undefined ? '' : req.session.user,
-                });
-            } else {
-                res.render('pages/login', {
-                    user:
-                        req.session.user === undefined ? '' : req.session.user,
-                });
-            }
+            console.log(users.firstname + ' has logged in');
+            req.session.user = users.firstname;
+            console.log(req.session.user);
+            res.render('pages/index', {
+                user: req.session.user === undefined ? '' : req.session.user,
+            });
         } else {
             res.render('pages/login', {
                 user: req.session.user === undefined ? '' : req.session.user,
