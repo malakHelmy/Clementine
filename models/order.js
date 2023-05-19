@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { User } = require('../models/user');
 
 const orderSchema = mongoose.Schema({
  
@@ -6,7 +7,7 @@ const orderSchema = mongoose.Schema({
     userID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'users',
+        ref: 'user',
     },
     //order is referrig to order items
     orderItems: [
