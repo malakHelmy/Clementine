@@ -13,21 +13,23 @@
 <body>
     <%- include('../partials/navbar') %>
         <div class="shopcart-wrapper">
-            <h1 class="cart-header">your shopping bag (3 items)</h1>
+            <br>
             <div class="prod">
+                        <% if(products !='' ) {%>
+                        <% products.forEach((items)=> {%>
                 <div class="cart-items">
-
+       
                     <div class="cart-box">
-                        <img src="./Images/e8.jpg" alt="earring 8">
+                        <img src="/Images/<%= items.image %>" alt="earring 8">
                         <div class="prod-content">
-                            <h3>Clementine Emerald Earring <button class="remove-btn"><i
+                            <h3> <%= items.name %><button class="remove-btn"><i
                                         class="ri-close-line"></i></button>
                             </h3>
-                            <h4 class="price1">EGP 152100</h4>
+                            <h4 class="price1"><%= items.price %></h4>
 
                             <div class="btn-wrap">
                                 <span class="minus2">-</span>
-                                <span class="num2">1</span>
+                                <span class="num2"><%= items.quantity %></span>
                                 <span class="add2">+</span>
                             </div>
                             <button class="wishlist" onclcik="">Add to Wishlist</p>
@@ -35,6 +37,9 @@
                     </div>
                 
                 </div>
+                <% }) %>
+                        <% } %>
+
                 <div class="right-bar">
                     <p><span>Subtotal</span><span class="subtotal"> EGP182,100</span></p>
                     <p><span>Shipping</span> <span>EGP100</span></p>
