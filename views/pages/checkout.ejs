@@ -4,65 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/checkout.css">
+    <link rel="stylesheet" href="/css/chechkout.css">
+    <link rel="stylesheet" type="text/css" href="/css/Signup.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
     <title>Clementine</title>
 </head>
 <body>
      <%- include('../partials/navbar') %>
-    <li><a href="#" id="cart"><i class="ri-shopping-bag-line"></i></a></li>
-                       
-    <div class="cart-window hide">
-        <h2 class="ShopBag">Shopping Bag</h2>
-        <div class="cart-wrapper">
-        <div class="cart-item">
-            <img src="Images/whiteRook.jpg" alt="">
-             <div class="details">
-                <span class="name"> Clementine Silver White Rook</span>
-                <div class="btn-wrapper">
-                    <span class="minus">-</span>
-                    <span class="num">1</span>
-                    <span class="add">+</span>
-                </div> 
-                <span class="price"> Price: 15200 LE</span>
-             </div>
-        </div>
-        <!--Item 2-->
-        <div class="cart-item">
-            <img src="Images/r5.png" alt="">
-             <div class="details">
-                <span class="name">Clementine Silver Snowflake</span>
-                <div class="btn-wrapper">
-                    <span class="minus1">-</span>
-                    <span class="num1">1</span>
-                    <span class="add1">+</span>
-                </div>                                 
-                 <span class="price"> Price: 11000 LE</span>
-             </div>
-        </div>
-        </div>
-        <div class="total">Total: 26200 LE</div>
-        <button class="checkout" href="#checkout.html">Checkout</button>
-    </div>
-    
-    <!--Cart End-->
-    
-    
-       <li><a href="./login.html"><i class="ri-account-circle-line"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $(".navigation .navbar .logo-toggle-container .toggle-box").click(function () {
-                    $(".navigation .menu").stop().slideToggle();
-                });
-            });
-        </script>
-        <!-- Navigation Bar End -->
-    
+
     
                 <section id="checkout-container">
                     <h2>Billing Address </h2>
@@ -168,6 +117,8 @@
                         </div>
                         
                     </form>
+
+                    <script src="../../public/js/checkout.js"></script>
     
                 </section>
         
