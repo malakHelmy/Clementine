@@ -46,6 +46,7 @@ const orderSchema = mongoose.Schema({
     phone_num: {
         type: String,
         required: true,
+        ref: 'user',
     },
     dateOrdered: {
         type: Date,
