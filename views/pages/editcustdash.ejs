@@ -130,22 +130,49 @@
 
 
                 
-                <div class="search-container" >
-                    <div>
-                    <h2 class="search-title">Search For A Customer</h2>
-                    </div>
-                        <div id="search">
-                        <input type="text" id="searchinput" onkeyup="search_cust()" placeholder="Search...">
-                        <div>
-                    </div>
-                   </div>
-                    <ul id="custlist">
-                    <li><a href="updatecustdash" id="c1"> Nada M. Farouk</a></li>
-                    <li><a href="updatecustdash" id="c2"> Mohamed A. Othman</a></li>               
-                    <li><a href="updatecustdash" id="c3">Lana S. Hendawy</a></li>                     
-                    <li><a href="updatecustdash" id="c4">Karim L. Mohsen</a></li>                     
-                    </ul>
-                </div>
+                <main class="table">
+                    <section class="table_header">
+                        <h1><%= viewTitle%></h1>
+                        <div class="search_orders">
+                            <input type="search" placeholder="Search existing customers...">
+                        </div>
+                       
+                    </section>
+                    <section class="table_body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th> Customer ID <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> First Name <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> Last Name <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> Email <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> Phone <span class="icon-arrow">&UpArrow;</span></th>                                    
+                                    <th> Edit <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> Delete <span class="icon-arrow">&UpArrow;</span></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                               <% users.forEach(function(user) {%>
+                                <tr>
+                                    <td> <%= user._id %> </td>
+                                    <td> <%= user.firstname %> </td>
+                                    <td> <%= user.lastname %> </td>
+                                    <td> <%= user.email %> </td>
+                                    <td> <%= user.phone %> </td>
+                                    <td> <a href="./editcustdash.ejs"> Edit</a> </td>
+                                    <td> <a href="./updatecustdash.ejs"> Delete</a> </td>
+
+                                   
+                                </tr>
+                
+                                </tr>
+                               <% }); %>
+                            </tbody>
+                        </table>
+                    </section>
+           
+                </main>
             
             
                 <div id="update-msg">
@@ -173,6 +200,7 @@
              
 
     <script src="/js/editcustdash.js"></script>
+    <script src="js/dashsearch.js"></script>
     <script src="/js/validation.js"></script>
 
 </body>

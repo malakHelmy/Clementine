@@ -95,6 +95,9 @@ app.get(`/contactus`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
+app.get(`/wishlist`, function(req,res) {
+    res.render('pages/wishlist');
+});
 
 /* --------- DASHBOARDS -----*/
 app.get(`/dashboard`, function (req, res) {
@@ -116,6 +119,9 @@ app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
         user: req.session.user === undefined ? '' : req.session.user,
     });
+});
+app.get(`/ordersdash`, function(req, res) {
+    res.render('pages/ordersdash');
 });
 /* --------- DASHBOARDS END -----*/
 

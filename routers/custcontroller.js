@@ -29,7 +29,7 @@
 
 //  // retrieve and return all users or a single user
 
-//  exports.fine = (req, res) => {
+//  exports.find = (req, res) => {
 //      UserDB.find()
 //      .then(user => 
 //         {

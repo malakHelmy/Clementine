@@ -1,15 +1,13 @@
 const mongoose = require('mongoose');
+const { user } = require('../models/user');
 
 const orderSchema = mongoose.Schema({
-    order_id: {
-        type: String,
-        required: true,
-    },
+ 
     // referring to the user who ordered
     userID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'users',
+        ref: 'user',
     },
     //order is referrig to order items
     orderItems: [
@@ -48,6 +46,7 @@ const orderSchema = mongoose.Schema({
     phone_num: {
         type: String,
         required: true,
+        ref: 'user',
     },
     dateOrdered: {
         type: Date,
