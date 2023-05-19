@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en" title="Coding design">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- material icons cdn -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+   <link rel="stylesheet" href="css/editcustdash.css">
+   <link rel="stylesheet" href="css/dashboard.css">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <title>Admin Dashboard</title>
+</head>
+</head>
+
+<body>
+
+   <div class="container">
+
+       <!-- sidebar start -->
+       <aside>
+           <div class="top">
+               <div class="logo">
+                   <img src="./Images/logoo copy.png" alt="logo">
+               </div>
+               <div class="close" id="close-btn">
+                   <span class="material-symbols-sharp">close</span>
+               </div>
+           </div>
+           <div class="sidebar">
+               <a href="./dashborad.html"><span class="material-symbols-sharp">dashboard</span>
+                   <h3>Dashboard</h3>
+               </a>
+               <a href="editcustdash.html"><span class="material-symbols-sharp">person</span>
+                   <h3>Customers</h3>
+               </a>
+               <a href="orders.html" class="active"><span class="material-symbols-sharp">receipt_long</span>
+                   <h3>Orders</h3>
+               </a>
+               <a href="./analytics.html" class=""><span class="material-symbols-sharp">insights</span>
+                   <h3>Analytics</h3>
+               </a>
+               <a href=""><span class="material-symbols-sharp">chat</span>
+                   <h3>Chat</h3><span class="message-count">3</span>
+               </a>
+               <a href="./editproducts.html"><span class="material-symbols-sharp">inventory</span>
+                   <h3>Products</h3>
+               </a>
+               <a href=""><span class="material-symbols-sharp">report</span>
+                   <h3>Reports</h3>
+               </a>
+               <a href=""><span class="material-symbols-sharp">Settings</span>
+                   <h3>Settings</h3>
+               </a>
+               <a href=""><span class="material-symbols-sharp">logout</span>
+                   <h3>Logout</h3>
+               </a>
+
+           </div>
+       </aside>
+       <!-- sidebar end -->
+
+
+
+
+
+    <main class="table">
+        <section class="table_header">
+            <h1>Track Orders</h1>
+            <div class="search_orders">
+                <input type="search" placeholder="Search Orders...">
+            </div>
+           
+        </section>
+        <section class="table_body">
+            <table>
+                <thead>
+                    <tr>
+                        <th> ID <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Customer <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> City <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Order Date <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Status <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Amount <span class="icon-arrow">&UpArrow;</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> #C772838HF </td>
+                        <td> <img src="Images/c1.png" alt="">Lana Del Rey</td>
+                        <td> Giza </td>
+                        <td> 17 Jan, 2023 </td>
+                        <td>
+                            <p class="status_delivered">Delivered</p>
+                        </td>
+                        <td> <strong> EGP 12890 </strong></td>
+                    </tr>
+                    <tr>
+                        <td> #C8HD78HF </td>
+                        <td><img src="Images/c2.jfif" alt=""> Asmaa Galal </td>
+                        <td> Cairo </td>
+                        <td> 27 Aug, 2023 </td>
+                        <td>
+                            <p class="status_cancelled">Cancelled</p>
+                        </td>
+                        <td> <strong>EGP 535050</strong> </td>
+                    </tr>
+                    <tr>
+                        <td> #C8SJHCU7</td>
+                        <td><img src="Images/c3.png" alt=""> Theo James </td>
+                        <td> Sinai </td>
+                        <td> 14 Mar, 2023 </td>
+                        <td>
+                            <p class="status_shipped">Shipped</p>
+                        </td>
+                        <td> <strong>EGP 210040</strong> </td>
+                    </tr>
+                    <tr>
+                        <td> #C3SDHC8HF</td>
+                        <td><img src="Images/c4.png" alt=""> Selena Gomez </td>
+                        <td> Alexandria </td>
+                        <td> 25 May, 2023 </td>
+                        <td>
+                            <p class="status_delivered">Delivered</p>
+                        </td>
+                        <td> <strong>EGP 14970</strong> </td>
+                    </tr>
+                    <tr>
+                        <td> #C923H4HF</td>
+                        <td><img src="Images/c1.png" alt=""> Lana Del Rey </td>
+                        <td> Paris </td>
+                        <td> 23 Apr, 2023 </td>
+                        <td>
+                            <p class="status_pending">Pending</p>
+                        </td>
+                        <td> <strong>EGP 39999</strong> </td>
+                    </tr>
+                    <tr>
+                        <td> #C7D54H8HF</td>
+                        <td><img src="Images/c2.jfif" alt=""> Nada Othman </td>
+                        <td> London </td>
+                        <td> 23 Apr, 2023 </td>
+                        <td>
+                            <p class="status_cancelled">Cancelled</p>
+                        </td>
+                        <td> <strong>EGP 49589</strong> </td>
+                    </tr>
+                    <tr>
+                        <td> #C8DHCHF</td>
+                        <td><img src="Images/c3.jfif" alt=""> Adel Hameed </td>
+                        <td> Cairo </td>
+                        <td> 20 May, 2023 </td>
+                        <td>
+                            <p class="status_delivered">Delivered</p>
+                        </td>
+                        <td> <strong>EGP 27099</strong> </td>
+                    </tr>
+                    <tr>
+                        <td> #C372FJ8HF</td>
+                        <td><img src="Images/c4.png" alt=""> Aayat Ali </td>
+                        <td> Iraq </td>
+                        <td> 30 Feb, 2023 </td>
+                        <td>
+                            <p class="status_pending">Pending</p>
+                        </td>
+                        <td> <strong>EGP 149070</strong> </td>
+                    </tr>
+                    <tr>
+                        <td> #C97EF8KF</td>
+                        <td><img src="Images/c3.PNG" alt=""> Aziz Aziz </td>
+                        <td> Austria </td>
+                        <td> 22 Dec, 2023 </td>
+                        <td>
+                            <p class="status_cancelled">Cancelled</p>
+                        </td>
+                        <td> <strong>EGP 249899</strong> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+</body>
+    <script src="/js/dashsearch.js"></script>
+
+</html>
