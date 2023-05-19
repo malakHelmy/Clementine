@@ -161,9 +161,9 @@
                                     <td> <%= user.email %> </td>
                                     <td> <%= user.phone %> </td>
                                     <td>
-                                    <a href="/updatecustdash/<%=user._id %>">Update</i> </a>
+                                    <a href="/updatedeletecust/<%= user._id %>">Update</i> </a>
                                        </td> 
-                                    <td> <form action="/updatecustdash/<%=user._id %>?_method=DELETE" method="POST" class="position-relative"></form>
+                                    <td> <form action="/updatedeletecust/<%= user._id %>?_method=DELETE" method="POST" class="position-relative"></form>
                                         <button type="submit" class="btn btn-danger btn-small">
                                             <i class="bi bi-person-x"></i>
                                         </button>

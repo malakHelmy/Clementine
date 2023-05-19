@@ -12,6 +12,7 @@ const nodemailer = require('nodemailer');
 const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
 const User = require('./models/user');
+const customersController = require('./controllers/customersController');
 
 //poenai api key
 const api_key = process.env.OPENAI_API_KEY;
@@ -27,6 +28,8 @@ const categoriesRouter = require('./routers/categories');
 const ordersRouter = require('./routers/orders');
 const contactmailerRouter = require('./routers/mailController');
 const chatRouter = require('./routers/chat');
+
+
 
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
@@ -50,12 +53,14 @@ app.use(`/orders`, ordersRouter);
 app.use('/users', usersRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
-app.use('/updatecustdash', cust_contRouter);
+app.use('/updatedeletecust', cust_contRouter);
 app.use('/editproducts',editProdRouter);
 app.use('/addproducts', editProdRouter);
 app.use('/ordersdash', ordersRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
+//app.use('/updatedeletecust/:id', customersController.updatecust);
+
 mongoose
     .connect(
         'mongodb+srv://clementine:wifeys2023@clementine.xfv9xzu.mongodb.net/clementine?retryWrites=true&w=majority'
@@ -128,9 +133,10 @@ app.get(`/editcustdash`, function (req, res) {
 app.post(`/editcustdash`, function (req, res) {
     res.render('pages/editcustdash');
 });
-app.get(`/updatecustdash`, function (req, res) {
-    res.render('pages/updatecustdash');
+app.get(`/updatedeletecust`, function (req, res) {
+    res.render('pages/updatedeletecust');
 });
+
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
         user: req.session.user === undefined ? '' : req.session.user,
