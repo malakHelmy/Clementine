@@ -4,12 +4,14 @@ const express = require('express');
 const session = require('express-session');
 const ejs = require('ejs');
 const bodyparser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
 const nodemailer = require('nodemailer');
 const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
+const User = require('./models/user');
 
 //poenai api key
 const api_key = process.env.OPENAI_API_KEY;
@@ -34,7 +36,7 @@ const port = process.env.PORT || 8080;
 // middleware
 app.use(express.json());
 app.use(morgan('tiny')); //displays log requests
-
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs'); //set the template engine
@@ -63,7 +65,17 @@ mongoose
     });
 
 // app.use(fileUpload());
-app.use(session({ secret: 'Your_secret_key' }));
+
+//cookie expiry time
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(
+    session({
+        secret: 'Your_secret_key',
+        saveUninitialized: true,
+        cookie: { maxAge: oneDay },
+        resave: false,
+    })
+);
 
 app.get(`/`, function (req, res) {
     res.render('pages/index', {
@@ -95,7 +107,7 @@ app.get(`/contactus`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
-app.get(`/wishlist`, function(req,res) {
+app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist');
 });
 
@@ -120,7 +132,7 @@ app.get(`/userprofile`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
-app.get(`/ordersdash`, function(req, res) {
+app.get(`/ordersdash`, function (req, res) {
     res.render('pages/ordersdash');
 });
 /* --------- DASHBOARDS END -----*/
@@ -137,6 +149,38 @@ app.get(`/login`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
+app.post(`/user-login`, async (req, res) => {
+    const lgemail = req.body.email;
+    const lgpassword = req.body.password;
+    console.log(req.session.user);
+    try {
+        const users = await User.findOne({ email: lgemail });
+        if (users) {
+            if (await bcrypt.compare(users.password, lgpassword)) {
+                console.log(users.firstname + ' has logged in');
+                req.session.user = users.firstname;
+                console.log(req.session.user);
+                res.render('pages/index', {
+                    user: req.session.user === undefined ? '' : req.session.user,
+                });
+            } else {
+                res.render('pages/login', {
+                    user: req.session.user === undefined ? '' : req.session.user,
+                });
+            }
+        } else {
+            res.render('pages/login', {
+                user: req.session.user === undefined ? '' : req.session.user,
+            });
+        }
+    } catch (err) {
+        console.log(err);
+        res.render('pages/login', {
+            user: req.session.user === undefined ? '' : '',
+        });
+    }
+});
+
 app.post('/sign-up-action', (req, res) => {});
 app.get('/logout', (req, res) => {
     req.session.destroy();
