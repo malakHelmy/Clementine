@@ -4,25 +4,49 @@ const  Cart  = require('../models/cart');
 const { Product } = require('../models/product');
 const router = express.Router();
 
-router.post(`/:id/:page`, async  (req, res) => {
+router.get('/', (req,res)=>{
 
+    Cart.find()
+    .then( (result) => { 
+        res.render('pages/cart',{products:result});
+    }
+    )
+    .catch((err) => {
+      console.log(err);
+    });
+
+});
+
+router.post(`/:id/:page`, async  (req, res) => {
+   
     Product.findById(req.params.id)
-    .then( (result) => {    
+    .then(async (result) => {    
         const cart={
             id:result.id,
             name:result.name,
             image:result.image,
             price: result.price,
           }
-        const carts=new Cart(cart);
-        carts
-            .save()
-            .then( (result) => {
-                res.redirect(`/products/${req.params.page}`);
-            })
-            .catch( err => {
-              console.log(err);
-            });
+        await Cart.findOneAndUpdate(cart,
+        {
+
+            id:result.id,
+            name:result.name,
+            image:result.image,
+            price: result.price,
+            $inc:{
+                quantity:1
+            }        
+        }
+        ,
+        {
+            upsert:true
+        }        
+        )
+        setTimeout(() => {
+           res.redirect(`/products/${req.params.page}`);
+        }, 700);
+      
     })   
     .catch((err) => {
       console.log(err);
