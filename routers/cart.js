@@ -17,6 +17,26 @@ router.get('/', (req,res)=>{
 
 });
 
+router.post(`/:id`, async  (req, res) => {
+  
+        await Cart.findOneAndUpdate({
+            _id:req.params.id
+        } ,
+        {
+            $inc:{
+                quantity:1
+            }        
+        },    
+        {
+            upsert:true
+        }   
+        )
+        setTimeout(() => {
+           res.redirect(`/cart`);
+        }, 700);
+      
+});
+
 router.post(`/:id/:page`, async  (req, res) => {
    
     Product.findById(req.params.id)
