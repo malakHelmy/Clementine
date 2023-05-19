@@ -48,6 +48,7 @@ app.use('/user', usersRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
 app.use('/editproducts',editProdRouter);
+app.use('/ordersdash', ordersRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
 mongoose
@@ -113,9 +114,7 @@ app.get(`/userprofile`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
-app.get(`/ordersdash`, function(req, res) {
-    res.render('pages/ordersdash');
-});
+
 /* --------- DASHBOARDS END -----*/
 
 /* --------- SIGN UP AND LOG IN ---*/

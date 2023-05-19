@@ -88,96 +88,20 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <% order.forEach(function(orders) {%>
+
                     <tr>
-                        <td> #C772838HF </td>
-                        <td> <img src="Images/c1.png" alt="">Lana Del Rey</td>
-                        <td> Giza </td>
-                        <td> 17 Jan, 2023 </td>
-                        <td>
-                            <p class="status_delivered">Delivered</p>
+                        <td> <%= orders._id %> </td>
+                        <td> <%= orders.userID %> </td>
+                        <td> <%= orders.city %> </td>
+                        <td> <%= orders.dateOrdered %> </td>
+                        <td> <%= orders.status %> 
+                           <!---<p class="status_delivered">---> 
                         </td>
-                        <td> <strong> EGP 12890 </strong></td>
+                        <td> <strong> <%= orders.totalAmount %> </strong></td>
                     </tr>
-                    <tr>
-                        <td> #C8HD78HF </td>
-                        <td><img src="Images/c2.jfif" alt=""> Asmaa Galal </td>
-                        <td> Cairo </td>
-                        <td> 27 Aug, 2023 </td>
-                        <td>
-                            <p class="status_cancelled">Cancelled</p>
-                        </td>
-                        <td> <strong>EGP 535050</strong> </td>
-                    </tr>
-                    <tr>
-                        <td> #C8SJHCU7</td>
-                        <td><img src="Images/c3.png" alt=""> Theo James </td>
-                        <td> Sinai </td>
-                        <td> 14 Mar, 2023 </td>
-                        <td>
-                            <p class="status_shipped">Shipped</p>
-                        </td>
-                        <td> <strong>EGP 210040</strong> </td>
-                    </tr>
-                    <tr>
-                        <td> #C3SDHC8HF</td>
-                        <td><img src="Images/c4.png" alt=""> Selena Gomez </td>
-                        <td> Alexandria </td>
-                        <td> 25 May, 2023 </td>
-                        <td>
-                            <p class="status_delivered">Delivered</p>
-                        </td>
-                        <td> <strong>EGP 14970</strong> </td>
-                    </tr>
-                    <tr>
-                        <td> #C923H4HF</td>
-                        <td><img src="Images/c1.png" alt=""> Lana Del Rey </td>
-                        <td> Paris </td>
-                        <td> 23 Apr, 2023 </td>
-                        <td>
-                            <p class="status_pending">Pending</p>
-                        </td>
-                        <td> <strong>EGP 39999</strong> </td>
-                    </tr>
-                    <tr>
-                        <td> #C7D54H8HF</td>
-                        <td><img src="Images/c2.jfif" alt=""> Nada Othman </td>
-                        <td> London </td>
-                        <td> 23 Apr, 2023 </td>
-                        <td>
-                            <p class="status_cancelled">Cancelled</p>
-                        </td>
-                        <td> <strong>EGP 49589</strong> </td>
-                    </tr>
-                    <tr>
-                        <td> #C8DHCHF</td>
-                        <td><img src="Images/c3.jfif" alt=""> Adel Hameed </td>
-                        <td> Cairo </td>
-                        <td> 20 May, 2023 </td>
-                        <td>
-                            <p class="status_delivered">Delivered</p>
-                        </td>
-                        <td> <strong>EGP 27099</strong> </td>
-                    </tr>
-                    <tr>
-                        <td> #C372FJ8HF</td>
-                        <td><img src="Images/c4.png" alt=""> Aayat Ali </td>
-                        <td> Iraq </td>
-                        <td> 30 Feb, 2023 </td>
-                        <td>
-                            <p class="status_pending">Pending</p>
-                        </td>
-                        <td> <strong>EGP 149070</strong> </td>
-                    </tr>
-                    <tr>
-                        <td> #C97EF8KF</td>
-                        <td><img src="Images/c3.PNG" alt=""> Aziz Aziz </td>
-                        <td> Austria </td>
-                        <td> 22 Dec, 2023 </td>
-                        <td>
-                            <p class="status_cancelled">Cancelled</p>
-                        </td>
-                        <td> <strong>EGP 249899</strong> </td>
-                    </tr>
+                    <% }); %>
+
                 </tbody>
             </table>
         </section>
