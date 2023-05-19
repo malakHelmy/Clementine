@@ -17,7 +17,8 @@ const User = require('./models/user');
 const api_key = process.env.OPENAI_API_KEY;
 
 //Routes
-const editProdRouter = require('./routers/addproducts');
+const addProdRouter = require('./routers/addproducts');
+const editProdRouter = require('./routers/editproducts')
 const cartRouter = require('./routers/cart');
 const productsRouter = require('./routers/products');
 const usersRouter = require('./routers/users');
@@ -50,7 +51,8 @@ app.use(`/orders`, ordersRouter);
 app.use('/users', usersRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
-app.use('/addproducts', editProdRouter);
+app.use('/addproducts', addProdRouter);
+app.use('/editproducts',editProdRouter)
 app.use('/ordersdash', ordersRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
