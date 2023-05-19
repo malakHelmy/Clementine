@@ -20,9 +20,6 @@ router.get('/:id',  (req, res) => {
 
 });
 
-
-
-
 // router.post(`/`, async (req, res) => {
 //     const cat = await Category.findById(req.body.category);
 //     if (!cat) {

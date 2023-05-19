@@ -22,7 +22,7 @@
         <!-- Sign in form -->
         <div class="signIn">
             <div class="left">
-                <form action="/login" method="post"  onsubmit="return checkfields()"  class="signInform" id="signInform">
+                <form action="/login" method="post" onsubmit="return checkfields()" class="signInform" id="signInform" enctype="multipart/form-data">
                     <h2>Login</h2>
 
                     <div class="textfield">
@@ -44,8 +44,7 @@
                 <script>
                     const form = document.getElementById('signInform');
                     const pass = document.getElementById('pass');
-                    function checkfields()
-                    {
+                    function checkfields() {
                         if (pass.value.trim() == '') {
                             let label = document.getElementById('passlabel');
                             label.innerHTML = 'Please enter password';
