@@ -2,6 +2,7 @@
 const express = require('express');
 const User = require('../models/user');
 const router = express.Router();
+const customerController= require('../controllers/customersController')
 
 router.post(`/`, async (req, res) => {
 
@@ -40,7 +41,10 @@ router.get(`/`, async (req, res) => {
         
       console.log(err);
     });
+
+
   });
 
+  router.get('/updatecustdash/;id', customerController.updatecust);
 
 module.exports = router;
