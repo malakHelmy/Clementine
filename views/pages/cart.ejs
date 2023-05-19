@@ -28,11 +28,13 @@
                             <h4 class="price1"><%= items.price %></h4>
 
                             <div class="btn-wrap">
-                                <form action="/cart/<%= items %>" method="post">
-                                    <input type="submit" value="-" class="minus2">  
-                                    <span class="num2"><%= items.quantity %></span>
-                                    <input type="submit" value="+" class="add2">
-                               </form>
+                                <form action="/"></form>
+                                    <input type="submit" value="-" class="minus2"> 
+                                </form>   
+                                <span class="num2"><%= items.quantity %></span>
+                                <form action="/cart/<%= items._id %>" method="post">
+                                     <input type="submit" value="+" class="add2">
+                                </form>
                             </div>
                             <button class="wishlist" onclcik="">Add to Wishlist</p>
                         </div>
