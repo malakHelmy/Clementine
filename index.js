@@ -10,17 +10,20 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
+//poenai api key
+const api_key= process.env.OPENAI_API_KEY;
 
 //Routes
 const editProdRouter= require('./routers/editproducts');
+const cartRouter= require('./routers/cart');
 const productsRouter = require('./routers/products');
 const usersRouter = require('./routers/users');
 const users_loginRouter = require('./routers/login');
 const cust_contRouter = require('./routers/editcustdash');
 const categoriesRouter = require('./routers/categories');
 const ordersRouter = require('./routers/orders');
-const contactmailerRouter = require ('./routers/mailController')
-// const fileUpload = require('express-fileupload');
+const contactmailerRouter = require ('./routers/mailController');
+const chatRouter = require('./routers/chat');
 
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
@@ -37,7 +40,7 @@ app.set('view engine', 'ejs'); //set the template engine
 //app.use(express.static(path.join(process.cwd(), "/images")));
 app.use(express.urlencoded({ extended: true }));
 
-//Routers
+// Routers
 app.use(`/products`, productsRouter);
 app.use(`/categories`, categoriesRouter);
 app.use(`/orders`, ordersRouter);
@@ -45,9 +48,10 @@ app.use('/user', usersRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
 app.use('/editproducts',editProdRouter);
-
+app.use('/chat', chatRouter);
+app.use('/cart', cartRouter);
 mongoose
-.connect(process.env.DB_URI)
+.connect("mongodb+srv://clementine:wifeys2023@clementine.xfv9xzu.mongodb.net/clementine?retryWrites=true&w=majority")
 .then((result) => {
     console.log('database success');
 })
@@ -74,11 +78,17 @@ app.get(`/categories`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
-app.get(`/drings`, function (req, res) {
-    res.render('pages/products', {
+app.get(`/checkout`, function (req, res) {
+    res.render('pages/checkout', {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
+app.get(`/cart`, function (req, res) {
+    res.render('pages/cart', {
+        user: req.session.user === undefined ? '' : req.session.user,
+    });
+});
+
 
 /* --------- DASHBOARDS -----*/
 app.get(`/dashboard`, function (req, res) {
@@ -120,60 +130,8 @@ app.get('/logout', (req, res) => {
 });
 /* --------- SIGN UP AND LOG IN END ---*/
 
-/* --------- CHATPOT API ----------*/
-
-
-app.get(`/chat`, function (req, res) {
-    res.render('pages/chatbot');
-});
-
-
-
-
-
-/* --------- CHATPOT API END----------*/
-
-/* ---------CONTACT US FORM MAILER --------*/
-app.get(`/contactus`, function (req, res) {
-    res.render('pages/contactus');
-});
-
-app.post(`/contactus`, function (req, res) {
-    res.render('pages/contactus');
-
-    var fullname = req.body.name;
-    var uemail = req.body.email;
-    var subject = req.body.subject;
-    var message = req.body.message;
-
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'clementineco2023@gmail.com',
-            pass: 'lmkwmjbyftpuzwhz',
-        },
-    });
-
-    var mailOptions = {
-        from: uemail,
-        to: 'clementineco2023@gmail.com',
-        subject: subject,
-        text: message,
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
-            res.send('Error.');
-        } else {
-            console.log('Email sent:' + info.response);
-            res.send('Successfully sent.');
-        }
-        express.response.redirect('/');
-    });
-});
 /* ---------CONTACT US FORM MAILER END --------*/
 
 app.listen(port, () => {
-    console.log(api);
+    console.log("http://localhost:8080");
 });

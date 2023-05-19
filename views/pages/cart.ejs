@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/cart.css">
+    <link rel="stylesheet" href="/js/cart.js">
+    <title>Cart</title>
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+        <div class="shopcart-wrapper">
+            <br>
+            <div class="prod">
+                        <% if(products !='' ) {%>
+                        <% products.forEach((items)=> {%>
+                <div class="cart-items">
+       
+                    <div class="cart-box">
+                        <img src="/Images/<%= items.image %>" alt="earring 8">
+                        <div class="prod-content">
+                            <h3> <%= items.name %><button class="remove-btn"><i
+                                        class="ri-close-line"></i></button>
+                            </h3>
+                            <h4 class="price1"><%= items.price %></h4>
+
+                            <div class="btn-wrap">
+                                <form action="/"></form>
+                                    <input type="submit" value="-" class="minus2"> 
+                                </form>   
+                                <span class="num2"><%= items.quantity %></span>
+                                <form action="/cart/<%= items._id %>" method="post">
+                                     <input type="submit" value="+" class="add2">
+                                </form>
+                            </div>
+                            <button class="wishlist" onclcik="">Add to Wishlist</p>
+                        </div>
+                    </div>
+                
+                </div>
+                <% }) %>
+                        <% } %>
+
+                <div class="right-bar">
+                    <p><span>Subtotal</span><span class="subtotal"> EGP182,100</span></p>
+                    <p><span>Shipping</span> <span>EGP100</span></p>
+                    <hr>
+                    <p><span>Total</span> <span class="totalafter">EGP1822100</span></p>
+                    <button onclick="location.href='./checkout.html'" class="checkout-btn">CHECKOUT</button>
+
+                    <div class="payment-method">
+                        <p></p>
+                        <hr>
+                        Checkout quickly and securely with
+                        <br>
+
+                        <img src="./Images/cash.svg" alt="">
+                        <img src="./Images/visa.svg" alt="">
+                        <img src="./Images/mastercard.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('../partials/footer') %>
+
+</body>
+
+</html>
