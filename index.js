@@ -50,7 +50,7 @@ app.use(`/orders`, ordersRouter);
 app.use('/users', usersRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
-app.use('/editproducts',editProdRouter);
+app.use('/editproducts', editProdRouter);
 app.use('/ordersdash', ordersRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
@@ -133,13 +133,10 @@ app.get(`/userprofile`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
-<<<<<<< HEAD
 app.get(`/ordersdash`, function (req, res) {
     res.render('pages/ordersdash');
 });
-=======
 
->>>>>>> 92d1db65671757f932b130fefc42ec77b4b18760
 /* --------- DASHBOARDS END -----*/
 
 /* --------- SIGN UP AND LOG IN ---*/
@@ -166,11 +163,13 @@ app.post(`/user-login`, async (req, res) => {
                 req.session.user = users.firstname;
                 console.log(req.session.user);
                 res.render('pages/index', {
-                    user: req.session.user === undefined ? '' : req.session.user,
+                    user:
+                        req.session.user === undefined ? '' : req.session.user,
                 });
             } else {
                 res.render('pages/login', {
-                    user: req.session.user === undefined ? '' : req.session.user,
+                    user:
+                        req.session.user === undefined ? '' : req.session.user,
                 });
             }
         } else {
