@@ -1,0 +1,39 @@
+
+<main class="table">
+        <section class="table_header">
+            <h1>Track Orders</h1>
+            <div class="search_orders">
+                <input type="search" placeholder="Search Orders...">
+            </div>
+           
+        </section>
+        <section class="table_body">
+            <table>
+                <thead>
+                    <tr>
+                        <th> ID <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Customer <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> City <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Order Date <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Status <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Amount <span class="icon-arrow">&UpArrow;</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% order.forEach(function(orders) {%>
+
+                    <tr>
+                        <td> <%= orders._id %> </td>
+                        <td> <%= orders.userID %> </td>
+                        <td> <%= orders.city %> </td>
+                        <td> <%= orders.dateOrdered %> </td>
+                        <td> <%= orders.status %> 
+                           <!---<p class="status_delivered">---> 
+                        </td>
+                        <td> <strong> <%= orders.totalAmount %> </strong></td>
+                    </tr>
+                    <% }); %>
+
+                </tbody>
+            </table>
+        </section>
