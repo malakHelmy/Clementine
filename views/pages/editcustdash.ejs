@@ -130,41 +130,49 @@
 
 
                 
-                <div class="search-container" >
-                    <div>
-                    <h2 class="search-title"> <%= viewTitle %> </h2>
-                    </div>
-                        <div id="search">
-                        <input type="text" id="searchinput" onkeyup="search_cust()" placeholder="Search...">
-                        <div>
-                    </div>
-                   </div>
-                    <table class = "table table striped">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                
+                <main class="table">
+                    <section class="table_header">
+                        <h1>Products List</h1>
+                        <div class="search_orders">
+                            <input type="search" placeholder="Search existing customers...">
+                        </div>
+                       
+                    </section>
+                    <section class="table_body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th> Customer ID <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> First Name <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> Last Name <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> Email <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> Phone <span class="icon-arrow">&UpArrow;</span></th>                                    
+                                    <th> Edit <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th> Delete <span class="icon-arrow">&UpArrow;</span></th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% users.forEach(function(user){ %> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                               <% users.forEach(function(user) {%>
                                 <tr>
                                     <td> <%= user._id %> </td>
                                     <td> <%= user.firstname %> </td>
                                     <td> <%= user.lastname %> </td>
                                     <td> <%= user.email %> </td>
                                     <td> <%= user.phone %> </td>
-                                </tr>
-                                <% }); %>
-                        </tbody>
+                                    <td> <a href="./editcustdash.ejs"> Edit</a> </td>
+                                    <td> <a href="./updatecustdash.ejs"> Delete</a> </td>
 
-                    </table>
-                </div>
+                                   
+                                </tr>
+                
+                                </tr>
+                               <% }); %>
+                            </tbody>
+                        </table>
+                    </section>
+           
+                </main>
             
             
                 <div id="update-msg">
@@ -192,6 +200,7 @@
              
 
     <script src="/js/editcustdash.js"></script>
+    <script src="../../public/js/dashsearch.js"></script>
     <script src="/js/validation.js"></script>
 
 </body>

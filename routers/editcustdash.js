@@ -29,10 +29,10 @@ router.post(`/`, async (req, res) => {
 router.get(`/`, async (req, res) => {
 
     User.find()
-    .then(async (result) => {          
+    .then(async (customerslist) => {          
     res.render('pages/editcustdash', {
       viewTitle: "Customers List",
-      users: result
+      users: customerslist
     })
 
     })
