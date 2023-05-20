@@ -6,7 +6,7 @@ const Product = require('../models/product').Product;
 router.get('/:id', async (req, res) => {
   try {
     const productId = req.params.id;
-    const product = await Product.findById(productId);
+    const product = await Product.findOne({ id: productId });
     if (product) {
       res.render('pages/editproducts', { product });
     } else {
@@ -23,8 +23,8 @@ router.post('/:id', async (req, res) => {
   try {
     const productId = req.params.id;
     const updatedProductData = req.body;
-    const updatedProduct = await Product.findByIdAndUpdate(
-      productId,
+    const updatedProduct = await Product.findOneAndUpdate(
+      { id: productId },
       updatedProductData,
       { new: true }
     );
