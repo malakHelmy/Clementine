@@ -30,6 +30,7 @@ const categoriesRouter = require('./routers/categories');
 const ordersRouter = require('./routers/orders');
 const contactmailerRouter = require('./routers/mailController');
 const chatRouter = require('./routers/chat');
+const displayProdRouter = require('./routers/displayproducts');
 
 
 
@@ -63,6 +64,8 @@ app.use('/editproducts',editProdRouter)
 app.use('/ordersdash', ordersRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
+app.use('/displayproducts', displayProdRouter);
+ 
 //app.use('/updatedeletecust/:id', customersController.updatecust);
 
 mongoose
@@ -149,6 +152,8 @@ app.get(`/userprofile`, function (req, res) {
 app.get(`/ordersdash`, function (req, res) {
     res.render('pages/ordersdash');
 });
+
+
 
 /* --------- DASHBOARDS END -----*/
 
