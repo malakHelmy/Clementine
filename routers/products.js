@@ -19,6 +19,58 @@ router.get('/',  (req, res) => {
     });
 
 });
+router.get('/drings',  (req, res) => {
+    
+    Product.find({material:"diamond", category:"ring" })
+    .then( (result) => { 
+                 
+        res.render('pages/products', {products:result , Id: req.params.id } )
+    }
+    )
+    .catch((err) => {
+      console.log(err); 
+    });
+
+});
+router.get('/dearrings',  (req, res) => {
+    
+    Product.find({material:"diamond", category:"earring" })
+    .then( (result) => { 
+                 
+        res.render('pages/products', {products:result , Id: req.params.id } )
+    }
+    )
+    .catch((err) => {
+      console.log(err); 
+    });
+
+});
+router.get('/dnecklaces',  (req, res) => {
+    
+    Product.find({material:"diamond", category:"necklace" })
+    .then( (result) => { 
+                 
+        res.render('pages/products', {products:result , Id: req.params.id } )
+    }
+    )
+    .catch((err) => {
+      console.log(err); 
+    });
+
+});
+router.get('/dbracelets',  (req, res) => {
+    
+    Product.find({material:"diamond", category:"bracelet" })
+    .then( (result) => { 
+                 
+        res.render('pages/products', {products:result , Id: req.params.id } )
+    }
+    )
+    .catch((err) => {
+      console.log(err); 
+    });
+
+});
 
 // router.post(`/`, async (req, res) => {
 //     const cat = await Category.findById(req.body.category);
