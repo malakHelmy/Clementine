@@ -135,10 +135,22 @@ app.get(`/editcustdash`, function (req, res) {
 app.post(`/editcustdash`, function (req, res) {
     res.render('pages/editcustdash');
 });
-app.get(`/updatedeletecust`, function (req, res) {
+app.get(`/updatedeletecust/:id`, function (req, res) {
     res.render('pages/updatedeletecust');
 });
-
+/*
+app.get(`/updatedeletecust/:id`, async (req, res) => {
+    try {
+        const customer = await User.findOne({_id: req.params._id})
+        res.render('pages/updatedeletecust', {
+          customer
+        })
+      }
+      catch(error) {
+        console.log(error);
+      }
+});
+*/
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
         user: req.session.user === undefined ? '' : req.session.user,

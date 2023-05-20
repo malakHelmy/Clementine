@@ -25,13 +25,14 @@ router.post(`/`, async (req, res) => {
     });
 });
 
- 
 
-/* router.get(`/:id`, async (req,res)=> {
+ 
+/*
+ router.get(`/:id`, async (req,res)=> {
     
-  User.findOne({_id: req.params.id})
+  User.findOne({id: req.params.id})
   .then(async (updatecust) => {
-    res.render('pages/updatedeletecust', {
+    res.redirect('pages/updatedeletecust', {
       customer: updatecust
     })
   })
@@ -43,7 +44,6 @@ router.post(`/`, async (req, res) => {
 });
 
 */
-
 router.get(`/`, async (req, res) => {
 
     User.find()
@@ -67,6 +67,6 @@ router.get(`/`, async (req, res) => {
   });
 
 
-  //router.get(`/updatedeletecust/:id`, customersController.updatecust);
+ router.get(`/updatedeletecust/:id`, customersController.updatecust);
 
 module.exports = router;

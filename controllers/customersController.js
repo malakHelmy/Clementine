@@ -3,7 +3,7 @@ const mongoose=require('mongoose');
 
 exports.updatecust = async(req, res) => {
     try {
-      const customer = await User.findOne({_id: req.params.id})
+      const customer = await User.findOne({id: req.params.id})
       res.render('pages/updatedeletecust', {
         customer
       })
