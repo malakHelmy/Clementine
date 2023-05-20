@@ -6,7 +6,7 @@ const { Product } = require('../models/product');
 const { Category } = require('../models/category');
 const router = express.Router();
 
-router.get('/:id',  (req, res) => {
+router.get('/',  (req, res) => {
     
     Product.find()
     .then( (result) => { 
@@ -15,7 +15,7 @@ router.get('/:id',  (req, res) => {
     }
     )
     .catch((err) => {
-      console.log(err);
+      console.log(err); 
     });
 
 });

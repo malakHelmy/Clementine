@@ -34,12 +34,12 @@ const productSchema = mongoose.Schema(
       max: 10000,
     },
   },
-  { _id: false } // Disable the default _id field
+//   { _id: false } // Disable the default _id field
 );
 
 // Set the 'id' field as the primary identifier
-productSchema.virtual('productId').get(function () {
-  return this.id;
-});
+// productSchema.virtual('productId').get(function () {
+//   return this.id;
+// });
 
 exports.Product = mongoose.model('Product', productSchema);

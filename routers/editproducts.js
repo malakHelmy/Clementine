@@ -30,7 +30,7 @@ router.post('/:id', async (req, res) => {
     );
     if (updatedProduct) {
       console.log('Updated product data:', updatedProduct);
-      res.redirect('/products');
+      res.redirect('/displayproducts');
     } else {
       res.status(404).send('Product not found');
     }
