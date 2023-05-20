@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- material icons cdn -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+    <link rel="stylesheet" href="/css/editcustdash.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- sidebar start -->
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="./Images/logoo copy.png" alt="logo">
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-symbols-sharp">close</span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="./dashborad"><span class="material-symbols-sharp">dashboard</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="editcustdash"><span class="material-symbols-sharp">person</span>
+                    <h3>Customers</h3>
+                </a>
+                <a href="orders"><span class="material-symbols-sharp">receipt_long</span>
+                    <h3>Orders</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">insights</span>
+                    <h3>Analytics</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">chat</span>
+                    <h3>Chat</h3><span class="message-count">3</span>
+                </a>
+                <a href="./addproducts" class="active"><span class="material-symbols-sharp">inventory</span>
+                    <h3>Products</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">report</span>
+                    <h3>Reports</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">Settings</span>
+                    <h3>Settings</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- sidebar end -->
+
+        <main>
+            <h1>Jewelry</h1>
+            <div id="products-container">
+                <div class="addcust" id="addcust">
+                    <form class="form" action="/editproducts/<%= product.id %>" method="POST">
+                        <div class="add">
+                            <h2 class="add-title">Edit Product</h2>
+                        </div>
+                        <div class="products-container" style="display: block;">
+                            <div class="input-group">
+                                <label for="id">Product ID</label>
+                                <div>
+                                    <input id="id" type="text" placeholder="Product id" name="id"
+                                        value="<%= product.id %>">
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="name">Product Name</label>
+                                <div>
+                                    <input id="name" type="text" placeholder="Product name" name="name"
+                                        value="<%= product.name %>">
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="image">Product Image</label>
+                                <div>
+                                  <br>  <input type="file" id="image" name="image">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <label for="price">Product Price</label>
+                                <div>
+                                    <input id="price" type="text" placeholder="Product price" name="price"
+                                        value="<%= product.price %>">
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="description">Product Description</label>
+                                <div>
+                                    <input id="description" type="text" placeholder="Product description"
+                                        name="description" class="description" value="<%= product.description %>">
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="category">Category</label>
+                                <div>
+                                    <input id="category" type="text" placeholder="Product category" name="category"
+                                        value="<%= product.category %>">
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="countInStock">Count in Stock</label>
+                                <div>
+                                    <input id="countInStock" type="text" placeholder="Count in stock"
+                                        name="countInStock" value="<%= product.countInStock %>">
+                                </div>
+                            </div>
+
+                            <button type="submit" id="update">Update</button>
+                            <button id="cancel" href="/addproducts">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <main class="table">
+                    <section class="table_header">
+                        <h1>Products List</h1>
+                        <div class="search_orders">
+                            <input type="search" placeholder="Search existing products...">
+                        </div>
+                    </section>
+                    <section class="table_body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product ID <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Product Image <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Product Name <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Model <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Edit/Delete <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Availability <span class="icon-arrow">&UpArrow;</span></th>
+                                    <th>Price <span class="icon-arrow">&UpArrow;</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if((product) => { %>
+                                <tr>
+                                    <td><%= product.id %></td>
+                                    <td><img src="<%= product.image %>" alt="" id="prod_img"></td>
+                                    <td><%= product.name %></td>
+                                    <td><%= product.model %></td>
+                                    <td>
+                                        <a href="/editproducts/<%= product.id %>"><button class="btn"><i
+                                                    class="fa fa-edit"></i></button></a>
+                                        <button class="btn"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                    <td>
+                                        <% if (product.available) { %>
+                                        <p class="status_delivered">In Stock</p>
+                                        <% } else { %>
+                                        <p class="status_cancelled">Out Of Stock</p>
+                                        <% } %>
+                                        <p class="avail_amount">*Available: <%= product.countInStock %> Pieces</p>
+                                    </td>
+                                    <td><strong><%= product.price %></strong></td>
+                                </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </section>
+                </main>
+
+                <div id="update-msg">
+                    <span>Product Updated Successfully.</span>
+                </div>
+                <div id="delete-msg">
+                    <span>Product Deleted Successfully.</span>
+                </div>
+
+                <script src="js/orders.js"></script>
+
+            </div>
+        </main>
+
+    </div>
+
+</body>
+
+</html>
