@@ -5,6 +5,11 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 
+router.get(`/`, function (req, res) {
+    res.render('partials/navbar', {
+        user: req.session.user === undefined ? '' : req.session.user,
+    });
+});
 // router.post(`/user-login`, async (req, res) => {
 //     let result = { email: req.body.email, password: req.body.password };
 //     const user = await User.findOne({ email: result.email }, async (err, foundResults) => {
