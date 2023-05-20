@@ -9,6 +9,11 @@ const orderSchema = mongoose.Schema({
         required: true,
         ref: 'user',
     },
+    userFullName: {
+        type: String,
+        required: true,
+        ref: 'user',
+    },
     //order is referrig to order items
     orderItems: [
         {
@@ -25,6 +30,10 @@ const orderSchema = mongoose.Schema({
         type: String,
     },
     city: {
+        type: String,
+        required: true,
+    },
+    state: {
         type: String,
         required: true,
     },

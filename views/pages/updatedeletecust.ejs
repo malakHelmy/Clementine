@@ -75,12 +75,16 @@
                 <div class="addcust" id="addcust">
                     <form action ="/updatedeletecust" method="POST" class="form">
                         <div class="add">
-                            <h2 class="add-title"><%= customer %> <%= customer  %> </h2>
+
+                                 
+
+                            <h2 class="add-title"><%= customer.firstname %> <%= customer.lastname  %> </h2>
+
                         </div>
                         <div class="customers-container" style="display: block;">
                             <div class="input-group">
                                 <label for="firstanme">First Name</label>
-                                <div><input id="firstanme" type="text" placeholder="First Name" name="firstanme">
+                                <div><input id="firstname" type="text" placeholder="First Name" name="firstname">
                                 </div>
                                 <span class="errormsg"></span>
                             </div>
