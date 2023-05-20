@@ -23,7 +23,7 @@ router.get(`/`, async (req, res) => {
   });
 
 /* router.get(`/`, async (req, res) => {
- //.pupulate -> if i want to know the user who ordered
+ //.populate -> if i want to know the user who ordered
     //displays the first and last name for the user + sort by date from newest to oldest
     const ordersList = await Order.find()
         .populate('userID', 'firstname + lastname')
@@ -51,7 +51,7 @@ router.get(`/`, async (req, res) => {
     const orders = await Order.findById(req.params.id).populate({
         path: 'orderItems',
 
-        //populat will be an object to get all info about product items
+        //populate will be an object to get all info about product items
         populate: {
             path: 'product',
             populate: 'category',
