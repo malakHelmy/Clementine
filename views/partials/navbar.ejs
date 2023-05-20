@@ -35,7 +35,8 @@
                     </li>
                     <li><a href="./contactus">CONTACT US</a></li>
 
-                    <li><a href="#"><i class="ri-search-line"></i></a></li>
+                    <li><a href="#" onclick="openSearchBar()"><i class="ri-search-line"></i></a></li>
+
                     <li><a href="./login"><i class="ri-account-circle-line"></i></a>
                         <ul>
                             <% if (user==="" ) {%>
@@ -114,6 +115,7 @@
     </div>
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/trial.j"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $(".navigation .navbar .logo-toggle-container .toggle-box").click(function () {

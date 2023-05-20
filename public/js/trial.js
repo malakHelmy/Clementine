@@ -52,3 +52,9 @@ function reveal(){
   }
   
 
+  function openSearchBar(){
+    document.getElementById("searchbtn_on").style.display="block";
+}
+function closeSearchBar(){
+    document.getElementById("searchbtn_on").style.display="none";
+}
