@@ -28,7 +28,7 @@ router.post(`/`, async (req, res) => {
 
  
 /*
- router.get(`/:id`, async (req,res)=> {
+ router.get(`/`, async (req,res)=> {
     
   User.findOne({id: req.params.id})
   .then(async (updatecust) => {
