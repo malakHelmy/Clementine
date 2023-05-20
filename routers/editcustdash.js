@@ -60,13 +60,8 @@ router.get(`/`, async (req, res) => {
         
       console.log(err);
     });
-
-    
-    
-    
   });
 
-
- router.get(`/updatedeletecust/:id`, customersController.updatecust);
+//  router.get(`/updatedeletecust/:id`, customersController.updatecust);
 
 module.exports = router;
