@@ -17,7 +17,7 @@ router.post(`/`, async (req, res) => {
   users
     .save()
     .then((result) => {
-      console.log('aho')
+   
       res.render('pages/editcustdash');
     })
     .catch(err => {
@@ -26,24 +26,7 @@ router.post(`/`, async (req, res) => {
 });
 
 
- 
-/*
- router.get(`/`, async (req,res)=> {
-    
-  User.findOne({id: req.params.id})
-  .then(async (updatecust) => {
-    res.redirect('pages/updatedeletecust', {
-      customer: updatecust
-    })
-  })
-  .catch((err) => {
-    console.log(err);
-    })
-    
 
-});
-
-*/
 router.get(`/`, async (req, res) => {
 
     User.find()
@@ -51,17 +34,23 @@ router.get(`/`, async (req, res) => {
     res.render('pages/editcustdash', {
       viewTitle: "Customers List",
       users: customerslist
-
+    })
     })
 
-    })
-    
     .catch((err) => {
         
       console.log(err);
     });
   });
 
-//  router.get(`/updatedeletecust/:id`, customersController.updatecust);
+ router.get(`/:id`, (req,res)=>{
+
+
+        User.
+        findById(req.params.id).
+        then((result)=>{
+            res.render('pages/updatedeletecust',{customer:result})
+        }).catch((err)=>{console.log(err);})
+ });
 
 module.exports = router;
