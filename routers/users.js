@@ -14,9 +14,11 @@ router.post(`/`, async  (req, res) => {
           phone:req.body.phone
         }
         const users=new User(user);
+
     users
         .save()
         .then( (result) => {
+          console.log(result)
             res.render('pages/index');
         })
         .catch( err => {
