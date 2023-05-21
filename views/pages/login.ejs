@@ -10,8 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
 
 </head>
 
@@ -22,7 +21,7 @@
         <!-- Sign in form -->
         <div class="signIn">
             <div class="left">
-                <form action="/login" method="post" onsubmit="return checkfields()" class="signInform" id="signInform" enctype="multipart/form-data">
+                <form action="/login" method="post" onsubmit="return checkfields()" class="signInform" id="signInform" >
                     <h2>Login</h2>
 
                     <div class="textfield">
@@ -32,6 +31,7 @@
                     </div>
                     <div class="textfield">
                         <input type="password" name="password" id="pass">
+                         
                         <label for="" id="passlabel"></label>
 
                         <span class="sp1"></span>
@@ -62,7 +62,7 @@
                     <li>Manage your preferences</li>
                     <li>Save your wishlist across devices</li>
                 </ul>
-                <button class="subutton"><a href="./signup.html" class="su-link">SIGN UP </a></button>
+                <button class="subutton"><a href="./signup" class="su-link">SIGN UP </a></button>
             </div>
         </div>
 
