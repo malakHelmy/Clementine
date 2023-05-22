@@ -6,70 +6,65 @@ const { Product } = require('../models/product');
 const { Category } = require('../models/category');
 const router = express.Router();
 
-router.get('/products',  (req, res) => {
-    
+router.get('/products', (req, res) => {
     Product.find()
-    .then( (result) => { 
-                 
-        res.render('pages/products', {products:result , Id: req.params.id } )
-    }
-    )
-    .catch((err) => {
-      console.log(err); 
-    });
-
+        .then((result) => {
+            res.render('pages/products', {
+                products: result,
+                Id: req.params.id,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
-router.get('/drings',  (req, res) => {
-    
-    Product.find({material:"diamond", category:"ring" })
-    .then( (result) => { 
-                 
-        res.render('pages/products', {products:result , Id: req.params.id } )
-    }
-    )
-    .catch((err) => {
-      console.log(err); 
-    });
-
+router.get('/drings', (req, res) => {
+    Product.find({ material: 'diamond', category: 'ring' })
+        .then((result) => {
+            res.render('pages/products', {
+                products: result,
+                Id: req.params.id,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
-router.get('/dearrings',  (req, res) => {
-    
-    Product.find({material:"diamond", category:"earring" })
-    .then( (result) => { 
-                 
-        res.render('pages/products', {products:result , Id: req.params.id } )
-    }
-    )
-    .catch((err) => {
-      console.log(err); 
-    });
-
+router.get('/dearrings', (req, res) => {
+    Product.find({ material: 'diamond', category: 'earring' })
+        .then((result) => {
+            res.render('pages/products', {
+                products: result,
+                Id: req.params.id,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
-router.get('/dnecklaces',  (req, res) => {
-    
-    Product.find({material:"diamond", category:"necklace" })
-    .then( (result) => { 
-                 
-        res.render('pages/products', {products:result , Id: req.params.id } )
-    }
-    )
-    .catch((err) => {
-      console.log(err); 
-    });
-
+router.get('/dnecklaces', (req, res) => {
+    Product.find({ material: 'diamond', category: 'necklace' })
+        .then((result) => {
+            res.render('pages/products', {
+                products: result,
+                Id: req.params.id,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
-router.get('/dbracelets',  (req, res) => {
-    
-    Product.find({material:"diamond", category:"bracelet" })
-    .then( (result) => { 
-                 
-        res.render('pages/products', {products:result , Id: req.params.id } )
-    }
-    )
-    .catch((err) => {
-      console.log(err); 
-    });
-
+router.get('/dbracelets', (req, res) => {
+    Product.find({ material: 'diamond', category: 'bracelet' })
+        .then((result) => {
+            res.render('pages/products', {
+                products: result,
+                Id: req.params.id,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
 
 // router.post(`/`, async (req, res) => {
@@ -126,18 +121,21 @@ router.get('/dbracelets',  (req, res) => {
 //         });
 // });
 
-// router.get('/:id', async (req, res) => {
-//     const product = await Product.findById(req.params.id);
+router.get('/:id', async (req, res) => {
+    const product = await Product.findById(req.params.id);
 
-//     if (!product) {
-//         return res.status(500).json({
-//             message:
-//                 'The Product with the given ID was not found please check for the validity of the ID',
-//         });
-//     }
+    if (!product) {
+        return res.status(500).json({
+            message:
+                'The Product with the given ID was not found please check for the validity of the ID',
+        });
+    }
 
-//     res.status(200).send(product);
-// });
+    res.render('pages/productDetails', {
+        products: product,
+        Id: req.params.id,
+    });
+});
 
 // router.post('/drings', async (req, res) => {
 //     try {
@@ -150,4 +148,3 @@ router.get('/dbracelets',  (req, res) => {
 
 //exporting method #2
 module.exports = router;
-
