@@ -259,14 +259,15 @@
     height: 50px;
     font-size: 16px;
     cursor: pointer;
+    font-size: 20px;
+    letter-spacing: 1px;
   }
   
   .btn:hover {
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    border: 1px solid #000000;
-    transition: 0.5s ease;
+    background: #d79e2e;
+    transition: 0.7s ease;
     cursor: pointer;
+    letter-spacing: 2px;
   }
   
   #darkfav,#fav{
