@@ -6,7 +6,7 @@ const { Product } = require('../models/product');
 const { Category } = require('../models/category');
 const router = express.Router();
 
-router.get('/',  (req, res) => {
+router.get('/products',  (req, res) => {
     
     Product.find()
     .then( (result) => { 

@@ -41,7 +41,7 @@ app.set('view engine', 'ejs'); //set the template engine
 app.use(express.urlencoded({ extended: true }));
 
 // Routers
-app.use(`/products`, productsRouter);
+app.use(`/`, productsRouter);
 app.use(`/categories`, categoriesRouter);
 app.use(`/orders`, ordersRouter);
 app.use('/user', usersRouter);
@@ -80,6 +80,11 @@ app.get(`/categories`, function (req, res) {
 });
 app.get(`/checkout`, function (req, res) {
     res.render('pages/checkout', {
+        user: req.session.user === undefined ? '' : req.session.user,
+    });
+});
+app.get(`/wishlist`, function (req, res) {
+    res.render('pages/wishlist', {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });

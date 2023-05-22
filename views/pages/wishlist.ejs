@@ -19,97 +19,100 @@
 <body>
     <%- include('../partials/navbar') %>
 
-    <!-- shopping cart start -->
+        <!-- shopping cart start -->
 
-    <div class="wishlist-wrap">
-        <h1 class="wishlist-header">your wishlist (2 items)</h1>
-        <div class="prod">
-            <div class="wishlist-items">
-                <div class="wishlist-box">
-                    <img src="./Images/e8.jpg" alt="earring 8">
-                    <div class="prod-content">
-                        <h3>Clementine Emerald Earring <button class="remove-btn"><i class="ri-close-line"></i></button>
-                        </h3>
-                        <h4 class="p1">EGP 15200</h4>
-
-                        <div class="btn-wrap">
-                            <span class="m">-</span>
-                            <span class="n">1</span>
-                            <span class="a">+</span>
+        <div class="wishlist-wrap">
+            <h1 class="wishlist-header">your wishlist (2 items)</h1>
+            <div class="prod">
+                <div class="wishlist-items">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="./Images/r2.png" class="product-thumb" alt="">
+                            <button class="card-btn">add to cart</button>
                         </div>
-                        <button class="atc" onclcik="">Add to Cart</p>
+                        <div class="product-info">
+                            <h2 class="product-brand">Ring 2</h2>
+                            <p class="product-short-des">In stock</p>
+                            <span class="price">27000 LE</span>
+                        </div>
                     </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="./Images/r2.png" class="product-thumb" alt="">
+                            <button class="card-btn">add to cart</button>
+                        </div>
+                        <div class="product-info">
+                            <h2 class="product-brand">Ring 2</h2>
+                            <p class="product-short-des">In stock</p>
+                            <span class="price">27000 LE</span>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                <div class="product-image">
+                    <img src="./Images/r2.png" class="product-thumb" alt="">
+                    <button class="card-btn">add to cart</button>
                 </div>
-
-                <div class="wishlist-box">
-                    <img src="./Images/n2.png" alt="earring 8">
-                    <div class="prod-content">
-                        <h3>Eternal Diamond Necklace<button class="remove-btn"><i class="ri-close-line"></i></button>
-                        </h3>
-                        <h4 class="p2">EGP 19000</h4>
-
-                        <div class="btn-wrap">
-                            <span class="m1">-</span>
-                            <span class="n1">1</span>
-                            <span class="a1">+</span>
-                        </div>
-                        <button class="atc" onclcik="">Add to Cart</p>
-                    </div>
+                <div class="product-info">
+                    <h2 class="product-brand">Ring 2</h2>
+                    <p class="product-short-des">In stock</p>
+                    <span class="price">27000 LE</span>
+                </div>
+            </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- shopping cart end -->
+        </div>
+        <!-- shopping cart end -->
 
-    <%- include('../partials/footer') %>
+        <%- include('../partials/footer') %>
 
-    <script>
-        /* increment and decrement start*/
+            <script>
+                /* increment and decrement start*/
 
-        const add = document.querySelector(".a"),
-            numb = document.querySelector(".n"),
-            sub = document.querySelector(".m");
+                const add = document.querySelector(".a"),
+                    numb = document.querySelector(".n"),
+                    sub = document.querySelector(".m");
 
-        const add1 = document.querySelector(".a1"),
-            sub1 = document.querySelector(".m1"),
-            numb1 = document.querySelector(".n1");
-        var priceupdate = document.querySelector(".p1");
-        var priceupdate2 = document.querySelector(".p2");
-        let c1 = 1;
-        let c2 = 1;
-        add.addEventListener("click", () => {
-            c1++;
-            numb.innerText = c1;
-            priceupdate.innerText = "EGP " + c1 * 15200;
-        })
-        add1.addEventListener("click", () => {
-            c2++;
-            numb1.innerText = c2;
-            priceupdate2.innerText = "EGP " + c2 * 19000;
-        })
+                const add1 = document.querySelector(".a1"),
+                    sub1 = document.querySelector(".m1"),
+                    numb1 = document.querySelector(".n1");
+                var priceupdate = document.querySelector(".p1");
+                var priceupdate2 = document.querySelector(".p2");
+                let c1 = 1;
+                let c2 = 1;
+                add.addEventListener("click", () => {
+                    c1++;
+                    numb.innerText = c1;
+                    priceupdate.innerText = "EGP " + c1 * 15200;
+                })
+                add1.addEventListener("click", () => {
+                    c2++;
+                    numb1.innerText = c2;
+                    priceupdate2.innerText = "EGP " + c2 * 19000;
+                })
 
-        sub.addEventListener("click", () => {
-            if (c1 > 1) {
-                c1--;
-            }
+                sub.addEventListener("click", () => {
+                    if (c1 > 1) {
+                        c1--;
+                    }
 
-            numb.innerText = c1;
-            var p = 15200 + Math.abs(15200 - c1 * 15200);
-            priceupdate.innerText = "EGP " + p;
-        })
-        sub1.addEventListener("click", () => {
-            if (c2 > 1) {
-                c2--;
-            }
-            numb1.innerText = c2;
-            var p2 = 19000 + Math.abs(19000 - c2 * 19000);
-            priceupdate2.innerText = "EGP " + p2;
+                    numb.innerText = c1;
+                    var p = 15200 + Math.abs(15200 - c1 * 15200);
+                    priceupdate.innerText = "EGP " + p;
+                })
+                sub1.addEventListener("click", () => {
+                    if (c2 > 1) {
+                        c2--;
+                    }
+                    numb1.innerText = c2;
+                    var p2 = 19000 + Math.abs(19000 - c2 * 19000);
+                    priceupdate2.innerText = "EGP " + p2;
 
-        })
+                })
 
-        /* increment and decrement end */
+                /* increment and decrement end */
 
-    </script>
+            </script>
 
 
 </body>
