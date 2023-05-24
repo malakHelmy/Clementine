@@ -27,4 +27,4 @@ const cartSchema = mongoose.Schema(
 /*model is the equivalent of 'collection' in node.js,
 'exports' will allow Product to be seen in other files using the 'require' method,
 exporting method #1*/
-module.exports = mongoose.model('cart', cartSchema);
+module.exports = mongoose.model('carts', cartSchema);
