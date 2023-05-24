@@ -1,14 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Products</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="/css/displayproducts.css">
+
+  <title>display products</title>
 </head>
 <body>
-  <h1>Products</h1>
-  <ul>
-    <% products.forEach((product) => { %>
-      <li><%= product.name %> - <%= product.price %></li>
-    <% }) %>
-  </ul>
+  
+
+  <main class="table">
+    <section class="table_header">
+      <h1>Products List</h1>
+      <div class="search_orders">
+        <input type="search" placeholder="Search existing products...">
+      </div>
+    </section>
+    <section class="table_body">
+      <table>
+        <thead>
+          <tr>
+            <th>Product ID <span class="icon-arrow">&UpArrow;</span></th>
+            <th>Product Image <span class="icon-arrow">&UpArrow;</span></th>
+            <th>Product Name <span class="icon-arrow">&UpArrow;</span></th>
+            <th>Model <span class="icon-arrow">&UpArrow;</span></th>
+            <th>Edit/Delete <span class="icon-arrow">&UpArrow;</span></th>
+            <th>Availability <span class="icon-arrow">&UpArrow;</span></th>
+            <th>Price <span class="icon-arrow">&UpArrow;</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% products.forEach(product => { %>
+            <tr>
+              <td><%= product.id %></td>
+              <td><img src="<%= product.image %>" alt="" id="prod_img"></td>
+              <td><%= product.name %></td>
+              <td><%= product.model %></td>
+              <td>
+                <button class="btn"><i class="fa fa-edit"></i></button>
+                <button class="btn"><i class="fa fa-trash"></i></button>
+              </td>
+              <td>
+                <% if (product.countInStock) { %>
+                  <p class="status_delivered">In Stock</p>
+                  <p class="avail_amount">*Available: <%= product.countInStock %> Pieces</p>
+                <% } else { %>
+                  <p class="status_cancelled">Out Of Stock</p>
+                  <p class="avail_amount">*Available: 0 Pieces</p>
+                <% } %>
+              </td>
+              <td><strong><%= product.price %></strong></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  
+
 </body>
 </html>
