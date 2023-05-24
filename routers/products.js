@@ -8,12 +8,19 @@ const products = require('../controllers/productController');
 const router = express.Router();
 
 router.get('/products', products.getAllProducts);
+router.get('/:id', products.productDetails);
+
+//diamond
 router.get('/drings', products.getDrings);
 router.get('/dearrings', products.getDearrings);
 router.get('/dnecklaces', products.getDnecklaces);
 router.get('/dbracelets', products.getDbracelets);
 
-router.get('/:id', products.productDetails);
+//gold
+router.get('/grings', products.getGrings);
+router.get('/gearrings', products.getGearrings);
+router.get('/gnecklaces', products.getGnecklaces);
+router.get('/gbracelets', products.getGbracelets);
 
 // router.post(`/`, async (req, res) => {
 //     const cat = await Category.findById(req.body.category);

@@ -41,7 +41,10 @@
                                 <img src="/Images/<%- products.image %>">
                             </div>
                             <div class="slide">
-                                
+                                <% var counter = 1 %>
+                                <%-products.images.forEach((image)=>){ %>
+                                <img src="/Images<%-image%>">
+                                <% counter++} %>
                             </div>
 
                             <!-- slideshow images end -->
