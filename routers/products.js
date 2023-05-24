@@ -4,68 +4,16 @@ routers are responsible for creating/ storing/ Importing and exporting APIs betw
 const express = require('express');
 const { Product } = require('../models/product');
 const { Category } = require('../models/category');
+const products = require('../controllers/productController');
 const router = express.Router();
 
-router.get('/products', (req, res) => {
-    Product.find()
-        .then((result) => {
-            res.render('pages/products', {
-                products: result,
-                Id: req.params.id,
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-router.get('/drings', (req, res) => {
-    Product.find({ material: 'diamond', category: 'ring' })
-        .then((result) => {
-            res.render('pages/products', {
-                products: result,
-                Id: req.params.id,
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-router.get('/dearrings', (req, res) => {
-    Product.find({ material: 'diamond', category: 'earring' })
-        .then((result) => {
-            res.render('pages/products', {
-                products: result,
-                Id: req.params.id,
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-router.get('/dnecklaces', (req, res) => {
-    Product.find({ material: 'diamond', category: 'necklace' })
-        .then((result) => {
-            res.render('pages/products', {
-                products: result,
-                Id: req.params.id,
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-router.get('/dbracelets', (req, res) => {
-    Product.find({ material: 'diamond', category: 'bracelet' })
-        .then((result) => {
-            res.render('pages/products', {
-                products: result,
-                Id: req.params.id,
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
+router.get('/products', products.getAllProducts);
+router.get('/drings', products.getDrings);
+router.get('/dearrings', products.getDearrings);
+router.get('/dnecklaces', products.getDnecklaces);
+router.get('/dbracelets', products.getDbracelets);
+
+router.get('/:id', products.productDetails);
 
 // router.post(`/`, async (req, res) => {
 //     const cat = await Category.findById(req.body.category);
@@ -120,22 +68,6 @@ router.get('/dbracelets', (req, res) => {
 //             return res.status(400).json({ success: false, error: err });
 //         });
 // });
-
-router.get('/:id', async (req, res) => {
-    const product = await Product.findById(req.params.id);
-
-    if (!product) {
-        return res.status(500).json({
-            message:
-                'The Product with the given ID was not found please check for the validity of the ID',
-        });
-    }
-
-    res.render('pages/productDetails', {
-        products: product,
-        Id: req.params.id,
-    });
-});
 
 // router.post('/drings', async (req, res) => {
 //     try {
