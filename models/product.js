@@ -14,6 +14,12 @@ const productSchema = mongoose.Schema(
             type: String,
             required: true,
         },
+        images: [
+            {
+                type: String,
+                required: true,
+            },
+        ],
         price: {
             type: Number,
             required: true,
@@ -31,29 +37,26 @@ const productSchema = mongoose.Schema(
             type: String,
             required: true,
         },
+
         countInStock: {
             type: Number,
             required: true,
             min: 0,
-            max: 10000,
+            max: 20,
         },
         featured: {
             type: Boolean,
             default: false,
         },
-
         date: {
             type: Date,
             default: Date.now,
         },
     },
     { timestamps: true }
-    //   { _id: false } // Disable the default _id field
 );
 
-// Set the 'id' field as the primary identifier
-// productSchema.virtual('productId').get(function () {
-//   return this.id;
-// });
-
-exports.Product = mongoose.model('Product', productSchema);
+/*model is the equivalent of 'collection' in node.js,
+'exports' will allow Product to be seen in other files using the 'require' method,
+exporting method #1*/
+exports.Product = mongoose.model('products', productSchema);
