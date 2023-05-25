@@ -4,21 +4,23 @@ routers are responsible for creating/ storing/ Importing and exporting APIs betw
 const express = require('express');
 const { Product } = require('../models/product');
 const { Category } = require('../models/category');
+const products = require('../controllers/productController');
 const router = express.Router();
 
-router.get('/',  (req, res) => {
-    
-    Product.find()
-    .then( (result) => { 
-                 
-        res.render('pages/products', {products:result , Id: req.params.id } )
-    }
-    )
-    .catch((err) => {
-      console.log(err); 
-    });
+router.get('/products', products.getAllProducts);
+router.get('/:id', products.productDetails);
 
-});
+//diamond
+router.get('/drings', products.getDrings);
+router.get('/dearrings', products.getDearrings);
+router.get('/dnecklaces', products.getDnecklaces);
+router.get('/dbracelets', products.getDbracelets);
+
+//gold
+router.get('/grings', products.getGrings);
+router.get('/gearrings', products.getGearrings);
+router.get('/gnecklaces', products.getGnecklaces);
+router.get('/gbracelets', products.getGbracelets);
 
 // router.post(`/`, async (req, res) => {
 //     const cat = await Category.findById(req.body.category);
@@ -74,19 +76,6 @@ router.get('/',  (req, res) => {
 //         });
 // });
 
-// router.get('/:id', async (req, res) => {
-//     const product = await Product.findById(req.params.id);
-
-//     if (!product) {
-//         return res.status(500).json({
-//             message:
-//                 'The Product with the given ID was not found please check for the validity of the ID',
-//         });
-//     }
-
-//     res.status(200).send(product);
-// });
-
 // router.post('/drings', async (req, res) => {
 //     try {
 //         let products = await Product.find({});
@@ -98,4 +87,3 @@ router.get('/',  (req, res) => {
 
 //exporting method #2
 module.exports = router;
-

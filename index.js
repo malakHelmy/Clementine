@@ -14,6 +14,8 @@ const Mailgen = require('mailgen');
 const api_key= process.env.OPENAI_API_KEY;
 
 //Routes
+const addProdRouter = require('./routers/addproducts');
+
 const editProdRouter= require('./routers/editproducts');
 const cartRouter= require('./routers/cart');
 const productsRouter = require('./routers/products');
@@ -24,6 +26,7 @@ const categoriesRouter = require('./routers/categories');
 const ordersRouter = require('./routers/orders');
 const contactmailerRouter = require ('./routers/mailController');
 const chatRouter = require('./routers/chat');
+const displayProdRouter = require('./routers/displayproducts');
 
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
@@ -41,7 +44,9 @@ app.set('view engine', 'ejs'); //set the template engine
 app.use(express.urlencoded({ extended: true }));
 
 // Routers
-app.use(`/products`, productsRouter);
+app.use('/addproducts', addProdRouter);
+
+app.use(`/`, productsRouter);
 app.use(`/categories`, categoriesRouter);
 app.use(`/orders`, ordersRouter);
 app.use('/user', usersRouter);
@@ -50,6 +55,11 @@ app.use('/editcustdash', cust_contRouter);
 app.use('/editproducts',editProdRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
+app.use('/displayproducts', displayProdRouter);
+
+
+
+
 mongoose
 .connect("mongodb+srv://clementine:wifeys2023@clementine.xfv9xzu.mongodb.net/clementine?retryWrites=true&w=majority")
 .then((result) => {
@@ -83,11 +93,19 @@ app.get(`/checkout`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
+app.get(`/wishlist`, function (req, res) {
+    res.render('pages/wishlist', {
+        user: req.session.user === undefined ? '' : req.session.user,
+    });
+});
 
 /* --------- DASHBOARDS -----*/
 app.get(`/dashboard`, function (req, res) {
     res.render('pages/dashboard');
 });
+app.get('/addproducts', (req, res) => {
+    res.render('pages/addproducts');
+  });
 app.get(`/editproducts`, function (req, res) {
     res.render('pages/editproducts');
 });
@@ -123,7 +141,7 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 /* --------- SIGN UP AND LOG IN END ---*/
-
+//e
 /* ---------CONTACT US FORM MAILER END --------*/
 
 app.listen(port, () => {
