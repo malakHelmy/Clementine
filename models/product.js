@@ -33,6 +33,10 @@ const productSchema = mongoose.Schema(
       min: 0,
       max: 10000,
     },
+    material: {
+      type: String,
+      required: true,
+    },
   },
 //   { _id: false } // Disable the default _id field
 );
