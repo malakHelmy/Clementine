@@ -69,35 +69,32 @@
                                     <div class="cart-wrapper">
                                         <h2 class="ShopBag">My Shopping Bag</h2>
                                         <div class="line"></div>
+
+
+
                                         <div class="cart-item">
-                                            <button class="remove-btn" onclick=""><i class="ri-close-line"></i></button>
-                                            <img src="./Images/whiteRook.jpg" alt="">
-                                            <div class="details">
-                                                <div class="name"> Clementine Silver White Rook</div>
-                                                <div class="btn-wrapper">
-                                                    <span class="minus">-</span>
-                                                    <span class="num">1</span>
-                                                    <span class="add">+</span>
-                                                </div>
-                                                <button class="wishlist-btn" onclick="">Add to Wishlist</p></button>
-                                                <div class="price"> Price: EGP15200</div>
-                                            </div>
+                                           <% if(cart!=undefined){ %>
+
+                                            <% cart.items.forEach((items)=> {%>
+                                                    <button class="remove-btn" onclick=""><i class="ri-close-line"></i></button>
+                                                    <img src="./Images/<%- items.image %>" alt="">
+                                                    <div class="details">
+                                                        <div class="name"> <%= items.name %></div>
+                                                        <div class="btn-wrapper">
+                                                            
+                                                            <span class="minus">-</span>
+                                                            <span class="num"><%= items.quantity %></span>
+                                                            <span class="add">+</span>
+                                                        </div>
+                                                        <button class="wishlist-btn" onclick="">Add to Wishlist</p></button>
+                                                        <div class="price"> Price: <%= items.price %></div> 
+                                                    </div>
+                                                    <% }) }else{ %>
+                                                    <p>there is no items</p>
+                                                    <% } %>
+                                        
                                         </div>
                                         <!--Item 2-->
-                                        <div class="cart-item">
-                                            <button class="remove-btn" onclick=""><i class="ri-close-line"></i></button>
-                                            <img src="./Images/r5.png" alt="">
-                                            <div class="details">
-                                                <div class="name">Clementine Silver Snowflake</div>
-                                                <div class="btn-wrapper">
-                                                    <span class="minus1">-</span>
-                                                    <span class="num1">1</span>
-                                                    <span class="add1">+</span>
-                                                </div>
-                                                <button class="wishlist-btn" onclcik="">Add to Wishlist</p></button>
-                                                <div class="price" id="pie"> Price: EGP11000</div>
-                                            </div>
-                                        </div>
 
                                         <div class="total">
                                             <div class="shipping">
