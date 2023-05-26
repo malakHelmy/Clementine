@@ -38,7 +38,6 @@ router.post(`/:id`, async  (req, res) => {
         items: [CartItem],
       };
     }
-    console.log(  req.session.cart.items );
      })
      .catch( err => {
         console.log(err);
