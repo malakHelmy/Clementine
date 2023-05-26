@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,8 +11,9 @@
 
   <title>display products</title>
 </head>
+
 <body>
-  
+
 
   <main class="table">
     <section class="table_header">
@@ -35,32 +37,40 @@
         </thead>
         <tbody>
           <% products.forEach(product => { %>
-            <tr>
-              <td><%= product.id %></td>
-              <td><img src="<%= product.image %>" alt="" id="prod_img"></td>
-              <td><%= product.name %></td>
-              <td><%= product.material %></td>
-              <td>
-                <button class="btn"><i class="fa fa-edit"></i></button>
-                <button class="btn"><i class="fa fa-trash"></i></button>
-              </td>
-              <td>
-                <% if (product.countInStock) { %>
-                  <p class="status_delivered">In Stock</p>
-                  <p class="avail_amount">*Available: <%= product.countInStock %> Pieces</p>
-                <% } else { %>
-                  <p class="status_cancelled">Out Of Stock</p>
-                  <p class="avail_amount">*Available: 0 Pieces</p>
-                <% } %>
-              </td>
-              <td><strong><%= product.price %></strong></td>
-            </tr>
+          <tr>
+            <td><%= product.id %></td>
+            <td><img src="<%= product.image %>" alt="" id="prod_img"></td>
+            <td><%= product.name %></td>
+            <td><%= product.material %></td>
+            <td>
+              <a href="/editproducts/<%= product.id %>">
+                <button class="btn edit-product"><i class="fa fa-edit"></i></button>
+              </a>
+              <form method="POST" action="/displayproducts/delete">
+                <!-- a hidden input field is added to store the product ID -->
+                <input type="hidden" name="productId" value="<%= product._id %>">
+                <button class="btn" type="submit"><i class="fa fa-trash"></i></button>
+              </form>
+
+            </td>
+            <td>
+              <% if (product.countInStock) { %>
+              <p class="status_delivered">In Stock</p>
+              <p class="avail_amount">*Available: <%= product.countInStock %> Pieces</p>
+              <% } else { %>
+              <p class="status_cancelled">Out Of Stock</p>
+              <p class="avail_amount">*Available: 0 Pieces</p>
+              <% } %>
+            </td>
+            <td><strong><%= product.price %></strong></td>
+          </tr>
           <% }) %>
         </tbody>
       </table>
     </section>
   </main>
-  
+
 
 </body>
+
 </html>
