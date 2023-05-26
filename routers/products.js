@@ -20,6 +20,7 @@ router.get('/gbracelets', products.getGbracelets);
 
 // router.get('/:id', products.productDetails);
 router.get('/wishlist', products.getWishlist);
+router.post('/add-to-wishlist', products.addToWishlist);
 
 // router.post(`/`, async (req, res) => {
 //     const cat = await Category.findById(req.body.category);

@@ -149,10 +149,10 @@ exports.getGbracelets = (req, res) => {
 };
 
 exports.addToWishlist = asyncHandler(async (req, res) => {
-    const { userID } = req.session.user._id;
-    const { prodID } = req.body;
+    const { userID } = req.session.user;
+    const { prodID } = req.body.products;
     try {
-        const users = await user.findById(userID);
+        const users = await user.findById(users._id);
         const alreadyadded = users.wishlist.find(
             (id) => id.toString() === prodID
         );
