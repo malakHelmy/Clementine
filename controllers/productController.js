@@ -1,6 +1,8 @@
 const { Product } = require('../models/product');
 
-const getAllProducts = (req, res) => {
+const asyncHandler = require('express-async-handler');
+
+exports.getAllProducts = (req, res) => {
     Product.find()
         .then((result) => {
             res.render('pages/products', {
@@ -13,7 +15,7 @@ const getAllProducts = (req, res) => {
         });
 };
 
-const deleteProduct = (req, res) => {
+exports.deleteProduct = (req, res) => {
     Product.findByIdAndRemove(req.params.id)
         .then((product) => {
             if (product) {
@@ -30,23 +32,23 @@ const deleteProduct = (req, res) => {
         });
 };
 
-const productDetails = async (req, res) => {
-    const product = await Product.findById(req.params.id);
+exports.productDetails = asyncHandler(async (req, res) => {
+    const prod = await Product.findById(req.params.id);
 
-    if (!product) {
-        console.log('The Product with the given ID was not found please check for the validity of the ID');
+    if (!prod) {
+        console.log(
+            'The Product with the given ID was not found please check for the validity of the ID'
+        );
         return res.status(500);
     }
-
     res.render('pages/productDetails', {
-        products: product,
-        Id: req.params.id,
+        products: prod,
     });
-};
+});
 
 //diamond
 
-const getDrings = (req, res) => {
+exports.getDrings = (req, res) => {
     Product.find({ material: 'diamond', category: 'ring' })
         .then((result) => {
             res.render('pages/products', {
@@ -58,7 +60,7 @@ const getDrings = (req, res) => {
             console.log('error loading');
         });
 };
-const getDnecklaces = (req, res) => {
+exports.getDnecklaces = (req, res) => {
     Product.find({ material: 'diamond', category: 'necklace' })
         .then((result) => {
             res.render('pages/products', {
@@ -70,7 +72,7 @@ const getDnecklaces = (req, res) => {
             console.log('error loading');
         });
 };
-const getDearrings = (req, res) => {
+exports.getDearrings = (req, res) => {
     Product.find({ material: 'diamond', category: 'earring' })
         .then((result) => {
             res.render('pages/products', {
@@ -82,7 +84,7 @@ const getDearrings = (req, res) => {
             console.log('error loading');
         });
 };
-const getDbracelets = (req, res) => {
+exports.getDbracelets = (req, res) => {
     Product.find({ material: 'diamond', category: 'bracelet' })
         .then((result) => {
             res.render('pages/products', {
@@ -96,7 +98,7 @@ const getDbracelets = (req, res) => {
 };
 
 //Gold
-const getGrings = (req, res) => {
+exports.getGrings = (req, res) => {
     Product.find({ material: 'gold', category: 'ring' })
         .then((result) => {
             res.render('pages/products', {
@@ -108,7 +110,7 @@ const getGrings = (req, res) => {
             console.log(err);
         });
 };
-const getGnecklaces = (req, res) => {
+exports.getGnecklaces = (req, res) => {
     Product.find({ material: 'gold', category: 'necklace' })
         .then((result) => {
             res.render('pages/products', {
@@ -120,7 +122,7 @@ const getGnecklaces = (req, res) => {
             console.log(err);
         });
 };
-const getGearrings = (req, res) => {
+exports.getGearrings = (req, res) => {
     Product.find({ material: 'gold', category: 'earring' })
         .then((result) => {
             res.render('pages/products', {
@@ -132,7 +134,7 @@ const getGearrings = (req, res) => {
             console.log(err);
         });
 };
-const getGbracelets = (req, res) => {
+exports.getGbracelets = (req, res) => {
     Product.find({ material: 'gold', category: 'bracelet' })
         .then((result) => {
             res.render('pages/products', {
@@ -143,18 +145,4 @@ const getGbracelets = (req, res) => {
         .catch((err) => {
             console.log(err);
         });
-};
-
-module.exports = {
-    getAllProducts,
-    deleteProduct,
-    productDetails,
-    getDrings,
-    getDbracelets,
-    getDearrings,
-    getDnecklaces,
-    getGrings,
-    getGbracelets,
-    getGearrings,
-    getGnecklaces,
 };

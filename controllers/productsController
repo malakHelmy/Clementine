@@ -1,5 +1,7 @@
 const { Product } = require('../models/product');
 
+const asyncHandler = require("express-async-handler");
+
 const getAllProducts = (req, res) => {
     Product.find()
         .then((result) => {
@@ -30,7 +32,7 @@ const deleteProduct = (req, res) => {
         });
 };
 
-const productDetails = async (req, res) => {
+const productDetails = asyncHandler( async (req, res) => {
     const product = await Product.findById(req.params.id);
 
     if (!product) {
@@ -42,7 +44,7 @@ const productDetails = async (req, res) => {
         products: product,
         Id: req.params.id,
     });
-};
+});
 
 //diamond
 

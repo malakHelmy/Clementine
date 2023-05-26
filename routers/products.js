@@ -2,75 +2,25 @@
 routers are responsible for creating/ storing/ Importing and exporting APIs between the files
 */
 const express = require('express');
-const { Product } = require('../models/product');
-const { Category } = require('../models/category');
+
+const products = require('../controllers/productController');
 const router = express.Router();
 
-router.get('/products',  (req, res) => {
-    
-    Product.find()
-    .then( (result) => { 
-                 
-        res.render('pages/products', {products:result , Id: req.params.id } )
-    }
-    )
-    .catch((err) => {
-      console.log(err); 
-    });
+router.get('/products', products.getAllProducts);
 
-});
-router.get('/drings',  (req, res) => {
-    
-    Product.find({material:"diamond", category:"ring" })
-    .then( (result) => { 
-                 
-        res.render('pages/products', {products:result , Id: req.params.id } )
-    }
-    )
-    .catch((err) => {
-      console.log(err); 
-    });
+//diamond
+router.get('/drings', products.getDrings);
+router.get('/dearrings', products.getDearrings);
+router.get('/dnecklaces', products.getDnecklaces);
+router.get('/dbracelets', products.getDbracelets);
 
-});
-router.get('/dearrings',  (req, res) => {
-    
-    Product.find({material:"diamond", category:"earring" })
-    .then( (result) => { 
-                 
-        res.render('pages/products', {products:result , Id: req.params.id } )
-    }
-    )
-    .catch((err) => {
-      console.log(err); 
-    });
+//gold
+router.get('/grings', products.getGrings);
+router.get('/gearrings', products.getGearrings);
+router.get('/gnecklaces', products.getGnecklaces);
+router.get('/gbracelets', products.getGbracelets);
 
-});
-router.get('/dnecklaces',  (req, res) => {
-    
-    Product.find({material:"diamond", category:"necklace" })
-    .then( (result) => { 
-                 
-        res.render('pages/products', {products:result , Id: req.params.id } )
-    }
-    )
-    .catch((err) => {
-      console.log(err); 
-    });
-
-});
-router.get('/dbracelets',  (req, res) => {
-    
-    Product.find({material:"diamond", category:"bracelet" })
-    .then( (result) => { 
-                 
-        res.render('pages/products', {products:result , Id: req.params.id } )
-    }
-    )
-    .catch((err) => {
-      console.log(err); 
-    });
-
-});
+router.get('/:id', products.productDetails);
 
 // router.post(`/`, async (req, res) => {
 //     const cat = await Category.findById(req.body.category);
@@ -126,19 +76,6 @@ router.get('/dbracelets',  (req, res) => {
 //         });
 // });
 
-// router.get('/:id', async (req, res) => {
-//     const product = await Product.findById(req.params.id);
-
-//     if (!product) {
-//         return res.status(500).json({
-//             message:
-//                 'The Product with the given ID was not found please check for the validity of the ID',
-//         });
-//     }
-
-//     res.status(200).send(product);
-// });
-
 // router.post('/drings', async (req, res) => {
 //     try {
 //         let products = await Product.find({});
@@ -150,4 +87,3 @@ router.get('/dbracelets',  (req, res) => {
 
 //exporting method #2
 module.exports = router;
-

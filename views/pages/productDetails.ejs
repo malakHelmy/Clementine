@@ -41,10 +41,9 @@
                                 <img src="/Images/<%- products.image %>">
                             </div>
                             <div class="slide">
-                                <% var counter = 1 %>
-                                <%-products.images.forEach((image)=>){ %>
-                                <img src="/Images<%-image%>">
-                                <% counter++} %>
+                                
+                                <img src="/Images<%-products.image%>">
+                                
                             </div>
 
                             <!-- slideshow images end -->
@@ -72,7 +71,7 @@
                         setInterval(function () {
                             document.getElementById('radio' + counter).checked = true;
                             counter++;
-                            if (counter > 4) {
+                            if (counter > count) {
                                 counter = 1;
                             }
                         }, 5000);
