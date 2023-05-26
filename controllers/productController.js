@@ -7,12 +7,13 @@ exports.getAllProducts = (req, res) => {
     Product.find()
         .then((result) => {
             res.render('pages/products', {
-                user: req.session.user == undefined ?undefined : req.session.user,
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
                 products: result,
                 Id: req.params.id,
-
-            }
-            );
+            });
         })
         .catch((err) => {
             console.log('error loading');
@@ -34,7 +35,7 @@ exports.deleteProduct = (req, res) => {
             console.log('could not remove product');
             return res.status(400);
         });
-}; 
+};
 
 // exports.productDetails = asyncHandler(async (req, res) => {
 //     const prod = await Product.findById(req.params.id);
@@ -57,7 +58,11 @@ exports.getDrings = (req, res) => {
     Product.find({ material: 'diamond', category: 'ring' })
         .then((result) => {
             res.render('pages/products', {
-                user: req.session.user == undefined ?undefined : req.session.user,
+                body,
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
                 products: result,
                 Id: req.params.id,
             });
@@ -71,7 +76,11 @@ exports.getDnecklaces = (req, res) => {
     Product.find({ material: 'diamond', category: 'necklace' })
         .then((result) => {
             res.render('pages/products', {
-                user: req.session.user == undefined ?undefined : req.session.user,
+                body,
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
                 products: result,
                 Id: req.params.id,
             });
@@ -85,7 +94,11 @@ exports.getDearrings = (req, res) => {
     Product.find({ material: 'diamond', category: 'earring' })
         .then((result) => {
             res.render('pages/products', {
-                user: req.session.user == undefined ?undefined : req.session.user,
+                body,
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
                 products: result,
                 Id: req.params.id,
             });
@@ -99,7 +112,11 @@ exports.getDbracelets = (req, res) => {
     Product.find({ material: 'diamond', category: 'bracelet' })
         .then((result) => {
             res.render('pages/products', {
-                user: req.session.user == undefined ?undefined : req.session.user,
+                body,
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
                 products: result,
                 Id: req.params.id,
             });
@@ -115,7 +132,7 @@ exports.getGrings = (req, res) => {
     Product.find({ material: 'gold', category: 'ring' })
         .then((result) => {
             res.render('pages/products', {
-                user: req.session.user == undefined ?undefined : req.session.user,
+                body,
                 products: result,
 
                 Id: req.params.id,
@@ -130,7 +147,7 @@ exports.getGnecklaces = (req, res) => {
     Product.find({ material: 'gold', category: 'necklace' })
         .then((result) => {
             res.render('pages/products', {
-                user: req.session.user == undefined ?undefined : req.session.user,
+                body,
                 products: result,
                 Id: req.params.id,
             });
@@ -144,7 +161,7 @@ exports.getGearrings = (req, res) => {
     Product.find({ material: 'gold', category: 'earring' })
         .then((result) => {
             res.render('pages/products', {
-                user: req.session.user == undefined ?undefined : req.session.user,
+                body,
                 products: result,
                 Id: req.params.id,
             });
@@ -154,11 +171,12 @@ exports.getGearrings = (req, res) => {
         });
 };
 exports.getGbracelets = (req, res) => {
-    const body = 'Gold bracelets come in many styles and designs, making them a versatile accessory that can be worn with any outfit. Some popular styles include chain bracelets, bangles, cuffs, and tennis bracelets. Gold bracelets can be worn alone as a statement piece or stacked with other bracelets to create a trendy and personalized look. They can be dressed up or down to suit any occasion, from a casual daytime outfit to an evening gown.';
+    const body =
+        'Gold bracelets come in many styles and designs, making them a versatile accessory that can be worn with any outfit. Some popular styles include chain bracelets, bangles, cuffs, and tennis bracelets. Gold bracelets can be worn alone as a statement piece or stacked with other bracelets to create a trendy and personalized look. They can be dressed up or down to suit any occasion, from a casual daytime outfit to an evening gown.';
     Product.find({ material: 'gold', category: 'bracelet' })
         .then((result) => {
             res.render('pages/products', {
-                user: req.session.user == undefined ?undefined : req.session.user,
+                body,
                 products: result,
                 Id: req.params.id,
             });
@@ -170,7 +188,7 @@ exports.getGbracelets = (req, res) => {
 
 exports.addToWishlist = asyncHandler(async (userID, prodID) => {
     try {
-        const users = await user.find({email : userID});
+        const users = await user.find({ email: userID });
         const alreadyadded = users.wishlist.find(
             (id) => id.toString() === prodID
         );
@@ -184,8 +202,6 @@ exports.addToWishlist = asyncHandler(async (userID, prodID) => {
                     new: true,
                 }
             );
-            
-
         } else {
             let users = await user.findByIdAndUpdate(
                 userID,
@@ -205,18 +221,23 @@ exports.addToWishlist = asyncHandler(async (userID, prodID) => {
 
 exports.getWishlist = asyncHandler(async (req, res) => {
     const { userID } = req.session.user;
-  
+
     try {
-      const User = await user.find({email : userID});
-  
-      if (!User) {
-        return res.status(404).json({ message: 'User not found' });
-      }
-  
-      const wishlistItems = await product.find({ _id: { $in: User.wishlist } });
-  
-      res.render('pages/wishlist', {  user: req.session.user == undefined ?undefined : req.session.user, products: wishlistItems });
+        const User = await user.find({ email: userID });
+
+        if (!User) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const wishlistItems = await product.find({
+            _id: { $in: User.wishlist },
+        });
+
+        res.render('pages/wishlist', {
+            user: req.session.user == undefined ? undefined : req.session.user,
+            products: wishlistItems,
+        });
     } catch (error) {
-      throw new Error(error);
+        throw new Error(error);
     }
-  });
+});
