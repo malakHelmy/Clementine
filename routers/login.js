@@ -6,26 +6,13 @@ const router = express.Router();
 
 router.get(`/`, function (req, res) {
    
-        res.render('pages/login');   
+
+    res.render('pages/login', {
+        user: req.session.user === undefined ? '' : req.session.user,
+    });
+
     
 });
-
-// router.post(`/`, async (req, res) => {
-
-//     User.find(req.body.email)
-//     .then( async (result) => { 
-//         let x= await bcrypt.compare(req.body.password, result.password) ;
-         
-//         console.log(x)
-//         res.render('pages/index')
-         
-//     }
-//     )
-//     .catch((err) => {
-//       console.log(err); 
-//     });
-
-// });
 
  router.post(`/`, async (req, res) => {
     
@@ -35,7 +22,11 @@ router.get(`/`, function (req, res) {
      {
              if( await bcrypt.compare(req.body.password, result.password)) 
              {
-                 res.render('pages/index')
+
+               req.session.user=req.body.email;
+               res.render('pages/index', {
+               user: req.session.user == undefined ? '' : req.session.user,
+            });
              } 
              else
              {

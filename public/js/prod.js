@@ -5,7 +5,7 @@ wishlistIcon.addEventListener('click', async () => {
 
   const prodID = wishlistIcon.dataset.productId;
 
-  const response = await fetch('/wishlist', {
+  const response = await fetch('/add-to-wishlist', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

@@ -41,7 +41,7 @@
                 <% products.forEach((items)=> {%>
                     <div class="box">
 
-                        <img src="/Images/fav.png" alt="" class="fav" id="heart-icon" data-product-id="<%= items._id %>">
+                        <a  alt="" class="ri-heart-line" id="heart-icon" data-product-id="<%= items._id %>">
 
                         <a href="/<%- items._id %>">
                             <img class="imgg" src="/Images/<%- items.image %>" alt="">
@@ -62,7 +62,7 @@
                     <% }) %>
                         <% } %>
         </section>
-        <script src="/js/prod.js"></script>
+        <script src="js/prod.js"></script>
         <%- include('../partials/footer') -%>
 
 </body>

@@ -42,7 +42,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs'); //set the template engine
 //app.use(express.static(path.join(process.cwd(), "/images")));
 app.use(express.urlencoded({ extended: true }));
-
+app.use(
+    session({
+        secret: 'Your_secret_key',
+        saveUninitialized: false,
+        resave: false,
+    })
+);
 // Routers
 app.use('/addproducts', addProdRouter);
 
@@ -70,13 +76,7 @@ mongoose
     });
 
 // app.use(fileUpload());
-app.use(
-    session({
-        secret: 'Your_secret_key',
-        saveUninitialized: false,
-        resave: false,
-    })
-);
+
 
 app.get(`/`, function (req, res) {
     res.render('pages/index', {
@@ -142,7 +142,9 @@ app.get(`/signup`, function (req, res) {
 });
 
 app.get(`/login`, function (req, res) {
-    res.render('pages/login');
+    res.render('pages/login', {
+        user: req.session.user === undefined ? '' : req.session.user,
+    });
 });
 app.post('/sign-up-action', (req, res) => {});
 app.get('/logout', (req, res) => {
