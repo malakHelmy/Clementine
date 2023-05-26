@@ -14,16 +14,30 @@ router.post(`/`, async  (req, res) => {
           phone:req.body.phone
         }
         const users=new User(user);
+        
+       const check= User.findOne({email:req.body.email}).then((result)=>{
+          if(result==undefined)
+          {
+            users
+            .save()
+            .then( (result) => {
+              console.log(result)
+                res.render('pages/index');
+            })
+            .catch( err => {
+              console.log(err);
+            });
+          } 
+          else{
+            res.render('pages/signup')
+          }               
+       
+       }).catch( err => {
+        console.log(err);
+      });
+         
 
-    users
-        .save()
-        .then( (result) => {
-          console.log(result)
-            res.render('pages/index');
-        })
-        .catch( err => {
-          console.log(err);
-        });
+    
 });
 
 module.exports = router;
