@@ -22,9 +22,9 @@ const userSchema = mongoose.Schema(
             required: true,
         },
         address: String,
-        wishlist: [{type: mongoose.Schema.type.ObjectId,
+        wishlist: [{type: mongoose.Schema.Types.ObjectId,
         ref: 'products'}],
-        orders: [{type: mongoose.Schema.type.ObjectId,
+        orders: [{type: mongoose.Schema.Types.ObjectId,
             ref:'orders'}],
     },
     { timestamps: true }
