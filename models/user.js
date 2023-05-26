@@ -1,12 +1,31 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const userSchema = new Schema(
+const userSchema = mongoose.Schema(
     {
-        firstname: String,
-        lastname: String,
-        email: String,
-        password: String,
-        phone: String,
+        firstname: {
+            type: String,
+            required: true,
+        },
+        lastname: {
+            type: String,
+            required: true,
+        },
+        email: {
+            type: String,
+            required: true,
+        },
+        password: {
+            type: String,
+            required: true,
+        },
+        phone:{
+            type: Number,
+            required: true,
+        },
+        address: String,
+        wishlist: [{type: mongoose.Schema.type.ObjectId,
+        ref: 'products'}],
+        orders: [{type: mongoose.Schema.type.ObjectId,
+            ref:'orders'}],
     },
     { timestamps: true }
 );

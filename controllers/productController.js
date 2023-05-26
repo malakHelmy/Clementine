@@ -1,4 +1,5 @@
 const { Product } = require('../models/product');
+const user = require('../models/user');
 
 const asyncHandler = require('express-async-handler');
 
@@ -146,3 +147,38 @@ exports.getGbracelets = (req, res) => {
             console.log(err);
         });
 };
+
+exports.addToWishlist = asyncHandler(async (req, res) => {
+    const { userID } = req.user;
+    const { prodID } = req.body;
+    try {
+        const users = await user.findById(userID);
+        const alreadyadded = users.wishlist.find(
+            (id) => id.toString() === prodID
+        );
+        if (alreadyadded) {
+            let users = await user.findByIdAndUpdate(
+                userID,
+                {
+                    $pull: { wishlist: prodID },
+                },
+                {
+                    new: true,
+                }
+            );
+        } else {
+            let users = await user.findByIdAndUpdate(
+                userID,
+                {
+                    $push: { wishlist: prodID },
+                },
+                {
+                    new: true,
+                }
+            );
+            res.json(users);
+        }
+    } catch (err) {
+        throw new Error(error);
+    }
+});

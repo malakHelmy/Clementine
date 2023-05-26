@@ -19,22 +19,37 @@
 <body>
     <%- include('../partials/navbar') %>
         <div class="wishlist-wrap">
-            <h1 class="wishlist-header">your wishlist (2 items)</h1>
-            <div class="prod">
-                <div class="wishlist-items">
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="./Images/r2.png" class="product-thumb" alt="">
-                            <button class="card-btn">add to cart</button>
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-brand">Ring 2</h2>
-                            <p class="product-short-des">In stock</p>
-                            <span class="price">27000 LE</span>
+            <h1 class="wishlist-header">your wishlist</h1>
+            <% if(products !='' ) {%>
+                <% products.forEach((items)=> { %>
+                    <div class="prod">
+                        <div class="wishlist-items">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="./Images/<%- items.image %>" class="product-thumb" alt="">
+                                    <button class="card-btn">add to cart</button>
+                                </div>
+                                <div class="product-info">
+                                    <h2 class="product-brand">
+                                        <%= items.name%>
+                                    </h2>
+                                    <p class="product-short-des">
+                                        <%if (items.countInStock> 0){%>
+                                            In stock <%}else {%>
+                                                Out of stock
+                                                <%}%>
+                                    </p>
+                                    <span class="price">
+                                        <%= items.price%>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <% }) %>
+                        <% } else{ %>
+                            <h2>Your Wishlist is empty</h2>
+                            <% } %>
         </div>
         </div>
         <%- include('../partials/footer') %>
