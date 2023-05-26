@@ -11,6 +11,7 @@ const nodemailer = require('nodemailer');
 const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
 //poenai api key
+
 const api_key = process.env.OPENAI_API_KEY;
 
 //Routes
@@ -80,32 +81,36 @@ mongoose
 
 app.get(`/`, function (req, res) {
     res.render('pages/index', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
 });
 app.get(`/home`, function (req, res) {
     res.render('pages/index', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
 });
 app.get(`/categories`, function (req, res) {
     res.render('pages/categories', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
 });
 app.get(`/checkout`, function (req, res) {
     res.render('pages/checkout', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
 });
 app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
 });
 
 app.get('/search', function (req, res) {
     res.render('pages/search');
+});
+
+app.get('/contactus', function(req, res) {
+    res.render('pages/contactus');
 });
 
 /* --------- DASHBOARDS -----*/
@@ -137,22 +142,61 @@ app.get(`/userprofile`, function (req, res) {
 /* --------- SIGN UP AND LOG IN ---*/
 app.get(`/signup`, function (req, res) {
     res.render('pages/signup', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ?undefined : req.session.user,
     });
 });
 
-app.get(`/login`, function (req, res) {
-    res.render('pages/login', {
-        user: req.session.user === undefined ? '' : req.session.user,
-    });
-});
+ 
+
 app.post('/sign-up-action', (req, res) => {});
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
 /* --------- SIGN UP AND LOG IN END ---*/
-//e
+//CONTACT US MAILER START
+
+app.post(`/contactus`, function (req, res) {
+    // res.render('pages/contactus');
+
+    var fullname = req.body.name;
+    var uemail = req.body.email;
+    var subject = req.body.subject;
+    var message = req.body.message;
+
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'clementineco2023@gmail.com',
+            pass: 'lmkwmjbyftpuzwhz'
+        }
+
+    })
+
+    var mailOptions = {
+        from: uemail,
+        to: 'clementineco2023@gmail.com',
+        subject: subject,
+        text: message
+
+    }
+
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+            res.send('Error.');
+        } else {
+            console.log('Email sent:' + info.response);
+            res.send('Successfully sent.')
+
+        }
+        express.response.redirect("/")
+    })
+
+
+});
 /* ---------CONTACT US FORM MAILER END --------*/
 
 app.listen(port, () => {
