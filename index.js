@@ -80,18 +80,25 @@ mongoose
 
 
 app.get(`/`, function (req, res) {
-    res.render('pages/index', {
+
+    
+        // console.log(req.session.cart)
+        res.render('pages/index', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart
     });
+    
 });
 app.get(`/home`, function (req, res) {
     res.render('pages/index', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart.items == undefined ? undefined :req.session.cart.items
     });
 });
 app.get(`/categories`, function (req, res) {
     res.render('pages/categories', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        
     });
 });
 app.get(`/checkout`, function (req, res) {
