@@ -10,11 +10,11 @@ const userlist =[
 const us_name = document.getElementById("user");
 const us_email = document.getElementById("usemail");
 
-window.onload = function(){
-    welcomeUser('user@gmail.com');
-    displayEmail('Lana');
+// window.onload = function(){
+//     welcomeUser('user@gmail.com');
+//     displayEmail('Lana');
 
- }
+//  }
 
 
 function welcomeUser(email){

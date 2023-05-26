@@ -7,7 +7,7 @@ const router = express.Router();
 router.get(`/`, function (req, res) {
 
     res.render('pages/login', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user === undefined ? undefined : req.session.user,
     });
     
 });
@@ -23,12 +23,14 @@ router.get(`/`, function (req, res) {
 
                req.session.user=req.body.email;
                res.render('pages/index', {
-               user: req.session.user == undefined ? '' : req.session.user,
+               user: req.session.user == undefined ? undefined : req.session.user,
             });
              } 
              else
              {
-               res.render('pages/login')
+               res.render('pages/login',{
+                user: req.session.user == undefined ? undefined : req.session.user,
+             })
              }
      }
      else
