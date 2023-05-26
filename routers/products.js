@@ -20,8 +20,17 @@ router.get('/gbracelets', products.getGbracelets);
 
 // router.get('/:id', products.productDetails);
 router.get('/wishlist', products.getWishlist);
-router.post('/add-to-wishlist', products.addToWishlist);
-
+router.post('/add-to-wishlist', async (req, res) => {
+    const userID = req.user;
+    const prodID = req.body.products;
+    try {
+      products.addToWishlist(userID, prodID);
+      res.status(200).json({ message: 'Product added to wishlist' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
 // router.post(`/`, async (req, res) => {
 //     const cat = await Category.findById(req.body.category);
 //     if (!cat) {

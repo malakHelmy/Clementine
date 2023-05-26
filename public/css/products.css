@@ -34,7 +34,9 @@ body {
   margin-left: 20px;
   margin-bottom: 50px;
 }
-
+.snip{
+  font-size: 20px;
+}
 .imgg {
   padding-top: 10px;
   transform: translateY(2rem);

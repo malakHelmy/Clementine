@@ -5,12 +5,10 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 
 router.get(`/`, function (req, res) {
-   
 
     res.render('pages/login', {
         user: req.session.user === undefined ? '' : req.session.user,
     });
-
     
 });
 
