@@ -40,4 +40,4 @@ const paymentDetails = mongoose.Schema({
 
 
 
-exports.PaymentGateway  = mongoose.model('PaymentGateway', paymentDetails);
+exports.PaymentGateway  = mongoose.model('paymentgateways', paymentDetails);
