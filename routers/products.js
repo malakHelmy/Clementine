@@ -20,7 +20,8 @@ router.get('/gearrings', products.getGearrings);
 router.get('/gnecklaces', products.getGnecklaces);
 router.get('/gbracelets', products.getGbracelets);
 
-router.get('/:id', products.productDetails);
+// router.get('/:id', products.productDetails);
+router.get('/wishlist', products.getWishlist);
 
 // router.post(`/`, async (req, res) => {
 //     const cat = await Category.findById(req.body.category);

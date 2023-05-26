@@ -20,8 +20,8 @@
     <%- include('../partials/navbar') %>
         <div class="wishlist-wrap">
             <h1 class="wishlist-header">your wishlist</h1>
-            <% if(products !='' ) {%>
-                <% products.forEach((items)=> { %>
+            <% if(products.length > 0 ) {%>
+                <% products.forEach(function(items)=> { %>
                     <div class="prod">
                         <div class="wishlist-items">
                             <div class="product-card">

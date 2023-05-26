@@ -31,21 +31,21 @@ exports.deleteProduct = (req, res) => {
             console.log('could not remove product');
             return res.status(400);
         });
-};
+}; 
 
-exports.productDetails = asyncHandler(async (req, res) => {
-    const prod = await Product.findById(req.params.id);
+// exports.productDetails = asyncHandler(async (req, res) => {
+//     const prod = await Product.findById(req.params.id);
 
-    if (!prod) {
-        console.log(
-            'The Product with the given ID was not found please check for the validity of the ID'
-        );
-        return res.status(500);
-    }
-    res.render('pages/productDetails', {
-        products: prod,
-    });
-});
+//     if (!prod) {
+//         console.log(
+//             'The Product with the given ID was not found please check for the validity of the ID'
+//         );
+//         return res.status(500);
+//     }
+//     res.render('pages/productDetails', {
+//         products: prod,
+//     });
+// });
 
 //diamond
 
@@ -149,7 +149,7 @@ exports.getGbracelets = (req, res) => {
 };
 
 exports.addToWishlist = asyncHandler(async (req, res) => {
-    const { userID } = req.user;
+    const { userID } = req.session.user._id;
     const { prodID } = req.body;
     try {
         const users = await user.findById(userID);
@@ -166,6 +166,7 @@ exports.addToWishlist = asyncHandler(async (req, res) => {
                     new: true,
                 }
             );
+
         } else {
             let users = await user.findByIdAndUpdate(
                 userID,
@@ -182,3 +183,21 @@ exports.addToWishlist = asyncHandler(async (req, res) => {
         throw new Error(error);
     }
 });
+
+exports.getWishlist = asyncHandler(async (req, res) => {
+    const { userID } = req.user;
+  
+    try {
+      const User = await user.findById(userID);
+  
+      if (!User) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      const wishlistItems = await product.find({ _id: { $in: User.wishlist } });
+  
+      res.render('pages/wishlist', { products: wishlistItems });
+    } catch (error) {
+      throw new Error(error);
+    }
+  });
