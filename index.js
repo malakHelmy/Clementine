@@ -27,7 +27,7 @@ const ordersRouter = require('./routers/orders');
 const contactmailerRouter = require('./routers/mailController');
 const chatRouter = require('./routers/chat');
 const displayProdRouter = require('./routers/displayproducts');
-
+const searchroute = require('./routers/searchbar');
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
 const app = express();
@@ -62,6 +62,7 @@ app.use('/editproducts', editProdRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
+app.use('/search', searchroute);
 
 mongoose
     .connect(
@@ -78,7 +79,6 @@ mongoose
 
 
 app.get(`/`, function (req, res) {
-   
     res.render('pages/index', {
         user: req.session.user == undefined ? undefined : req.session.user,
     });
@@ -102,6 +102,10 @@ app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
         user: req.session.user === undefined ? '' : req.session.user,
     });
+});
+
+app.get('/search', function (req, res) {
+    res.render('pages/search');
 });
 
 /* --------- DASHBOARDS -----*/
