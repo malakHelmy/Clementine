@@ -5,36 +5,46 @@ const { Product } = require('../models/product');
 const router = express.Router();
 
 router.get('/', (req,res)=>{
-
-    Cart.find()
-    .then( (result) => { 
-        res.render('pages/cart',{products:result});
-    }
-    )
-    .catch((err) => {
-      console.log(err);
-    });
-
 });
 
 router.post(`/:id`, async  (req, res) => {
+
+     const product= await  Product.findOne({_id:req.params.id})
+     .then((result)=>{
+
+                const CartItem={
+                  id:result._id,
+                  name:result.name,
+                  image:result.image,
+                  price:result.price,
+                  quantity:1
+                }   
+     
+    const { cart } = req.session;
+    if (cart) {
   
-        await Cart.findOneAndUpdate({
-            _id:req.params.id
-        } ,
-        {
-            $inc:{
-                quantity:1
-            }        
-        },    
-        {
-            upsert:true
-        }   
-        )
-        setTimeout(() => {
-           res.redirect(`/cart`);
-        }, 700);
+       let c=0;
+       req.session.cart.items.forEach((items) => {
+        if( items.id== CartItem.id)
+        {   
+            c++;
+            items.quantity++;
+        }
+       });  
+       if(c==0)
+      req.session.cart.items.push(CartItem);
+    } else {
+      req.session.cart = {
+        items: [CartItem],
+      };
+    }
+    console.log(  req.session.cart.items );
+     })
+     .catch( err => {
+        console.log(err);
+      });
       
+      res.redirect('/')
 });
 
 router.post(`/:id/:page`, async  (req, res) => {
