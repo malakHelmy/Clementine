@@ -7,13 +7,11 @@ const products = require('../controllers/productController');
 const router = express.Router();
 
 router.get('/products', products.getAllProducts);
-
 //diamond
 router.get('/drings', products.getDrings);
 router.get('/dearrings', products.getDearrings);
 router.get('/dnecklaces', products.getDnecklaces);
 router.get('/dbracelets', products.getDbracelets);
-
 //gold
 router.get('/grings', products.getGrings);
 router.get('/gearrings', products.getGearrings);
