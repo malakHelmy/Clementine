@@ -11,6 +11,7 @@ exports.getAllProducts = (req, res) => {
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
+                        
                 products: result,
                 Id: req.params.id,
             });
@@ -63,6 +64,7 @@ exports.getDrings = (req, res) => {
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
+                        cart:req.session.cart == undefined ? undefined :req.session.cart,
                 products: result,
                 Id: req.params.id,
             });
@@ -75,12 +77,14 @@ exports.getDnecklaces = (req, res) => {
     const body = `Diamond necklaces are a captivating and exquisite embellishment that can elevate any ensemble with their timeless allure and radiance. The brilliance of diamonds creates a spellbinding display of light that catches the eye and draws attention to the neckline, making a diamond necklace a perfect accessory for any occasion. Whether it's a delicate pendant or a striking statement piece, diamond necklaces can be customized to reflect any style or budget. The durability of diamonds ensures that a diamond necklace is an investment that will endure beyond a lifetime. Diamonds signify love and commitment, making a diamond necklace a popular choice for special events such as weddings, anniversaries, or birthdays. A diamond necklace can be worn alone as a stunning centerpiece or layered with other necklaces to create a unique and fashionable look.`;
     Product.find({ material: 'diamond', category: 'necklace' })
         .then((result) => {
+            const { cartt }=req.session;
             res.render('pages/products', {
                 body,
                 user:
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
+                        cart: req.session.cart == undefined ? undefined :req.session.cart,
                 products: result,
                 Id: req.params.id,
             });
@@ -93,12 +97,14 @@ exports.getDearrings = (req, res) => {
     const body = `Diamond earrings are a versatile accessory that can be dressed up or down to suit any occasion. The durability and timeless beauty of diamonds ensure that they will be cherished for years to come, making them a valuable investment for any jewelry collection. Whether you're looking to add a touch of glamour to your everyday look, or searching for the perfect gift for someone special, diamond earrings are a classic and enduring choice that will never go out of style.`;
     Product.find({ material: 'diamond', category: 'earring' })
         .then((result) => {
+            const { cartt }=req.session;
             res.render('pages/products', {
                 body,
                 user:
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
+                        cart: req.session.cart == undefined ? undefined :req.session.cart,
                 products: result,
                 Id: req.params.id,
             });
@@ -111,12 +117,14 @@ exports.getDbracelets = (req, res) => {
     const body = `With a range of styles and designs available, diamond bracelets can be customized to suit any personal taste or occasion. Whether it's a delicate tennis bracelet or an intricate bangle, the brilliance and sparkle of diamonds create a striking display of light that draws attention to the wrist. The durability of diamonds ensures that a diamond bracelet is an investment that will last a lifetime and beyond. With their timeless beauty and versatility, diamond bracelets are a must-have for any jewelry collection and are sure to become a treasured heirloom that can be passed down through generations.`;
     Product.find({ material: 'diamond', category: 'bracelet' })
         .then((result) => {
+            const { cartt }=req.session;
             res.render('pages/products', {
                 body,
                 user:
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
+                        cart: req.session.cart == undefined ? undefined :req.session.cart,
                 products: result,
                 Id: req.params.id,
             });
