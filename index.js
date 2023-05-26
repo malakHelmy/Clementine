@@ -81,27 +81,27 @@ mongoose
 
 app.get(`/`, function (req, res) {
     res.render('pages/index', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
 });
 app.get(`/home`, function (req, res) {
     res.render('pages/index', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
 });
 app.get(`/categories`, function (req, res) {
     res.render('pages/categories', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
 });
 app.get(`/checkout`, function (req, res) {
     res.render('pages/checkout', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
 });
 app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
 });
 
@@ -142,15 +142,12 @@ app.get(`/userprofile`, function (req, res) {
 /* --------- SIGN UP AND LOG IN ---*/
 app.get(`/signup`, function (req, res) {
     res.render('pages/signup', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ?undefined : req.session.user,
     });
 });
 
-app.get(`/login`, function (req, res) {
-    res.render('pages/login', {
-        user: req.session.user === undefined ? '' : req.session.user,
-    });
-});
+ 
+
 app.post('/sign-up-action', (req, res) => {});
 app.get('/logout', (req, res) => {
     req.session.destroy();
