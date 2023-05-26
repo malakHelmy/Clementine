@@ -1315,3 +1315,10 @@ span.minus1 {
     transform: translateY(0px);
     opacity: 1;
 }
+
+#search-results{
+    max-width: 100px;
+    width: 95%;
+    margin: 20px auto 0 auto;
+
+}

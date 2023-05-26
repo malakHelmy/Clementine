@@ -35,77 +35,84 @@
                     </li>
                     <li><a href="./contactus">CONTACT US</a></li>
 
-                    <li><a href="#" onclick="openSearchBar()"><i class="ri-search-line"></i></a></li>
 
-                    <li><a href="./login"><i class="ri-account-circle-line"></i></a>
-                        <ul>
-                            
+
+
+                    <!--Search bar starts-->
+
+
+                    <li><a href="./search"><i class="ri-search-line"></i></a></li>
+
+
+                        <li><a href="./login"><i class="ri-account-circle-line"></i></a>
+                            <ul>
+
                                 <li><a href="./login">LOG IN</a></li>
                                 <li><a href="./signup">SIGN UP</a></li>
-                                
-                        </ul>
-                    </li>
-                    <!-- wishlist start -->
-                    <li><a href="./wishlist"><i class="ri-heart-line"></i></a>
 
-                        <!-- wishlist end -->
+                            </ul>
+                        </li>
+                        <!-- wishlist start -->
+                        <li><a href="./wishlist"><i class="ri-heart-line"></i></a>
 
-                        <!--Cart Start-->
-                    <li><a href="#" id="cart-icon"><i class="ri-shopping-bag-line"></i></a>
-                        <div class="cart" id="cart">
-                            <div class="cart-window hide" id="sidebar">
-                                <button id="closesidebarbtn" onclick="closesidebar()"><span
-                                        class="material-icons">close</span></button>
-                                <div class="cart-wrapper">
-                                    <h2 class="ShopBag">My Shopping Bag</h2>
-                                    <div class="line"></div>
-                                    <div class="cart-item">
-                                        <button class="remove-btn" onclick=""><i class="ri-close-line"></i></button>
-                                        <img src="./Images/whiteRook.jpg" alt="">
-                                        <div class="details">
-                                            <div class="name"> Clementine Silver White Rook</div>
-                                            <div class="btn-wrapper">
-                                                <span class="minus">-</span>
-                                                <span class="num">1</span>
-                                                <span class="add">+</span>
+                            <!-- wishlist end -->
+
+                            <!--Cart Start-->
+                        <li><a href="#" id="cart-icon"><i class="ri-shopping-bag-line"></i></a>
+                            <div class="cart" id="cart">
+                                <div class="cart-window hide" id="sidebar">
+                                    <button id="closesidebarbtn" onclick="closesidebar()"><span
+                                            class="material-icons">close</span></button>
+                                    <div class="cart-wrapper">
+                                        <h2 class="ShopBag">My Shopping Bag</h2>
+                                        <div class="line"></div>
+                                        <div class="cart-item">
+                                            <button class="remove-btn" onclick=""><i class="ri-close-line"></i></button>
+                                            <img src="./Images/whiteRook.jpg" alt="">
+                                            <div class="details">
+                                                <div class="name"> Clementine Silver White Rook</div>
+                                                <div class="btn-wrapper">
+                                                    <span class="minus">-</span>
+                                                    <span class="num">1</span>
+                                                    <span class="add">+</span>
+                                                </div>
+                                                <button class="wishlist-btn" onclick="">Add to Wishlist</p></button>
+                                                <div class="price"> Price: EGP15200</div>
                                             </div>
-                                            <button class="wishlist-btn" onclick="">Add to Wishlist</p></button>
-                                            <div class="price"> Price: EGP15200</div>
                                         </div>
-                                    </div>
-                                    <!--Item 2-->
-                                    <div class="cart-item">
-                                        <button class="remove-btn" onclick=""><i class="ri-close-line"></i></button>
-                                        <img src="./Images/r5.png" alt="">
-                                        <div class="details">
-                                            <div class="name">Clementine Silver Snowflake</div>
-                                            <div class="btn-wrapper">
-                                                <span class="minus1">-</span>
-                                                <span class="num1">1</span>
-                                                <span class="add1">+</span>
+                                        <!--Item 2-->
+                                        <div class="cart-item">
+                                            <button class="remove-btn" onclick=""><i class="ri-close-line"></i></button>
+                                            <img src="./Images/r5.png" alt="">
+                                            <div class="details">
+                                                <div class="name">Clementine Silver Snowflake</div>
+                                                <div class="btn-wrapper">
+                                                    <span class="minus1">-</span>
+                                                    <span class="num1">1</span>
+                                                    <span class="add1">+</span>
+                                                </div>
+                                                <button class="wishlist-btn" onclcik="">Add to Wishlist</p></button>
+                                                <div class="price" id="pie"> Price: EGP11000</div>
                                             </div>
-                                            <button class="wishlist-btn" onclcik="">Add to Wishlist</p></button>
-                                            <div class="price" id="pie"> Price: EGP11000</div>
                                         </div>
-                                    </div>
 
-                                    <div class="total">
-                                        <div class="shipping">
-                                            <p><span>Subtotal</span> <span>EGP <span id="total-before">
-                                                        262000</span></span></p>
-                                            <p><span>Shipping</span> <span>EGP <span>100</span></span></p>
+                                        <div class="total">
+                                            <div class="shipping">
+                                                <p><span>Subtotal</span> <span>EGP <span id="total-before">
+                                                            262000</span></span></p>
+                                                <p><span>Shipping</span> <span>EGP <span>100</span></span></p>
+                                            </div>
+                                            <p><span>Total</span> <span>EGP <span id="total-after">2620100</span></span>
+                                            </p>
                                         </div>
-                                        <p><span>Total</span> <span>EGP <span id="total-after">2620100</span></span>
-                                        </p>
-                                    </div>
-                                    <div class="checkout-btn">
-                                        <button class="checkout" onclick="location.href='./cart'">CHECKOUT</button>
+                                        <div class="checkout-btn">
+                                            <button class="checkout" onclick="location.href='./cart'">CHECKOUT</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!--Cart End-->
-                    </li>
+                            <!--Cart End-->
+                        </li>
                 </ul>
             </div>
         </div>
@@ -120,4 +127,5 @@
         });
     });
 </script>
+<script src="../../public/js/trial.js"></script>
 <!-- Navigation Bar End -->
