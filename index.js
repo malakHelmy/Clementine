@@ -138,7 +138,9 @@ app.get(`/signup`, function (req, res) {
 });
 
 app.get(`/login`, function (req, res) {
-    res.render('pages/login');
+    res.render('pages/login', {
+        user: req.session.user === undefined ? '' : req.session.user,
+    });
 });
 app.post('/sign-up-action', (req, res) => {});
 app.get('/logout', (req, res) => {
