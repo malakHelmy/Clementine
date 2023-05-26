@@ -82,9 +82,10 @@
                                                         <div class="name"> <%= items.name %></div>
                                                         <div class="btn-wrapper">
                                                             
-                                                            <span class="minus">-</span>
+                                                            <span class="minus"> <a href="/cart/minus">-</a></span>
                                                             <span class="num"><%= items.quantity %></span>
-                                                            <span class="add">+</span>
+                                                            <span class="add"> <a href="cart/plus">+</a>    </span>
+                                                            
                                                         </div>
                                                         <button class="wishlist-btn" onclick="">Add to Wishlist</p></button>
                                                         <div class="price"> Price: <%= items.price %></div> 
