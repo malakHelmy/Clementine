@@ -1,25 +1,22 @@
-
 const express = require('express');
-const { Product }  = require('../models/product');
-const router = express.Router();
+const { Product } = require('../models/product');const router = express.Router();
 
+router.get('/add', (req, res) => {
+  res.render('pages/addproducts');
+});
 
-router.get('/',(req,res)=>{
-res.render('pages/addproducts')
-})
+router.post('/', (req, res) => {
+  const product = new Product(req.body);
 
-router.post(`/`,   (req, res) => {
-
-     
-        const products =new Product(req.body);
-        products
-        .save()
-        .then( (result) => {
-            res.render('pages/dashboard');
-        })
-        .catch( err => {
-          console.log(err);
-        });
+  product
+    .save()
+    .then(() => {
+      res.render('pages/dashboard');
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render('pages/error');
+    });
 });
 
 module.exports = router;

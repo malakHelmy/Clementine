@@ -42,7 +42,7 @@ const productSchema = mongoose.Schema(
             type: Number,
             required: true,
             min: 0,
-            max: 20,
+            max: 100,
         },
         featured: {
             type: Boolean,
