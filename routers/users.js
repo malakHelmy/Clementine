@@ -22,7 +22,11 @@ router.post(`/`, async  (req, res) => {
             .save()
             .then( (result) => {
               console.log(result)
-                res.render('pages/index');
+              // req.session.user=req.body.email;
+              res.render('pages/index', {
+                user: req.session.user === undefined ? '' : req.session.user,
+            });
+            
             })
             .catch( err => {
               console.log(err);
