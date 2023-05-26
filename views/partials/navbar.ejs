@@ -37,15 +37,18 @@
 
                     <li><a href="#" onclick="openSearchBar()"><i class="ri-search-line"></i></a></li>
 
-                    <li><a href="./login"><i class="ri-account-circle-line"></i></a>
-                        <ul>
-                                
-                                <li><a href="/login">LOG IN</a></li>
-                                <li><a href="/signup">SIGN UP</a></li>
-                                <li> <a href="#"><%= user %> </a>   </li>
-                                
-                        </ul>
-                    </li>
+                                <% if(user!=undefined){%>  
+                                <li><a href="./userprofile"><i class="ri-account-circle-line"></i></a>
+                                <% }else{ %>
+                                    <li><a href="./login"><i class="ri-account-circle-line"></i></a>
+                                        <ul>                    
+                                                <li><a href="/login">LOG IN</a></li>
+                                                <li><a href="/signup">SIGN UP</a></li>   
+                                        </ul>
+                                    </li>
+                               <% }%>
+                           
+                  
                     <!-- wishlist start -->
                     <li><a href="./wishlist"><i class="ri-heart-line"></i></a>
 
