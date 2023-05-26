@@ -7,10 +7,12 @@ exports.getAllProducts = (req, res) => {
     Product.find()
         .then((result) => {
             res.render('pages/products', {
-                body,
+                user: req.session.user == undefined ?undefined : req.session.user,
                 products: result,
                 Id: req.params.id,
-            });
+
+            }
+            );
         })
         .catch((err) => {
             console.log('error loading');
@@ -55,7 +57,7 @@ exports.getDrings = (req, res) => {
     Product.find({ material: 'diamond', category: 'ring' })
         .then((result) => {
             res.render('pages/products', {
-                body,
+                user: req.session.user == undefined ?undefined : req.session.user,
                 products: result,
                 Id: req.params.id,
             });
@@ -69,7 +71,7 @@ exports.getDnecklaces = (req, res) => {
     Product.find({ material: 'diamond', category: 'necklace' })
         .then((result) => {
             res.render('pages/products', {
-                body,
+                user: req.session.user == undefined ?undefined : req.session.user,
                 products: result,
                 Id: req.params.id,
             });
@@ -83,7 +85,7 @@ exports.getDearrings = (req, res) => {
     Product.find({ material: 'diamond', category: 'earring' })
         .then((result) => {
             res.render('pages/products', {
-                body,
+                user: req.session.user == undefined ?undefined : req.session.user,
                 products: result,
                 Id: req.params.id,
             });
@@ -97,7 +99,7 @@ exports.getDbracelets = (req, res) => {
     Product.find({ material: 'diamond', category: 'bracelet' })
         .then((result) => {
             res.render('pages/products', {
-                body,
+                user: req.session.user == undefined ?undefined : req.session.user,
                 products: result,
                 Id: req.params.id,
             });
@@ -113,8 +115,9 @@ exports.getGrings = (req, res) => {
     Product.find({ material: 'gold', category: 'ring' })
         .then((result) => {
             res.render('pages/products', {
-                body,
+                user: req.session.user == undefined ?undefined : req.session.user,
                 products: result,
+
                 Id: req.params.id,
             });
         })
@@ -127,7 +130,7 @@ exports.getGnecklaces = (req, res) => {
     Product.find({ material: 'gold', category: 'necklace' })
         .then((result) => {
             res.render('pages/products', {
-                body,
+                user: req.session.user == undefined ?undefined : req.session.user,
                 products: result,
                 Id: req.params.id,
             });
@@ -141,7 +144,7 @@ exports.getGearrings = (req, res) => {
     Product.find({ material: 'gold', category: 'earring' })
         .then((result) => {
             res.render('pages/products', {
-                body,
+                user: req.session.user == undefined ?undefined : req.session.user,
                 products: result,
                 Id: req.params.id,
             });
@@ -155,7 +158,7 @@ exports.getGbracelets = (req, res) => {
     Product.find({ material: 'gold', category: 'bracelet' })
         .then((result) => {
             res.render('pages/products', {
-                body,
+                user: req.session.user == undefined ?undefined : req.session.user,
                 products: result,
                 Id: req.params.id,
             });
@@ -212,7 +215,7 @@ exports.getWishlist = asyncHandler(async (req, res) => {
   
       const wishlistItems = await product.find({ _id: { $in: User.wishlist } });
   
-      res.render('pages/wishlist', { products: wishlistItems });
+      res.render('pages/wishlist', {  user: req.session.user == undefined ?undefined : req.session.user, products: wishlistItems });
     } catch (error) {
       throw new Error(error);
     }

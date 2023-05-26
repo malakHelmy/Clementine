@@ -11,6 +11,7 @@ const nodemailer = require('nodemailer');
 const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
 //poenai api key
+
 const api_key = process.env.OPENAI_API_KEY;
 
 //Routes
@@ -27,7 +28,7 @@ const ordersRouter = require('./routers/orders');
 const contactmailerRouter = require('./routers/mailController');
 const chatRouter = require('./routers/chat');
 const displayProdRouter = require('./routers/displayproducts');
-
+const searchroute = require('./routers/searchbar');
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
 const app = express();
@@ -42,7 +43,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs'); //set the template engine
 //app.use(express.static(path.join(process.cwd(), "/images")));
 app.use(express.urlencoded({ extended: true }));
-
+app.use(
+    session({
+        secret: 'Your_secret_key',
+        saveUninitialized: false,
+        resave: false,
+    })
+);
 // Routers
 app.use('/addproducts', addProdRouter);
 
@@ -56,6 +63,7 @@ app.use('/editproducts', editProdRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
+app.use('/search', searchroute);
 
 mongoose
     .connect(
@@ -69,38 +77,40 @@ mongoose
     });
 
 // app.use(fileUpload());
-app.use(
-    session({
-        secret: 'Your_secret_key',
-        saveUninitialized: false,
-        resave: false,
-    })
-);
+
 
 app.get(`/`, function (req, res) {
     res.render('pages/index', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
 });
 app.get(`/home`, function (req, res) {
     res.render('pages/index', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
 });
 app.get(`/categories`, function (req, res) {
     res.render('pages/categories', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
 });
 app.get(`/checkout`, function (req, res) {
     res.render('pages/checkout', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
 });
 app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
     });
+});
+
+app.get('/search', function (req, res) {
+    res.render('pages/search');
+});
+
+app.get('/contactus', function(req, res) {
+    res.render('pages/contactus');
 });
 
 /* --------- DASHBOARDS -----*/
@@ -132,20 +142,61 @@ app.get(`/userprofile`, function (req, res) {
 /* --------- SIGN UP AND LOG IN ---*/
 app.get(`/signup`, function (req, res) {
     res.render('pages/signup', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ?undefined : req.session.user,
     });
 });
 
-app.get(`/login`, function (req, res) {
-    res.render('pages/login');
-});
+ 
+
 app.post('/sign-up-action', (req, res) => {});
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
 /* --------- SIGN UP AND LOG IN END ---*/
-//e
+//CONTACT US MAILER START
+
+app.post(`/contactus`, function (req, res) {
+    // res.render('pages/contactus');
+
+    var fullname = req.body.name;
+    var uemail = req.body.email;
+    var subject = req.body.subject;
+    var message = req.body.message;
+
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'clementineco2023@gmail.com',
+            pass: 'lmkwmjbyftpuzwhz'
+        }
+
+    })
+
+    var mailOptions = {
+        from: uemail,
+        to: 'clementineco2023@gmail.com',
+        subject: subject,
+        text: message
+
+    }
+
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+            res.send('Error.');
+        } else {
+            console.log('Email sent:' + info.response);
+            res.send('Successfully sent.')
+
+        }
+        express.response.redirect("/")
+    })
+
+
+});
 /* ---------CONTACT US FORM MAILER END --------*/
 
 app.listen(port, () => {
