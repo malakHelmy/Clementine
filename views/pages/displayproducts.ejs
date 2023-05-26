@@ -46,7 +46,7 @@
               <a href="/editproducts/<%= product.id %>">
                 <button class="btn edit-product"><i class="fa fa-edit"></i></button>
               </a>
-              <form method="POST" action="/displayproducts/delete">
+              <form method="POST" action="/displayproducts/delete" onsubmit="return confirm('Are you sure you want to delete this product?');">
                 <!-- a hidden input field is added to store the product ID -->
                 <input type="hidden" name="productId" value="<%= product._id %>">
                 <button class="btn" type="submit"><i class="fa fa-trash"></i></button>
