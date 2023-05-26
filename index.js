@@ -78,9 +78,7 @@ mongoose
 
 
 app.get(`/`, function (req, res) {
-    res.render('partials/navbar', {
-        user: req.session.user === undefined ? '' : req.session.user,
-    });
+   
     res.render('pages/index', {
         user: req.session.user === undefined ? '' : req.session.user,
     });
