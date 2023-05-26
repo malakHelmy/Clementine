@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/productDetails.css">
+
+    <!-- to access font awesome cdn icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+</head>
+
+<body>
+
+    <%- include('../partials/navbar') %>
+
+        <div class="parent">
+
+            <div class="imgs">
+
+                <!-- slideshow start -->
+                <section id="imageslideshow">
+                    <!-- slider start -->
+                    <div id="slider">
+
+                        <div class="slideshow">
+                            <!-- radiobuttons start -->
+                            <input type="radio" name="radio-btn" id="radio1">
+                            <input type="radio" name="radio-btn" id="radio2">
+                            <input type="radio" name="radio-btn" id="radio3">
+                            <!-- radiobuttons end -->
+
+                            <!-- slideshow images start -->
+                            <div class="slide first">
+                                <img src="/Images/<%- products.image %>">
+                            </div>
+                            <div class="slide">
+                                
+                                <img src="/Images<%-products.image%>">
+                                
+                            </div>
+
+                            <!-- slideshow images end -->
+                            <!-- auto nav start -->
+                            <div class="navauto">
+                                <div class="auto-btn1"></div>
+                                <div class="auto-btn2"></div>
+                                <div class="auto-btn3"></div>
+                            </div>
+                            <!-- auto nav end -->
+                            <!-- manual nav start -->
+                            <div class="navmanual">
+                                <label for="radio1" class="manual-btn"></label>
+                                <label for="radio2" class="manual-btn"></label>
+                                <label for="radio3" class="manual-btn"></label>
+                            </div>
+                            <!-- manual nav end -->
+                        </div>
+
+                    </div>
+                    <!-- slider end -->
+
+                    <script type="text/javascript">
+                        var counter = 1;
+                        setInterval(function () {
+                            document.getElementById('radio' + counter).checked = true;
+                            counter++;
+                            if (counter > count) {
+                                counter = 1;
+                            }
+                        }, 5000);
+                    </script>
+                </section>
+                <!-- slideshow end -->
+                <!-- <div class="umg2"> <img src="ring6.jpg" alt=""></div>
+                <div class="umg2"> <img src="ring5.jpg" alt=""></div> -->
+
+            </div>
+            <div class="details">
+                <h2>
+                    <%= products.name%>
+                </h2>
+                <p class="info-snip">
+                    <%= products.description%>
+                </p>
+                <hr>
+                <p>
+                <p class="aboutring"><b> Brand:</b> Clementine </p>
+                <p class="aboutring"><b> Collection:</b>
+                    <%=  products.category%>
+                </p>
+                <p class="aboutring"><b> Metal:</b>
+                    <%= products.material %>
+                </p>
+                <p class="aboutring"><b> Product Number:</b>
+                    <%= products.id %>
+                </p>
+                </p>
+                <div class="priceinfo">
+
+                    <div class="priceparagraph">
+                        <p class="price">
+                            Price:
+                        </p>
+                    </div>
+
+                    <div class="pricevalue">
+                        <p>
+                            <%= products.price%>
+                        </p>
+                    </div>
+
+
+                </div>
+                <br>
+
+                <div class="wishlist" id="wishlist">
+                    <img src="./Images/darkfav.png" alt="" id="darkfav" onclick="changeimage()"
+                        title="remove from wishlist">
+                    <img src="./Images/whiteheart.png" alt="" id="fav" onclick="changeimage2()" title="add to wishlist">
+                    <script>
+                        let imgs = [document.getElementById('darkfav'), document.getElementById('fav')];
+                        function changeimage() {
+                            let parent = document.getElementById('wishlist');
+                            parent.className = 'wishlist darkfav';
+
+                        }
+                        function changeimage2() {
+
+                            let parent = document.getElementById('wishlist');
+                            parent.className = 'wishlist fav';
+
+                        } 
+                    </script>
+                </div>
+                <br>
+                <div class="btnsdiv">
+
+                    <button class="btn">BUY NOW</button>
+                    <button class="btn">ADD TO CART</button>
+                </div>
+
+
+            </div>
+            <!-- prodacts cards -->
+            <div class="maylike">
+
+                <p class="head">You May Also Like</p>
+                <section class="pcontainer">
+                    <div class="box">
+                        <a href="">
+                            <img src="./Images/fav.png" alt="" class="cardimg cardfav">
+                            <img src="./Images/ring1.jpg" alt="wishbone ring" class="cardimg">
+                        </a>
+                        <div class="items">
+                            <div class="prodetails">
+                                <p>Disney Beauty and Rose Ring</p>
+                                <p class="price">EGP 21,0000 <del>EGP54,000</del></p>
+                            </div>
+                            <button class="cardbtn">Add to cart</button>
+                        </div>
+
+                    </div>
+
+                    <div class="box">
+                        <a href="">
+                            <img src="./Images/fav.png" alt="" class="cardimg cardfav">
+                            <img src="./Images/ring2.png" alt="" class="cardimg">
+                        </a>
+                        <div class="items">
+                            <div class="prodetails">
+                                <p>Sparkling Daisy Flower Crown Ring </p>
+                                <p class="price">EGP 21,0000 <del>EGP54,000</del></p>
+                            </div>
+                            <button class="cardbtn">Add to cart</button>
+                        </div>
+
+                    </div>
+                    <div class="box">
+                        <a href="">
+                            <img src="./Images/fav.png" alt="" class="cardimg cardfav">
+                            <img src="./Images/ring3.png" alt="" class="cardimg">
+                        </a>
+                        <div class="items">
+                            <div class="prodetails">
+                                <p>March Aqua Blue Beaded Ring</p>
+                                <p class="price">EGP 21,0000 <del>EGP54,000</del></p>
+                            </div>
+                            <button class="cardbtn">Add to cart</button>
+                        </div>
+
+                    </div>
+                    <div class="box">
+                        <a href="">
+                            <img src="./Images/fav.png" alt="" class="cardimg cardfav">
+                            <img src="./Images/ring4.jpg" alt="" class="cardimg">
+                        </a>
+                        <div class="items">
+                            <div class="prodetails">
+                                <p>Regal Swirl Tiara Ring </p>
+                                <p class="price">EGP 21,0000 <del>EGP54,000</del></p>
+                            </div>
+                            <button class="cardbtn">Add to cart</button>
+                        </div>
+
+                    </div>
+                </section>
+
+
+            </div>
+
+
+            <div class="review">
+                <p> You are reviewing: <b>Sparkling Wishbone Ring</b> </p>
+                <div class="signIn">
+
+                    <form action="" class="signInform">
+
+                        <div class="textfield">
+                            <input type="text" name="email">
+                            <span class="sp1"></span>
+                            <label for="">E-mail</label>
+                        </div>
+                        <div class="textfield">
+                            <input type="password" name="password">
+                            <span class="sp1"></span>
+                            <label for="">Password</label>
+                        </div>
+                        <div class="textfield">
+                            <input type="text" name="password">
+                            <span class="sp1"></span>
+                            <label for="">Review</label>
+                        </div>
+                        <input type="submit" class="submit">
+                        <br><br>
+                    </form>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <%- include('../partials/footer') -%>
+
+</body>
+
+
+</html>
