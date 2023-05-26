@@ -11,20 +11,20 @@ const nodemailer = require('nodemailer');
 const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
 //poenai api key
-const api_key= process.env.OPENAI_API_KEY;
+const api_key = process.env.OPENAI_API_KEY;
 
 //Routes
 const addProdRouter = require('./routers/addproducts');
 
-const editProdRouter= require('./routers/editproducts');
-const cartRouter= require('./routers/cart');
+const editProdRouter = require('./routers/editproducts');
+const cartRouter = require('./routers/cart');
 const productsRouter = require('./routers/products');
 const usersRouter = require('./routers/users');
 const users_loginRouter = require('./routers/login');
 const cust_contRouter = require('./routers/editcustdash');
 const categoriesRouter = require('./routers/categories');
 const ordersRouter = require('./routers/orders');
-const contactmailerRouter = require ('./routers/mailController');
+const contactmailerRouter = require('./routers/mailController');
 const chatRouter = require('./routers/chat');
 const displayProdRouter = require('./routers/displayproducts');
 
@@ -52,26 +52,30 @@ app.use(`/orders`, ordersRouter);
 app.use('/user', usersRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
-app.use('/editproducts',editProdRouter);
+app.use('/editproducts', editProdRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
 
-
-
-
 mongoose
-.connect("mongodb+srv://clementine:wifeys2023@clementine.xfv9xzu.mongodb.net/clementine?retryWrites=true&w=majority")
-.then((result) => {
-    console.log('database success');
-})
-.catch((err) => {
-    console.log(err);
-});
-
+    .connect(
+        'mongodb+srv://clementine:wifeys2023@clementine.xfv9xzu.mongodb.net/clementine?retryWrites=true&w=majority'
+    )
+    .then((result) => {
+        console.log('database connection success');
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 
 // app.use(fileUpload());
-app.use(session({ secret: 'Your_secret_key' , saveUninitialized:false , resave:false}));
+app.use(
+    session({
+        secret: 'Your_secret_key',
+        saveUninitialized: false,
+        resave: false,
+    })
+);
 
 app.get(`/`, function (req, res) {
     res.render('pages/index', {
@@ -105,7 +109,7 @@ app.get(`/dashboard`, function (req, res) {
 });
 app.get('/addproducts', (req, res) => {
     res.render('pages/addproducts');
-  });
+});
 app.get(`/editproducts`, function (req, res) {
     res.render('pages/editproducts');
 });
@@ -145,5 +149,5 @@ app.get('/logout', (req, res) => {
 /* ---------CONTACT US FORM MAILER END --------*/
 
 app.listen(port, () => {
-    console.log("http://localhost:8080");
+    console.log('http://localhost:8080');
 });
