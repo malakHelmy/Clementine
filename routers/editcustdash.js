@@ -53,4 +53,15 @@ router.get('/:id', (req, res) => {
 });
 
 
+
+router.post('/:id', async (req, res) => {
+  try {
+    const customerId = req.params.id;
+    await User.findByIdAndRemove(customerId);
+    res.redirect('/editcustdash');
+  } catch (error) {
+    console.log('Error deleting customer:', error);
+    res.redirect('/editcustdash');
+  }
+});
 module.exports = router;
