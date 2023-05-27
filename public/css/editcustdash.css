@@ -359,6 +359,7 @@ main.table {
 
 
 
+
 table {
     width: 100%;
 }
@@ -423,7 +424,9 @@ tbody tr.hide td img {
     height: 0;
     transition: .2s ease-in-out .5s;
 }
-
+.hide {
+    display: none;
+}
 
 
 .status_delivered {
@@ -454,6 +457,21 @@ tbody tr.hide td img {
     border-radius: 2rem;
     text-align: center;
     background-color: #6fcaea;
+}
+
+.status_outofstock {
+    padding: .4rem 0;
+    border-radius: 2rem;
+    text-align: center;
+    background-color: #d893a3;
+    color: #b30021;
+}
+.status_instock {
+    padding: .4rem 0;
+    border-radius: 2rem;
+    text-align: center;
+    background-color: #86e49d;
+    color: #006b21;
 }
 
 
