@@ -30,6 +30,7 @@ const chatRouter = require('./routers/chat');
 const displayProdRouter = require('./routers/displayproducts');
 const searchroute = require('./routers/searchbar');
 const logoutroute = require('./routers/logout');
+//const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
 const app = express();
@@ -56,7 +57,7 @@ app.use('/addproducts', addProdRouter);
 
 app.use(`/`, productsRouter);
 app.use(`/categories`, categoriesRouter);
-app.use(`/orders`, ordersRouter);
+app.use(`/ordersdash`, ordersRouter);
 app.use('/user', usersRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
@@ -66,6 +67,7 @@ app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
 app.use('/search', searchroute);
 app.use(`/logout`,logoutroute);
+//app.use('/updatedeletecust', updatecustRoute);
 mongoose
     .connect(
         'mongodb+srv://clementine:wifeys2023@clementine.xfv9xzu.mongodb.net/clementine?retryWrites=true&w=majority'
@@ -107,6 +109,7 @@ app.get(`/checkout`, function (req, res) {
 app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart
     });
 });
 
@@ -115,7 +118,10 @@ app.get('/search', function (req, res) {
 });
 
 app.get('/contactus', function(req, res) {
-    res.render('pages/contactus');
+    res.render('pages/contactus', {
+        user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart
+    });
 });
 
 /* --------- DASHBOARDS -----*/
@@ -134,14 +140,18 @@ app.get(`/editcustdash`, function (req, res) {
 app.post(`/editcustdash`, function (req, res) {
     res.render('pages/editcustdash');
 });
-app.get(`/updatecustdash`, function (req, res) {
-    res.render('pages/updatecustdash');
+app.get(`/updatedeletecust`, function (req, res) {
+    res.render('pages/updatedeletecust');
 });
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
+app.get(`/displayproducts`, function (req, res) {
+    res.render('pages/displayproducts');
+});
+
 /* --------- DASHBOARDS END -----*/
 
 /* --------- SIGN UP AND LOG IN ---*/

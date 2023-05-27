@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- material icons cdn -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
-    <link rel="stylesheet" href="css/editcustdash.css">
+    <link rel="stylesheet" href="/css/editcustdash.css">
     <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/editproducts.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Admin Dashboard</title>
 </head>
@@ -26,7 +28,7 @@
         <aside>
             <div class="top">
                 <div class="logo">
-                    <img src="./Images/logoo copy.png" alt="logo">
+                    <img src="/Images/logoo copy.png" alt="logo">
                 </div>
                 <div class="close" id="close-btn">
                     <span class="material-symbols-sharp">close</span>
@@ -66,76 +68,66 @@
         </aside>
         <!-- sidebar end -->
 
+
  
 
 
         <main>
             <h1>Update Customers</h1>
-            <div id="customers-container">
+            <div id="products-container">
                 <div class="addcust" id="addcust">
-                    <form action ="/updatedeletecust" method="POST" class="form">
-                        <div class="add">
-
-                                 
-
-                            <h2 class="add-title"><%= customer.firstname %> <%= customer.lastname  %> </h2>
-
+                    <form method="POST" action="/editcustdash/<%= customer._id %>/update" class="signInform" onsubmit="return checkinputs()">
+                        
+                        <div class="input-group">
+                            <h2 class="add-title">You're updating: <%= customer.firstname %> <%= customer.lastname  %> </h2>
+                            <label for="firstname">First Name</label>
+                            <input type="text" id="firstname" name="firstname" value="<%= customer.firstname %>" required>
                         </div>
-                        <div class="customers-container" style="display: block;">
-                            <div class="input-group">
-                                <label for="firstanme">First Name</label>
-                                <div><input id="firstname" type="text" placeholder="First Name" name="firstname">
-                                </div>
-                                <span class="errormsg"></span>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="lastname">Last Name</label>
-                                <div><input id="lastname" type="text" placeholder="Last Name" name="lastname">
-                                </div>
-                                <span class="errormsg"></span>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="email">Email</label>
-                                <div><input id="custemail" type="email" placeholder="Customer's Email" name="email">
-                                </div>
-                                <span class="errormsg"></span>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="pass">Password</label>
-                                <div> <input id="password" type="password" placeholder="Customer's Password" name="psw">
-                                </div>
-                                <span class="errormsg"></span>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="phone">Phone Number</label>
-                                <div><input id="phone" type="text" placeholder="Phone Number" name="phone">
-                                </div>
-                                <span class="errormsg"></span>
-                            </div>
-
-                            <button type="add" id="add">Update User</button>
-                            <button type="delete" id="add">Delete User</button>
-                            <button id="cancel" href="editcustdash" style="margin-bottom: 150px;">Cancel</button>
-
+    
+                        <div class="input-group">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" id="lastname" name="lastname" value="<%= customer.lastname %>" required>
                         </div>
+    
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" value="<%= customer.email %>" required>
+                        </div>
+    
+                        <div class="input-group">
+                            <label for="pass">Password</label>
+                            <input type="password" id="pass" name="password" value="<%= customer.password %>" required>
+                        </div>
+                        <span id="passlabel"></span>
+                    </div>
+    
+                        <div class="input-group">
+                            <label for="pass">Confirm password</label>
+                            <div> <input id="confirmpass" type="password" placeholder="Customer's Password"
+                                    name="confirmpass" value="<%= customer.password %>">
+                            </div>
+                            <span id="confirmpasslabel"></span>
+                        </div>
+    
+                        <div class="input-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" value="<%= customer.phone %>">
+                        </div>
+                        <span id="phonelabel"></span>
+                    </div>
+                            <input type="submit" id="update" class="update-btn" value="Update"></button>
+                            <button id="cancel" href="/editcustdash" id="cancel" class="delete-btn">Cancel</button>
                     </form>
+                    <script src="/js/validation.js"></script>
+
                 </div>
 
 
-                <div id="update-msg">
-                    <span>Customer Updated Successfully.</span>
-                </div>
 
-
-
-
-
-
+              
                 <script src="/js/editcustdash.js"></script>
+                <script src="/js/dashsearch.js"></script>
+                <script src="/js/validation.js"></script>
 
 </body>
 

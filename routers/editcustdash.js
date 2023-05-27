@@ -2,7 +2,6 @@
 const express = require('express');
 const User = require('../models/user');
 const router = express.Router();
-const customersController= require('../controllers/customersController');
 
 router.post('/', async (req, res) => {
   const user = {
@@ -24,8 +23,7 @@ router.post('/', async (req, res) => {
 });
 
 
-
-router.get(`/`, async (req, res) => {
+router.get('/', async (req, res) => {
   User.find()
     .then(async (customerslist) => {
       res.render('pages/editcustdash', {
@@ -53,6 +51,17 @@ router.get('/:id', (req, res) => {
 });
 
 
+router.post('/:id/update', async (req, res) => {
+  try {
+    const customerId = req.params.id;
+    const updates = req.body; // assuming the updated datais passed in the request body
+    await User.findByIdAndUpdate(customerId, updates);
+    res.redirect('/editcustdash');
+  } catch (error) {
+    console.log('Error updating customer:', error);
+    res.redirect('/editcustdash');
+  }
+});
 
 router.post('/:id', async (req, res) => {
   try {
@@ -64,4 +73,5 @@ router.post('/:id', async (req, res) => {
     res.redirect('/editcustdash');
   }
 });
+
 module.exports = router;
