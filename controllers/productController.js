@@ -59,6 +59,7 @@ exports.getDrings = (req, res) => {
     Product.find({ material: 'diamond', category: 'ring' })
         .then((result) => {
             res.render('pages/products', {
+                productTitle: "Diamond Rings",
                 body,
                 user:
                     req.session.user == undefined
@@ -79,6 +80,7 @@ exports.getDnecklaces = (req, res) => {
         .then((result) => {
             const { cartt }=req.session;
             res.render('pages/products', {
+                productTitle: "Diamond Necklaces",
                 body,
                 user:
                     req.session.user == undefined
@@ -99,6 +101,7 @@ exports.getDearrings = (req, res) => {
         .then((result) => {
             const { cartt }=req.session;
             res.render('pages/products', {
+                productTitle: "Diamond Earrings",
                 body,
                 user:
                     req.session.user == undefined
@@ -119,6 +122,7 @@ exports.getDbracelets = (req, res) => {
         .then((result) => {
             const { cartt }=req.session;
             res.render('pages/products', {
+                productTitle: "Diamond Bracelets",
                 body,
                 user:
                     req.session.user == undefined
@@ -140,6 +144,7 @@ exports.getGrings = (req, res) => {
     Product.find({ material: 'gold', category: 'ring' })
         .then((result) => {
             res.render('pages/products', {
+                productTitle: "Gold Rings",
                 body,
                 products: result,
 
@@ -155,6 +160,8 @@ exports.getGnecklaces = (req, res) => {
     Product.find({ material: 'gold', category: 'necklace' })
         .then((result) => {
             res.render('pages/products', {
+                productTitle: "Gold Necjkaces",
+
                 body,
                 products: result,
                 Id: req.params.id,
@@ -169,6 +176,8 @@ exports.getGearrings = (req, res) => {
     Product.find({ material: 'gold', category: 'earring' })
         .then((result) => {
             res.render('pages/products', {
+                productTitle: "Gold Earrings",
+
                 body,
                 products: result,
                 Id: req.params.id,
@@ -184,6 +193,8 @@ exports.getGbracelets = (req, res) => {
     Product.find({ material: 'gold', category: 'bracelet' })
         .then((result) => {
             res.render('pages/products', {
+                productTitle: "Gold Bracelets",
+
                 body,
                 products: result,
                 Id: req.params.id,
