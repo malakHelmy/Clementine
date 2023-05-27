@@ -4,7 +4,43 @@ const  Cart  = require('../models/cart');
 const { Product } = require('../models/product');
 const router = express.Router();
 
-router.get('/', (req,res)=>{
+router.get('/:con/:id', (req,res)=>{
+
+if(req.params.con=='minus')
+{
+   let i=0;
+    req.session.cart.items.forEach((items,index) => {
+        if( items.id== req.params.id)
+        {      if(items.quantity > 1)
+                items.quantity--;
+                else
+                {
+                    req.session.cart.items.splice(index,1)
+                }
+                 
+        }
+       });
+      
+        
+        res.redirect('/')
+      
+
+}
+else if(req.params.con=='plus')
+{
+    req.session.cart.items.forEach((items) => {
+        if( items.id== req.params.id)
+        {   
+ 
+            items.quantity++;
+        }
+       });  
+       res.redirect('/')
+}
+else
+{
+    res.render('pages/404');
+}
 });
 
 router.post(`/:id`, async  (req, res) => {
