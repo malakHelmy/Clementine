@@ -23,10 +23,12 @@ router.post(`/`, async  (req, res) => {
             .then( (result) => {
               console.log(result)
               req.session.user=req.body.email;
-              res.render('pages/index', {
-                user: req.session.user == undefined ? '' : req.session.user,
-            });
-            
+              if(req.session.cart!=undefined)
+              req.session.cart.items.forEach((items) => {
+                items.email=req.session.user;
+              });  
+
+              res.redirect('/')
             })
             .catch( err => {
               console.log(err);
