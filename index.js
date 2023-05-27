@@ -82,7 +82,7 @@ mongoose
 app.get(`/`, function (req, res) {
 
     
-        // console.log(req.session.cart)
+        
         res.render('pages/index', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart
