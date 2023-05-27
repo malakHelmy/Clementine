@@ -57,7 +57,7 @@ app.use('/addproducts', addProdRouter);
 
 app.use(`/`, productsRouter);
 app.use(`/categories`, categoriesRouter);
-app.use(`/orders`, ordersRouter);
+app.use(`/ordersdash`, ordersRouter);
 app.use('/user', usersRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
@@ -151,6 +151,7 @@ app.get(`/userprofile`, function (req, res) {
 app.get(`/displayproducts`, function (req, res) {
     res.render('pages/displayproducts');
 });
+
 /* --------- DASHBOARDS END -----*/
 
 /* --------- SIGN UP AND LOG IN ---*/
