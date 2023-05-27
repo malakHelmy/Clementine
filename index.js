@@ -77,9 +77,6 @@ mongoose
         console.log(err);
     });
 
-// app.use(fileUpload());
-
-
 app.get(`/`, function (req, res) {
 
     
@@ -154,8 +151,6 @@ app.get(`/signup`, function (req, res) {
         cart: req.session.cart == undefined ? undefined : req.session.cart
     });
 });
-
- 
 
 app.post('/sign-up-action', (req, res) => {});
 /* --------- SIGN UP AND LOG IN END ---*/
