@@ -21,7 +21,8 @@ const cartSchema = mongoose.Schema(
         quantity: {
             type:Number,
             default: 1
-        }
+        },
+        email:String
 });
 
 /*model is the equivalent of 'collection' in node.js,
