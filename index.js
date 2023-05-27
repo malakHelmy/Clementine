@@ -109,6 +109,7 @@ app.get(`/checkout`, function (req, res) {
 app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart
     });
 });
 
@@ -117,7 +118,10 @@ app.get('/search', function (req, res) {
 });
 
 app.get('/contactus', function(req, res) {
-    res.render('pages/contactus');
+    res.render('pages/contactus', {
+        user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart
+    });
 });
 
 /* --------- DASHBOARDS -----*/

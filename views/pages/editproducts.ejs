@@ -63,7 +63,7 @@
                 <div class="addcust" id="addcust">
                     <form class="form" action="/editproducts/<%= product.id %>" method="POST">
                         <div class="add">
-                            <h2 class="add-title">Edit Product</h2>
+                            <h2 class="add-title">You're updating: <%=product.name%></h2>
                         </div>
                         <div class="products-container" style="display: block;">
                             <div class="input-group">
@@ -127,53 +127,7 @@
                     </form>
                 </div>
 
-                <main class="table">
-                    <section class="table_header">
-                        <h1>Products List</h1>
-                        <div class="search_orders">
-                            <input type="search" placeholder="Search existing products...">
-                        </div>
-                    </section>
-                    <section class="table_body">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Product ID <span class="icon-arrow">&UpArrow;</span></th>
-                                    <th>Product Image <span class="icon-arrow">&UpArrow;</span></th>
-                                    <th>Product Name <span class="icon-arrow">&UpArrow;</span></th>
-                                    <th>Model <span class="icon-arrow">&UpArrow;</span></th>
-                                    <th>Edit/Delete <span class="icon-arrow">&UpArrow;</span></th>
-                                    <th>Availability <span class="icon-arrow">&UpArrow;</span></th>
-                                    <th>Price <span class="icon-arrow">&UpArrow;</span></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% if((product) => { %>
-                                <tr>
-                                    <td><%= product.id %></td>
-                                    <td><img src="<%= product.image %>" alt="" id="prod_img"></td>
-                                    <td><%= product.name %></td>
-                                    <td><%= product.model %></td>
-                                    <td>
-                                        <a href="/editproducts/<%= product.id %>"><button class="btn"><i
-                                                    class="fa fa-edit"></i></button></a>
-                                        <button class="btn"><i class="fa fa-trash"></i></button>
-                                    </td>
-                                    <td>
-                                        <% if (product.available) { %>
-                                        <p class="status_delivered">In Stock</p>
-                                        <% } else { %>
-                                        <p class="status_cancelled">Out Of Stock</p>
-                                        <% } %>
-                                        <p class="avail_amount">*Available: <%= product.countInStock %> Pieces</p>
-                                    </td>
-                                    <td><strong><%= product.price %></strong></td>
-                                </tr>
-                                <% }) %>
-                            </tbody>
-                        </table>
-                    </section>
-                </main>
+               
 
                 <div id="update-msg">
                     <span>Product Updated Successfully.</span>
@@ -182,7 +136,7 @@
                     <span>Product Deleted Successfully.</span>
                 </div>
 
-                <script src="js/orders.js"></script>
+                <script src="/js/orders.js"></script>
 
             </div>
         </main>
