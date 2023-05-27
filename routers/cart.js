@@ -53,7 +53,8 @@ router.post(`/:id`, async  (req, res) => {
                   name:result.name,
                   image:result.image,
                   price:result.price,
-                  quantity:1
+                  quantity:1,
+                  email: req.session.user == undefined ? undefined : req.session.user
                 }   
      
     const { cart } = req.session;
