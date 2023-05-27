@@ -32,10 +32,45 @@ router.get(`/`, function (req, res) {
                console.log(result)
                if(result!=undefined &&  req.session.cart!=undefined )
                {
+
+
                    result.forEach((items)=>{
-                    req.session.cart.items.push(items);
+                    let c=0;
+                    req.session.cart.items.forEach((items2) => {
+                       if(items.id==items2.id)
+                       {
+                        items2.quantity+=items.quantity;
+                        c++
+                       }
+                      });  
+                      if(c==0)
+                      {
+                        req.session.cart.items.push(items);
+                      }
+                     
+                   })
+
+
+               }
+               else if(result!=undefined && req.session.cart==undefined  )
+               {
+
+                let c=0;
+                result.forEach((items)=>{
+                    if(c==0)
+                    {
+                        c++;
+                       req.session.cart = {
+                       items: [items],
+                         }; 
+                    }
+                    else{
+                        req.session.cart.items.push(items);
+                    }
                    })
                }
+
+
 
                res.redirect('/')
              } 
