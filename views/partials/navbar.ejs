@@ -73,25 +73,26 @@
 
 
                                         <div class="cart-item">
-                                           <% if(cart!=undefined){ %>
+                                           <% if(cart!=undefined  && cart.items!='' ){ %>
 
                                             <% cart.items.forEach((items)=> {%>
+                                               <% if(items.quantity>0){ %>
                                                     <button class="remove-btn" onclick=""><i class="ri-close-line"></i></button>
                                                     <img src="./Images/<%- items.image %>" alt="">
                                                     <div class="details">
                                                         <div class="name"> <%= items.name %></div>
                                                         <div class="btn-wrapper">
                                                             
-                                                            <span class="minus"> <a href="/cart/minus">-</a></span>
+                                                            <span class="minus"> <a href="/cart/minus/<%- items.id %>">-</a></span>
                                                             <span class="num"><%= items.quantity %></span>
-                                                            <span class="add"> <a href="cart/plus">+</a>    </span>
+                                                            <span class="add"> <a href="cart/plus/<%- items.id %>">+</a>    </span>
                                                             
                                                         </div>
                                                         <button class="wishlist-btn" onclick="">Add to Wishlist</p></button>
                                                         <div class="price"> Price: <%= items.price %></div> 
                                                     </div>
-                                                    <% }) }else{ %>
-                                                    <p>there is no items</p>
+                                                    <%}                     }) }else{ %>
+                                                    <p>There is no items</p>
                                                     <% } %>
                                         
                                         </div>
