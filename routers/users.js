@@ -21,7 +21,7 @@ router.post(`/`, async  (req, res) => {
             users
             .save()
             .then( (result) => {
-              console.log(result)
+               
               req.session.user=req.body.email;
               if(req.session.cart!=undefined)
               req.session.cart.items.forEach((items) => {
