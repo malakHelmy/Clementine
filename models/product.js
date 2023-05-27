@@ -23,6 +23,7 @@ const productSchema = mongoose.Schema(
         price: {
             type: Number,
             required: true,
+            min: 1,
             default: 0,
         },
         description: {
@@ -31,10 +32,12 @@ const productSchema = mongoose.Schema(
         },
         material: {
             type: String,
+            enum: ['Gold', 'Platinum', 'Silver'],
             required: true,
         },
         category: {
             type: String,
+            enum: ['Gold', 'Diamond', 'Silver'],
             required: true,
         },
 
@@ -42,7 +45,7 @@ const productSchema = mongoose.Schema(
             type: Number,
             required: true,
             min: 0,
-            max: 100,
+            max: 20,
         },
         featured: {
             type: Boolean,

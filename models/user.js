@@ -11,7 +11,11 @@ const userSchema = mongoose.Schema(
         },
         email: {
             type: String,
-            required: true,
+            unique: true,
+            lowercase: true,
+            required: [true, "Cannot be blank."],
+            match: [/\S+@\S+\.\S+/, "Invalid input."],
+            index: true,
         },
         password: {
             type: String,
