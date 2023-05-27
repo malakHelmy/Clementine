@@ -7,6 +7,14 @@
     });
 
 })();
+
+function closesidebar(){
+
+    $("#closesidebarbtn").on("click", function () {
+        $(".cart-window-hide").closeToggle("slow");
+    });
+
+};
 /*Drop down cart end*/
 
 

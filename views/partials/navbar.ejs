@@ -45,6 +45,11 @@
 
                     <% if(user!=undefined){%>
                         <li><a href="/userprofile"><i class="ri-account-circle-line"></i></a>
+                            <ul>
+                                <li><a href="/userprofile">ACCOUNT DETAILS</a></li>
+                                <li><a href="/logout">SLOG OUT</a></li>
+                            </ul>
+                        </li>
                             <% }else{ %>
                         <li><a href="/login"><i class="ri-account-circle-line"></i></a>
                             <ul>
@@ -142,4 +147,5 @@
     });
 </script>
 <script src="../../public/js/trial.js"></script>
+<script src="../../public/js/cart.js"></script>
 <!-- Navigation Bar End -->
