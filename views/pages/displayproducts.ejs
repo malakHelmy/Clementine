@@ -9,11 +9,76 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="/css/displayproducts.css">
 
-  <title>display products</title>
+  <title>Products</title>
 </head>
 
 <body>
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+  
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- material icons cdn -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+      <link rel="stylesheet" href="/css/editcustdash.css">
+      <link rel="stylesheet" href="/css/dashboard.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <title>Products</title>
+  </head>
+  
 
+  <body>
+  
+  
+      <div class="container">
+  
+          <!-- sidebar start -->
+          <aside>
+              <div class="top">
+                  <div class="logo">
+                      <img src="./Images/logoo copy.png" alt="logo">
+                  </div>
+                  <div class="close" id="close-btn">
+                      <span class="material-symbols-sharp">close</span>
+                  </div>
+              </div>
+              <div class="sidebar">
+                  <a href="dashborad"><span class="material-symbols-sharp">dashboard</span>
+                      <h3>Dashboard</h3>
+                  </a>
+                  <a href="editcustdash" ><span class="material-symbols-sharp">person</span>
+                      <h3>Customers</h3>
+                  </a>
+                  <a href="orders"><span class="material-symbols-sharp">receipt_long</span>
+                      <h3>Orders</h3>
+                  </a>
+                  <a href=""><span class="material-symbols-sharp">insights</span>
+                      <h3>Analytics</h3>
+                  </a>
+                  <a href=""><span class="material-symbols-sharp">chat</span>
+                      <h3>Chat</h3><span class="message-count">3</span>
+                  </a>
+                  <a href="editproducts" class="active"><span class="material-symbols-sharp">inventory</span>
+                      <h3>Products</h3>
+                  </a>
+                  <a href=""><span class="material-symbols-sharp">report</span>
+                      <h3>Reports</h3>
+                  </a>
+                  <a href=""><span class="material-symbols-sharp">Settings</span>
+                      <h3>Settings</h3>
+                  </a>
+  
+                  <a href=""><span class="material-symbols-sharp">logout</span>
+                      <h3>Logout</h3>
+                  </a>
+  
+              </div>
+          </aside>
+          <!-- sidebar end -->
+  
 
   <main class="table">
     <section class="table_header">
@@ -55,10 +120,10 @@
             </td>
             <td>
               <% if (product.countInStock) { %>
-              <p class="status_delivered">In Stock</p>
+              <p class="status_instock">In Stock</p>
               <p class="avail_amount">*Available: <%= product.countInStock %> Pieces</p>
               <% } else { %>
-              <p class="status_cancelled">Out Of Stock</p>
+              <p class="status_outofstock">Out Of Stock</p>
               <p class="avail_amount">*Available: 0 Pieces</p>
               <% } %>
             </td>
@@ -69,7 +134,8 @@
       </table>
     </section>
   </main>
-
+  <script src="/js/editcustdash.js"></script>
+  <script src="/js/dashsearch.js"></script>
 
 </body>
 

@@ -57,7 +57,7 @@ app.use('/addproducts', addProdRouter);
 
 app.use(`/`, productsRouter);
 app.use(`/categories`, categoriesRouter);
-app.use(`/orders`, ordersRouter);
+app.use(`/ordersdash`, ordersRouter);
 app.use('/user', usersRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
@@ -107,6 +107,7 @@ app.get(`/checkout`, function (req, res) {
 app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart
     });
 });
 
@@ -114,8 +115,11 @@ app.get('/search', function (req, res) {
     res.render('pages/search');
 });
 
-app.get('/contactus', function (req, res) {
-    res.render('pages/contactus');
+app.get('/contactus', function(req, res) {
+    res.render('pages/contactus', {
+        user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart
+    });
 });
 
 /* --------- DASHBOARDS -----*/
@@ -142,6 +146,10 @@ app.get(`/userprofile`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
+app.get(`/displayproducts`, function (req, res) {
+    res.render('pages/displayproducts');
+});
+
 /* --------- DASHBOARDS END -----*/
 
 /* --------- SIGN UP AND LOG IN ---*/

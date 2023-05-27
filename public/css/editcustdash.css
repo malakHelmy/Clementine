@@ -102,7 +102,21 @@ input[type=password] {
     font-size: 20px;
     padding: 1% 0;
 }
-
+#view {
+    background-color: #a0a3b7;
+    color: #fff;
+    margin: 2% 5%;
+    width: 80%;
+    font-size: 20px;
+    padding: 1% 0;
+}
+#view:hover{
+    cursor: pointer;
+    background-color: #6a6666;
+    color: white;
+    letter-spacing: 1px;
+    transition: 0.6s ease;
+}
 #update:hover {
     cursor: pointer;
     background-color: #6a6666;
@@ -359,6 +373,7 @@ main.table {
 
 
 
+
 table {
     width: 100%;
 }
@@ -423,7 +438,9 @@ tbody tr.hide td img {
     height: 0;
     transition: .2s ease-in-out .5s;
 }
-
+.hide {
+    display: none;
+}
 
 
 .status_delivered {
@@ -454,6 +471,21 @@ tbody tr.hide td img {
     border-radius: 2rem;
     text-align: center;
     background-color: #6fcaea;
+}
+
+.status_outofstock {
+    padding: .4rem 0;
+    border-radius: 2rem;
+    text-align: center;
+    background-color: #d893a3;
+    color: #b30021;
+}
+.status_instock {
+    padding: .4rem 0;
+    border-radius: 2rem;
+    text-align: center;
+    background-color: #86e49d;
+    color: #006b21;
 }
 
 

@@ -32,8 +32,6 @@ router.get(`/`, function (req, res) {
                console.log(result)
                if(result!=undefined &&  req.session.cart!=undefined )
                {
-
-
                    result.forEach((items)=>{
                     let c=0;
                     req.session.cart.items.forEach((items2) => {
@@ -47,14 +45,10 @@ router.get(`/`, function (req, res) {
                       {
                         req.session.cart.items.push(items);
                       }
-                     
                    })
-
-
                }
                else if(result!=undefined && req.session.cart==undefined  )
                {
-
                 let c=0;
                 result.forEach((items)=>{
                     if(c==0)
@@ -69,9 +63,6 @@ router.get(`/`, function (req, res) {
                     }
                    })
                }
-
-
-
                res.redirect('/')
              } 
              else
@@ -84,7 +75,10 @@ router.get(`/`, function (req, res) {
      }
      else
      {
-        res.render('pages/login')
+        res.render('pages/login',{
+            user: req.session.user == undefined ? undefined : req.session.user,
+            cart: req.session.cart == undefined ? undefined : req.session.cart
+         })
      }
      
  });
