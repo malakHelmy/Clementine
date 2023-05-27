@@ -29,6 +29,7 @@ const contactmailerRouter = require('./routers/mailController');
 const chatRouter = require('./routers/chat');
 const displayProdRouter = require('./routers/displayproducts');
 const searchroute = require('./routers/searchbar');
+const logoutroute = require('./routers/logout');
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
 const app = express();
@@ -64,7 +65,7 @@ app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
 app.use('/search', searchroute);
-
+app.use(`/logout`,logoutroute);
 mongoose
     .connect(
         'mongodb+srv://clementine:wifeys2023@clementine.xfv9xzu.mongodb.net/clementine?retryWrites=true&w=majority'
@@ -150,16 +151,13 @@ app.get(`/userprofile`, function (req, res) {
 app.get(`/signup`, function (req, res) {
     res.render('pages/signup', {
         user: req.session.user == undefined ?undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart
     });
 });
 
  
 
 app.post('/sign-up-action', (req, res) => {});
-app.get('/logout', (req, res) => {
-    req.session.destroy();
-    res.redirect('/');
-});
 /* --------- SIGN UP AND LOG IN END ---*/
 //CONTACT US MAILER START
 
