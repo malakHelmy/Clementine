@@ -18,10 +18,11 @@
 
 <body>
     <%- include('../partials/navbar') %>
+    <h1 class="wishlist-header">Your wishlist</h1>
         <div class="wishlist-wrap">
-            <h1 class="wishlist-header">your wishlist</h1>
-            <% if(products.length > 0 ) {%>
-                <% products.forEach(function(items)=> { %>
+            <% if(products !='' ) {%>
+
+                <% products.forEach((items)=> { %>
                     <div class="prod">
                         <div class="wishlist-items">
                             <div class="product-card">
@@ -47,9 +48,8 @@
                         </div>
                     </div>
                     <% }) %>
-                        <% } else{ %>
-                            <h2>Your Wishlist is empty</h2>
-                            <% } %>
+                        <% }%>
+
         </div>
         </div>
         <%- include('../partials/footer') %>

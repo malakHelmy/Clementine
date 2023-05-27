@@ -66,7 +66,7 @@ app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
 app.use('/search', searchroute);
-app.use(`/logout`,logoutroute);
+app.use(`/logout`, logoutroute);
 //app.use('/updatedeletecust', updatecustRoute);
 mongoose
     .connect(
@@ -80,25 +80,23 @@ mongoose
     });
 
 app.get(`/`, function (req, res) {
-
-    
-        
-        res.render('pages/index', {
+    res.render('pages/index', {
         user: req.session.user == undefined ? undefined : req.session.user,
-        cart: req.session.cart == undefined ? undefined : req.session.cart
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
-    
 });
 app.get(`/home`, function (req, res) {
     res.render('pages/index', {
         user: req.session.user == undefined ? undefined : req.session.user,
-        cart: req.session.cart.items == undefined ? undefined :req.session.cart.items
+        cart:
+            req.session.cart.items == undefined
+                ? undefined
+                : req.session.cart.items,
     });
 });
 app.get(`/categories`, function (req, res) {
     res.render('pages/categories', {
         user: req.session.user == undefined ? undefined : req.session.user,
-        
     });
 });
 app.get(`/checkout`, function (req, res) {
@@ -116,7 +114,7 @@ app.get('/search', function (req, res) {
     res.render('pages/search');
 });
 
-app.get('/contactus', function(req, res) {
+app.get('/contactus', function (req, res) {
     res.render('pages/contactus');
 });
 
@@ -149,8 +147,8 @@ app.get(`/userprofile`, function (req, res) {
 /* --------- SIGN UP AND LOG IN ---*/
 app.get(`/signup`, function (req, res) {
     res.render('pages/signup', {
-        user: req.session.user == undefined ?undefined : req.session.user,
-        cart: req.session.cart == undefined ? undefined : req.session.cart
+        user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 
@@ -166,24 +164,20 @@ app.post(`/contactus`, function (req, res) {
     var subject = req.body.subject;
     var message = req.body.message;
 
-
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: 'clementineco2023@gmail.com',
-            pass: 'lmkwmjbyftpuzwhz'
-        }
-
-    })
+            pass: 'lmkwmjbyftpuzwhz',
+        },
+    });
 
     var mailOptions = {
         from: uemail,
         to: 'clementineco2023@gmail.com',
         subject: subject,
-        text: message
-
-    }
-
+        text: message,
+    };
 
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
@@ -191,13 +185,10 @@ app.post(`/contactus`, function (req, res) {
             res.send('Error.');
         } else {
             console.log('Email sent:' + info.response);
-            res.send('Successfully sent.')
-
+            res.send('Successfully sent.');
         }
-        express.response.redirect("/")
-    })
-
-
+        express.response.redirect('/');
+    });
 });
 /* ---------CONTACT US FORM MAILER END --------*/
 

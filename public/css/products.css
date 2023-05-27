@@ -112,6 +112,8 @@ body {
   font-weight:lighter;
   cursor: pointer;
   z-index: 1000;
+  text-decoration: none;
+  color: black;
 }
 
 .sorting {

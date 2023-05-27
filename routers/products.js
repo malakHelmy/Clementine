@@ -2,11 +2,14 @@
 routers are responsible for creating/ storing/ Importing and exporting APIs between the files
 */
 const express = require('express');
-
-const products = require('../controllers/productController');
+const user = require('../models/user');
+const products = require('../controllers/productsController');
+const { Product } = require('../models/product');
 const router = express.Router();
 
+// router.get('/:id', products.productDetails);
 router.get('/products', products.getAllProducts);
+
 //diamond
 router.get('/drings', products.getDrings);
 router.get('/dearrings', products.getDearrings);
@@ -18,19 +21,49 @@ router.get('/gearrings', products.getGearrings);
 router.get('/gnecklaces', products.getGnecklaces);
 router.get('/gbracelets', products.getGbracelets);
 
-// router.get('/:id', products.productDetails);
-router.get('/wishlist', products.getWishlist);
-router.post('/add-to-wishlist', async (req, res) => {
-    const userID = req.user;
-    const prodID = req.body.products;
+router.get('/wishlist', async (req, res) => {
+    const userID = req.session.user;
     try {
-      products.addToWishlist(userID, prodID);
-      res.status(200).json({ message: 'Product added to wishlist' });
+        const User = await user.findOne({ email: userID });
+
+        if (!User) {
+            res.render('pages/wishlist', {
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
+                products: '',
+            });
+        }
+
+        const wishlistItems = await Product.find({
+            _id: { $in: User.wishlist },
+        });
+
+        res.render('pages/wishlist', {
+            user: req.session.user == undefined ? undefined : req.session.user,
+            cart: req.session.cart == undefined ? undefined : req.session.cart,
+            products: wishlistItems,
+        });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Server error' });
+        console.log(error);
     }
-  });
+});
+router.post('/add-to-wishlist', async (req, res) => {
+    const userID = req.session.user;
+    const prod = req.body.prodID;
+    try {
+        products.addToWishlist(userID, prod);
+        res.status(200);
+    } catch (error) {
+        console.error(error);
+        res.status(500);
+    }
+});
 // router.post(`/`, async (req, res) => {
 //     const cat = await Category.findById(req.body.category);
 //     if (!cat) {

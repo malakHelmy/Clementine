@@ -32,35 +32,37 @@
             <h1 class="rings-intro-title">
                 <%= Id %>
             </h1>
-            <p class="snip"><%=body %></p>
+            <p class="snip">
+                <%=body %>
+            </p>
         </section>
         <section class="product-container">
             <% if(products !='' ) {%>
                 <% products.forEach((items)=> {%>
                     <div class="box">
 
-                        <a  alt="" class="ri-heart-line" id="heart-icon" data-product-id="<%= items._id %>">
+                        <a alt="" class="ri-heart-line" id="heart-icon" data-productid="<%= items._id %>">
 
-                        <a href="/<%- items._id %>">
-                            <img class="imgg" src="/Images/<%- items.image %>" alt="">
-                        </a>
-                        <div class="items">
-                            <div class="prodetails">
-                                <p>
-                                    <%= items.name%>
-                                </p>
-                                <p class="price">
-                                    <%= items.price%>
-                                </p>
+                            <a href="/<%- items._id %>">
+                                <img class="imgg" src="/Images/<%- items.image %>" alt="">
+                            </a>
+                            <div class="items">
+                                <div class="prodetails">
+                                    <p>
+                                        <%= items.name%>
+                                    </p>
+                                    <p class="price">
+                                        <%= items.price%>
+                                    </p>
+                                </div>
+                                <form action="/cart/<%= items._id %>/<%= Id %>" method="post"><input type="submit"
+                                        value="Add to cart" class="btn"></form>
                             </div>
-                            <form action="/cart/<%= items._id %>/<%= Id %>" method="post"><input type="submit"
-                                    value="Add to cart" class="btn"></form>
-                        </div>
                     </div>
                     <% }) %>
                         <% } %>
         </section>
-        <script src="js/prod.js"></script>
+        <script src="/js/prod.js"></script>
         <%- include('../partials/footer') -%>
 
 </body>
