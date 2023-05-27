@@ -28,6 +28,14 @@ router.get(`/`, function (req, res) {
                  items.email=req.session.user;
                });  
                
+                const result= await Cart.find({email:req.body.email})
+               console.log(result)
+               if(result!=undefined &&  req.session.cart!=undefined )
+               {
+                   result.forEach((items)=>{
+                    req.session.cart.items.push(items);
+                   })
+               }
 
                res.redirect('/')
              } 
