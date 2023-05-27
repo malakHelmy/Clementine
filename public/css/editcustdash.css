@@ -75,8 +75,7 @@ input[type=password] {
 .custbuttons {
     display: block;
 }
-
-#cancel {
+#cancel{
     background-color: #a0a3b7;
     color: #fff;
     margin: 5%;
@@ -84,6 +83,16 @@ input[type=password] {
     font-size: 20px;
     padding: 1% 0;
 }
+
+#update {
+    background-color: #a0a3b7;
+    color: #fff;
+    margin: 5%;
+    width: 80%;
+    font-size: 20px;
+    padding: 1% 0;
+}
+
 
 #add {
     background-color: #a0a3b7;
@@ -94,7 +103,7 @@ input[type=password] {
     padding: 1% 0;
 }
 
-#add:hover {
+#update:hover {
     cursor: pointer;
     background-color: #6a6666;
     color: white;

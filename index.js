@@ -30,6 +30,7 @@ const chatRouter = require('./routers/chat');
 const displayProdRouter = require('./routers/displayproducts');
 const searchroute = require('./routers/searchbar');
 const logoutroute = require('./routers/logout');
+//const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
 const app = express();
@@ -66,6 +67,7 @@ app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
 app.use('/search', searchroute);
 app.use(`/logout`,logoutroute);
+//app.use('/updatedeletecust', updatecustRoute);
 mongoose
     .connect(
         'mongodb+srv://clementine:wifeys2023@clementine.xfv9xzu.mongodb.net/clementine?retryWrites=true&w=majority'
@@ -134,8 +136,8 @@ app.get(`/editcustdash`, function (req, res) {
 app.post(`/editcustdash`, function (req, res) {
     res.render('pages/editcustdash');
 });
-app.get(`/updatecustdash`, function (req, res) {
-    res.render('pages/updatecustdash');
+app.get(`/updatedeletecust`, function (req, res) {
+    res.render('pages/updatedeletecust');
 });
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
