@@ -102,7 +102,21 @@ input[type=password] {
     font-size: 20px;
     padding: 1% 0;
 }
-
+#view {
+    background-color: #a0a3b7;
+    color: #fff;
+    margin: 2% 5%;
+    width: 80%;
+    font-size: 20px;
+    padding: 1% 0;
+}
+#view:hover{
+    cursor: pointer;
+    background-color: #6a6666;
+    color: white;
+    letter-spacing: 1px;
+    transition: 0.6s ease;
+}
 #update:hover {
     cursor: pointer;
     background-color: #6a6666;

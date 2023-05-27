@@ -148,6 +148,9 @@ app.get(`/userprofile`, function (req, res) {
         user: req.session.user === undefined ? '' : req.session.user,
     });
 });
+app.get(`/displayproducts`, function (req, res) {
+    res.render('pages/displayproducts');
+});
 /* --------- DASHBOARDS END -----*/
 
 /* --------- SIGN UP AND LOG IN ---*/
