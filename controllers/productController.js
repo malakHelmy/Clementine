@@ -160,7 +160,7 @@ exports.getGnecklaces = (req, res) => {
     Product.find({ material: 'gold', category: 'necklace' })
         .then((result) => {
             res.render('pages/products', {
-                productTitle: "Gold Necjkaces",
+                productTitle: "Gold Necklaces",
 
                 body,
                 products: result,
@@ -260,3 +260,26 @@ exports.getWishlist = asyncHandler(async (req, res) => {
         throw new Error(error);
     }
 });
+
+
+exports.getNewIn = (req, res) => {
+    const body = `Explore our newest collections, each piece is crafted with the utmost care and attention to detail,
+      using only the finest materials to ensure quality and longevity.`;
+    Product.find().sort({ date: -1 })
+        .then((result) => {
+            res.render('pages/products', {
+                productTitle: "New In",
+                body,
+                products: result,
+                Id: req.params.id,
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
+                        cart: req.session.cart == undefined ? undefined :req.session.cart,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
