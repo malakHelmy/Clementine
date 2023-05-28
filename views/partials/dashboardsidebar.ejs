@@ -1,5 +1,5 @@
- <!-- sidebar start -->
- <aside>
+<!-- sidebar start -->
+<aside>
     <div class="top">
         <div class="logo">
             <img src="/Images/logoo copy.png" alt="">
@@ -9,35 +9,43 @@
         </div>
     </div>
     <div class="sidebar">   
-        <a href="" class="active"><span class="material-symbols-sharp">dashboard</span>
+        <a href="/" class="<%= currentPage === 'dashboard' ? 'active' : '' %>">
+            <span class="material-symbols-sharp">dashboard</span>
             <h3>Dashboard</h3>
         </a>
-        <a href="editcustdash"><span class="material-symbols-sharp">person</span>
+        <a href="editcustdash" class="<%= currentPage === 'editcustdash' ? 'active' : '' %>">
+            <span class="material-symbols-sharp">person</span>
             <h3>Customers</h3>
         </a>
-        <a href="ordersdash"><span class="material-symbols-sharp">receipt_long</span>
+        <a href="ordersdash" class="<%= currentPage === 'ordersdash' ? 'active' : '' %>">
+            <span class="material-symbols-sharp">receipt_long</span>
             <h3>Orders</h3>
         </a>
-        <a href=""><span class="material-symbols-sharp">insights</span>
+        <a href="" class="<%= currentPage === 'analytics' ? 'active' : '' %>">
+            <span class="material-symbols-sharp">insights</span>
             <h3>Analytics</h3>
         </a>
-        <a href=""><span class="material-symbols-sharp">chat</span>
-            <h3>Chat</h3><span class="message-count">3</span>
+        <a href="" class="<%= currentPage === 'chat' ? 'active' : '' %>">
+            <span class="material-symbols-sharp">chat</span>
+            <h3>Chat</h3>
+            <span class="message-count">3</span>
         </a>
-        <a href="addproducts"><span class="material-symbols-sharp">inventory</span>
+        <a href="/addproducts" class="<%= currentPage === 'addproducts' ? 'active' : '' %>">
+            <span class="material-symbols-sharp">inventory</span>
             <h3>Products</h3>
         </a>
-        <a href=""><span class="material-symbols-sharp">report</span>
+        <a href="" class="<%= currentPage === 'reports' ? 'active' : '' %>">
+            <span class="material-symbols-sharp">report</span>
             <h3>Reports</h3>
         </a>
-        <a href=""><span class="material-symbols-sharp">Settings</span>
+        <a href="" class="<%= currentPage === 'settings' ? 'active' : '' %>">
+            <span class="material-symbols-sharp">Settings</span>
             <h3>Settings</h3>
         </a>
-        
-        <a href="/"><span class="material-symbols-sharp">logout</span>
+        <a href="/">
+            <span class="material-symbols-sharp">logout</span>
             <h3>Logout</h3>
         </a>
-
     </div>
 </aside>
 <!-- sidebar end -->

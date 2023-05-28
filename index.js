@@ -16,7 +16,6 @@ const api_key = process.env.OPENAI_API_KEY;
 
 //Routes
 const addProdRouter = require('./routers/addproducts');
-
 const editProdRouter = require('./routers/editproducts');
 const cartRouter = require('./routers/cart');
 const productsRouter = require('./routers/products');
@@ -123,12 +122,14 @@ app.get('/contactus', function(req, res) {
 });
 
 /* --------- DASHBOARDS -----*/
-app.get(`/dashboard`, function (req, res) {
-    res.render('pages/dashboard');
-});
-app.get('/addproducts', (req, res) => {
-    res.render('pages/addproducts');
-});
+app.get('/dashboard', (req, res) => {
+    res.render('pages/dashboard', { currentPage: 'dashboard' });
+  });
+  
+  app.get('/addproducts', (req, res) => {
+    res.render('pages/addproducts', { currentPage: 'addproducts' });
+  });
+  
 app.get(`/editproducts`, function (req, res) {
     res.render('pages/editproducts');
 });
