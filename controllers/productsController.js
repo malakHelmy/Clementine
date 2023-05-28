@@ -9,6 +9,10 @@ exports.getAllProducts = (req, res) => {
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
 
                 products: result,
                 Id: req.params.id,
@@ -150,6 +154,14 @@ exports.getGrings = (req, res) => {
             res.render('pages/products', {
                 productTitle: 'Gold Rings',
                 body,
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
                 products: result,
                 Id: req.params.id,
             });
@@ -187,7 +199,14 @@ exports.getGearrings = (req, res) => {
         .then((result) => {
             res.render('pages/products', {
                 productTitle: 'Gold Earrings',
-
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
                 body,
                 products: result,
                 Id: req.params.id,
@@ -218,7 +237,7 @@ exports.getGbracelets = (req, res) => {
 exports.addToWishlist = asyncHandler(async (userID, prodID) => {
     try {
         const userWish = await user.findOne({ email: userID });
-        console.log(userWish);
+
         const wishlistItems = await Product.find({
             _id: { $in: userWish.wishList },
         });

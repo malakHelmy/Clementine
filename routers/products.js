@@ -56,7 +56,6 @@ router.get('/wishlist', async (req, res) => {
                         ? undefined
                         : req.session.cart,
                 products: '',
-                body: 'your wishlist is empty'
             });
         }
 
