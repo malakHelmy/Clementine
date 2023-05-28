@@ -127,7 +127,7 @@ app.get('/dashboard', (req, res) => {
   });
   
   app.get('/addproducts', (req, res) => {
-    res.render('pages/addproducts', { currentPage: 'addproducts' });
+    res.render('pages/addproducts');
   });
   
 app.get(`/editproducts`, function (req, res) {
