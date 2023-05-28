@@ -54,13 +54,13 @@ body {
 .items {
   transform: translateY(7rem);
   transition: .9s;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
 }
 
 .prodetails {
   text-align: center;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: rgb(255, 254, 254);
+  color: rgb(0, 0, 0);
   font-size: 17px;
   transition: .5s;
 
@@ -99,12 +99,14 @@ body {
 }
 
 .btn:hover {
-  background-color: whitesmoke;
-  color: rgb(150, 96, 3);
+  background: #d79e2e;
+  color: white;
+  transition: 0.7s ease;
   cursor: pointer;
+  letter-spacing: 2px;
 }
 
-#heart-icon {
+.box .ri-heart-line {
   position: relative;
   left: 230px;
   top: 6px;

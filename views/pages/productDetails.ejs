@@ -7,6 +7,7 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="/css/products.css">
     <link rel="stylesheet" type="text/css" href="/css/productDetails.css">
 
     <!-- to access font awesome cdn icons -->
@@ -22,64 +23,27 @@
 
         <div class="parent">
 
-            <div class="imgs">
-
-                <!-- slideshow start -->
-                <section id="imageslideshow">
-                    <!-- slider start -->
-                    <div id="slider">
-
-                        <div class="slideshow">
-                            <!-- radiobuttons start -->
-                            <input type="radio" name="radio-btn" id="radio1">
-                            <input type="radio" name="radio-btn" id="radio2">
-                            <input type="radio" name="radio-btn" id="radio3">
-                            <!-- radiobuttons end -->
-
-                            <!-- slideshow images start -->
-                            <div class="slide first">
-                                <img src="/Images/<%- products.image %>">
-                            </div>
-                            <div class="slide">
-                                
-                                <img src="/Images<%-products.image%>">
-                                
-                            </div>
-
-                            <!-- slideshow images end -->
-                            <!-- auto nav start -->
-                            <div class="navauto">
-                                <div class="auto-btn1"></div>
-                                <div class="auto-btn2"></div>
-                                <div class="auto-btn3"></div>
-                            </div>
-                            <!-- auto nav end -->
-                            <!-- manual nav start -->
-                            <div class="navmanual">
-                                <label for="radio1" class="manual-btn"></label>
-                                <label for="radio2" class="manual-btn"></label>
-                                <label for="radio3" class="manual-btn"></label>
-                            </div>
-                            <!-- manual nav end -->
+            <div class="card-wrapper">
+                <div class="card">
+                    <div class="product-imgs">
+                        <div class="img-select">
+                            <% for (let i=0; i < products.images.length; i++) { %>
+                                <div class="img-item">
+                                    <button>
+                                        <img src="/Images/<%= products.images[i] %>" alt="<%= products.name %>"
+                                            data-imgpath="<%= products.images[i] %>">
+                                    </button>
+                                </div>
+                                <% } %>
                         </div>
 
-                    </div>
-                    <!-- slider end -->
+                        <div class="img-showcase">
+                            <img src="/Images/<%- products.image %>" alt="<%= products.name %>">
+                        </div>
 
-                    <script type="text/javascript">
-                        var counter = 1;
-                        setInterval(function () {
-                            document.getElementById('radio' + counter).checked = true;
-                            counter++;
-                            if (counter > count) {
-                                counter = 1;
-                            }
-                        }, 5000);
-                    </script>
-                </section>
-                <!-- slideshow end -->
-                <!-- <div class="umg2"> <img src="ring6.jpg" alt=""></div>
-                <div class="umg2"> <img src="ring5.jpg" alt=""></div> -->
+
+                    </div>
+                </div>
 
             </div>
             <div class="details">
@@ -93,7 +57,7 @@
                 <p>
                 <p class="aboutring"><b> Brand:</b> Clementine </p>
                 <p class="aboutring"><b> Collection:</b>
-                    <%=  products.category%>
+                    <%= products.category%>
                 </p>
                 <p class="aboutring"><b> Metal:</b>
                     <%= products.material %>
@@ -121,9 +85,9 @@
                 <br>
 
                 <div class="wishlist" id="wishlist">
-                    <img src="./Images/darkfav.png" alt="" id="darkfav" onclick="changeimage()"
+                    <img src="/Images/darkfav.png" alt="" id="darkfav" onclick="changeimage()"
                         title="remove from wishlist">
-                    <img src="./Images/whiteheart.png" alt="" id="fav" onclick="changeimage2()" title="add to wishlist">
+                    <img src="/Images/whiteheart.png" alt="" id="fav" onclick="changeimage2()" title="add to wishlist">
                     <script>
                         let imgs = [document.getElementById('darkfav'), document.getElementById('fav')];
                         function changeimage() {
@@ -142,82 +106,46 @@
                 <br>
                 <div class="btnsdiv">
 
-                    <button class="btn">BUY NOW</button>
-                    <button class="btn">ADD TO CART</button>
+                    <button class="btns">BUY NOW</button>
+                    <button class="btns">ADD TO CART</button>
                 </div>
 
 
             </div>
-            <!-- prodacts cards -->
-            <div class="maylike">
+        </div>
+        <!-- prodacts cards -->
+        <div class="maylike">
 
-                <p class="head">You May Also Like</p>
-                <section class="pcontainer">
-                    <div class="box">
-                        <a href="">
-                            <img src="./Images/fav.png" alt="" class="cardimg cardfav">
-                            <img src="./Images/ring1.jpg" alt="wishbone ring" class="cardimg">
-                        </a>
-                        <div class="items">
-                            <div class="prodetails">
-                                <p>Disney Beauty and Rose Ring</p>
-                                <p class="price">EGP 21,0000 <del>EGP54,000</del></p>
-                            </div>
-                            <button class="cardbtn">Add to cart</button>
+            <p class="head">You May Also Like</p>
+            <section class="pcontainer">
+                <% if(product !='' ) {%>
+                    <% product.forEach((items)=> {%>
+                        <div class="box">
+
+                            <a alt="" class="ri-heart-line" id="heart-icon-<%= items._id %>"
+                                data-productid="<%= items._id %>">
+
+                                <a href="/product/<%- items._id %>">
+                                    <img class="imgg" src="/Images/<%- items.image %>" alt="">
+                                </a>
+                                <div class="items">
+                                    <div class="prodetails">
+                                        <p>
+                                            <%= items.name%>
+                                        </p>
+                                        <p class="price">
+                                            <%= items.price%>
+                                        </p>
+                                    </div>
+                                    <form action="/cart/<%= items._id %>/<%= Id %>" method="post"><input type="submit"
+                                            value="Add to cart" class="btn"></form>
+                                </div>
                         </div>
-
-                    </div>
-
-                    <div class="box">
-                        <a href="">
-                            <img src="./Images/fav.png" alt="" class="cardimg cardfav">
-                            <img src="./Images/ring2.png" alt="" class="cardimg">
-                        </a>
-                        <div class="items">
-                            <div class="prodetails">
-                                <p>Sparkling Daisy Flower Crown Ring </p>
-                                <p class="price">EGP 21,0000 <del>EGP54,000</del></p>
-                            </div>
-                            <button class="cardbtn">Add to cart</button>
-                        </div>
-
-                    </div>
-                    <div class="box">
-                        <a href="">
-                            <img src="./Images/fav.png" alt="" class="cardimg cardfav">
-                            <img src="./Images/ring3.png" alt="" class="cardimg">
-                        </a>
-                        <div class="items">
-                            <div class="prodetails">
-                                <p>March Aqua Blue Beaded Ring</p>
-                                <p class="price">EGP 21,0000 <del>EGP54,000</del></p>
-                            </div>
-                            <button class="cardbtn">Add to cart</button>
-                        </div>
-
-                    </div>
-                    <div class="box">
-                        <a href="">
-                            <img src="./Images/fav.png" alt="" class="cardimg cardfav">
-                            <img src="./Images/ring4.jpg" alt="" class="cardimg">
-                        </a>
-                        <div class="items">
-                            <div class="prodetails">
-                                <p>Regal Swirl Tiara Ring </p>
-                                <p class="price">EGP 21,0000 <del>EGP54,000</del></p>
-                            </div>
-                            <button class="cardbtn">Add to cart</button>
-                        </div>
-
-                    </div>
-                </section>
-
-
-            </div>
-
-
+                        <% }) %>
+                            <% } %>
+            </section>
             <div class="review">
-                <p> You are reviewing: <b>Sparkling Wishbone Ring</b> </p>
+                <p> You are reviewing: <b><%= products.name%></b> </p>
                 <div class="signIn">
 
                     <form action="" class="signInform">
@@ -245,10 +173,8 @@
 
             </div>
 
-
-        </div>
-
-        <%- include('../partials/footer') -%>
+            <script src="/js/slideshow.js"></script>
+            <%- include('../partials/footer') -%>
 
 </body>
 
