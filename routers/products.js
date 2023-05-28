@@ -21,6 +21,8 @@ router.get('/gearrings', products.getGearrings);
 router.get('/gnecklaces', products.getGnecklaces);
 router.get('/gbracelets', products.getGbracelets);
 
+//router.get('/index', products.getNewInLimited);
+
 //newin
 router.get('/newin', products.getNewIn);
 
