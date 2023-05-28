@@ -37,6 +37,10 @@ router.get('/gearrings', products.getGearrings);
 router.get('/gnecklaces', products.getGnecklaces);
 router.get('/gbracelets', products.getGbracelets);
 
+//newin
+router.get('/newin', products.getNewIn);
+
+
 router.get('/wishlist', async (req, res) => {
     const userID = req.session.user;
     try {

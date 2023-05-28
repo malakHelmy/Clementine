@@ -208,3 +208,32 @@ thead th.active, tbody td.active {
     width: 130px;
     height: 130px;
 }
+
+.add_product {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .add-product {
+    display: inline-block;
+    padding: 8px 18px;
+    font-size: 15.5px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    background-color: #9b9a9a;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  
+  .add-product:hover {
+    background-color: #828282;
+    transition: 2s ease;
+
+  }
+  
+  .add-product i {
+    margin-right: 3px;
+  }
+  

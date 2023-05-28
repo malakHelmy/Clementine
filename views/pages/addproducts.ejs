@@ -22,7 +22,7 @@
 
     <div class="container">
 
-        <%- include('../partials/dashboardsidebar') %>
+        <%- include('../partials/dashboardsidebar', { currentPage: 'displayproducts' }) %>
 
 
 
@@ -103,7 +103,6 @@
 
                         <button type="add" id="add">Add</button><span>
                         <button id="cancel" href="/addproducts">Cancel</button></span>
-                        <button id="view" href="/displayproducts">View Products</button></span>
 
                     </div>
                     </form>

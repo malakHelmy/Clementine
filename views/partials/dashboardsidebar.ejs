@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="sidebar">   
-        <a href="/" class="<%= currentPage === 'dashboard' ? 'active' : '' %>">
+        <a href="/dashboard" class="<%= currentPage === 'dashboard' ? 'active' : '' %>">
             <span class="material-symbols-sharp">dashboard</span>
             <h3>Dashboard</h3>
         </a>
@@ -17,6 +17,7 @@
             <span class="material-symbols-sharp">person</span>
             <h3>Customers</h3>
         </a>
+        
         <a href="ordersdash" class="<%= currentPage === 'ordersdash' ? 'active' : '' %>">
             <span class="material-symbols-sharp">receipt_long</span>
             <h3>Orders</h3>
@@ -25,12 +26,12 @@
             <span class="material-symbols-sharp">insights</span>
             <h3>Analytics</h3>
         </a>
-        <a href="" class="<%= currentPage === 'chat' ? 'active' : '' %>">
+        <a href="/chat" class="<%= currentPage === 'chat' ? 'active' : '' %>">
             <span class="material-symbols-sharp">chat</span>
             <h3>Chat</h3>
             <span class="message-count">3</span>
         </a>
-        <a href="/addproducts" class="<%= currentPage === 'addproducts' ? 'active' : '' %>">
+        <a href="/displayproducts" class="<%= currentPage === 'displayproducts' ? 'active' : '' %>">
             <span class="material-symbols-sharp">inventory</span>
             <h3>Products</h3>
         </a>
