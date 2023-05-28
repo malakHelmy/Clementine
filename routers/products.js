@@ -7,7 +7,23 @@ const products = require('../controllers/productsController');
 const { Product } = require('../models/product');
 const router = express.Router();
 
-// router.get('/:id', products.productDetails);
+router.get('/product/:id',async (req, res) => {
+    const prod = await Product.findById({ _id: req.params.id });
+    const product = await Product.find({featured : true});
+    if (!prod) {
+        console.log(
+            'The Product with the given ID was not found please check for the validity of the ID'
+        );
+        return res.status(500);
+    }
+    res.render('pages/productDetails', {
+        user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
+        products: prod,
+        product,
+        Id: req.params.id,
+    });
+});
 router.get('/products', products.getAllProducts);
 
 //diamond
@@ -37,6 +53,7 @@ router.get('/wishlist', async (req, res) => {
                         ? undefined
                         : req.session.cart,
                 products: '',
+                body: 'your wishlist is empty'
             });
         }
 
@@ -48,6 +65,7 @@ router.get('/wishlist', async (req, res) => {
             user: req.session.user == undefined ? undefined : req.session.user,
             cart: req.session.cart == undefined ? undefined : req.session.cart,
             products: wishlistItems,
+            body: 'your wishlist'
         });
     } catch (error) {
         console.log(error);

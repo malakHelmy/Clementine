@@ -40,9 +40,10 @@
                 <% products.forEach((items)=> {%>
                     <div class="box">
 
-                        <a alt="" class="ri-heart-line" id="heart-icon" data-productid="<%= items._id %>">
+                        <a alt="" class="ri-heart-line" id="heart-icon-<%= items._id %>"
+                            data-productid="<%= items._id %>">
 
-                            <a href="/<%- items._id %>">
+                            <a href="/product/<%- items._id %>">
                                 <img class="imgg" src="/Images/<%- items.image %>" alt="">
                             </a>
                             <div class="items">
