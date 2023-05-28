@@ -166,6 +166,39 @@ exports.getGnecklaces = (req, res) => {
             console.log(err);
         });
 };
+exports.getGearrings = (req, res) => {
+    Product.find({ material: 'gold', category: 'earring' })
+        .then((result) => {
+            res.render('pages/products', {
+                productTitle: "Gold Earrings",
+
+                body,
+                products: result,
+                Id: req.params.id,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+exports.getGbracelets = (req, res) => {
+    const body =
+        'Gold bracelets come in many styles and designs, making them a versatile accessory that can be worn with any outfit. Some popular styles include chain bracelets, bangles, cuffs, and tennis bracelets. Gold bracelets can be worn alone as a statement piece or stacked with other bracelets to create a trendy and personalized look. They can be dressed up or down to suit any occasion, from a casual daytime outfit to an evening gown.';
+    Product.find({ material: 'gold', category: 'bracelet' })
+        .then((result) => {
+            res.render('pages/products', {
+                productTitle: "Gold Bracelets",
+
+                body,
+                products: result,
+                Id: req.params.id,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
 
 exports.getNewIn = (req, res) => {
     const body = `Explore our newest collections, each piece is crafted with the utmost care and attention to detail,
