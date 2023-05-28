@@ -7,6 +7,9 @@ const products = require('../controllers/productsController');
 const { Product } = require('../models/product');
 const router = express.Router();
 
+//new in
+router.get('/newin', products.getNewIn);
+
 router.get('/product/:id',async (req, res) => {
     const prod = await Product.findById({ _id: req.params.id });
     const product = await Product.find({featured : true});
@@ -36,10 +39,6 @@ router.get('/grings', products.getGrings);
 router.get('/gearrings', products.getGearrings);
 router.get('/gnecklaces', products.getGnecklaces);
 router.get('/gbracelets', products.getGbracelets);
-
-//newin
-router.get('/newin', products.getNewIn);
-
 
 router.get('/wishlist', async (req, res) => {
     const userID = req.session.user;

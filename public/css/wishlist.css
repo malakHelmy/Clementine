@@ -9,6 +9,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    margin-bottom: 50%;
 }
 
 .wishlist-header {
@@ -16,11 +17,6 @@
     padding: 30px 0;
     margin: 1%;
     margin-left: 30px;
-}
-
-.wishlist-items {
-    margin-bottom: 70px;
-
 }
 
 .product-card {
