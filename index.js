@@ -29,6 +29,8 @@ const chatRouter = require('./routers/chat');
 const displayProdRouter = require('./routers/displayproducts');
 const searchRoutes = require('./routers/searchbar');
 const logoutroute = require('./routers/logout');
+const employersRouter = require('./routers/employersdash');
+
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
@@ -53,6 +55,7 @@ app.use(
 );
 // Routers
 app.use('/addproducts', addProdRouter);
+app.use('/employersdash', employersRouter);
 
 app.use(`/`, productsRouter);
 app.use(`/categories`, categoriesRouter);
@@ -104,7 +107,8 @@ app.get(`/categories`, function (req, res) {
 app.get(`/checkout`, function (req, res) {
     res.render('pages/checkout', {
         user: req.session.user == undefined ? undefined : req.session.user,
-    });
+        cart: req.session.cart == undefined ? undefined : req.session.cart
+      });
 });
 app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
@@ -156,6 +160,9 @@ app.get(`/userprofile`, function (req, res) {
 });
 app.get(`/displayproducts`, function (req, res) {
     res.render('pages/displayproducts');
+});
+app.get(`/employersdash`, function(req, res){
+    res.render('pages/employersdash');
 });
 
 /* --------- DASHBOARDS END -----*/
