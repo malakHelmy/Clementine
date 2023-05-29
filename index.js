@@ -98,6 +98,7 @@ app.get(`/home`, function (req, res) {
 app.get(`/categories`, function (req, res) {
     res.render('pages/categories', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 app.get(`/checkout`, function (req, res) {
@@ -109,7 +110,7 @@ app.get(`/checkout`, function (req, res) {
 app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
         user: req.session.user == undefined ? undefined : req.session.user,
-        cart: req.session.cart == undefined ? undefined : req.session.cart
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 
@@ -120,22 +121,22 @@ app.get('/search', function (req, res) {
     });
 });
 
-app.get('/contactus', function(req, res) {
+app.get('/contactus', function (req, res) {
     res.render('pages/contactus', {
         user: req.session.user == undefined ? undefined : req.session.user,
-        cart: req.session.cart == undefined ? undefined : req.session.cart
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 
 /* --------- DASHBOARDS -----*/
 app.get('/dashboard', (req, res) => {
     res.render('pages/dashboard', { currentPage: 'dashboard' });
-  });
-  
-  app.get('/addproducts', (req, res) => {
+});
+
+app.get('/addproducts', (req, res) => {
     res.render('pages/addproducts');
-  });
-  
+});
+
 app.get(`/editproducts`, function (req, res) {
     res.render('pages/editproducts');
 });
@@ -150,11 +151,15 @@ app.get(`/updatedeletecust`, function (req, res) {
 });
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 app.get(`/displayproducts`, function (req, res) {
     res.render('pages/displayproducts');
+});
+app.get(`/employersdash`, function(req, res){
+    res.render('pages/employersdash');
 });
 
 /* --------- DASHBOARDS END -----*/
