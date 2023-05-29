@@ -20,6 +20,7 @@
     "express-async-handler": "^1.2.0",
     "express-fileupload": "^1.4.0",
     "express-session": "^1.17.3",
+    "http": "^0.0.1-security",
     "i": "^0.3.7",
     "jsonwebtoken": "^9.0.0",
     "mailgen": "^2.0.27",
