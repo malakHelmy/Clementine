@@ -51,9 +51,18 @@
         </div>
         <div class="col-lg-8">
             <div class="d-sm-flex align-items-sm-start justify-content-sm-between">
-                <div class="status">Status : Packed</div>
+                <% order.forEach(function(orders)) {%>
+                <% if (orders.status === "Shipped") { %> 
+                    <div class="status">Status : <p class="status_shipped">Shipped</p></div>
+                  <% } else if (orders.status === "Delivered") { %>
+                    <div class="status">Status : <p class="status_delivered">Delivered</p> </div>
+                  <% } else if (orders.status === "Pending") { %>
+                    <div class="status">Status : <p class="status_pending">Pending</p></div>
+                  <% } else if (orders.status === "Cancelled") { %>
+                    <div class="status">Status :  <p class="status_cancelled">Cancelled</p> </div>
+                  <% } %> </div>
                 <div class="btn btn-primary text-uppercase" location.href='./userprofileorder'>order info</div>
-            </div>
+            
             <div class="progressbar-track">
                 <ul class="progressbar">
                     <li id="step-1" class="text-muted green">
@@ -95,9 +104,18 @@
         </div>
         <div class="col-lg-8">
             <div class="d-sm-flex align-items-sm-start justify-content-sm-between">
-                <div class="status">Status : Delivered</div>
+               <% order.forEach(function(orders)) {%>
+                <% if (orders.status === "Shipped") { %> 
+                    <div class="status">Status : <p class="status_shipped">Shipped</p></div>
+                  <% } else if (orders.status === "Delivered") { %>
+                    <div class="status">Status : <p class="status_delivered">Delivered</p> </div>
+                  <% } else if (orders.status === "Pending") { %>
+                    <div class="status">Status : <p class="status_pending">Pending</p></div>
+                  <% } else if (orders.status === "Cancelled") { %>
+                    <div class="status">Status :  <p class="status_cancelled">Cancelled</p> </div>
+                  <% } %> </div>
                 <div class="btn btn-primary text-uppercase" location.href='./userprofileorder'>order info</div>
-            </div>
+
             <div class="progressbar-track">
                 <ul class="progressbar">
                     <li id="step-1" class="text-muted green">
