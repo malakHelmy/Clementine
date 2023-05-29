@@ -1,3 +1,43 @@
-.hide{
-display: none;
+
+h1 {
+    font-weight: 300;
+    text-align: center;
+    padding: 10px;
+    font-size: 45px;
+}
+input[type="text"]{
+    display: block;
+    margin: 30px auto 0 auto;
+    padding: 10px;
+    max-width: 600px;
+    width: 95%;
+}
+
+button, input, select, textarea{
+    font-size: 100%;
+}
+
+#searchResults{
+    max-width: 600px;
+    width: 95%;
+    margin: 20px auto 0 auto;
+}
+#searchResults a{
+    text-decoration: none;
+    color: black;
+    display: flex;
+}
+#searchResults a img{
+    width: 100px;
+}
+#searchResults a p{
+    margin: 40px;
+}
+hr{
+    border-top:  none;
+    border: 1px solid lightgray;
+}
+
+p{
+    margin: 10px 0;
 }

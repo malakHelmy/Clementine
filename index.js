@@ -64,7 +64,7 @@ app.use('/editproducts', editProdRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
-app.use('/search', searchRoutes);
+app.use('/', searchRoutes);
 app.use(`/logout`, logoutroute);
 //app.use('/updatedeletecust', updatecustRoute);
 mongoose

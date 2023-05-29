@@ -1,30 +1,41 @@
 const express = require('express');
-const Product = require('../models/product');
+
+const { Product } = require('../models/product');
 const router = express.Router();
 
 router.post('/search', async (req, res) => {
-  try {
-    let searchQuery = req.body.query.trim();
-    let searchResults = await Product.find({
-      name: { $regex: new RegExp(searchQuery, 'i') },
-    })
-      .select('name _id') // Select only the name and ID fields
-      .limit(10)
-      .exec();
-    let hint = '';
-    if (searchResults.length > 0) {
-      searchResults.forEach((result) => {
-        hint += `<a href="${result._id}" target="_blank">${result.name}</a><br>`;
-      });
-    } else {
-      hint = 'No results found';
-    }
-    res.send({ response: hint });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Internal server error' });
-  }
+    let payload = req.body.payload.trim();
+    let search = await Product.find({
+        name: { $regex: new RegExp('^' + payload + '.*', 'i') },
+    }).exec();
+    //limit serach results to 10
+    search = search.slice(0, 10);
+
+    res.send({ payload: search });
 });
+// router.post('/search', async (req, res) => {
+//   try {
+//     let searchQuery = req.body.query.trim();
+//     let searchResults = await Product.find({
+//       name: { $regex: new RegExp(searchQuery, 'i') },
+//     })
+//       .select('name _id') // Select only the name and ID fields
+//       .limit(10)
+//       .exec();
+//     let hint = '';
+//     if (searchResults.length > 0) {
+//       searchResults.forEach((result) => {
+//         hint += `<a href="${result._id}" target="_blank">${result.name}</a><br>`;
+//       });
+//     } else {
+//       hint = 'No results found';
+//     }
+//     res.send({ response: hint });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// });
 
 /*
 router.post('/search', async (req, res) => {
