@@ -1,43 +1,77 @@
-//const { search } = require("../../routers/searchbar");
+let search = $("#livesearch");
 
-function sendData(e) {
-    const searchRes = document.getElementById('search-results');
-    //fetch is an api to get http requests, a lot of browsers support it
-    let match = e.value.match(/\s*/);
-    let match2= e.value.match(/^[a-zA-Z]*/);
-    if( match[0] === e.value) {
-        searchRes.innerHTML = '';
-        return;
+function showResults(str){
+  if(str.length === 0) {
+    search.addClass("hide");
+  }
+  else {
+    search.removeClass("hide");
+  }
+  $.ajax({
+    url: "/search",
+    contentType: 'application/json',
+    method: 'POST',
+    data: JSON.stringify({query: str}),
+    success: function(result){
+      search.html(result.response);
     }
-    if(match2[0]===e.value) 
-        
-    
-    fetch('search', {
-        method: 'POST',
-        header: {'Content-Type': 'application/json'},
-        body: JSON.stringify({payload: e.value}) //holds the vlaue of the input
-    }).then(response => {
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        return response.json();
-      })
-      .then(res=> res.json()).then(data => {
-        let payload= data.payload;
-        searchRes.innerHTML='';
-        if(payload.length< 1) {
-            searchRes.innerHTML = '<p>Sorry, nothing was found.</p>';
-            return;
-        }
-        payload.forEach((item, index)=> {
-            if( index>0) {
-                searchRes.innerHTML += '<hr>';
-                searchRes.innerHTML += `<p>${item.name}</p>`
-            }
-        });
-        return;
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+  })
+}
+
+
+/*const searchBar = document.getElementById('searchBar');
+const searchBtn = document.getElementById('searchBtn');
+const searchRes = document.getElementById('searchRes');
+*/
+
+
+
+
+/*
+function sendData(data) {
+  $.ajax({
+    type: 'POST',
+    url: '/search',
+    data: JSON.stringify({ payload: data }),
+    contentType: 'application/json',
+    success: function (data) {
+      console.log(data); 
+      displayResults(data.payload);
+    },
+    error: function (xhr, status, error) {
+      console.error('Error:', error);
+    },
+  });
+}
+
+function displayResults(results) {
+  // Clear the search results
+  searchRes.innerHTML = '';
+
+  // Loop through the results and add them to the searchRes element
+  for (let i = 0; i < results.length; i++) {
+    const item = document.createElement('li');
+    item.textContent = results[i].name;
+    searchRes.appendChild(item);
+  }
+}
+
+
+
+searchBtn.addEventListener('click', () => {
+  let searchValue = searchBar.value.trim();
+  if (searchValue !== '') {
+    sendData(searchValue);
+  }
+});
+
+searchBar.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    let searchValue = searchBar.value.trim();
+    if (searchValue !== '') {
+      sendData(searchValue);
     }
+  }
+});
+
+*/

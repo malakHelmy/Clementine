@@ -27,7 +27,7 @@ const ordersRouter = require('./routers/orders');
 const contactmailerRouter = require('./routers/mailController');
 const chatRouter = require('./routers/chat');
 const displayProdRouter = require('./routers/displayproducts');
-const searchroute = require('./routers/searchbar');
+const searchRoutes = require('./routers/searchbar');
 const logoutroute = require('./routers/logout');
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
@@ -64,7 +64,7 @@ app.use('/editproducts', editProdRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
-app.use('/search', searchroute);
+app.use('/search', searchRoutes);
 app.use(`/logout`, logoutroute);
 //app.use('/updatedeletecust', updatecustRoute);
 mongoose
@@ -92,6 +92,8 @@ app.get(`/home`, function (req, res) {
                 ? undefined
                 : req.session.cart.items,
     });
+
+    
 });
 app.get(`/categories`, function (req, res) {
     res.render('pages/categories', {
@@ -112,7 +114,10 @@ app.get(`/wishlist`, function (req, res) {
 });
 
 app.get('/search', function (req, res) {
-    res.render('pages/search');
+    res.render('pages/search', {
+        user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart
+    });
 });
 
 app.get('/contactus', function (req, res) {
