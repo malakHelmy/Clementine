@@ -29,6 +29,9 @@ const chatRouter = require('./routers/chat');
 const displayProdRouter = require('./routers/displayproducts');
 const searchroute = require('./routers/searchbar');
 const logoutroute = require('./routers/logout');
+const userProfileRoute = require('./routers/userprofiles');
+
+
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
@@ -66,7 +69,7 @@ app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
 app.use('/search', searchroute);
 app.use(`/logout`, logoutroute);
-app.use('/userprofile', ordersRouter);
+app.use('/userprofiles', userProfileRoute);
 
 //app.use('/updatedeletecust', updatecustRoute);
 mongoose
