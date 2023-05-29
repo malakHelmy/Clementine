@@ -13,7 +13,8 @@ router.get('/newin', products.getNewIn);
 
 router.get('/product/:id',async (req, res) => {
     const prod = await Product.findById({ _id: req.params.id });
-    const product = await Product.find({featured : true});
+    let product = await Product.find({featured : true});
+    product = product.slice(0,5);
     if (!prod) {
         console.log(
             'The Product with the given ID was not found please check for the validity of the ID'
@@ -79,6 +80,17 @@ router.post('/add-to-wishlist', async (req, res) => {
     const prod = req.body.prodID;
     try {
         products.addToWishlist(userID, prod);
+        res.status(200);
+    } catch (error) {
+        console.error(error);
+        res.status(500);
+    }
+});
+router.post('/remove-from-wishlist', async (req, res) => {
+    const wishuserID = req.session.user;
+    const removeprod = req.body.prodID;
+    try {
+        await products.removeFromWishlist(wishuserID, removeprod);
         res.status(200);
     } catch (error) {
         console.error(error);

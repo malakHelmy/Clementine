@@ -711,8 +711,9 @@ span.minus1 {
     letter-spacing: 1px;
 }
 
-.product-container {
+.product-container-home {
     padding: 0 10vw;
+    margin-left: -10%;
     display: flex;
     overflow-x: auto;
     scroll-behavior: smooth;
@@ -728,14 +729,14 @@ span.minus1 {
 
 .product-image {
     position: relative;
-    width: 100%;
+    width: 250px;
     height: 350px;
     overflow: hidden;
 }
 
 .product-thumb {
     width: 100%;
-    height: 350px;
+    height: 300px;
     object-fit: cover;
 }
 
@@ -779,12 +780,13 @@ span.minus1 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     width: 100%;
     height: 100px;
-    padding-top: 10px;
+    padding: 10px;
 }
 
 .product-brand {
     text-transform: uppercase;
     font-size: 15px;
+    font-weight: 300;
 }
 
 .product-short-des {

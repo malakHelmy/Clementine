@@ -21,6 +21,7 @@
 }
 .wishlist-items{
     margin-top: 20px;
+    margin: 5%;
 }
 .product-card {
     z-index: 100;
@@ -28,6 +29,15 @@
     overflow: hidden;
     border: 1px solid rgb(218, 218, 218);
     border-radius: 30px;
+}
+.ri-close-fill{
+    padding-left: 7px;
+    font-size: 30px;
+    opacity: 0.5;
+}
+.ri-close-fill:hover{
+    opacity: 1;
+    transition: 1s ease;
 }
 .product-info{
     text-align: center;

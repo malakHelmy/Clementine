@@ -27,6 +27,8 @@
                         <div class="wishlist-items">
                             <div class="product-card">
                                 <div class="product-image">
+                                    <a class="ri-close-fill" id="close-icon-<%= items._id %>"
+                                        data-wishid="<%= items._id %>"></a>
                                     <img src="./Images/<%- items.image %>" class="product-thumb" alt="">
                                     <button class="card-btn">add to cart</button>
                                 </div>
@@ -54,7 +56,9 @@
 
         </div>
         </div>
+        <script src="/js/wish.js"></script>
         <%- include('../partials/footer') %>
+        
 </body>
 
 

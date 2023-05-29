@@ -264,6 +264,30 @@ exports.addToWishlist = asyncHandler(async (userID, prodID) => {
     }
 });
 
+exports.removeFromWishlist = asyncHandler(async (userID, prodID) => {
+    try {
+        const userWish = await user.findOne({ email: userID });
+        const wishlistItems = await Product.find({
+            _id: { $in: userWish.wishList },
+        });
+        const found = wishlistItems.includes(prodID);
+        if (found) {
+            await user.findOneAndUpdate(
+                { email: userID },
+                { $pull: { wishlist: prodID } },
+            );
+        }
+        else 
+        {
+            console.log('product was not found');
+        }
+        console.log(userWish.wishList);
+
+    } catch (err) {
+        console.log('could not remove product');
+    }
+});
+
 // exports.getWishlist = asyncHandler(async (req, res) => {
 //     const { userID } = req.session.user;
 

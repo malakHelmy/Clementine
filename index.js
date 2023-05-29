@@ -69,6 +69,9 @@ app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
 app.use('/', searchRoutes);
 app.use(`/logout`, logoutroute);
+
+const { Product } = require('./models/product');
+
 //app.use('/updatedeletecust', updatecustRoute);
 mongoose
     .connect(
@@ -81,8 +84,10 @@ mongoose
         console.log(err);
     });
 
-app.get(`/`, function (req, res) {
+app.get(`/`, async (req, res) => {
+    const product = await Product.find({featured : true});
     res.render('pages/index', {
+        product,
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
     });

@@ -20,7 +20,7 @@
 
     <%- include('../partials/navbar') %>
         <%- include('../partials/header') %>
-        
+
 
             <section id="intro">
                 <h1 class="intro-title">Infinite (Re)Invention</h1>
@@ -67,99 +67,23 @@
                 <img src="Images/arrow.png" width="10px" class="next_arrow" onclick="newcollectionslider()"></button>
 
 
-                <div class="product-container">
-
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <span class="discount-tag">50% off</span>
-                            <img src="./Images/r1.png" class="product-thumb" alt="">
-                            <button class="card-btn">add to cart</button>
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-brand">Ring 1</h2>
-                            <p class="product-short-des">ring detail</p>
-                            <span class="price">10700 LE</span><span class="actual-price">24000 LE</span>
-                        </div>
-                    </div>
-
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="./Images/r2.png" class="product-thumb" alt="">
-                            <button class="card-btn">add to cart</button>
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-brand">Ring 2</h2>
-                            <p class="product-short-des">ring detail</p>
-                            <span class="price">27000 LE</span>
-                        </div>
-                    </div>
-
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="./Images/r3.png" class="product-thumb" alt="">
-                            <button class="card-btn">add to cart</button>
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-brand">Neck 3</h2>
-                            <p class="product-short-des">neck detail</p>
-                            <span class="price">34000 LE</span>
-                        </div>
-                    </div>
-
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="./Images/r3.png" class="product-thumb" alt="">
-                            <button class="card-btn">add to cart</button>
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-brand">Neck 4</h2>
-                            <p class="product-short-des">neck detail</p>
-                            <span class="price">34500 LE</span>
-                        </div>
-                    </div>
-
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <span class="discount-tag">30% off</span>
-                            <img src="./Images/r5.png" class="product-thumb" alt="">
-                            <button class="card-btn">add to cart</button>
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-brand">Ring 5</h2>
-                            <p class="product-short-des">ring detail</p>
-                            <span class="price">11000 LE</span><span class="actual-price">19000 LE</span>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="./Images/r6.png" class="product-thumb" alt="">
-                            <button class="card-btn">add to cart</button>
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-brand">Neck 6</h2>
-                            <p class="product-short-des">neck detail</p>
-                            <span class="price">19500 LE</span>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="./Images/r7.png" class="product-thumb" alt="">
-                            <button class="card-btn">add to cart</button>
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-brand">Neck 7</h2>
-                            <p class="product-short-des">neck detail</p>
-                            <span class="price">24500 LE</span>
-                        </div>
-                    </div>
-
+                <div class="product-container-home">
+                    <% if(product !='' ) {%>
+                        <% product.forEach((items)=> {%>
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="./Images/<%- items.image %>" class="product-thumb" alt="">
+                                    <button class="card-btn">Add to cart</button>
+                                </div>
+                                <div class="product-info">
+                                    <h2 class="product-brand">
+                                        <%= items.name%>
+                                    </h2>
+                                    <span class="price">EGP <%= items.price%></span>
+                                </div>
+                            </div>
+                            <% }) %>
+                                <% } %>
                 </div>
             </section>
             <div class="videobreak reveal">
