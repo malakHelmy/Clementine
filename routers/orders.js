@@ -22,7 +22,48 @@ router.get(`/`, async (req, res) => {
     });
   });
 
-/* router.get(`/`, async (req, res) => {
+  //adding a new object to the schema
+router.post(`/`, async (req, res) => {
+    const orderItemsIds = Promise.all(
+        req.body.orderItems.map(async (orderItem) => {
+            let newOrderItem = new OrderItem({
+                quantity: orderItem.quantity,
+                product: orderItem.product,
+            });
+            newOrderItem = await newOrderItem.save();
+            return newOrderItem._id;
+        })
+    );
+
+    const orderItemIdsresolved = await orderItemsIds;
+
+
+
+    let add_order = new Order({
+        
+        orderItems: orderItemIdsresolved,
+        order_id: req.body.order_id,
+        userID: req.body.userID,
+        shippingAddress1: req.body.shippingAddress1,
+        city: req.body.city,
+        zip: req.body.zip,
+        status: req.body.status,
+        totalAmount: req.body.totalAmount,
+        phone_num: req.body.phone_num,
+        dateOrdered: req.body.dateOrdered,
+    });
+
+    //catching errors method #2
+    add_order = await add_order.save();
+    if (!add_order) {
+        return res.status(404).send('The order cannot be added');
+    }
+
+    res.status(200).send(add_order);
+});
+
+
+  /* router.get(`/`, async (req, res) => {
  //.populate -> if i want to know the user who ordered
     //displays the first and last name for the user + sort by date from newest to oldest
     const ordersList = await Order.find()
@@ -67,46 +108,6 @@ router.get(`/`, async (req, res) => {
     res.status(200).send(orders);
 });
 
-//adding a new object to the schema
-router.post(`/`, async (req, res) => {
-    const orderItemsIds = Promise.all(
-        req.body.orderItems.map(async (orderItem) => {
-            let newOrderItem = new OrderItem({
-                quantity: orderItem.quantity,
-                product: orderItem.product,
-            });
-            newOrderItem = await newOrderItem.save();
-            return newOrderItem._id;
-        })
-    );
-
-    const orderItemIdsresolved = await orderItemsIds;
-
-
-
-    let add_order = new Order({
-        
-        orderItems: orderItemIdsresolved,
-        order_id: req.body.order_id,
-        userID: req.body.userID,
-        shippingAddress1: req.body.shippingAddress1,
-        shippingAddress2: req.body.shippingAddress2,
-        city: req.body.city,
-        zip: req.body.zip,
-        status: req.body.status,
-        totalAmount: req.body.totalAmount,
-        phone_num: req.body.phone_num,
-        dateOrdered: req.body.dateOrdered,
-    });
-
-    //catching errors method #2
-    add_order = await add_order.save();
-    if (!add_order) {
-        return res.status(404).send('The order cannot be added');
-    }
-
-    res.status(200).send(add_order);
-});
 
 //editing and updating status
 router.put('/:id', async (req, res) => {
@@ -182,4 +183,5 @@ router.put('/:id', async (req, res) => {
 });
 */
 //exporting method #2
+
 module.exports = router;
