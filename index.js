@@ -29,6 +29,8 @@ const chatRouter = require('./routers/chat');
 const displayProdRouter = require('./routers/displayproducts');
 const searchRoutes = require('./routers/searchbar');
 const logoutroute = require('./routers/logout');
+const employersRouter = require('./routers/employersdash');
+
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
@@ -53,6 +55,7 @@ app.use(
 );
 // Routers
 app.use('/addproducts', addProdRouter);
+app.use('/employersdash', employersRouter);
 
 app.use(`/`, productsRouter);
 app.use(`/categories`, categoriesRouter);
