@@ -7,6 +7,10 @@ const products = require('../controllers/productsController');
 const { Product } = require('../models/product');
 const router = express.Router();
 
+//new in
+router.get('/newin', products.getNewIn);
+//router.get('/index', products.getNewInLimited);
+
 router.get('/product/:id',async (req, res) => {
     const prod = await Product.findById({ _id: req.params.id });
     const product = await Product.find({featured : true});
@@ -37,12 +41,6 @@ router.get('/gearrings', products.getGearrings);
 router.get('/gnecklaces', products.getGnecklaces);
 router.get('/gbracelets', products.getGbracelets);
 
-//router.get('/index', products.getNewInLimited);
-
-//newin
-router.get('/newin', products.getNewIn);
-
-
 router.get('/wishlist', async (req, res) => {
     const userID = req.session.user;
     try {
@@ -59,7 +57,6 @@ router.get('/wishlist', async (req, res) => {
                         ? undefined
                         : req.session.cart,
                 products: '',
-                body: 'your wishlist is empty'
             });
         }
 

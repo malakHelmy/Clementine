@@ -27,7 +27,7 @@ const ordersRouter = require('./routers/orders');
 const contactmailerRouter = require('./routers/mailController');
 const chatRouter = require('./routers/chat');
 const displayProdRouter = require('./routers/displayproducts');
-const searchroute = require('./routers/searchbar');
+const searchRoutes = require('./routers/searchbar');
 const logoutroute = require('./routers/logout');
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
@@ -64,7 +64,7 @@ app.use('/editproducts', editProdRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
-app.use('/search', searchroute);
+app.use('/search', searchRoutes);
 app.use(`/logout`, logoutroute);
 //app.use('/updatedeletecust', updatecustRoute);
 mongoose
@@ -93,30 +93,7 @@ app.get(`/home`, function (req, res) {
                 : req.session.cart.items,
     });
 
-    exports.getNewInLimited = (req, res) => {
-        const body = `Explore our newest collections, each piece is crafted with the utmost care and attention to detail,
-        using only the finest materials to ensure quality and longevity.`;
-        Product.find()
-          .sort({ date: -1 })
-          .limit(6) // retrieve only 6 products
-          .then((result) => {
-            const newInProducts = result.length > 0 ? result : null; // check if newIn products are available
-            res.render("pages/index", {
-              productTitle: "New In",
-              body,
-              newInProducts, // pass the products to the template
-              user:
-                req.session.user == undefined
-                  ? undefined
-                  : req.session.user,
-              cart:
-                req.session.cart == undefined ? undefined : req.session.cart,
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      };
+    
 });
 app.get(`/categories`, function (req, res) {
     res.render('pages/categories', {
@@ -136,7 +113,10 @@ app.get(`/wishlist`, function (req, res) {
 });
 
 app.get('/search', function (req, res) {
-    res.render('pages/search');
+    res.render('pages/search', {
+        user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart
+    });
 });
 
 app.get('/contactus', function(req, res) {

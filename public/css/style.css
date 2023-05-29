@@ -238,7 +238,7 @@ body {
 
 /* Cart Window Start */
 
-#sidebar {
+.cart-window {
     width: 25%;
     z-index: 35;
     position: fixed;
@@ -1316,7 +1316,7 @@ span.minus1 {
     opacity: 1;
 }
 
-#search-results{
+#search-results {
     max-width: 100px;
     width: 95%;
     margin: 20px auto 0 auto;

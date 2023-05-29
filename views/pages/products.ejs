@@ -29,7 +29,7 @@
         </div>
 
         <section id="rings-intro">
-            <h1 class="rings-intro-title">                
+            <h1 class="rings-intro-title">
                 <%= productTitle %>
 
             </h1>
@@ -64,8 +64,10 @@
                     <% }) %>
                         <% } %>
         </section>
-        <script src="/js/prod.js"></script>
-        <%- include('../partials/footer') -%>
+        <% if (user !=undefined) {%>
+            <script src="/js/prod.js"></script>
+            <% } %>
+                <%- include('../partials/footer') -%>
 
 </body>
 

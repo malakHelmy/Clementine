@@ -9,6 +9,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    
+    margin-bottom: 17%;
 }
 
 .wishlist-header {
@@ -17,12 +19,9 @@
     margin: 1%;
     margin-left: 30px;
 }
-
-.wishlist-items {
-    margin-bottom: 70px;
-
+.wishlist-items{
+    margin-top: 20px;
 }
-
 .product-card {
     z-index: 100;
     position: relative;

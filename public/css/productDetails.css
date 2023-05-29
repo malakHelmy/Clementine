@@ -126,10 +126,11 @@ body {
 }
 
 .priceinfo {
-  padding-top: 20px;
+  text-align: center;
   display: flex;
+  padding: 10px;
   margin: 1% 40px;
-  border: 1px solid rgba(0, 0, 0, 0.021);
+  border: 1px solid rgba(0, 0, 0, 0.051);
 }
 
 
@@ -148,13 +149,12 @@ body {
 }
 
 .priceinfo .pricevalue {
-  width: 50%;
-  margin-left: 10%;
+  width: 100%;
 }
 
 .pricevalue p {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 18px;
+  font-size: 23px;
 
 }
 

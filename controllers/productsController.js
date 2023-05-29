@@ -9,7 +9,11 @@ exports.getAllProducts = (req, res) => {
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
-                        
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
+
                 products: result,
                 Id: req.params.id,
             });
@@ -52,13 +56,16 @@ exports.getDrings = (req, res) => {
     Product.find({ material: 'diamond', category: 'ring' })
         .then((result) => {
             res.render('pages/products', {
-                productTitle: "Diamond Rings",
+                productTitle: 'Diamond Rings',
                 body,
                 user:
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
-                        cart:req.session.cart == undefined ? undefined :req.session.cart,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
                 products: result,
                 Id: req.params.id,
             });
@@ -71,15 +78,18 @@ exports.getDnecklaces = (req, res) => {
     const body = `Diamond necklaces are a captivating and exquisite embellishment that can elevate any ensemble with their timeless allure and radiance. The brilliance of diamonds creates a spellbinding display of light that catches the eye and draws attention to the neckline, making a diamond necklace a perfect accessory for any occasion. Whether it's a delicate pendant or a striking statement piece, diamond necklaces can be customized to reflect any style or budget. The durability of diamonds ensures that a diamond necklace is an investment that will endure beyond a lifetime. Diamonds signify love and commitment, making a diamond necklace a popular choice for special events such as weddings, anniversaries, or birthdays. A diamond necklace can be worn alone as a stunning centerpiece or layered with other necklaces to create a unique and fashionable look.`;
     Product.find({ material: 'diamond', category: 'necklace' })
         .then((result) => {
-            const { cartt }=req.session;
+            const { cartt } = req.session;
             res.render('pages/products', {
-                productTitle: "Diamond Necklaces",
+                productTitle: 'Diamond Necklaces',
                 body,
                 user:
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
-                        cart: req.session.cart == undefined ? undefined :req.session.cart,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
                 products: result,
                 Id: req.params.id,
             });
@@ -92,15 +102,18 @@ exports.getDearrings = (req, res) => {
     const body = `Diamond earrings are a versatile accessory that can be dressed up or down to suit any occasion. The durability and timeless beauty of diamonds ensure that they will be cherished for years to come, making them a valuable investment for any jewelry collection. Whether you're looking to add a touch of glamour to your everyday look, or searching for the perfect gift for someone special, diamond earrings are a classic and enduring choice that will never go out of style.`;
     Product.find({ material: 'diamond', category: 'earring' })
         .then((result) => {
-            const { cartt }=req.session;
+            const { cartt } = req.session;
             res.render('pages/products', {
-                productTitle: "Diamond Earrings",
+                productTitle: 'Diamond Earrings',
                 body,
                 user:
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
-                        cart: req.session.cart == undefined ? undefined :req.session.cart,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
                 products: result,
                 Id: req.params.id,
             });
@@ -113,15 +126,18 @@ exports.getDbracelets = (req, res) => {
     const body = `With a range of styles and designs available, diamond bracelets can be customized to suit any personal taste or occasion. Whether it's a delicate tennis bracelet or an intricate bangle, the brilliance and sparkle of diamonds create a striking display of light that draws attention to the wrist. The durability of diamonds ensures that a diamond bracelet is an investment that will last a lifetime and beyond. With their timeless beauty and versatility, diamond bracelets are a must-have for any jewelry collection and are sure to become a treasured heirloom that can be passed down through generations.`;
     Product.find({ material: 'diamond', category: 'bracelet' })
         .then((result) => {
-            const { cartt }=req.session;
+            const { cartt } = req.session;
             res.render('pages/products', {
-                productTitle: "Diamond Bracelets",
+                productTitle: 'Diamond Bracelets',
                 body,
                 user:
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
-                        cart: req.session.cart == undefined ? undefined :req.session.cart,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
                 products: result,
                 Id: req.params.id,
             });
@@ -136,8 +152,16 @@ exports.getGrings = (req, res) => {
     Product.find({ material: 'gold', category: 'ring' })
         .then((result) => {
             res.render('pages/products', {
-                productTitle: "Gold Rings",
+                productTitle: 'Gold Rings',
                 body,
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
                 products: result,
                 Id: req.params.id,
             });
@@ -151,7 +175,7 @@ exports.getGnecklaces = (req, res) => {
     Product.find({ material: 'gold', category: 'necklace' })
         .then((result) => {
             res.render('pages/products', {
-                productTitle: "Gold Necklaces",
+                productTitle: 'Gold Necklaces',
                 body,
                 products: result,
                 Id: req.params.id,
@@ -159,7 +183,10 @@ exports.getGnecklaces = (req, res) => {
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
-                        cart: req.session.cart == undefined ? undefined :req.session.cart,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
             });
         })
         .catch((err) => {
@@ -167,11 +194,19 @@ exports.getGnecklaces = (req, res) => {
         });
 };
 exports.getGearrings = (req, res) => {
+    const body = `Whether it's a modest pair of studs or an extravagant set of dangle earrings embellished with diamonds or other precious stones, gold earrings are a versatile accessory that can be dressed up or down to match any event.Gold earrings are a luxurious and exquisite accessory that can add an element of refinement and sophistication to any wardrobe. The gleaming and radiant sheen of gold creates a timeless and classic appearance that is appropriate for any occasion`;
     Product.find({ material: 'gold', category: 'earring' })
         .then((result) => {
             res.render('pages/products', {
-                productTitle: "Gold Earrings",
-
+                productTitle: 'Gold Earrings',
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
                 body,
                 products: result,
                 Id: req.params.id,
@@ -188,8 +223,15 @@ exports.getGbracelets = (req, res) => {
     Product.find({ material: 'gold', category: 'bracelet' })
         .then((result) => {
             res.render('pages/products', {
-                productTitle: "Gold Bracelets",
-
+                productTitle: 'Gold Bracelets',
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
                 body,
                 products: result,
                 Id: req.params.id,
@@ -199,14 +241,60 @@ exports.getGbracelets = (req, res) => {
             console.log(err);
         });
 };
+exports.addToWishlist = asyncHandler(async (userID, prodID) => {
+    try {
+        const userWish = await user.findOne({ email: userID });
+
+        const wishlistItems = await Product.find({
+            _id: { $in: userWish.wishList },
+        });
+        const alreadyadded = wishlistItems.includes(prodID);
+        if (alreadyadded) {
+            console.log(userWish.wishList);
+        } else {
+            await user.findOneAndUpdate(
+                { email: userID },
+                { $push: { wishlist: prodID } },
+                { new: true }
+            );
+            console.log(userWish.wishList);
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+// exports.getWishlist = asyncHandler(async (req, res) => {
+//     const { userID } = req.session.user;
+
+//     try {
+//         const User = await user.findOne({ email: userID });
+
+//         if (!User) {
+//             return res.render('pages/404');
+//         }
+
+//         const wishlistItems = await Product.find({
+//             _id: { $in: User.wishlist },
+//         });
+
+//         res.render('pages/wishlist', {
+//             user: req.session.user == undefined ? undefined : req.session.user,
+//             products: wishlistItems,
+//         });
+//     } catch (error) {
+//         console.log(error);
+//     }
+// });
 
 exports.getNewIn = (req, res) => {
     const body = `Explore our newest collections, each piece is crafted with the utmost care and attention to detail,
       using only the finest materials to ensure quality and longevity.`;
-    Product.find().sort({ date: -1 })
+    Product.find()
+        .sort({ date: -1 })
         .then((result) => {
             res.render('pages/products', {
-                productTitle: "New In",
+                productTitle: 'New In',
                 body,
                 products: result,
                 Id: req.params.id,
@@ -214,7 +302,10 @@ exports.getNewIn = (req, res) => {
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
-                        cart: req.session.cart == undefined ? undefined :req.session.cart,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
             });
         })
         .catch((err) => {

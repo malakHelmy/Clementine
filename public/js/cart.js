@@ -11,7 +11,7 @@
 function closesidebar(){
 
     $("#closesidebarbtn").on("click", function () {
-        $(".cart-window-hide").closeToggle("slow");
+        $(".cart-window").fadeOut(700);
     });
 
 };
