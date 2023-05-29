@@ -66,6 +66,8 @@ app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
 app.use('/search', searchroute);
 app.use(`/logout`, logoutroute);
+app.use('/userprofile', ordersRouter);
+
 //app.use('/updatedeletecust', updatecustRoute);
 mongoose
     .connect(
