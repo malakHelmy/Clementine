@@ -224,7 +224,14 @@ exports.getGbracelets = (req, res) => {
         .then((result) => {
             res.render('pages/products', {
                 productTitle: 'Gold Bracelets',
-
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
                 body,
                 products: result,
                 Id: req.params.id,
