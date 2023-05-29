@@ -25,6 +25,10 @@ const userSchema = mongoose.Schema(
             type: Number,
             required: true,
         },
+        isAdmin:{
+            type: Boolean,
+            default : false,
+        },
         address: String,
         wishlist: [{type: mongoose.Schema.Types.ObjectId,
         ref: 'products'}],

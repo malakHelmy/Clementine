@@ -27,11 +27,8 @@ const ordersRouter = require('./routers/orders');
 const contactmailerRouter = require('./routers/mailController');
 const chatRouter = require('./routers/chat');
 const displayProdRouter = require('./routers/displayproducts');
-const searchroute = require('./routers/searchbar');
+const searchRoutes = require('./routers/searchbar');
 const logoutroute = require('./routers/logout');
-const userProfileRoute = require('./routers/userprofiles');
-
-
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
 const api = process.env.API_URL;
@@ -67,10 +64,8 @@ app.use('/editproducts', editProdRouter);
 app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
-app.use('/search', searchroute);
+app.use('/search', searchRoutes);
 app.use(`/logout`, logoutroute);
-app.use('/userprofiles', userProfileRoute);
-
 //app.use('/updatedeletecust', updatecustRoute);
 mongoose
     .connect(
@@ -97,10 +92,13 @@ app.get(`/home`, function (req, res) {
                 ? undefined
                 : req.session.cart.items,
     });
+
+    
 });
 app.get(`/categories`, function (req, res) {
     res.render('pages/categories', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 app.get(`/checkout`, function (req, res) {
@@ -111,30 +109,33 @@ app.get(`/checkout`, function (req, res) {
 app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
         user: req.session.user == undefined ? undefined : req.session.user,
-        cart: req.session.cart == undefined ? undefined : req.session.cart
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 
 app.get('/search', function (req, res) {
-    res.render('pages/search');
-});
-
-app.get('/contactus', function(req, res) {
-    res.render('pages/contactus', {
+    res.render('pages/search', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart
+    });
+});
+
+app.get('/contactus', function (req, res) {
+    res.render('pages/contactus', {
+        user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 
 /* --------- DASHBOARDS -----*/
 app.get('/dashboard', (req, res) => {
     res.render('pages/dashboard', { currentPage: 'dashboard' });
-  });
-  
-  app.get('/addproducts', (req, res) => {
+});
+
+app.get('/addproducts', (req, res) => {
     res.render('pages/addproducts');
-  });
-  
+});
+
 app.get(`/editproducts`, function (req, res) {
     res.render('pages/editproducts');
 });
@@ -149,7 +150,8 @@ app.get(`/updatedeletecust`, function (req, res) {
 });
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
-        user: req.session.user === undefined ? '' : req.session.user,
+        user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 app.get(`/displayproducts`, function (req, res) {
