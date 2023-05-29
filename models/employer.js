@@ -14,19 +14,12 @@ const employerSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  companyName: {
-    type: String,
-    required: true
-  },
-  website: {
-    type: String,
-    required: true
-  },
+  
   phone: {
     type: String,
     required: true
   },
-  
+
   isAdmin: {
     type: Boolean,
     default: false
