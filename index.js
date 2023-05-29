@@ -155,6 +155,9 @@ app.get(`/userprofile`, function (req, res) {
 app.get(`/displayproducts`, function (req, res) {
     res.render('pages/displayproducts');
 });
+app.get(`/employersdash`, function(req, res){
+    res.render('pages/employersdash');
+});
 
 /* --------- DASHBOARDS END -----*/
 
