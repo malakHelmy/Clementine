@@ -333,12 +333,15 @@ exports.removeFromWishlist = asyncHandler(async (wishuserID, removeprod) => {
 //     }
 // });
 
-exports.getNewIn = (req, res) => {
+exports.getNewIn = asyncHandler(async(req, res) => {
+    const User = await user.findOne({ email: req.session.user });
+
     const body = `Explore our newest collections, each piece is crafted with the utmost care and attention to detail,
       using only the finest materials to ensure quality and longevity.`;
     Product.find()
         .sort({ date: -1 })
         .then((result) => {
+            result = result.slice(0, 10);
             res.render('pages/products', {
                 productTitle: 'New In',
                 body,
@@ -352,6 +355,7 @@ exports.getNewIn = (req, res) => {
                     req.session.cart == undefined
                         ? undefined
                         : req.session.cart,
+                User,
                 material: '',
                 category: '',
             });
@@ -359,4 +363,4 @@ exports.getNewIn = (req, res) => {
         .catch((err) => {
             console.log(err);
         });
-};
+});
