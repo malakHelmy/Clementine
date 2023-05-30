@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- material icons cdn -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+    <link rel="stylesheet" href="/css/editcustdash.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Add Employer</title>
+</head>
+<body>
+    <div class="container">
+        <% include('../partials/dashboardsidebar', { currentPage: 'addemployers' }) %>
+
+        <main>
+            <h1>Add Employers</h1>
+            <div id="addemployers-container">
+                <div class="addemployers">
+                    <form class="form" action="/addemployers" method="post">
+                        <div class="add">
+                            <h2 class="add-title">Add Employer</h2>
+                        </div>
+                        <div class="employers-container">
+                            <div class="input-group">
+                                <label for="name">Name</label>
+                                <input id="name" type="text" placeholder="Employer's Name" name="name" required>
+                                <span class="errormsg"></span>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" placeholder="Employer's Email" name="email" required>
+                                <span class="errormsg"></span>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="password">Password</label>
+                                <input id="password" type="password" placeholder="Employer's Password" name="password" required>
+                                <span class="errormsg"></span>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="phone">Phone</label>
+                                <input id="phone" type="text" placeholder="Employer's Phone" name="phone" required>
+                                <span class="errormsg"></span>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="isAdmin">Is Admin</label>
+                                <input id="isAdmin" type="checkbox" name="isAdmin">
+                            </div>
+
+                            <button type="submit">Add Employer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

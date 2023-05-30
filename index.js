@@ -34,6 +34,7 @@ const displayProdRouter = require('./routers/displayproducts');
 const searchRoutes = require('./routers/searchbar');
 const logoutroute = require('./routers/logout');
 const employersRouter = require('./routers/employersdash');
+const addempRouter = require('./routers/addemployers');
 
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
@@ -87,6 +88,8 @@ app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
 app.use('/', searchRoutes);
 app.use('/logout', logoutroute);
+app.use('/addemployers', addempRouter);
+
 
 const { Product } = require('./models/product');
 const { OrderItem } = require('./models/order-items');
@@ -209,6 +212,10 @@ app.get(`/displayproducts`, function (req, res) {
 app.get(`/employersdash`, function(req, res){
     res.render('pages/employersdash');
 });
+app.get(`/addemployers`, function(req, res){
+    res.render('pages/addemployers');
+});
+
 
 /* --------- DASHBOARDS END -----*/
 
