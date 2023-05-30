@@ -9,15 +9,22 @@ const router = express.Router();
 
 //new in
 ///////////////////////start of sort-by /////////////////////////////////
-router.post('/products/:material/:category/:body',(req,res)=>{
+router.post('/products/:material/:category/:body/:title',(req,res)=>{
 
 if(req.body.sort=='Lowestprice')
 {
     var body = req.params.body;
     Product.find({ material: req.params.material.trim(), category: req.params.category.trim() })
         .then((result) => {
+
+
+           result.sort(function(a, b) {
+                return a.price - b.price;
+              });
+
+
             res.render('pages/products', {
-                productTitle: 'Diamond Rings',
+                productTitle:req.params.title.trim(),
                 body,
                 user:
                     req.session.user == undefined
@@ -38,6 +45,30 @@ if(req.body.sort=='Lowestprice')
 
 }else if(req.body.sort=='Highestprice')
 {
+
+    var body = req.params.body;
+    Product.find({ material: req.params.material.trim(), category: req.params.category.trim() })
+        .then((result) => {
+            res.render('pages/products', {
+                productTitle:req.params.title.trim(),
+                body,
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
+                products: result,
+                material: req.params.material.trim(),
+                 category: req.params.category.trim()
+            });
+        })
+        .catch((err) => {
+            console.log('error loading');
+        });
+
 
 }
 
