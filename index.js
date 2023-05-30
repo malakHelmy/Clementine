@@ -51,9 +51,9 @@ liveReloadServer.watch(path.join(__dirname, 'public'));
 app.use(connectLivereload());
 
 liveReloadServer.server.once("connection", () => {
-  setTimeout(() => {
-    liveReloadServer.refresh("/");
-  }, 100);
+    setTimeout(() => {
+        liveReloadServer.refresh("/");
+    }, 100);
 });
 
 // middleware
@@ -105,18 +105,18 @@ mongoose
 
 app.get(`/`, async (req, res) => {
     const product = await Product.find()
-    .sort({ date: -1 })
-    .limit(10) // retrieve only 6 products
-    .then((result) => {
-      const product = result.length > 0 ? result : null; // check if newIn products are available
-      res.render("pages/index", {
-        product, // pass the products to the template
-        user:
-          req.session.user == undefined ? undefined  : req.session.user,
-        cart:
-          req.session.cart == undefined ? undefined : req.session.cart,
-      });
-   });
+        .sort({ date: -1 })
+        .limit(10) // retrieve only 6 products
+        .then((result) => {
+            const product = result.length > 0 ? result : null; // check if newIn products are available
+            res.render("pages/index", {
+                product, // pass the products to the template
+                user:
+                    req.session.user == undefined ? undefined : req.session.user,
+                cart:
+                    req.session.cart == undefined ? undefined : req.session.cart,
+            });
+        });
 });
 
 
@@ -130,7 +130,7 @@ app.get(`/home`, function (req, res) {
                 : req.session.cart.items,
     });
 
-    
+
 });
 
 app.get(`/categories`, function (req, res) {
@@ -143,7 +143,7 @@ app.get(`/checkout`, function (req, res) {
     res.render('pages/checkout', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart
-      });
+    });
 });
 app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
@@ -191,7 +191,7 @@ app.get(`/updatedeletecust`, function (req, res) {
     res.render('pages/updatedeletecust');
 });
 
-app.get(`/updateorder`, function(req, res){
+app.get(`/updateorder`, function (req, res) {
     res.render('pages/updateorder');
 });
 app.get(`/ordersdash`, function (req, res) {
@@ -206,7 +206,7 @@ app.get(`/userprofile`, function (req, res) {
 app.get(`/displayproducts`, function (req, res) {
     res.render('pages/displayproducts');
 });
-app.get(`/employersdash`, function(req, res){
+app.get(`/employersdash`, function (req, res) {
     res.render('pages/employersdash');
 });
 
@@ -220,7 +220,7 @@ app.get(`/signup`, function (req, res) {
     });
 });
 
-app.post('/sign-up-action', (req, res) => {});
+app.post('/sign-up-action', (req, res) => { });
 /* --------- SIGN UP AND LOG IN END ---*/
 //CONTACT US MAILER START
 
@@ -262,48 +262,47 @@ app.post(`/contactus`, function (req, res) {
 
 
 
-app.post('/updateorder', function(req, res) {
-    app.post('/updateorder', function(req, res) {
+app.post('/updateorder', function (req, res) {
+    app.post('/updateorder', function (req, res) {
         var orderId = req.body._id;
         var status = req.body.status;
-      
+
         var transporter = nodemailer.createTransport({
-          service: 'gmail',
-          auth: {
-            user: 'clementineco2023@gmail.com',
-            pass: 'lmkwmjbyftpuzwhz',
-          },
+            service: 'gmail',
+            auth: {
+                user: 'clementineco2023@gmail.com',
+                pass: 'lmkwmjbyftpuzwhz',
+            },
         });
-      
+
         var mailOptions = {
-          from: 'clementineco2023@gmail.com',
-          to: req.body.email,
-          subject: 'Order Confirmation',
-          subject: 'Order Confirmation',
-          html: `
-            <p>Dear ${fullname},</p>
-            <p>Thank you for your order of ${quantity} ${OrderItem}(s) for a total of ${price}.</p>
-            <p>We have received your order and are processing it now. We will notify you by email once your order has been shipped.</p>
-            <p>Thank you for choosing us.</p>
-          `,
+            from: 'clementineco2023@gmail.com',
+            to: req.body.email,
+            subject: 'Order Confirmation',
+            subject: 'Order Confirmation',
+            html: ejs.render(`
+      <p>Dear <%= userFullName %>,</p>
+      <p>Thank you for your order of <%= quantity %> <%= orderItem %>(s) for a total of <%= price %>.</p>
+      <p>We have received your order and are processing it now. We will notify you by email once your order has been shipped.</p>
+      <p>Thank you for choosing us!</p>
+    `, { userFullName, quantity, OrderItem, price })
         };
-      
-        if (status === 'Pending') {
-          transporter.sendMail(mailOptions, function (error, info) {
+
+        transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
               console.log(error);
-              res.send('Error.');
+              return res.send('Error.');
             } else {
               console.log('Email sent:' + info.response);
-              res.send('Successfully sent.');
-            }
-          });
-        } else {
-          res.send('No email sent.');
-        }
-      });
+              // Save the order details to your database or perform other actions as needed
+              return res.redirect('/');
 
+        }
     });
+
+});
+});
+
 app.listen(port, () => {
     console.log('http://localhost:8080');
 });
