@@ -29,8 +29,11 @@
                                     <a href="/wishlist" alt="" class="ri-close-fill" id="close-icon-<%= items._id %>"
                                         data-wishid="<%= items._id %>">
                                         </a>
+                                        <a href="/product/<%- items._id %>">
                                         <img src="./Images/<%- items.image %>" class="product-thumb" alt="">
-                                        <button class="card-btn">add to cart</button>
+                                        </a>
+                                        <form action="/cart/<%= items._id %>" method="post"><input type="submit"
+                                    value="Add to cart" class="card-btn"></form>
                                 </div>
                                 <div class="product-info">
                                     <h2 class="product-brand">

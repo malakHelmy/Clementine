@@ -109,7 +109,8 @@ body {
   letter-spacing: 2px;
 }
 
-.box .ri-heart-line {
+.box .ri-heart-line,
+.ri-heart-fill{
   position: relative;
   left: 230px;
   top: 6px;
