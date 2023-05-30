@@ -12,8 +12,8 @@ const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
 
 // for auto refresh
-const livereload = require("livereload");
-const connectLivereload = require("connect-livereload");
+const livereload = require('livereload');
+const connectLivereload = require('connect-livereload');
 
 //openai API key
 const api_key = process.env.OPENAI_API_KEY;
@@ -24,10 +24,11 @@ const editProdRouter = require('./routers/editproducts');
 const cartRouter = require('./routers/cart');
 const productsRouter = require('./routers/products');
 const usersRouter = require('./routers/users');
+const userprofileRouter = require('./routers/userprofiles');
 const users_loginRouter = require('./routers/login');
 const cust_contRouter = require('./routers/editcustdash');
 const categoriesRouter = require('./routers/categories');
-const ordersRouter = require('./routers/checkout');
+const ordersRouter = require('./routers/orders');
 const contactmailerRouter = require('./routers/mailController');
 const chatRouter = require('./routers/chat');
 const displayProdRouter = require('./routers/displayproducts');
@@ -35,7 +36,7 @@ const searchRoutes = require('./routers/searchbar');
 const logoutroute = require('./routers/logout');
 const employersRouter = require('./routers/employersdash');
 const addempRouter = require('./routers/addemployers');
-const reviewsRouter = require('./routers/reviews');
+
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
 
@@ -43,17 +44,15 @@ const api = process.env.API_URL;
 const app = express();
 const port = process.env.PORT || 8080;
 
-
-
 // for auto refresh
 const liveReloadServer = livereload.createServer();
 liveReloadServer.watch(path.join(__dirname, 'public'));
 
 app.use(connectLivereload());
 
-liveReloadServer.server.once("connection", () => {
+liveReloadServer.server.once('connection', () => {
     setTimeout(() => {
-        liveReloadServer.refresh("/");
+        liveReloadServer.refresh('/');
     }, 100);
 });
 
@@ -80,6 +79,7 @@ app.use('/', productsRouter);
 app.use('/categories', categoriesRouter);
 app.use('/ordersdash', ordersRouter);
 app.use('/user', usersRouter);
+app.use('/userprofile', userprofileRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
 app.use('/editproducts', editProdRouter);
@@ -89,9 +89,6 @@ app.use('/displayproducts', displayProdRouter);
 app.use('/', searchRoutes);
 app.use('/logout', logoutroute);
 app.use('/addemployers', addempRouter);
-app.use('/reviews', reviewsRouter);
-app.use('/checkout', ordersRouter);
-
 
 const { Product } = require('./models/product');
 const { OrderItem } = require('./models/order-items');
@@ -109,24 +106,24 @@ mongoose
     });
 
 app.get(`/`, async (req, res) => {
-
-   
     const product = await Product.find()
         .sort({ date: -1 })
-        .limit(10) // retrieve only 10 products
+        .limit(10) // retrieve only 6 products
         .then((result) => {
             const product = result.length > 0 ? result : null; // check if newIn products are available
-            res.render("pages/index", {
+            res.render('pages/index', {
                 product, // pass the products to the template
                 user:
-                    req.session.user == undefined ? undefined : req.session.user,
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
                 cart:
-                    req.session.cart == undefined ? undefined : req.session.cart,
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
             });
         });
 });
-
-
 
 app.get(`/home`, function (req, res) {
     res.render('pages/index', {
@@ -136,8 +133,6 @@ app.get(`/home`, function (req, res) {
                 ? undefined
                 : req.session.cart.items,
     });
-
-
 });
 
 app.get(`/categories`, function (req, res) {
@@ -146,7 +141,12 @@ app.get(`/categories`, function (req, res) {
         cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
-
+app.get(`/checkout`, function (req, res) {
+    res.render('pages/checkout', {
+        user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
+    });
+});
 app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
         user: req.session.user == undefined ? undefined : req.session.user,
@@ -157,7 +157,7 @@ app.get(`/wishlist`, function (req, res) {
 app.get('/search', function (req, res) {
     res.render('pages/search', {
         user: req.session.user == undefined ? undefined : req.session.user,
-        cart: req.session.cart == undefined ? undefined : req.session.cart
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 
@@ -211,10 +211,9 @@ app.get(`/displayproducts`, function (req, res) {
 app.get(`/employersdash`, function (req, res) {
     res.render('pages/employersdash');
 });
-app.get(`/addemployers`, function(req, res){
+app.get(`/addemployers`, function (req, res) {
     res.render('pages/addemployers');
 });
-
 
 /* --------- DASHBOARDS END -----*/
 
@@ -226,7 +225,7 @@ app.get(`/signup`, function (req, res) {
     });
 });
 
-app.post('/sign-up-action', (req, res) => { });
+app.post('/sign-up-action', (req, res) => {});
 /* --------- SIGN UP AND LOG IN END ---*/
 //CONTACT US MAILER START
 
@@ -266,8 +265,6 @@ app.post(`/contactus`, function (req, res) {
 });
 /* ---------CONTACT US FORM MAILER END --------*/
 
-
-
 app.post('/updateorder', function (req, res) {
     app.post('/updateorder', function (req, res) {
         var orderId = req.body._id;
@@ -285,27 +282,28 @@ app.post('/updateorder', function (req, res) {
             from: 'clementineco2023@gmail.com',
             to: req.body.email,
             subject: 'Order Confirmation',
-            html: ejs.render(`
+            html: ejs.render(
+                `
       <p>Dear <%= userFullName %>,</p>
       <p>Thank you for your order of <%= quantity %> <%= orderItem %>(s) for a total of <%= price %>.</p>
       <p>We have received your order and are processing it now. We will notify you by email once your order has been shipped.</p>
       <p>Thank you for choosing us!</p>
-    `, { userFullName, quantity, OrderItem, price })
+    `,
+                { userFullName, quantity, OrderItem, price }
+            ),
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
-              console.log(error);
-              return res.send('Error.');
+                console.log(error);
+                return res.send('Error.');
             } else {
-              console.log('Email sent:' + info.response);
-              // Save the order details to your database or perform other actions as needed
-              return res.redirect('/');
-
-        }
+                console.log('Email sent:' + info.response);
+                // Save the order details to your database or perform other actions as needed
+                return res.redirect('/');
+            }
+        });
     });
-
-});
 });
 
 app.listen(port, () => {

@@ -32,7 +32,9 @@
         </div>
         </a>
         <li class="nav-item">
-            <a class="nav-link" href="#" style="color: black;"> <span class="fas fa-user pe-2"></span> Hello,<%= user %> <span
+            <a class="nav-link" href="#" style="color: black;"> <span class="fas fa-user pe-2"></span> Hello,<% if(user != undefined) {%>
+                <%= user.firstname %>
+                <% } %> <span
                     id="user" on></span></a>
         </li>
         </ul>
@@ -96,7 +98,7 @@
             </div>
             <div class="col-lg-9 my-lg-0 my-1">
                 <div id="main-content" class="bg-white border">
-                    <%- include('./userprofilemain') %>
+                    <%- include('../partials/userprofilemain') %>
                 </div>
             </div>
         </div>
