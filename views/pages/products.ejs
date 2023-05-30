@@ -38,24 +38,36 @@
             <% if(products !='' ) {%>
                 <% products.forEach((items)=> {%>
                     <div class="box">
-                        <a alt="" class="ri-heart-line" id="heart-icon-<%= items._id %>"
-                            data-productid="<%= items._id %>">
-                        </a>
-                        <a href="/product/<%- items._id %>">
-                            <img class="imgg" src="/Images/<%- items.image %>" alt="">
-                        </a>
-                        <div class="items">
-                            <div class="prodetails">
-                                <p>
-                                    <%= items.name%>
-                                </p>
-                                <p class="price"> EGP
-                                    <%= items.price%>
-                                </p>
-                            </div>
-                            <form action="/cart/<%= items._id %>/<%= Id %>" method="post"><input type="submit"
-                                    value="Add to cart" class="btn"></form>
-                        </div>
+                        <% if (User !=undefined) { %>
+                            <%if(User.wishlist.includes(items._id)){%>
+                                <a alt="" class="ri-heart-fill" id="included-icon-<%= items._id %>"
+                                    data-productid="<%= items._id %>">
+                                </a>
+                                <% }else { %>
+                                    <a alt="" class="ri-heart-line" id="heart-icon-<%= items._id %>"
+                                        data-productid="<%= items._id %>">
+                                    </a>
+                                    <% } %> %>
+                                        <% }else { %>
+                                            <a alt="" class="ri-heart-line" id="heart-icon-<%= items._id %>"
+                                                data-productid="<%= items._id %>">
+                                            </a>
+                                            <% } %>
+                                                <a href="/product/<%- items._id %>">
+                                                    <img class="imgg" src="/Images/<%- items.image %>" alt="">
+                                                </a>
+                                                <div class="items">
+                                                    <div class="prodetails">
+                                                        <p>
+                                                            <%= items.name%>
+                                                        </p>
+                                                        <p class="price"> EGP
+                                                            <%= items.price%>
+                                                        </p>
+                                                    </div>
+                                                    <form action="/cart/<%= items._id %>" method="post"><input
+                                                            type="submit" value="Add to cart" class="btn"></form>
+                                                </div>
                     </div>
                     <% }) %>
                         <% } %>

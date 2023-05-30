@@ -31,15 +31,39 @@ router.get('/product/:id', async (req, res) => {
 router.get('/products', products.getAllProducts);
 
 //diamond
-router.get('/drings', products.getDrings);
-router.get('/dearrings', products.getDearrings);
-router.get('/dnecklaces', products.getDnecklaces);
-router.get('/dbracelets', products.getDbracelets);
+router.get('/drings', async(req,res)=>{
+  const User = await user.findOne({ email: req.session.user });
+  products.getDrings(User,req,res);
+});
+router.get('/dearrings', async(req,res)=>{
+    const User = await user.findOne({ email: req.session.user });
+    products.getDearrings(User,req,res);
+  });
+router.get('/dnecklaces', async(req,res)=>{
+    const User = await user.findOne({ email: req.session.user });
+    products.getDnecklaces(User,req,res);
+  });
+router.get('/dbracelets', async(req,res)=>{
+    const User = await user.findOne({ email: req.session.user });
+    products.getDbracelets(User,req,res);
+  });
 //gold
-router.get('/grings', products.getGrings);
-router.get('/gearrings', products.getGearrings);
-router.get('/gnecklaces', products.getGnecklaces);
-router.get('/gbracelets', products.getGbracelets);
+router.get('/grings',async(req,res)=>{
+    const User = await user.findOne({ email: req.session.user });
+    products.getGrings(User,req,res);
+  });
+router.get('/gearrings', async(req,res)=>{
+    const User = await user.findOne({ email: req.session.user });
+    products.getGearrings(User,req,res);
+  });
+router.get('/gnecklaces', async(req,res)=>{
+    const User = await user.findOne({ email: req.session.user });
+    products.getGnecklaces(User,req,res);
+  });
+router.get('/gbracelets', async(req,res)=>{
+    const User = await user.findOne({ email: req.session.user });
+    products.getGbracelets(User,req,res);
+  });
 
 router.get('/wishlist', async (req, res) => {
     const userID = req.session.user;

@@ -85,15 +85,14 @@
                 <br>
 
                 <div class="wishlist" id="wishlist">
-                    <img src="/Images/darkfav.png" alt="" id="darkfav" onclick="changeimage()"
+                    <img src="/Images/darkfav.png" alt="" id="darkfav" data-productid="<%- products._id %>" onclick="changeimage()"
                         title="remove from wishlist">
-                    <img src="/Images/whiteheart.png" alt="" id="fav" onclick="changeimage2()" title="add to wishlist">
+                    <img src="/Images/whiteheart.png" alt="" id="fav" data-productid="<%= products._id %>" onclick="changeimage2()" title="add to wishlist">
                     <script>
                         let imgs = [document.getElementById('darkfav'), document.getElementById('fav')];
                         function changeimage() {
                             let parent = document.getElementById('wishlist');
                             parent.className = 'wishlist darkfav';
-
                         }
                         function changeimage2() {
 
