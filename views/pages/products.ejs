@@ -6,11 +6,23 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
     <link rel="stylesheet" href="/css/style.css">
+
     <link rel="stylesheet" href="/css/products.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-
+    <style>
+        #filter{
+            height: 40px;
+            width: 60px;
+            /* font-weight: bold; */
+            font-size: 17px;
+            border-color: rgba(128, 128, 128, 0.082);
+             border-radius: 2px;
+                background-color: white;
+                color:black;
+                cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,10 +31,13 @@
 
         <div class="sorting">
             <label for="">Sort by</label>
-            <select name="sort" id="sort">
-                <option value="Highest price">Highest price</option>
-                <option value="Lowest price">Lowest price</option>
-            </select>
+            <form action="/products" method="post">
+                <select name="sort" id="sort">
+                    <option value="Highestprice">Highest price</option>
+                    <option value="Lowestprice">Lowest price</option>
+                </select>
+                <input type="submit" value="Filter" id="filter">
+            </form>
         </div>
 
         <section id="rings-intro">
@@ -40,6 +55,22 @@
                     <div class="box">
                         <a alt="" class="ri-heart-line" id="heart-icon-<%= items._id %>"
                             data-productid="<%= items._id %>">
+
+                            <a href="/product/<%- items._id %>">
+                                <img class="imgg" src="/Images/<%- items.image %>" alt="">
+                            </a>
+                            <div class="items">
+                                <div class="prodetails">
+                                    <p>
+                                        <%= items.name%>
+                                    </p>
+                                    <p class="price"> EGP
+                                        <%= items.price%>
+                                    </p>
+                                </div>
+                                <form action="/cart/<%= items._id %>" method="post"><input type="submit"
+                                        value="Add to cart" class="btn"></form>
+                            </div>
                         </a>
                         <a href="/product/<%- items._id %>">
                             <img class="imgg" src="/Images/<%- items.image %>" alt="">
@@ -53,13 +84,14 @@
                                     <%= items.price%>
                                 </p>
                             </div>
-                            <form action="/cart/<%= items._id %>/<%= Id %>" method="post"><input type="submit"
+                            <form action="/cart/<%= items._id %>" method="post"><input type="submit"
                                     value="Add to cart" class="btn"></form>
                         </div>
                     </div>
                     <% }) %>
                         <% } %>
         </section>
+       
         <% if (user !=undefined) {%>
             <script src="/js/prod.js"></script>
             <% } %>
