@@ -66,6 +66,12 @@ router.post(`/:id`, async (req, res) => {
     res.redirect('/');
 });
 
+
+
+
+
+
+
 // router.post(`/:id/:page`, async (req, res) => {
 //     Product.findById(req.params.id)
 //         .then(async (result) => {
