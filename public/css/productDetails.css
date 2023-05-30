@@ -57,6 +57,7 @@ body {
   display: flex;
   width: 100%;
   transition: all 0.5s ease;
+  position: relative;
 }
 
 .img-showcase img {
@@ -86,10 +87,10 @@ body {
 }
 
 .details {
-  position: relative;
-  background: #fff;
   flex: 50%;
+  background: #fff;
   width: 100%;
+  z-index:99999 ;
   margin-top: 10px;
   overflow: hidden;
 }
@@ -343,6 +344,32 @@ body {
   width: 100%;
   background-color: rgb(2, 22, 77);
 
+}
+@media screen and (max-width: 900px){
+  .product-imgs{
+    display: flex;
+    align-items: center;
+        overflow: hidden;
+    width: 100%;
+  }
+  .product-imgs .img-select{
+    margin: 0;
+    display: block;
+    width: 20%;
+    z-index: 9999;
+  }
+  .product-imgs .img-showcase{
+    width: 100px;
+    height: auto;
+    transform: translateX(-50%);
+  }
+  .parent{
+    display: block;
+  }
+  .pcontainer {
+    margin-left: 20%;
+    display: block;
+  }
 }
 
 
