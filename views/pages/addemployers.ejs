@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,14 +11,17 @@
     <link rel="stylesheet" href="/css/editcustdash.css">
     <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Add Employer</title>
+    <title>Employer</title>
 </head>
+
 <body>
+
+
     <div class="container">
-        <% include('../partials/dashboardsidebar', { currentPage: 'addemployers' }) %>
+        <%- include('../partials/dashboardsidebar', { currentPage: 'employersdash' }) %>
 
         <main>
-            <h1>Add Employers</h1>
+            <h1>Employers</h1>
             <div id="addemployers-container">
                 <div class="addemployers">
                     <form class="form" action="/addemployers" method="post">
@@ -39,7 +43,8 @@
 
                             <div class="input-group">
                                 <label for="password">Password</label>
-                                <input id="password" type="password" placeholder="Employer's Password" name="password" required>
+                                <input id="password" type="password" placeholder="Employer's Password" name="password"
+                                    required>
                                 <span class="errormsg"></span>
                             </div>
 
@@ -50,12 +55,15 @@
                             </div>
 
                             <div class="input-group">
-                                <label for="isAdmin">Is Admin</label>
-                                <input id="isAdmin" type="checkbox" name="isAdmin">
+                                <label class="checkbox-label">
+                                    <input id="isAdmin" type="checkbox" name="isAdmin">
+                                    Is Admin
+                                </label>
                             </div>
 
-                            <button type="submit">Add Employer</button>
-                        </div>
+                            <button type="add" id="add">Add</button><span>
+                            <button id="cancel" href="/addemployers">Cancel</button></span>
+
                     </form>
                 </div>
             </div>
