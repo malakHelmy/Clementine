@@ -67,6 +67,7 @@ router.get(`/`, async (req, res) => {
 
 router.get('/:id', (req, res) =>{
     Order.findById(req.params.id)
+   // .populate('userID', '_id')
     .then((result) => {
       res.render('pages/updateorder', {
         viewTitle:'Update Order',
@@ -106,25 +107,12 @@ router.post('/:id/update', async (req, res) => {
     
 
 
-/*let order = await Order.findByIdAndUpdate(
-        req.params.id,
-        {
-            //i only need to update the status of the order
-            status: req.body.status,
-        },
-        {
-            new: true, //returns updated data
-        }
-    );
 
-    if (!order) {
-        return res.status(404).send('The order cannot be updated');
-    }
 
-    res.status(200).send(order);
-});
 
-*/
+
+
+
 
   /* router.get(`/`, async (req, res) => {
  //.populate -> if i want to know the user who ordered
@@ -150,7 +138,7 @@ router.post('/:id/update', async (req, res) => {
 
 //to display a specific object (order id, etc) from db:
 
-/* router.get('/:id', async (req, res) => {
+ router.get('/:id', async (req, res) => {
     //populate to see order details
     const orders = await Order.findById(req.params.id).populate({
         path: 'orderItems',
@@ -171,7 +159,7 @@ router.post('/:id/update', async (req, res) => {
     res.status(200).send(orders);
 });
 
-*/
+
 
 /* router.post(`/`, function (req, res) {
     const order = new Order({

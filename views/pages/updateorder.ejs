@@ -41,7 +41,7 @@
                 <a href="/editcustdash" ><span class="material-symbols-sharp">person</span>
                     <h3>Customers</h3>
                 </a>
-                <a href="/orders" class="active"></a>><span class="material-symbols-sharp">receipt_long</span>
+                <a href="/ordersdash" class="active"><span class="material-symbols-sharp">receipt_long</span>
                     <h3>Orders</h3>
                 </a>
                 <a href=""><span class="material-symbols-sharp">insights</span>
@@ -79,12 +79,18 @@
                     <form method="POST" action="/ordersdash/<%= order._id %>/update">
                         
                         <div class="input-group">
-                            <h2 class="add-title">You're updating order number: <%= order._id %></h2>
-                         
-    
+                            <h2 class="add-title" style="font-size: 25px;">You're updating order number: <%= order._id %></h2>
+                            <% if (order.userFullName) { %>
+                                <h1 class="add-title" style="font-size: 15px;">Ordered by: <%= order.userFullName %>,  ID: <%= order.userID %></h1>
+               
+
+                              <% } else { %>
+                                <h4 class="add-title">Ordered by: N/A</h4>
+                              <% } %>
+
                         <div class="input-group">
                             <label for="status">Status</label>
-                            <input type="text" id="status" name="status" value="<%= order.status %>">
+                            <input type="text" id="status" name="status" value="<%= order.status %>" >
                         </div>
 
                         <div class="input-group">
@@ -97,7 +103,8 @@
                             <input type="text" id="city" name="city" value="<%= order.city %>">
                         </div>
 
-                      
+                        <h1 class="add-title" style="font-size: 15px;">Order Items: <%= order.orderItems %></h1>
+
                         <input type="submit" id="update" class="update-btn" value="Update"></button>
                         <button id="cancel" href="/ordersdash" id="cancel" class="delete-btn">Cancel</button>
 
