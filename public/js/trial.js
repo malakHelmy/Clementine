@@ -9,7 +9,7 @@ function myFunction() {
 }
 
 function newcollectionslider() {
-    const prod_cont = [...document.querySelectorAll('.product-container')];
+    const prod_cont = [...document.querySelectorAll('.product-container-home')];
     const nxtBtn = [...document.querySelectorAll('.next_arrow')];
     const preBtn = [...document.querySelectorAll('.prev_arrow')];
 

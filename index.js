@@ -85,12 +85,19 @@ mongoose
     });
 
 app.get(`/`, async (req, res) => {
-    const product = await Product.find({featured : true});
-    res.render('pages/index', {
-        product,
-        user: req.session.user == undefined ? undefined : req.session.user,
-        cart: req.session.cart == undefined ? undefined : req.session.cart,
-    });
+    const product = await Product.find()
+    .sort({ date: -1 })
+    .limit(10) // retrieve only 6 products
+    .then((result) => {
+      const product = result.length > 0 ? result : null; // check if newIn products are available
+      res.render("pages/index", {
+        product, // pass the products to the template
+        user:
+          req.session.user == undefined ? undefined  : req.session.user,
+        cart:
+          req.session.cart == undefined ? undefined : req.session.cart,
+      });
+   });
 });
 app.get(`/home`, function (req, res) {
     res.render('pages/index', {

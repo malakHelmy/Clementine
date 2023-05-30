@@ -9,7 +9,6 @@ const router = express.Router();
 
 //new in
 router.get('/newin', products.getNewIn);
-//router.get('/index', products.getNewInLimited);
 
 router.get('/product/:id',async (req, res) => {
     const prod = await Product.findById({ _id: req.params.id });

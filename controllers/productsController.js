@@ -337,28 +337,4 @@ exports.getNewIn = (req, res) => {
         });
 };
 
-/*exports.getNewInLimited = (req, res) => {
-    const body = `Explore our newest collections, each piece is crafted with the utmost care and attention to detail,
-    using only the finest materials to ensure quality and longevity.`;
-    Product.find()
-      .sort({ date: -1 })
-      .limit(6) // retrieve only 6 products
-      .then((result) => {
-        const newInProducts = result.length > 0 ? result : null; // check if newIn products are available
-        res.render("pages/index", {
-          productTitle: "New In",
-          body,
-          newInProducts, // pass the products to the template
-          user:
-            req.session.user == undefined
-              ? undefined
-              : req.session.user,
-          cart:
-            req.session.cart == undefined ? undefined : req.session.cart,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  */
+
