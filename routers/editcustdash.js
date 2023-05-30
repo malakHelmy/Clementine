@@ -37,18 +37,32 @@ router.get('/', async (req, res) => {
 });
 
 
-router.get('/:id', (req, res) => {
-  User.findById(req.params.id)
-    .then((result) => {
-      res.render('pages/updatedeletecust', {
-        viewTitle: 'Update Customer',
-        customer: result
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+
+
+router.post('/:id', async (req, res) => {
+  try {
+    const customerId = req.params.id;
+    await User.findByIdAndRemove(customerId);
+    res.redirect('/editcustdash');
+  } catch (error) {
+    console.log('Error deleting customer:', error);
+    res.redirect('/editcustdash');
+  }
 });
+
+router.get('/:id', (req, res) =>{
+  User.findById(req.params.id)
+  .then((result) => {
+    res.render('pages/updatedeletecust', {
+      viewTitle:'Update Customer',
+      customer: result
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+});
+
 
 
 router.post('/:id/update', async (req, res) => {
@@ -63,15 +77,8 @@ router.post('/:id/update', async (req, res) => {
   }
 });
 
-router.post('/:id', async (req, res) => {
-  try {
-    const customerId = req.params.id;
-    await User.findByIdAndRemove(customerId);
-    res.redirect('/editcustdash');
-  } catch (error) {
-    console.log('Error deleting customer:', error);
-    res.redirect('/editcustdash');
-  }
-});
+
+
+
 
 module.exports = router;

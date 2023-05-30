@@ -92,6 +92,7 @@ app.use('/addemployers', addempRouter);
 
 
 const { Product } = require('./models/product');
+const { OrderItem } = require('./models/order-items');
 
 //app.use('/updatedeletecust', updatecustRoute);
 mongoose
@@ -120,6 +121,8 @@ app.get(`/`, async (req, res) => {
       });
    });
 });
+
+
 
 app.get(`/home`, function (req, res) {
     res.render('pages/index', {
@@ -191,6 +194,12 @@ app.get(`/updatedeletecust`, function (req, res) {
     res.render('pages/updatedeletecust');
 });
 
+app.get(`/updateorder`, function(req, res){
+    res.render('pages/updateorder');
+});
+app.get(`/ordersdash`, function (req, res) {
+    res.render('pages/ordersdash');
+});
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
         user: req.session.user == undefined ? undefined : req.session.user,
@@ -258,6 +267,50 @@ app.post(`/contactus`, function (req, res) {
 });
 /* ---------CONTACT US FORM MAILER END --------*/
 
+
+
+app.post('/updateorder', function(req, res) {
+    app.post('/updateorder', function(req, res) {
+        var orderId = req.body._id;
+        var status = req.body.status;
+      
+        var transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'clementineco2023@gmail.com',
+            pass: 'lmkwmjbyftpuzwhz',
+          },
+        });
+      
+        var mailOptions = {
+          from: 'clementineco2023@gmail.com',
+          to: req.body.email,
+          subject: 'Order Confirmation',
+          subject: 'Order Confirmation',
+          html: `
+            <p>Dear ${fullname},</p>
+            <p>Thank you for your order of ${quantity} ${OrderItem}(s) for a total of ${price}.</p>
+            <p>We have received your order and are processing it now. We will notify you by email once your order has been shipped.</p>
+            <p>Thank you for choosing us.</p>
+          `,
+        };
+      
+        if (status === 'Pending') {
+          transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              console.log(error);
+              res.send('Error.');
+            } else {
+              console.log('Email sent:' + info.response);
+              res.send('Successfully sent.');
+            }
+          });
+        } else {
+          res.send('No email sent.');
+        }
+      });
+
+    });
 app.listen(port, () => {
     console.log('http://localhost:8080');
 });

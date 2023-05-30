@@ -34,6 +34,8 @@
     padding-left: 7px;
     font-size: 30px;
     opacity: 0.5;
+    text-decoration: none;
+    color: black;
 }
 .ri-close-fill:hover{
     opacity: 1;
