@@ -85,6 +85,7 @@
                 <br>
 
                 <div class="wishlist" id="wishlist">
+
                     <% if (User !=undefined) { %>
                         <%if(User.wishlist.includes(products._id)){%>
                             <img src="/Images/darkfav.png" alt="" id="darkfav" data-removeid="<%- products._id %>"
@@ -95,18 +96,18 @@
                                 <% } %> %>
                                     <% }else { %>
                                         <img src="/Images/whiteheart.png" alt="" id="fav"
-                                            data-wishid="<%= products._id %>"
-                                            title="add to wishlist">
+                                            data-wishid="<%= products._id %>" title="add to wishlist">
                                         <% } %>
+                                            <span class="savesmall">SAVE TO WISHLIST</span>
                 </div>
+
                 <br>
                 <div class="btnsdiv">
 
-                    <button class="btns">IN-STORE PICK UP</button>
-                    <form action="/cart/<%= products._id %>" method="post"><input type="submit"
-                        value="ADD TO CART" class="atc"></form>
+                    <form><input type="submit" value="IN-STORE PICK UP" class="ispu"></form>
+                    <form action="/cart/<%= products._id %>" method="post"><input type="submit" value="ADD TO CART"
+                            class="atc"></form>
                 </div>
-
                 <section id="payinfo">
                     <p>4 interest-free payments of EGP 470 with <span class="special1">Klarna</span>. <span> <a href="#"
                                 class="learn-more" data-image="/Images/klarna.png" style="color: rgb(61, 61, 61);">Learn
@@ -119,55 +120,56 @@
                                 href="#" class="learn-more" data-image="" style="color: rgb(61, 61, 61);">Learn
                                 More</a></span></p>
                 </section>
-                <div class="popup">
-                    <img src="" alt="" />
-                    <button class="close-popup">X</button>
-                </div>
-
-                <section id="shipinfo">
-                    <h1 id="shipping_returns">SHIPPING AND RETURNS</h1>
-                    <i class="fas fa-shipping-fast" id="ed"></i>
-                    <span id="shipinfotitle"> Ship to Home </span>
-                    <p class="subtitle2">Standard Shipping</p>
-                    <ul class="subul1">
-                        <li> Free on orders EGP 2250+.
-                        </li>
-                        <li> Arrives in 2-4 business days.
-                        </li>
-                    </ul>
-                    <p class="subtitle2">Next Day Shipping</p>
-                    <ul class="subul1">
-                        <li> Free on all Lab-Created Diamonds by Clementine purchases.
-                        </li>
-                        <li> Arrives the next business day if ordered by 1pm ET.
-                        </li>
-                    </ul>
-
-                    <div id="sep">
-                        <div> <i class="fa-solid fa-store" id="ed"></i>
-                            <span id="shipinfotitle"> In-Store Pickup </span>
-                            <ul class="subul1">
-                                <li> Free on all orders.
-                                </li>
-                                <li> Ready in 2 business hours.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="sep">
-                        <div> <i class="fa-solid fa-right-left" id="ed"></i>
-                            <span id="shipinfotitle"> Returns </span>
-                            <ul class="subul1">
-                                <li> Free and easy returns within 30 days, online or in-store.
-                                </li>
-                                <li> Prepaid return label included.
-                                </li>
-                        </div>
-                    </div>
-
-                </section>
             </div>
         </div>
+
+        <div class="popup">
+            <img src="" alt="" />
+            <button class="close-popup">X</button>
+        </div>
+
+        <section id="shipinfo">
+            <h1 id="shipping_returns">SHIPPING AND RETURNS</h1>
+            <i class="fas fa-shipping-fast" id="ed"></i>
+            <span id="shipinfotitle"> Ship to Home </span>
+            <p class="subtitle2">Standard Shipping</p>
+            <ul class="subul1">
+                <li> Free on orders EGP 2250+.
+                </li>
+                <li> Arrives in 2-4 business days.
+                </li>
+            </ul>
+            <p class="subtitle2">Next Day Shipping</p>
+            <ul class="subul1">
+                <li> Free on all Lab-Created Diamonds by Clementine purchases.</li>
+                <li> Arrives the next business day if ordered by 1pm ET.</li>
+            </ul>
+
+            <div id="sep">
+                <div> <i class="fa-solid fa-store" id="ed"></i>
+                    <span id="shipinfotitle"> In-Store Pickup </span>
+                    <ul class="subul1">
+                        <li> Free on all orders.
+                        </li>
+                        <li> Ready in 2 business hours.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="sep">
+                <div> <i class="fa-solid fa-right-left" id="ed"></i>
+                    <span id="shipinfotitle"> Returns </span>
+                    <ul class="subul1">
+                        <li> Free and easy returns within 30 days, online or in-store.
+                        </li>
+                        <li> Prepaid return label included.
+                        </li>
+                </div>
+            </div>
+
+        </section>
+
+
         <!-- prodacts cards -->
         <div class="maylike">
 
@@ -205,7 +207,7 @@
                     </b> </p>
                 <div class="signIn">
 
-                    <form action="/reviews/ <%- products._id  %>" method="post" class="signInform" >
+                    <form action="/reviews/ <%- products._id  %>" method="post" class="signInform">
                         <div class="textfield">
                             <input type="email" name="email">
                             <span class="sp1"></span>

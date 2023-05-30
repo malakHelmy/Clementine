@@ -171,17 +171,33 @@ body {
   color: rgb(163, 4, 4);
 }
 
+.savesmall {
+  position: absolute;
+  margin-top: 14px;
+  margin-left: 5px;
+  font-size: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#darkfav,
+#fav {
+  margin-top: 10px;
+  cursor: pointer;
+  width: 30px;
+  height: 25px;
+}
+
 .btnsdiv {
 
   display: flex;
-  justify-content: center;
-
+  justify-content: space-evenly;
 }
 
-.btns {
+.ispu,
+.atc {
 
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin: 2% 7%;
+  margin: 9%;
   border: none;
   background: #242424;
   color: #ffffff;
@@ -194,35 +210,13 @@ body {
   transform: translateY(-15px);
 }
 
-.atc {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin-top: 9%;
-  border: none;
-  background: #242424;
-  color: #ffffff;
-  width: 180px;
-  height: 49px;
-  font-size: 13px;
-  cursor: pointer;
-  /*font-size: 20px; */
-  letter-spacing: 2px;
-  transform: translateY(-15px);
-}
 
-.btns:hover,
+.ispu:hover,
 .atc:hover {
   background: #d79e2e;
   transition: 0.7s ease-in-out;
   cursor: pointer;
   letter-spacing: 2px;
-}
-
-.savesmall {
-
-  font-size: 15px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin-left: 50px;
-  transform: translateY(-5.5px);
 }
 
 .popup {
@@ -251,16 +245,10 @@ body {
   font-size: 20px;
 }
 
-#darkfav,
-#fav {
-  transform: translateY(19px);
-  cursor: pointer;
-  width: 30px;
-  height: 25px;
-}
 
 #payinfo {
-
+  position: relative;
+  width: 100%;
   padding: 10px;
   margin: 1% 0px;
   margin-top: 30px;
@@ -269,7 +257,8 @@ body {
   font-size: 13px;
   letter-spacing: 1.5px;
 }
-.hoho{
+
+.hoho {
   color: #686868;
   font-weight: bolder;
 }
@@ -292,7 +281,8 @@ body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-#shipinfo{
+#shipinfo {
+  overflow: hidden;
   border: 1px solid rgba(69, 69, 69, 0.091);
   margin: 25px;
   padding-top: 15px;
@@ -300,11 +290,13 @@ body {
   transform: translateY(20px);
 
 }
-#ed{
+
+#ed {
   padding-top: 10px;
   transform: translateX(50px);
 }
-.subtitle2{
+
+.subtitle2 {
 
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #949494;
@@ -314,7 +306,8 @@ body {
   margin-top: 20px;
 
 }
-.subul1{
+
+.subul1 {
 
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #949494;
@@ -324,19 +317,20 @@ body {
 
 }
 
-#shipinfotitle{
-padding-left: 80px;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-font-size: 15.5px;
-font-weight: bold;
-color: #353535;
-letter-spacing: 0.35px;
+#shipinfotitle {
+  padding-left: 80px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 15.5px;
+  font-weight: bold;
+  color: #353535;
+  letter-spacing: 0.35px;
 }
-#sep{
+
+#sep {
   margin-top: 20px;
 }
 
-#shipping_returns{
+#shipping_returns {
   font-family: 'Zapf';
   font-size: 22px;
   color: #272727;
@@ -345,10 +339,13 @@ letter-spacing: 0.35px;
   margin-left: 40px;
 
 }
+
 /*styling product cards*/
 .pcontainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
+  margin-left: -1%;
 }
 
 
@@ -479,35 +476,83 @@ letter-spacing: 0.35px;
 
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1300px) {
+  .parent {
+    display: block;
+    overflow: hidden;
+  }
+.img-select {
+    overflow: hidden;
+    position: relative;
+    z-index: 9999;
+  }
+
+  .img-showcase {
+    margin-left: 30%;
+    margin-top: 10%;
+    overflow: hidden;
+    position: absolute;
+    width: 500px;
+  }
+  .img-showcase img{
+    width: 500px;
+  }
+
+  .details {
+    text-align: center;
+    overflow: hidden;
+  }
+  .wishlist{
+    margin-left: -70%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .body{
+    overflow: hidden;
+  }
+  .parent{
+    overflow: hidden;
+  }
   .product-imgs {
     display: flex;
-    align-items: center;
-    overflow: hidden;
     width: 100%;
   }
 
   .product-imgs .img-select {
-    margin: 0;
-    display: block;
-    width: 20%;
+    margin-top: 90%;
+    display: flex;
+    width: 100%;
+    position: relative;
     z-index: 9999;
+    align-items: center;
+  }
+  .img-select .img-item button img{
+    width: 80%;
   }
 
-  .product-imgs .img-showcase {
-    width: 100px;
-    height: auto;
-    transform: translateX(-50%);
+  .img-showcase {
+    margin: 0;
+    margin-left: 7%;
+    overflow: hidden;
+    position: absolute;
+    width: 500px;
+  }
+  .img-showcase img{
+    width: 450px;
   }
 
-  .parent {
-    display: block;
+  .wishlist{
+    margin-left: -70%;
+    overflow: hidden;
   }
 
-  .pcontainer {
-    margin-left: 20%;
-    display: block;
+  #shipinfo .subul1 li{
+    margin-left: -60px;
+    text-align: left;
+    overflow: hidden;
   }
+
 }
 
 
