@@ -79,6 +79,7 @@ router.post('/products/:material/:category/:body/:title', async (req, res) => {
 router.get('/newin', products.getNewIn);
 
 router.get('/product/:id', async (req, res) => {
+    const User = await user.findOne({ email: req.session.user });
     const prod = await Product.findById({ _id: req.params.id });
     let product = await Product.find({ featured: true });
     product = product.slice(0, 5);
@@ -92,6 +93,7 @@ router.get('/product/:id', async (req, res) => {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
         products: prod,
+        User,
         product,
         Id: req.params.id,
     });

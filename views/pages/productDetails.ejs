@@ -85,41 +85,45 @@
                 <br>
 
                 <div class="wishlist" id="wishlist">
-                    <img src="/Images/darkfav.png" alt="" id="darkfav" data-productid="<%- products._id %>" onclick="changeimage()"
-                        title="remove from wishlist">
-                    <img src="/Images/whiteheart.png" alt="" id="fav" data-productid="<%= products._id %>" onclick="changeimage2()" title="add to wishlist">
-                    <script>
-                        let imgs = [document.getElementById('darkfav'), document.getElementById('fav')];
-                        function changeimage() {
-                            let parent = document.getElementById('wishlist');
-                            parent.className = 'wishlist darkfav';
-                        }
-                        function changeimage2() {
-
-                            let parent = document.getElementById('wishlist');
-                            parent.className = 'wishlist fav';
-
-                        } 
-                    </script>
+                    <% if (User !=undefined) { %>
+                        <%if(User.wishlist.includes(products._id)){%>
+                            <img src="/Images/darkfav.png" alt="" id="darkfav" data-removeid="<%- products._id %>"
+                                onclick="remove()" title="remove from wishlist">
+                            <% }else { %>
+                                <img src="/Images/whiteheart.png" alt="" id="fav" data-wishid="<%= products._id %>"
+                                    onclick="add()" title="add to wishlist">
+                                <% } %> %>
+                                    <% }else { %>
+                                        <img src="/Images/whiteheart.png" alt="" id="fav"
+                                            data-wishid="<%= products._id %>"
+                                            title="add to wishlist">
+                                        <% } %>
                 </div>
                 <br>
                 <div class="btnsdiv">
 
                     <button class="btns">IN-STORE PICK UP</button>
-                    <button class="btns">ADD TO CART</button>
+                    <form action="/cart/<%= products._id %>" method="post"><input type="submit"
+                        value="ADD TO CART" class="atc"></form>
                 </div>
 
                 <section id="payinfo">
-                    <p>4 interest-free payments of EGP 470 with <span class="special1">Klarna</span>. <span> <a href="#" class="learn-more" data-image="/Images/klarna.png" style="color: rgb(61, 61, 61);">Learn More</a></span></p>
-                    <p>Pay in 4 interest-free payments of EGP 465 with <span class="special2">PayPal</span>. <span> <a href="#" class="learn-more" data-image="/Images/paypal.png" style="color: rgb(61, 61, 61);">Learn More</a></span></p>
-                    <p>Special Financing Available with  <span class="special1">Clementine Credit Card</span>.<span> <a href="#" class="learn-more" data-image="" style="color: rgb(61, 61, 61);">Learn More</a></span></p>
+                    <p>4 interest-free payments of EGP 470 with <span class="special1">Klarna</span>. <span> <a href="#"
+                                class="learn-more" data-image="/Images/klarna.png" style="color: rgb(61, 61, 61);">Learn
+                                More</a></span></p>
+                    <p>Pay in 4 interest-free payments of EGP 465 with <span class="special2">PayPal</span>. <span> <a
+                                href="#" class="learn-more" data-image="/Images/paypal.png"
+                                style="color: rgb(61, 61, 61);">Learn More</a></span></p>
+                    <p>Special Financing Available with <span class="special1">Clementine Credit Card</span>.<span> <a
+                                href="#" class="learn-more" data-image="" style="color: rgb(61, 61, 61);">Learn
+                                More</a></span></p>
                 </section>
                 <div class="popup">
                     <img src="" alt="" />
                     <button class="close-popup">X</button>
-                  </div>
-                  
-            
+                </div>
+
+
 
             </div>
         </div>

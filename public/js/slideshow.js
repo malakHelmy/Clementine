@@ -13,11 +13,15 @@ buttons.forEach((button) => {
     });
 });
 
+let imgs = [document.getElementById('darkfav'), document.getElementById('fav')];
 const white = document.getElementById('fav');
 const dark = document.getElementById('darkfav');
 
-white.addEventListener('click', async () => {
-    var prodID = white.dataset.productid;
+async function add() {
+    var prodID = white.dataset.wishid;
+    document
+        .getElementById('fav')
+        .setAttribute('src', '/Images/darkfav.png');
     const response = await fetch('/add-to-wishlist', {
         method: 'POST',
         headers: {
@@ -26,12 +30,13 @@ white.addEventListener('click', async () => {
         },
         body: JSON.stringify({ prodID }),
     });
-});
+}
 
-dark.addEventListener('click', async () => {
-    var wishprodID = dark.dataset.productid;
-    console.log(wishprodID); // Log the value of prodID to the console
-
+async function remove() {
+    var wishprodID = dark.dataset.removeid;
+    document
+        .getElementById('darkfav')
+        .setAttribute('src', '/Images/whiteheart.png');
     const response = await fetch('/remove-from-wishlist', {
         method: 'POST',
         headers: {
@@ -39,4 +44,4 @@ dark.addEventListener('click', async () => {
         },
         body: JSON.stringify({ wishprodID }),
     });
-});
+}
