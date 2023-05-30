@@ -69,6 +69,8 @@ exports.getDrings = (req, res) => {
                         : req.session.cart,
                 products: result,
                 Id: req.params.id,
+                material: 'diamond',
+                 category: 'ring'
             });
         })
         .catch((err) => {
@@ -93,6 +95,8 @@ exports.getDnecklaces = (req, res) => {
                         : req.session.cart,
                 products: result,
                 Id: req.params.id,
+                material: 'diamond',
+                 category: 'necklace'
             });
         })
         .catch((err) => {
@@ -117,6 +121,8 @@ exports.getDearrings = (req, res) => {
                         : req.session.cart,
                 products: result,
                 Id: req.params.id,
+                material: 'diamond', 
+                category: 'earring'
             });
         })
         .catch((err) => {
@@ -141,6 +147,8 @@ exports.getDbracelets = (req, res) => {
                         : req.session.cart,
                 products: result,
                 Id: req.params.id,
+                material: 'diamond',
+                 category: 'bracelet'
             });
         })
         .catch((err) => {
@@ -165,6 +173,8 @@ exports.getGrings = (req, res) => {
                         : req.session.cart,
                 products: result,
                 Id: req.params.id,
+                material: 'gold', 
+                category: 'ring'
             });
         })
         .catch((err) => {
@@ -188,6 +198,8 @@ exports.getGnecklaces = (req, res) => {
                     req.session.cart == undefined
                         ? undefined
                         : req.session.cart,
+                        material: 'gold', 
+                        category: 'necklace'
             });
         })
         .catch((err) => {
@@ -211,6 +223,8 @@ exports.getGearrings = (req, res) => {
                 body,
                 products: result,
                 Id: req.params.id,
+                material: 'gold',
+                 category: 'earring'
             });
         })
         .catch((err) => {
@@ -236,6 +250,8 @@ exports.getGbracelets = (req, res) => {
                 body,
                 products: result,
                 Id: req.params.id,
+                material: 'gold',
+                 category: 'bracelet'
             });
         })
         .catch((err) => {
@@ -327,6 +343,8 @@ exports.getNewIn = (req, res) => {
                     req.session.cart == undefined
                         ? undefined
                         : req.session.cart,
+                        material: 'gold',
+                        category: 'bracelet'
             });
         })
         .catch((err) => {
