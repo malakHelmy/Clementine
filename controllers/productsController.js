@@ -343,8 +343,9 @@ exports.getNewIn = (req, res) => {
                     req.session.cart == undefined
                         ? undefined
                         : req.session.cart,
-                        material: 'gold',
-                        category: 'bracelet'
+                        material: '',
+                        category: '',
+                     
             });
         })
         .catch((err) => {
