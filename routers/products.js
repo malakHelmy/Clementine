@@ -8,6 +8,20 @@ const { Product } = require('../models/product');
 const router = express.Router();
 
 //new in
+
+router.post('/products',(req,res)=>{
+
+if(req.body.sort=='Lowestprice')
+{
+
+
+}else if(req.body.sort=='Highestprice')
+{
+    
+}
+
+});
+
 router.get('/newin', products.getNewIn);
 
 router.get('/product/:id',async (req, res) => {
