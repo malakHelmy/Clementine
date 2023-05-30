@@ -2,7 +2,6 @@ const { Product } = require('../models/product');
 const user = require('../models/user');
 const asyncHandler = require('express-async-handler');
 
-
 exports.getAllProducts = (req, res) => {
     Product.find()
         .then((result) => {
@@ -270,19 +269,17 @@ exports.removeFromWishlist = asyncHandler(async (wishuserID, removeprod) => {
     try {
         const userWish = await user.findOne({ email: wishuserID });
         const wishlists = await Product.findOne({
-            _id:  removeprod});
+            _id: removeprod,
+        });
         if (wishlists) {
             await user.findOneAndUpdate(
                 { email: wishuserID },
-                { $pull: { wishlist: removeprod } },
+                { $pull: { wishlist: removeprod } }
             );
-        }
-        else 
-        {
+        } else {
             console.log('product was not found');
         }
         console.log(userWish.wishList);
-
     } catch (err) {
         console.log('could not remove product');
     }
@@ -336,5 +333,3 @@ exports.getNewIn = (req, res) => {
             console.log(err);
         });
 };
-
-
