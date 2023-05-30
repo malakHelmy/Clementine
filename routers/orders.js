@@ -4,6 +4,47 @@ const { User } = require('../models/user');
 const { OrderItem } = require('../models/order-items');
 const router = express.Router();
 
+ //adding a new order to the schema
+ router.post(`/`, async (req, res) => {
+    const orderItemsIds = Promise.all(
+        //.map ashan andna array of order items
+        req.body.orderItems.map(async (orderItem) => {
+            let newOrderItem = new OrderItem({
+                quantity: orderItem.quantity,
+                product: orderItem.product,
+            });
+            newOrderItem = await newOrderItem.save();
+            return newOrderItem._id;
+        })
+    );
+
+    const orderItemIdsresolved = await orderItemsIds;
+    let add_order = {
+        
+        orderItems: orderItemIdsresolved,
+        order_id: req.body.order_id,
+        userID: req.body.userID,
+        shippingAddress1: req.body.shippingAddress1,
+        city: req.body.city,
+        zip: req.body.zip,
+        status: req.body.status,
+        totalAmount: req.body.totalAmount,
+        phone_num: req.body.phone_num,
+        dateOrdered: req.body.dateOrdered,
+    };
+
+    const orders = new Order(add_order);
+    //catching errors method #2
+    orders
+    .save()
+    .then((result) =>{
+        res.render('/ordersdash');
+    }) 
+    .catch((err) => {
+        console.log(err);
+    })
+});
+
 
 
 
@@ -22,46 +63,68 @@ router.get(`/`, async (req, res) => {
     });
   });
 
-  //adding a new object to the schema
-router.post(`/`, async (req, res) => {
-    const orderItemsIds = Promise.all(
-        req.body.orderItems.map(async (orderItem) => {
-            let newOrderItem = new OrderItem({
-                quantity: orderItem.quantity,
-                product: orderItem.product,
-            });
-            newOrderItem = await newOrderItem.save();
-            return newOrderItem._id;
-        })
+ 
+
+router.get('/:id', (req, res) =>{
+    Order.findById(req.params.id)
+    .then((result) => {
+      res.render('pages/updateorder', {
+        viewTitle:'Update Order',
+        order: result
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  });
+
+  router.post('/:id', async(req, res) => {
+    try {
+        const orderID = req.params.id;
+        await Order.findByIdAndRemove(orderID);
+        res.redirect('/ordersdash');
+    }
+    catch(error) {
+        console.log('Error deleting order: ', error);
+        res.redirect('/ordersdash');
+    }
+  })
+
+//editing and updating status
+router.post('/:id/update', async (req, res) => {
+    try{
+        const orderID=req.params.id;
+        const updates = req.body;
+        await Order.findByIdAndUpdate(orderID, updates);
+        res.redirect('/ordersdash');
+    }
+    catch (error) {
+        console.log('Erorr updating order: ', error);
+        res.redirect('/ordersdash');
+    }
+});
+    
+
+
+/*let order = await Order.findByIdAndUpdate(
+        req.params.id,
+        {
+            //i only need to update the status of the order
+            status: req.body.status,
+        },
+        {
+            new: true, //returns updated data
+        }
     );
 
-    const orderItemIdsresolved = await orderItemsIds;
-
-
-
-    let add_order = new Order({
-        
-        orderItems: orderItemIdsresolved,
-        order_id: req.body.order_id,
-        userID: req.body.userID,
-        shippingAddress1: req.body.shippingAddress1,
-        city: req.body.city,
-        zip: req.body.zip,
-        status: req.body.status,
-        totalAmount: req.body.totalAmount,
-        phone_num: req.body.phone_num,
-        dateOrdered: req.body.dateOrdered,
-    });
-
-    //catching errors method #2
-    add_order = await add_order.save();
-    if (!add_order) {
-        return res.status(404).send('The order cannot be added');
+    if (!order) {
+        return res.status(404).send('The order cannot be updated');
     }
 
-    res.status(200).send(add_order);
+    res.status(200).send(order);
 });
 
+*/
 
   /* router.get(`/`, async (req, res) => {
  //.populate -> if i want to know the user who ordered
@@ -108,26 +171,7 @@ router.post(`/`, async (req, res) => {
     res.status(200).send(orders);
 });
 
-
-//editing and updating status
-router.put('/:id', async (req, res) => {
-    let order = await Order.findByIdAndUpdate(
-        req.params.id,
-        {
-            //i only need to update the status of the order
-            status: req.body.status,
-        },
-        {
-            new: true, //returns updated data
-        }
-    );
-
-    if (!order) {
-        return res.status(404).send('The order cannot be updated');
-    }
-
-    res.status(200).send(order);
-});
+*/
 
 /* router.post(`/`, function (req, res) {
     const order = new Order({

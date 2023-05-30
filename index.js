@@ -164,6 +164,12 @@ app.post(`/editcustdash`, function (req, res) {
 app.get(`/updatedeletecust`, function (req, res) {
     res.render('pages/updatedeletecust');
 });
+app.get(`/updateorder`, function(req, res){
+    res.render('pages/updateorder');
+});
+app.get(`/ordersdash`, function (req, res) {
+    res.render('pages/ordersdash');
+});
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
         user: req.session.user == undefined ? undefined : req.session.user,
