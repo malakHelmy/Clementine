@@ -537,3 +537,13 @@ thead th.active,tbody td.active {
 }
 
 
+
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-label input {
+    margin-right: 5px;
+}
