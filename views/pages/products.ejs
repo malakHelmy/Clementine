@@ -33,7 +33,7 @@
            <% if(material!=''){ %>
             <div class="sorting">
                    <label for="">Sort by</label>
-                    <form action="/products/ <%- material %>/ <%- category %>/  <%- body %>"  method="post">
+                    <form action="/products/ <%- material %>/ <%- category %>/  <%- body %> / <%- productTitle %>"  method="post">
                                     <select name="sort" id="sort">
                                        <option value="Highestprice">Highest price</option>
                                        <option value="Lowestprice">Lowest price</option>
