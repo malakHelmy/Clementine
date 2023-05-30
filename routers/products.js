@@ -8,6 +8,76 @@ const { Product } = require('../models/product');
 const router = express.Router();
 
 //new in
+///////////////////////start of sort-by /////////////////////////////////
+router.post('/products/:material/:category/:body/:title',(req,res)=>{
+
+if(req.body.sort=='Lowestprice')
+{
+    var body = req.params.body;
+    Product.find({ material: req.params.material.trim(), category: req.params.category.trim() })
+        .then((result) => {
+
+
+           result.sort(function(a, b) {
+                return a.price - b.price;
+              });
+
+
+            res.render('pages/products', {
+                productTitle:req.params.title.trim(),
+                body,
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
+                products: result,
+                material: req.params.material.trim(),
+                 category: req.params.category.trim()
+            });
+        })
+        .catch((err) => {
+            console.log('error loading');
+        });
+
+}else if(req.body.sort=='Highestprice')
+{
+
+    var body = req.params.body;
+    Product.find({ material: req.params.material.trim(), category: req.params.category.trim() })
+        .then((result) => {
+
+            result.sort(function(a, b) {
+                return b.price - a.price;
+              });
+            res.render('pages/products', {
+                productTitle:req.params.title.trim(),
+                body,
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
+                products: result,
+                material: req.params.material.trim(),
+                 category: req.params.category.trim()
+            });
+        })
+        .catch((err) => {
+            console.log('error loading');
+        });
+
+
+}
+
+});
+///////////////////////end of sort by /////////////////////////////////
 router.get('/newin', products.getNewIn);
 
 router.get('/product/:id', async (req, res) => {

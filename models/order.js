@@ -1,65 +1,70 @@
 const mongoose = require('mongoose');
-const { user } = require('../models/user');
+const { User } = require('../models/user');
+const orderitems = require('../models/order-items');
 
 const orderSchema = mongoose.Schema({
- 
-    // referring to the user who ordered
+
+    // referring to the user who orderedFF
     userID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'user',
+        ref: 'users',
     },
     userFullName: {
         type: String,
         required: true,
-        ref: 'user',
+        ref: 'users',
+
     },
-    //order is referrig to order items
-    orderItems: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "OrderItem",
-            required: true,
-        },
-    ],
+    // other fields...
+
+//order is referrig to order items
+orderItems: [
+    {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "orderitems",
+        required: true,
+    },
+],
+
     shippingAddress1: {
-        type: String,
+    type: String,
         required: true,
     },
-    
-    city: {
-        type: String,
+
+city: {
+    type: String,
         required: true,
     },
-    state: {
-        type: String,
+state: {
+    type: String,
         required: true,
     },
-    zip: {
-        type: String,
+zip: {
+    type: String,
         required: true,
     },
-    status: {
-        type: String,
+status: {
+    type: String,
         required: true,
         default: 'Pending',
     },
-    totalAmount: {
-        type: Number,
+totalAmount: {
+    type: Number,
         required: true,
         default: 0,
     },
 
-    phone_num: {
-        type: String,
+phone_num: {
+    type: String,
         required: true,
-        ref: 'user',
+            ref: 'user',
     },
-    dateOrdered: {
-        type: Date,
+dateOrdered: {
+    type: Date,
         default: Date.now,
     },
-},    { timestamps: true });
+}, { timestamps: true });
 
 
 // virtual id

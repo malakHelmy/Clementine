@@ -70,6 +70,8 @@ exports.getDrings = (User, req, res) => {
                 products: result,
                 User,
                 Id: req.params.id,
+                material: 'diamond',
+                 category: 'ring'
             });
         })
         .catch((err) => {
@@ -95,6 +97,8 @@ exports.getDnecklaces = (User, req, res) => {
                 products: result,
                 User,
                 Id: req.params.id,
+                material: 'diamond',
+                 category: 'necklace'
             });
         })
         .catch((err) => {
@@ -120,6 +124,8 @@ exports.getDearrings = (User, req, res) => {
                 products: result,
                 User,
                 Id: req.params.id,
+                material: 'diamond', 
+                category: 'earring'
             });
         })
         .catch((err) => {
@@ -145,7 +151,8 @@ exports.getDbracelets = (User, req, res) => {
                 products: result,
                 User,
                 Id: req.params.id,
-
+                material: 'diamond',
+                 category: 'bracelet'
             });
         })
         .catch((err) => {
@@ -171,6 +178,8 @@ exports.getGrings = (User, req, res) => {
                 products: result,
                 User,
                 Id: req.params.id,
+                material: 'gold', 
+                category: 'ring'
             });
         })
         .catch((err) => {
@@ -196,6 +205,8 @@ exports.getGnecklaces = (User, req, res) => {
                         : req.session.cart,
                 User,
                 Id: req.params.id,
+                        material: 'gold', 
+                        category: 'necklace'
             });
         })
         .catch((err) => {
@@ -220,6 +231,8 @@ exports.getGearrings = (User, req, res) => {
                 products: result,
                 User,
                 Id: req.params.id,
+                material: 'gold',
+                 category: 'earring'
             });
         })
         .catch((err) => {
@@ -246,7 +259,8 @@ exports.getGbracelets = (User, req, res) => {
                 products: result,
                 User,
                 Id: req.params.id,
-
+                material: 'gold',
+                 category: 'bracelet'
             });
         })
         .catch((err) => {
@@ -338,6 +352,9 @@ exports.getNewIn = (req, res) => {
                     req.session.cart == undefined
                         ? undefined
                         : req.session.cart,
+                        material: '',
+                        category: '',
+                     
             });
         })
         .catch((err) => {
