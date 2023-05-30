@@ -9,74 +9,72 @@ const router = express.Router();
 
 //new in
 ///////////////////////start of sort-by /////////////////////////////////
-router.post('/products/:material/:category/:body/:title',(req,res)=>{
-
-if(req.body.sort=='Lowestprice')
-{
-    var body = req.params.body;
-    Product.find({ material: req.params.material.trim(), category: req.params.category.trim() })
-        .then((result) => {
-
-
-           result.sort(function(a, b) {
-                return a.price - b.price;
-              });
-
-
-            res.render('pages/products', {
-                productTitle:req.params.title.trim(),
-                body,
-                user:
-                    req.session.user == undefined
-                        ? undefined
-                        : req.session.user,
-                cart:
-                    req.session.cart == undefined
-                        ? undefined
-                        : req.session.cart,
-                products: result,
-                material: req.params.material.trim(),
-                 category: req.params.category.trim()
-            });
+router.post('/products/:material/:category/:body/:title', async (req, res) => {
+    const User = await user.findOne({ email: req.session.user });
+    if (req.body.sort == 'Lowestprice') {
+        var body = req.params.body;
+        Product.find({
+            material: req.params.material.trim(),
+            category: req.params.category.trim(),
         })
-        .catch((err) => {
-            console.log('error loading');
-        });
+            .then((result) => {
+                result.sort(function (a, b) {
+                    return a.price - b.price;
+                });
 
-}else if(req.body.sort=='Highestprice')
-{
-
-    var body = req.params.body;
-    Product.find({ material: req.params.material.trim(), category: req.params.category.trim() })
-        .then((result) => {
-
-            result.sort(function(a, b) {
-                return b.price - a.price;
-              });
-            res.render('pages/products', {
-                productTitle:req.params.title.trim(),
-                body,
-                user:
-                    req.session.user == undefined
-                        ? undefined
-                        : req.session.user,
-                cart:
-                    req.session.cart == undefined
-                        ? undefined
-                        : req.session.cart,
-                products: result,
-                material: req.params.material.trim(),
-                 category: req.params.category.trim()
+                res.render('pages/products', {
+                    productTitle: req.params.title.trim(),
+                    body,
+                    user:
+                        req.session.user == undefined
+                            ? undefined
+                            : req.session.user,
+                    cart:
+                        req.session.cart == undefined
+                            ? undefined
+                            : req.session.cart,
+                    products: result,
+                    User,
+                    material: req.params.material.trim(),
+                    category: req.params.category.trim(),
+                });
+            })
+            .catch((err) => {
+                console.log('error loading');
             });
+    } else if (req.body.sort == 'Highestprice') {
+        var body = req.params.body;
+        Product.find({
+            material: req.params.material.trim(),
+            category: req.params.category.trim(),
         })
-        .catch((err) => {
-            console.log('error loading');
-        });
-
-
-}
-
+            .then((result) => {
+                result.sort(function (a, b) {
+                    return b.price - a.price;
+                });
+                res.render('pages/products', {
+                    productTitle: req.params.title.trim(),
+                    body,
+                    user:
+                        req.session.user == undefined
+                            ? undefined
+                            : req.session.user,
+                    cart:
+                        req.session.cart == undefined
+                            ? undefined
+                            : req.session.cart,
+                    products: result,
+                    User,
+                    material: req.params.material.trim(),
+                    category: req.params.category.trim(),
+                });
+            })
+            .catch((err) => {
+                console.log('error loading');
+            });
+    }
 });
+
 ///////////////////////end of sort by /////////////////////////////////
 router.get('/newin', products.getNewIn);
 
@@ -101,39 +99,39 @@ router.get('/product/:id', async (req, res) => {
 router.get('/products', products.getAllProducts);
 
 //diamond
-router.get('/drings', async(req,res)=>{
-  const User = await user.findOne({ email: req.session.user });
-  products.getDrings(User,req,res);
+router.get('/drings', async (req, res) => {
+    const User = await user.findOne({ email: req.session.user });
+    products.getDrings(User, req, res);
 });
-router.get('/dearrings', async(req,res)=>{
+router.get('/dearrings', async (req, res) => {
     const User = await user.findOne({ email: req.session.user });
-    products.getDearrings(User,req,res);
-  });
-router.get('/dnecklaces', async(req,res)=>{
+    products.getDearrings(User, req, res);
+});
+router.get('/dnecklaces', async (req, res) => {
     const User = await user.findOne({ email: req.session.user });
-    products.getDnecklaces(User,req,res);
-  });
-router.get('/dbracelets', async(req,res)=>{
+    products.getDnecklaces(User, req, res);
+});
+router.get('/dbracelets', async (req, res) => {
     const User = await user.findOne({ email: req.session.user });
-    products.getDbracelets(User,req,res);
-  });
+    products.getDbracelets(User, req, res);
+});
 //gold
-router.get('/grings',async(req,res)=>{
+router.get('/grings', async (req, res) => {
     const User = await user.findOne({ email: req.session.user });
-    products.getGrings(User,req,res);
-  });
-router.get('/gearrings', async(req,res)=>{
+    products.getGrings(User, req, res);
+});
+router.get('/gearrings', async (req, res) => {
     const User = await user.findOne({ email: req.session.user });
-    products.getGearrings(User,req,res);
-  });
-router.get('/gnecklaces', async(req,res)=>{
+    products.getGearrings(User, req, res);
+});
+router.get('/gnecklaces', async (req, res) => {
     const User = await user.findOne({ email: req.session.user });
-    products.getGnecklaces(User,req,res);
-  });
-router.get('/gbracelets', async(req,res)=>{
+    products.getGnecklaces(User, req, res);
+});
+router.get('/gbracelets', async (req, res) => {
     const User = await user.findOne({ email: req.session.user });
-    products.getGbracelets(User,req,res);
-  });
+    products.getGbracelets(User, req, res);
+});
 
 router.get('/wishlist', async (req, res) => {
     const userID = req.session.user;

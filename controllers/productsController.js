@@ -2,7 +2,7 @@ const { Product } = require('../models/product');
 const user = require('../models/user');
 const asyncHandler = require('express-async-handler');
 
-exports.getAllProducts = (req, res) => {
+exports.getAllProducts = (User, req, res) => {
     Product.find()
         .then((result) => {
             res.render('pages/products', {
@@ -14,7 +14,7 @@ exports.getAllProducts = (req, res) => {
                     req.session.cart == undefined
                         ? undefined
                         : req.session.cart,
-
+                User,
                 products: result,
                 Id: req.params.id,
             });
@@ -71,7 +71,7 @@ exports.getDrings = (User, req, res) => {
                 User,
                 Id: req.params.id,
                 material: 'diamond',
-                 category: 'ring'
+                category: 'ring',
             });
         })
         .catch((err) => {
@@ -98,7 +98,7 @@ exports.getDnecklaces = (User, req, res) => {
                 User,
                 Id: req.params.id,
                 material: 'diamond',
-                 category: 'necklace'
+                category: 'necklace',
             });
         })
         .catch((err) => {
@@ -124,8 +124,8 @@ exports.getDearrings = (User, req, res) => {
                 products: result,
                 User,
                 Id: req.params.id,
-                material: 'diamond', 
-                category: 'earring'
+                material: 'diamond',
+                category: 'earring',
             });
         })
         .catch((err) => {
@@ -152,7 +152,7 @@ exports.getDbracelets = (User, req, res) => {
                 User,
                 Id: req.params.id,
                 material: 'diamond',
-                 category: 'bracelet'
+                category: 'bracelet',
             });
         })
         .catch((err) => {
@@ -178,8 +178,8 @@ exports.getGrings = (User, req, res) => {
                 products: result,
                 User,
                 Id: req.params.id,
-                material: 'gold', 
-                category: 'ring'
+                material: 'gold',
+                category: 'ring',
             });
         })
         .catch((err) => {
@@ -205,8 +205,8 @@ exports.getGnecklaces = (User, req, res) => {
                         : req.session.cart,
                 User,
                 Id: req.params.id,
-                        material: 'gold', 
-                        category: 'necklace'
+                material: 'gold',
+                category: 'necklace',
             });
         })
         .catch((err) => {
@@ -232,7 +232,7 @@ exports.getGearrings = (User, req, res) => {
                 User,
                 Id: req.params.id,
                 material: 'gold',
-                 category: 'earring'
+                category: 'earring',
             });
         })
         .catch((err) => {
@@ -260,7 +260,7 @@ exports.getGbracelets = (User, req, res) => {
                 User,
                 Id: req.params.id,
                 material: 'gold',
-                 category: 'bracelet'
+                category: 'bracelet',
             });
         })
         .catch((err) => {
@@ -352,9 +352,8 @@ exports.getNewIn = (req, res) => {
                     req.session.cart == undefined
                         ? undefined
                         : req.session.cart,
-                        material: '',
-                        category: '',
-                     
+                material: '',
+                category: '',
             });
         })
         .catch((err) => {
