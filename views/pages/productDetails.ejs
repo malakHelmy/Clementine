@@ -111,9 +111,10 @@
                     <p>4 interest-free payments of EGP 470 with <span class="special1">Klarna</span>. <span> <a href="#"
                                 class="learn-more" data-image="/Images/klarna.png" style="color: rgb(61, 61, 61);">Learn
                                 More</a></span></p>
-                    <p>Pay in 4 interest-free payments of EGP 465 with <span class="special2">PayPal</span>. <span> <a
-                                href="#" class="learn-more" data-image="/Images/paypal.png"
-                                style="color: rgb(61, 61, 61);">Learn More</a></span></p>
+                    <p>Pay in 4 interest-free payments of EGP 465 with <span class="special2">Pay<span
+                                class="hoho">Pal</span></span>. <span> <a href="#" class="learn-more"
+                                data-image="/Images/paypal.png" style="color: rgb(61, 61, 61);">Learn More</a></span>
+                    </p>
                     <p>Special Financing Available with <span class="special1">Clementine Credit Card</span>.<span> <a
                                 href="#" class="learn-more" data-image="" style="color: rgb(61, 61, 61);">Learn
                                 More</a></span></p>
@@ -123,8 +124,48 @@
                     <button class="close-popup">X</button>
                 </div>
 
+                <section id="shipinfo">
+                    <h1 id="shipping_returns">SHIPPING AND RETURNS</h1>
+                    <i class="fas fa-shipping-fast" id="ed"></i>
+                    <span id="shipinfotitle"> Ship to Home </span>
+                    <p class="subtitle2">Standard Shipping</p>
+                    <ul class="subul1">
+                        <li> Free on orders EGP 2250+.
+                        </li>
+                        <li> Arrives in 2-4 business days.
+                        </li>
+                    </ul>
+                    <p class="subtitle2">Next Day Shipping</p>
+                    <ul class="subul1">
+                        <li> Free on all Lab-Created Diamonds by Clementine purchases.
+                        </li>
+                        <li> Arrives the next business day if ordered by 1pm ET.
+                        </li>
+                    </ul>
 
+                    <div id="sep">
+                        <div> <i class="fa-solid fa-store" id="ed"></i>
+                            <span id="shipinfotitle"> In-Store Pickup </span>
+                            <ul class="subul1">
+                                <li> Free on all orders.
+                                </li>
+                                <li> Ready in 2 business hours.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="sep">
+                        <div> <i class="fa-solid fa-right-left" id="ed"></i>
+                            <span id="shipinfotitle"> Returns </span>
+                            <ul class="subul1">
+                                <li> Free and easy returns within 30 days, online or in-store.
+                                </li>
+                                <li> Prepaid return label included.
+                                </li>
+                        </div>
+                    </div>
 
+                </section>
             </div>
         </div>
         <!-- prodacts cards -->
@@ -147,7 +188,7 @@
                                         <p>
                                             <%= items.name%>
                                         </p>
-                                        <p class="price">
+                                        <p class="price">EGP
                                             <%= items.price%>
                                         </p>
                                     </div>
@@ -159,34 +200,31 @@
                             <% } %>
             </section>
             <div class="review">
-                <p> You are reviewing: <b>
+                <p><b>You are reviewing: </b> <b>
                         <%= products.name%>
                     </b> </p>
                 <div class="signIn">
 
                     <form action="" class="signInform">
-
                         <div class="textfield">
-                            <input type="text" name="email">
+                            <input type="email" name="email">
                             <span class="sp1"></span>
                             <label for="">E-mail</label>
                         </div>
                         <div class="textfield">
-                            <input type="password" name="password">
+                            <input type="email" name="summary">
                             <span class="sp1"></span>
-                            <label for="">Password</label>
+                            <label for="summary">Summary</label>
                         </div>
                         <div class="textfield">
-                            <input type="text" name="password">
+                            <input type="text" name="review">
                             <span class="sp1"></span>
                             <label for="">Review</label>
                         </div>
                         <input type="submit" class="submit">
                         <br><br>
                     </form>
-
                 </div>
-
             </div>
 
             <script src="/js/slideshow.js"></script>
