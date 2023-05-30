@@ -118,6 +118,8 @@ app.get(`/`, async (req, res) => {
    });
 });
 
+
+
 app.get(`/home`, function (req, res) {
     res.render('pages/index', {
         user: req.session.user == undefined ? undefined : req.session.user,
