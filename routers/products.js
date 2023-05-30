@@ -8,18 +8,33 @@ const { Product } = require('../models/product');
 const router = express.Router();
 
 //new in
+///////////////////////start of sort-by /////////////////////////////////
+router.post('/products/:material/:category/:body',(req,res)=>{
 
-router.post('/products/:material/:category',(req,res)=>{
-
-
- 
-
-    console.log(req.params.material);
-console.log(req.params.category);
-res.redirect('/signup');
 if(req.body.sort=='Lowestprice')
 {
-
+    var body = req.params.body;
+    Product.find({ material: req.params.material.trim(), category: req.params.category.trim() })
+        .then((result) => {
+            res.render('pages/products', {
+                productTitle: 'Diamond Rings',
+                body,
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
+                products: result,
+                material: req.params.material.trim(),
+                 category: req.params.category.trim()
+            });
+        })
+        .catch((err) => {
+            console.log('error loading');
+        });
 
 }else if(req.body.sort=='Highestprice')
 {
@@ -27,7 +42,7 @@ if(req.body.sort=='Lowestprice')
 }
 
 });
-
+///////////////////////end of sort by /////////////////////////////////
 router.get('/newin', products.getNewIn);
 
 router.get('/product/:id', async (req, res) => {
