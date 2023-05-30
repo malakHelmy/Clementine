@@ -20,12 +20,9 @@
         <div class="sorting">
             <label for="">Sort by</label>
             <select name="sort" id="sort">
-                <option value="">Highest price</option>
-                <option value="">Lowest price</option>
-                <option value="">New Arrivals</option>
-
+                <option value="Highest price">Highest price</option>
+                <option value="Lowest price">Lowest price</option>
             </select>
-
         </div>
 
         <section id="rings-intro">
@@ -41,25 +38,24 @@
             <% if(products !='' ) {%>
                 <% products.forEach((items)=> {%>
                     <div class="box">
-
                         <a alt="" class="ri-heart-line" id="heart-icon-<%= items._id %>"
                             data-productid="<%= items._id %>">
-
-                            <a href="/product/<%- items._id %>">
-                                <img class="imgg" src="/Images/<%- items.image %>" alt="">
-                            </a>
-                            <div class="items">
-                                <div class="prodetails">
-                                    <p>
-                                        <%= items.name%>
-                                    </p>
-                                    <p class="price"> EGP
-                                        <%= items.price%>
-                                    </p>
-                                </div>
-                                <form action="/cart/<%= items._id %>/<%= Id %>" method="post"><input type="submit"
-                                        value="Add to cart" class="btn"></form>
+                        </a>
+                        <a href="/product/<%- items._id %>">
+                            <img class="imgg" src="/Images/<%- items.image %>" alt="">
+                        </a>
+                        <div class="items">
+                            <div class="prodetails">
+                                <p>
+                                    <%= items.name%>
+                                </p>
+                                <p class="price"> EGP
+                                    <%= items.price%>
+                                </p>
                             </div>
+                            <form action="/cart/<%= items._id %>/<%= Id %>" method="post"><input type="submit"
+                                    value="Add to cart" class="btn"></form>
+                        </div>
                     </div>
                     <% }) %>
                         <% } %>

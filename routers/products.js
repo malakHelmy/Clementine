@@ -87,9 +87,9 @@ router.post('/add-to-wishlist', async (req, res) => {
 });
 router.post('/remove-from-wishlist', async (req, res) => {
     const wishuserID = req.session.user;
-    const removeprod = req.body.prodID;
+    const removeprod = req.body.wishprodID;
     try {
-        await products.removeFromWishlist(wishuserID, removeprod);
+        products.removeFromWishlist(wishuserID, removeprod);
         res.status(200);
     } catch (error) {
         console.error(error);
