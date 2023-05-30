@@ -49,6 +49,10 @@ if(req.body.sort=='Lowestprice')
     var body = req.params.body;
     Product.find({ material: req.params.material.trim(), category: req.params.category.trim() })
         .then((result) => {
+
+            result.sort(function(a, b) {
+                return b.price - a.price;
+              });
             res.render('pages/products', {
                 productTitle:req.params.title.trim(),
                 body,
