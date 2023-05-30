@@ -3,12 +3,8 @@ const reviewsSchema = mongoose.Schema(
     { 
         email: {
             type: String,
-            unique: true,
-            lowercase: true,
-            required: [true, "Cannot be blank."],
-            match: [/\S+@\S+\.\S+/, "Invalid input."],
-            index: true,
-
+            required:true,
+      
         },
         summary: {
             type: String,
