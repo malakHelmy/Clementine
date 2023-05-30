@@ -286,7 +286,6 @@ app.post('/updateorder', function (req, res) {
             from: 'clementineco2023@gmail.com',
             to: req.body.email,
             subject: 'Order Confirmation',
-            subject: 'Order Confirmation',
             html: ejs.render(`
       <p>Dear <%= userFullName %>,</p>
       <p>Thank you for your order of <%= quantity %> <%= orderItem %>(s) for a total of <%= price %>.</p>

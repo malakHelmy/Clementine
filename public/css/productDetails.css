@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
 @font-face {
@@ -110,7 +109,9 @@ body {
 .info-snip {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 15px;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
+  text-align: center;
+  letter-spacing: 0.5px;
 }
 
 .details p b {
@@ -121,17 +122,20 @@ body {
 }
 
 .aboutring {
-  padding-top: 5px;
+  transform: translateY(30px);
+  padding-top: 8px;
   font-family: 'Zapf';
   font-size: 20px;
 }
 
 .priceinfo {
+  transform: translateY(20px);
   text-align: center;
   display: flex;
   padding: 10px;
-  margin: 1% 40px;
+  margin: 1% 0px;
   border: 1px solid rgba(0, 0, 0, 0.051);
+  margin-top: 20px;
 }
 
 
@@ -172,27 +176,62 @@ body {
 
 .btns{
 
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   margin: 2% 7%;
   border: none;
-  background: #000000;
+  background: #242424;
   color: #ffffff;
   width: 180px;
   height: 50px;
-  font-size: 16px;
+  font-size: 13px;
   cursor: pointer;
-  font-size: 20px;
-  letter-spacing: 1px;
+  /*font-size: 20px; */
+  letter-spacing: 2px;
+  transform: translateY(-15px);
 }
 
 .btns:hover {
   background: #d79e2e;
-  transition: 0.7s ease;
+  transition: 0.7s ease-in-out;
   cursor: pointer;
   letter-spacing: 2px;
 }
 
+.savesmall{
+  
+  font-size: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-left: 50px;
+  transform: translateY(-5.5px);
+}
+.popup {
+  z-index: 35;
+  height: 100vh;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.568);
+
+}
+
+.popup img {
+  max-width: 100%;
+  height: auto;
+}
+.close-popup{
+  transform: translateY(-500px);
+  font-size: 20px;
+}
+
 #darkfav,
 #fav {
+  transform: translateY(19px);
   cursor: pointer;
   width: 30px;
   height: 25px;
@@ -203,6 +242,7 @@ body {
 }
 
 #fav {
+  
   position: absolute;
   margin-left: -27px;
 
@@ -210,6 +250,35 @@ body {
 
 .wishlist.fav #fav {
   visibility: hidden;
+}
+
+
+#payinfo{
+  
+  padding: 10px;
+  margin: 1% 0px;
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(113, 113, 113, 0.9);
+  font-size: 13px;
+  letter-spacing: 1.5px;
+}
+
+.special1{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
+  letter-spacing: 1px;
+
+}
+.special2{
+  font-size: 16.5px;
+  font-style: italic;
+  font-weight: bolder;
+  color: #000;
+  letter-spacing: 1px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 /*styling product cards*/
