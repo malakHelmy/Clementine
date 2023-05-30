@@ -12,11 +12,11 @@
 <body>
      <%- include('../partials/navbar') %>
 
-     <section id="totalAmountReveal" >
         <% if(totalamount == undefined){ %>
-            <h1>No items found.</h1>
+            <h1 class="notfound">No items found.</h1>
             <% } else { %>
-   Total amount:
+                <section id="totalAmountReveal" >
+                    Total amount:
     
     EGP  <%=  totalamount %> 
     <div id="ship">Including shipping</div>
