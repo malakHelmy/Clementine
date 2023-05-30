@@ -10,8 +10,12 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
-//poenai api key
 
+// for auto refresh
+const livereload = require("livereload");
+const connectLivereload = require("connect-livereload");
+
+//openai API key
 const api_key = process.env.OPENAI_API_KEY;
 
 //Routes
@@ -33,9 +37,24 @@ const employersRouter = require('./routers/employersdash');
 
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
+
 const api = process.env.API_URL;
 const app = express();
 const port = process.env.PORT || 8080;
+
+
+
+// for auto refresh
+const liveReloadServer = livereload.createServer();
+liveReloadServer.watch(path.join(__dirname, 'public'));
+
+app.use(connectLivereload());
+
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
+});
 
 // middleware
 app.use(express.json());
@@ -56,10 +75,9 @@ app.use(
 // Routers
 app.use('/addproducts', addProdRouter);
 app.use('/employersdash', employersRouter);
-
-app.use(`/`, productsRouter);
-app.use(`/categories`, categoriesRouter);
-app.use(`/ordersdash`, ordersRouter);
+app.use('/', productsRouter);
+app.use('/categories', categoriesRouter);
+app.use('/ordersdash', ordersRouter);
 app.use('/user', usersRouter);
 app.use('/login', users_loginRouter);
 app.use('/editcustdash', cust_contRouter);
@@ -68,9 +86,10 @@ app.use('/chat', chatRouter);
 app.use('/cart', cartRouter);
 app.use('/displayproducts', displayProdRouter);
 app.use('/', searchRoutes);
-app.use(`/logout`, logoutroute);
+app.use('/logout', logoutroute);
 
 const { Product } = require('./models/product');
+const { OrderItem } = require('./models/order-items');
 
 //app.use('/updatedeletecust', updatecustRoute);
 mongoose
@@ -99,6 +118,9 @@ app.get(`/`, async (req, res) => {
       });
    });
 });
+
+
+
 app.get(`/home`, function (req, res) {
     res.render('pages/index', {
         user: req.session.user == undefined ? undefined : req.session.user,
@@ -110,6 +132,7 @@ app.get(`/home`, function (req, res) {
 
     
 });
+
 app.get(`/categories`, function (req, res) {
     res.render('pages/categories', {
         user: req.session.user == undefined ? undefined : req.session.user,
@@ -155,14 +178,24 @@ app.get('/addproducts', (req, res) => {
 app.get(`/editproducts`, function (req, res) {
     res.render('pages/editproducts');
 });
+
 app.get(`/editcustdash`, function (req, res) {
     res.render('pages/editcustdash');
 });
+
 app.post(`/editcustdash`, function (req, res) {
     res.render('pages/editcustdash');
 });
+
 app.get(`/updatedeletecust`, function (req, res) {
     res.render('pages/updatedeletecust');
+});
+
+app.get(`/updateorder`, function(req, res){
+    res.render('pages/updateorder');
+});
+app.get(`/ordersdash`, function (req, res) {
+    res.render('pages/ordersdash');
 });
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
@@ -227,6 +260,50 @@ app.post(`/contactus`, function (req, res) {
 });
 /* ---------CONTACT US FORM MAILER END --------*/
 
+
+
+app.post('/updateorder', function(req, res) {
+    app.post('/updateorder', function(req, res) {
+        var orderId = req.body._id;
+        var status = req.body.status;
+      
+        var transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'clementineco2023@gmail.com',
+            pass: 'lmkwmjbyftpuzwhz',
+          },
+        });
+      
+        var mailOptions = {
+          from: 'clementineco2023@gmail.com',
+          to: req.body.email,
+          subject: 'Order Confirmation',
+          subject: 'Order Confirmation',
+          html: `
+            <p>Dear ${fullname},</p>
+            <p>Thank you for your order of ${quantity} ${OrderItem}(s) for a total of ${price}.</p>
+            <p>We have received your order and are processing it now. We will notify you by email once your order has been shipped.</p>
+            <p>Thank you for choosing us.</p>
+          `,
+        };
+      
+        if (status === 'Pending') {
+          transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              console.log(error);
+              res.send('Error.');
+            } else {
+              console.log('Email sent:' + info.response);
+              res.send('Successfully sent.');
+            }
+          });
+        } else {
+          res.send('No email sent.');
+        }
+      });
+
+    });
 app.listen(port, () => {
     console.log('http://localhost:8080');
 });

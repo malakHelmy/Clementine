@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- material icons cdn -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+    <link rel="stylesheet" href="/css/editcustdash.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/editproducts.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Admin Dashboard</title>
+</head>
+
+
+
+
+<body>
+
+
+    <div class="container">
+
+        <!-- sidebar start -->
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="/Images/logoo copy.png" alt="logo">
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-symbols-sharp">close</span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="./dashborad"><span class="material-symbols-sharp">dashboard</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="/editcustdash" ><span class="material-symbols-sharp">person</span>
+                    <h3>Customers</h3>
+                </a>
+                <a href="/ordersdash" class="active"><span class="material-symbols-sharp">receipt_long</span>
+                    <h3>Orders</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">insights</span>
+                    <h3>Analytics</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">chat</span>
+                    <h3>Chat</h3><span class="message-count">3</span>
+                </a>
+                <a href="/editproducts"><span class="material-symbols-sharp">inventory</span>
+                    <h3>Products</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">report</span>
+                    <h3>Reports</h3>
+                </a>
+                <a href=""><span class="material-symbols-sharp">Settings</span>
+                    <h3>Settings</h3>
+                </a>
+
+                <a href=""><span class="material-symbols-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a>
+
+            </div>
+        </aside>
+        <!-- sidebar end -->
+
+
+ 
+
+
+        <main>
+            <h1>Update Order</h1>
+            <div id="products-container">
+                <div class="addcust" id="addcust">
+                    <form method="POST" action="/ordersdash/<%= order._id %>/update">
+                        
+                        <div class="input-group">
+                            <h2 class="add-title" style="font-size: 25px;">You're updating order number: <%= order._id %></h2>
+                            <% if (order.userFullName) { %>
+                                <h1 class="add-title" style="font-size: 15px;">Ordered by: <%= order.userFullName %>,  ID: <%= order.userID %></h1>
+               
+
+                              <% } else { %>
+                                <h4 class="add-title">Ordered by: N/A</h4>
+                              <% } %>
+
+                        <div class="input-group">
+                            <label for="status">Status</label>
+                            <input type="text" id="status" name="status" value="<%= order.status %>" >
+                        </div>
+
+                        <div class="input-group">
+                            <label for="shippingAddress1">Shipping Address</label>
+                            <input type="text" id="shippingAddress1" name="shippingAddress1" value="<%= order.shippingAddress1 %>">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="status">City</label>
+                            <input type="text" id="city" name="city" value="<%= order.city %>">
+                        </div>
+
+                        <h1 class="add-title" style="font-size: 15px;">Order Items: <%= order.orderItems %></h1>
+
+                        <input type="submit" id="update" class="update-btn" value="Update"></button>
+                        <button id="cancel" href="/ordersdash" id="cancel" class="delete-btn">Cancel</button>
+
+                        </form>
+                    <script src="/js/validation.js"></script>
+
+                </div>
+
+
+
+              
+                <script src="/js/editcustdash.js"></script>
+                <script src="/js/dashsearch.js"></script>
+                <script src="/js/validation.js"></script>
+
+</body>
+
+</html>

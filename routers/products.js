@@ -24,10 +24,10 @@ if(req.body.sort=='Lowestprice')
 
 router.get('/newin', products.getNewIn);
 
-router.get('/product/:id',async (req, res) => {
+router.get('/product/:id', async (req, res) => {
     const prod = await Product.findById({ _id: req.params.id });
-    let product = await Product.find({featured : true});
-    product = product.slice(0,5);
+    let product = await Product.find({ featured: true });
+    product = product.slice(0, 5);
     if (!prod) {
         console.log(
             'The Product with the given ID was not found please check for the validity of the ID'
@@ -82,7 +82,7 @@ router.get('/wishlist', async (req, res) => {
             user: req.session.user == undefined ? undefined : req.session.user,
             cart: req.session.cart == undefined ? undefined : req.session.cart,
             products: wishlistItems,
-            body: 'your wishlist'
+            body: 'your wishlist',
         });
     } catch (error) {
         console.log(error);
@@ -101,9 +101,9 @@ router.post('/add-to-wishlist', async (req, res) => {
 });
 router.post('/remove-from-wishlist', async (req, res) => {
     const wishuserID = req.session.user;
-    const removeprod = req.body.prodID;
+    const removeprod = req.body.wishprodID;
     try {
-        await products.removeFromWishlist(wishuserID, removeprod);
+        products.removeFromWishlist(wishuserID, removeprod);
         res.status(200);
     } catch (error) {
         console.error(error);
