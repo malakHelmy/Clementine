@@ -29,3 +29,12 @@ function sendData(inputField) {
             }
         });
 }
+
+const searchInput = document.getElementById('search');
+const searchResults = document.getElementById('searchResults');
+
+searchInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Backspace' && searchInput.value === '') {
+    searchResults.innerHTML = '';
+  }
+});
