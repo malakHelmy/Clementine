@@ -29,17 +29,22 @@
 
     <%- include('../partials/navbar') %>
 
-        <div class="sorting">
-            <label for="">Sort by</label>
-            <form action="/products/ <%- material %>/ <%- category %>"  method="post">
-                <select name="sort" id="sort">
-                                <option value="Highestprice">Highest price</option>
-                                <option value="Lowestprice">Lowest price</option>
-                            </select>
-                            <input type="submit" value="Filter" id="filter">
-            </form>
+        
+           <% if(material!=''){ %>
+            <div class="sorting">
+                   <label for="">Sort by</label>
+                    <form action="/products/ <%- material %>/ <%- category %>/  <%- body %>"  method="post">
+                                    <select name="sort" id="sort">
+                                       <option value="Highestprice">Highest price</option>
+                                       <option value="Lowestprice">Lowest price</option>
+                                    </select>
+                                    <input type="submit" value="Filter" id="filter">
+                     </form>
+            </div>
+           <% } %>
+          
          
-        </div>
+        
 
         <section id="rings-intro">
             <h1 class="rings-intro-title">
@@ -70,7 +75,7 @@
                                         <%= items.price%>
                                     </p>
                                 </div>
-                                <form action="/cart/<%= items._id %>/<%= Id %>" method="post"><input type="submit"
+                                <form action="/cart/<%= items._id %>" method="post"><input type="submit"
                                         value="Add to cart" class="btn"></form>
                             </div>
                     </div>
