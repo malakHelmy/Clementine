@@ -21,16 +21,16 @@
         <h1 class="wishlist-header">Your wishlist</h1>
         <div class="wishlist-wrap">
             <% if(products !='' ) {%>
-
                 <% products.forEach((items)=> { %>
                     <div class="prod">
                         <div class="wishlist-items">
                             <div class="product-card">
                                 <div class="product-image">
-                                    <a class="ri-close-fill" id="close-icon-<%= items._id %>"
-                                        data-wishid="<%= items._id %>"></a>
-                                    <img src="./Images/<%- items.image %>" class="product-thumb" alt="">
-                                    <button class="card-btn">add to cart</button>
+                                    <a alt="" class="ri-close-fill" id="close-icon-<%= items._id %>"
+                                        data-wishid="<%= items._id %>">
+                                        </a>
+                                        <img src="./Images/<%- items.image %>" class="product-thumb" alt="">
+                                        <button class="card-btn">add to cart</button>
                                 </div>
                                 <div class="product-info">
                                     <h2 class="product-brand">
@@ -55,10 +55,9 @@
                             <% } %>
 
         </div>
-        </div>
         <script src="/js/wish.js"></script>
         <%- include('../partials/footer') %>
-        
+
 </body>
 
 

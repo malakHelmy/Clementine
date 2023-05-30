@@ -1,6 +1,8 @@
 const { Product } = require('../models/product');
 const user = require('../models/user');
 const asyncHandler = require('express-async-handler');
+
+
 exports.getAllProducts = (req, res) => {
     Product.find()
         .then((result) => {
@@ -264,17 +266,15 @@ exports.addToWishlist = asyncHandler(async (userID, prodID) => {
     }
 });
 
-exports.removeFromWishlist = asyncHandler(async (userID, prodID) => {
+exports.removeFromWishlist = asyncHandler(async (wishuserID, removeprod) => {
     try {
-        const userWish = await user.findOne({ email: userID });
-        const wishlistItems = await Product.find({
-            _id: { $in: userWish.wishList },
-        });
-        const found = wishlistItems.includes(prodID);
-        if (found) {
+        const userWish = await user.findOne({ email: wishuserID });
+        const wishlists = await Product.findOne({
+            _id:  removeprod});
+        if (wishlists) {
             await user.findOneAndUpdate(
-                { email: userID },
-                { $pull: { wishlist: prodID } },
+                { email: wishuserID },
+                { $pull: { wishlist: removeprod } },
             );
         }
         else 
