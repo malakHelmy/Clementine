@@ -9,15 +9,21 @@ const router = express.Router();
 
 //new in
 
-router.post('/products',(req,res)=>{
+router.post('/products/:material/:category',(req,res)=>{
 
+
+ 
+
+    console.log(req.params.material);
+console.log(req.params.category);
+res.redirect('/signup');
 if(req.body.sort=='Lowestprice')
 {
 
 
 }else if(req.body.sort=='Highestprice')
 {
-    
+
 }
 
 });
