@@ -47,7 +47,7 @@
             <% products.forEach(product => { %>
             <tr>
               <td><%= product.id %></td>
-              <td><img src="<%= product.image %>" alt="" id="prod_img"></td>
+              <td><img src="/Images/<%- product.image %>" alt="" id="prod_img"></td>
               <td><%= product.name %></td>
               <td><%= product.material %></td>
               <td>
@@ -70,7 +70,7 @@
                 <p class="avail_amount">*Available: 0 Pieces</p>
                 <% } %>
               </td>
-              <td><strong><%= product.price %></strong></td>
+              <td><strong>EGP <%= product.price %></strong></td>
             </tr>
             <% }) %>
           </tbody>
