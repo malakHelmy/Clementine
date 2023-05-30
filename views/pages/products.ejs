@@ -31,10 +31,10 @@
 
         <div class="sorting">
             <label for="">Sort by</label>
-            <form action="">
+            <form action="/products/ <%- material %>/ <%- category %>"  method="post">
                 <select name="sort" id="sort">
-                                <option value="Highest price">Highest price</option>
-                                <option value="Lowest price">Lowest price</option>
+                                <option value="Highestprice">Highest price</option>
+                                <option value="Lowestprice">Lowest price</option>
                             </select>
                             <input type="submit" value="Filter" id="filter">
             </form>
