@@ -84,7 +84,10 @@
                 </div>
                 <br>
 
+
                 <div class="wishlist" id="wishlist">
+                <p class="savesmall">SAVE TO WISHLIST</p>
+
                     <% if (User !=undefined) { %>
                         <%if(User.wishlist.includes(products._id)){%>
                             <img src="/Images/darkfav.png" alt="" id="darkfav" data-removeid="<%- products._id %>"
@@ -100,9 +103,10 @@
                                         <% } %>
                 </div>
                 <br>
+
                 <div class="btnsdiv">
 
-                    <button class="btns">IN-STORE PICK UP</button>
+                    <button class="btns" id="minor">IN-STORE PICK UP</button>
                     <form action="/cart/<%= products._id %>" method="post"><input type="submit"
                         value="ADD TO CART" class="atc"></form>
                 </div>
