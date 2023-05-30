@@ -71,3 +71,32 @@ h4{
     color: rgb(90, 64, 64);
     font-style: italic;
 }
+#totalAmountReveal{
+    border: 1px solid rgb(190, 190, 190);
+    padding-top: 50px;
+    padding-bottom: 100px;
+    margin-left: 250px;
+    margin-right: 250px;
+
+    text-align: center;
+    font-size: 26px;
+    transform: translateY(140px);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#ship{
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #adadad;
+    margin-top: 5px;
+    letter-spacing: 2px;
+    margin-bottom: -50px;
+    font-weight: lighter;
+}
+.notfound{
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 35px;
+    padding-top: 100px;
+    padding-bottom: 250px;
+}

@@ -12,10 +12,19 @@
 <body>
      <%- include('../partials/navbar') %>
 
+        <% if(totalamount == undefined){ %>
+            <h1 class="notfound">No items found.</h1>
+            <% } else { %>
+                <section id="totalAmountReveal" >
+                    Total amount:
+    
+    EGP  <%=  totalamount %> 
+    <div id="ship">Including shipping</div>
+     </section>
     
                 <section id="checkout-container">
                     <h2>Billing Address </h2>
-                    <form action="" class="checkoutform" id="checkoutform">
+                    <form action="/checkout" method="POST" class="checkoutform" id="checkoutform">
         
                          <div class="textfield"> 
                              <input type="text" name="userFullName" id="firstname">
@@ -112,13 +121,15 @@
                                     <label>
                                         <input type="checkbox" checked="checked"  class="sameadr" name="sameadr"> Shipping address same as billing
                                       </label>
-                                      <input type="submit" class="submit" value="Place Order" class="place-order"><a class="place-link" href="./index.html">Place Order</a></button>
+                                      <input type="submit" class="submit" value="Place Order" class="place-order"><a class="place-link" href="/index">Place Order</a></button>
                                  </div>
                         </div>
                         
                     </form>
-
-                    <script src="../../public/js/checkout.js"></script>
+               <% } %>
+                    <script src="/js/checkout.js"></script>
+                    <script src="/js/trial.js"></script>
+                    <script src="/js/cart.js"></script>
     
                 </section>
         

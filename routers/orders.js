@@ -93,6 +93,7 @@ router.get('/:id', (req, res) =>{
 
 //editing and updating status
 router.post('/:id/update', async (req, res) => {
+  
     try{
         const orderID=req.params.id;
         const updates = req.body;
@@ -103,8 +104,21 @@ router.post('/:id/update', async (req, res) => {
         console.log('Erorr updating order: ', error);
         res.redirect('/ordersdash');
     }
+
+
+   
+
 });
     
+
+
+
+
+
+
+
+
+
 
 
 

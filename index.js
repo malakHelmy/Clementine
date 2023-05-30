@@ -27,7 +27,7 @@ const usersRouter = require('./routers/users');
 const users_loginRouter = require('./routers/login');
 const cust_contRouter = require('./routers/editcustdash');
 const categoriesRouter = require('./routers/categories');
-const ordersRouter = require('./routers/orders');
+const ordersRouter = require('./routers/checkout');
 const contactmailerRouter = require('./routers/mailController');
 const chatRouter = require('./routers/chat');
 const displayProdRouter = require('./routers/displayproducts');
@@ -90,6 +90,8 @@ app.use('/', searchRoutes);
 app.use('/logout', logoutroute);
 app.use('/addemployers', addempRouter);
 app.use('/reviews', reviewsRouter);
+app.use('/checkout', ordersRouter);
+
 
 const { Product } = require('./models/product');
 const { OrderItem } = require('./models/order-items');
@@ -107,9 +109,11 @@ mongoose
     });
 
 app.get(`/`, async (req, res) => {
+
+   
     const product = await Product.find()
         .sort({ date: -1 })
-        .limit(10) // retrieve only 6 products
+        .limit(10) // retrieve only 10 products
         .then((result) => {
             const product = result.length > 0 ? result : null; // check if newIn products are available
             res.render("pages/index", {
@@ -142,12 +146,7 @@ app.get(`/categories`, function (req, res) {
         cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
-app.get(`/checkout`, function (req, res) {
-    res.render('pages/checkout', {
-        user: req.session.user == undefined ? undefined : req.session.user,
-        cart: req.session.cart == undefined ? undefined : req.session.cart
-    });
-});
+
 app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
         user: req.session.user == undefined ? undefined : req.session.user,
