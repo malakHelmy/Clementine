@@ -19,7 +19,7 @@ router.post(`/`, async  (req, res) => {
     emailerror:String,
     passerror:String,
     confirmpasserror:String,
-    phoneerror:String,
+    phoneerror:String
   }
   if(firstnamevalue=='')
   {
@@ -65,7 +65,7 @@ router.post(`/`, async  (req, res) => {
   }
   if(phonevalue.length==11 && !isNaN(phonevalue))
   {
-
+    Error.phoneerror='right phone number';
   }
   else
   {
@@ -103,8 +103,12 @@ router.post(`/`, async  (req, res) => {
               });
             } 
             else{
+
               res.render('pages/signup',{ user: req.session.user == undefined ? undefined : req.session.user,
-                cart: req.session.cart == undefined ? undefined : req.session.cart,})
+              cart: req.session.cart == undefined ? undefined : req.session.cart,
+               error:Error
+            })
+
             }               
          }).catch( err => {
           console.log(err);
@@ -112,7 +116,9 @@ router.post(`/`, async  (req, res) => {
         }
         else{
           res.render('pages/signup',{ user: req.session.user == undefined ? undefined : req.session.user,
-            cart: req.session.cart == undefined ? undefined : req.session.cart,})
+            cart: req.session.cart == undefined ? undefined : req.session.cart, 
+            error:Error
+          })
         }
        
 
