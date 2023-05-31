@@ -51,12 +51,12 @@
                         <td><%= employer.phone %></td>
                         <td><%= employer.isAdmin ? 'Yes' : 'No' %></td>
                         <td>
-                          <a href="/editemployerdash/<%= employer._id %>">
+                          <a href="/editemployers/<%= employer._id %>">
                             <button class="btn edit-employer"><i class="fa fa-edit"></i></button>
                           </a>
                         </td>
                         <td>
-                          <form method="POST" action="/editemployerdash/<%= employer._id %>?_method=DELETE"
+                          <form method="POST" action="/editemployers/<%= employer._id %>?_method=DELETE"
                             onsubmit="return confirm('Are you sure you want to delete this employer?');">
                             <!-- a hidden input field is added to store the employer ID -->
                             <input type="hidden" name="employerId" value="<%= employer._id %>">
