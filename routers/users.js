@@ -35,15 +35,28 @@ router.post(`/`, async  (req, res) => {
             });
           } 
           else{
-            res.render('pages/signup')
+            res.render('pages/signup',{ user: req.session.user == undefined ? undefined : req.session.user,
+              cart: req.session.cart == undefined ? undefined : req.session.cart,})
           }               
-       
        }).catch( err => {
         console.log(err);
       });
-         
-
-    
 });
 
+router.post(`/checkemail`, async  (req, res) => {
+  var query = { email: req.body.email };
+  console.log( req.body);
+  User.find(query)
+      .then(result => {
+          if (result.length > 0) {
+              res.send('taken');
+          }
+          else {
+              res.send('available');
+          }
+      })
+      .catch(err => {
+          console.log(err);
+      });
+});
 module.exports = router;
