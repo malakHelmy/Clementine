@@ -72,6 +72,23 @@ $(document).ready(function () {
                     const formc= pass.parentElement;
                     formc.className='textfield success';
                  }
+                 if(response.phoneerror != undefined)
+                 {
+                    $('#phonelabel').html( response.phoneerror);
+                    const pass=document.getElementById('phone');
+                    const formc= pass.parentElement;
+                    formc.className='textfield failed';
+
+                 }else{
+
+                    $('#phonelabel').html( '');
+                    const pass=document.getElementById('phone');
+                    const formc= pass.parentElement;
+                    formc.className='textfield success';
+                 }
+
+
+
             },
             error:function(err){
 
