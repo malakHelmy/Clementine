@@ -17,3 +17,14 @@ function searchTable() {
         visible_row.style.backgroundColor = (i % 2 == 0) ? 'transparent' : '#0000000b';
     });
 }
+function showPopup(){
+            document.getElementById("popup-container").style.display = "block";
+        }
+
+        function hidePopup() {
+            document.getElementById("popup-container").style.display = "none";
+        }
+
+        function deleteCustomer() {
+            document.querySelector("form").submit();
+        }

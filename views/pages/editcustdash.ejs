@@ -25,26 +25,28 @@
 
 
 
-<%- include('../partials/dashboardsidebar', { currentPage: 'editcustdash' }) %>
+        <%- include('../partials/dashboardsidebar', { currentPage: 'editcustdash' }) %>
 
 
 
 
 
-        <main>
-            
+            <main>
+
 
                 <div>
 
                     <main class="table">
                         <section class="table_header">
-                            <h1><%= viewTitle %></h1>
+                            <h1>
+                                <%= viewTitle %>
+                            </h1>
                             <div class="search_orders">
                                 <input type="search" placeholder="Search existing customers...">
                             </div>
                             <div class="add_product">
                                 <a href="/addcustomers">
-                                  <button class="btn add-product"><i class="fa fa-plus"></i> Add Product</button>
+                                    <button class="btn add-product"><i class="fa fa-plus"></i> Add a customer</button>
                                 </a>
                         </section>
                         <section class="table_body">
@@ -62,28 +64,52 @@
                                 </thead>
                                 <tbody>
                                     <% users.forEach(function(user) { %>
-                                    <tr>
-                                        <td><%= user._id %></td>
-                                        <td><%= user.firstname %></td>
-                                        <td><%= user.lastname %></td>
-                                        <td><%= user.email %></td>
-                                        <td><%= user.phone %></td>
-                                        <td>
-                                            <a href="/editcustdash/<%= user._id %>">
-                                                <button class="btn edit-customer"><i class="fa fa-edit"></i></button>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <form method="POST" action="/editcustdash/<%= user._id %>?_method=DELETE"
-                                                onsubmit="return confirm('Are you sure you want to delete this customer?');">
-                                                <!-- a hidden input field is added to store the customer ID -->
-                                                <input type="hidden" name="customerId" value="<%= user._id %>">
-                                                <button class="btn delete-customer" type="submit"><i
-                                                        class="fa fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <% }); %>
+                                        <tr>
+                                            <td>
+                                                <%= user._id %>
+                                            </td>
+                                            <td>
+                                                <%= user.firstname %>
+                                            </td>
+                                            <td>
+                                                <%= user.lastname %>
+                                            </td>
+                                            <td>
+                                                <%= user.email %>
+                                            </td>
+                                            <td>
+                                                <%= user.phone %>
+                                            </td>
+                                            <td>
+                                                <a href="/editcustdash/<%= user._id %>">
+                                                    <button class="btn edit-customer"><i
+                                                            class="fa fa-edit"></i></button>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <form method="POST"
+                                                    action="/editcustdash/<%= user._id %>?_method=DELETE"
+                                                    onsubmit="event.preventDefault(); showPopup();">
+                                                    <!-- a hidden input field is added to store the customer ID -->
+                                                    <input type="hidden" name="customerId" value="<%= user._id %>">
+                                                    <button class="btn delete-customer" type="submit"><i
+                                                            class="fa fa-trash"></i></button>
+                                                </form>
+
+                                                <div class="popup-container" id="popup-container">
+                                                    <div class="popup-box">
+                                                        <div class="popup-message">Are you sure you want to delete this
+                                                            customer?</div>
+                                                        <div class="popup-buttons">
+                                                            <button class="cancel" onclick="hidePopup()">Cancel</button>
+                                                            <button class="confirm"
+                                                                onclick="deleteCustomer()">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
                                 </tbody>
                             </table>
                         </section>
