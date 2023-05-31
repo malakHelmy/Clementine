@@ -88,6 +88,11 @@ $(document).ready(function () {
                     const formc= pass.parentElement;
                     formc.className='textfield success';
                  }
+                 if(response.emailerror != undefined)
+                 {
+                    c++;
+                 }
+
 
                     if(c==0){
                         $.ajax({
@@ -99,11 +104,9 @@ $(document).ready(function () {
 
                             },
                             error:function(err){
-                
                             }
                         });
                     }
-
             },
             error:function(err){
             }
