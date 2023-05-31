@@ -49,6 +49,7 @@ router.post(`/`, async  (req, res) => {
   }
   else{
     var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+
     // Test the password against the pattern
     var isValid = passwordPattern.test(req.body.inputs.password);
       if(isValid ){
