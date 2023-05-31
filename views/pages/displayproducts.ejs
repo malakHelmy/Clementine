@@ -34,13 +34,13 @@
         <table>
           <thead>
             <tr>
-              <th>Product ID <span class="icon-arrow">&UpArrow;</span></th>
-              <th>Product Image <span class="icon-arrow">&UpArrow;</span></th>
-              <th>Product Name <span class="icon-arrow">&UpArrow;</span></th>
-              <th>Model <span class="icon-arrow">&UpArrow;</span></th>
-              <th>Edit/Delete <span class="icon-arrow">&UpArrow;</span></th>
-              <th>Availability <span class="icon-arrow">&UpArrow;</span></th>
-              <th>Price <span class="icon-arrow">&UpArrow;</span></th>
+              <th>Product ID</th>
+              <th>Product Image</th>
+              <th>Product Name</th>
+              <th>Model</th>
+              <th>Edit/Delete</th>
+              <th>Availability</th>
+              <th>Price</th>
             </tr>
           </thead>
           <tbody>
@@ -70,7 +70,7 @@
                 <p class="avail_amount">*Available: 0 Pieces</p>
                 <% } %>
               </td>
-              <td><strong>EGP <%= product.price %></strong></td>
+              <td><strong><%= product.price %> EGP</strong></td>
             </tr>
             <% }) %>
           </tbody>
