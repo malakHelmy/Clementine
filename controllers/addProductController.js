@@ -12,9 +12,16 @@ exports.validateProduct = asyncHandler(async (req, res) => {
     }
     imgFile = req.files['img'][0];
     uploadPath = path.join(req.body.id + path.extname(imgFile.name));
+const { count } = require("../models/cart");
 
-    const { name, price, description, material, category, countInStock } =
-        req.body;
+exports.addProduct = async (req, res) => {
+    const { name, price, description, material, category, countInStock } = req.body;
+    let invalidInputs = {};
+    let files = req.files;
+    let images = [];
+    let priceformat = !/^\d+(.\d{1,2})?$/;
+    let countformat = !/^\d+$/;
+
     if (!name || name.trim() === '') {
         invalidInputs.name = 'Invalid jewelry name, please try again.';
     }
@@ -27,23 +34,32 @@ exports.validateProduct = asyncHandler(async (req, res) => {
         invalidInputs.material = 'Please enter the material of the jewelry.';
     }
 
-    if (!price || price.trim() === '') {
-        invalidInputs.price = 'You must enter a price value.';
-    }
-
-    if (!/^\d+(.\d{1,2})?$/.test(price)) {
-        invalidInputs.price = 'Invalid price input.';
+    if (!price || price.trim() === "") {
+        invalidInputs.price = "You must enter a price value.";
+    } else if (!price.match(priceformat)) {
+        invalidInputs.price = "Invalid price input.";
     }
 
     if (!category || category.trim() === '') {
         invalidInputs.category = 'Please enter the category.';
     }
 
-    if (!countInStock || countInStock.trim() === '') {
-        invalidInputs.countInStock = 'Please enter the count in stock.';
-    } else if (!/^\d+$/.test(countInStock)) {
-        invalidInputs.countInStock =
-            'Count in stock must be a positive integer.';
+    if (!countInStock || countInStock.trim() === "") {
+        invalidInputs.countInStock = "Please enter the count in stock.";
+    } else if (!count.match(countformat)) {
+        invalidInputs.countInStock = "Count in stock must be a positive integer.";
+    }
+
+    if (!files || Object.keys(files).length === 0) {
+        invalidInputs.images = "Please upload at least one image.";
+    } else {
+        for (let file of files) {
+            let image = {
+                filename: file.filename,
+                path: file.path,
+            };
+            images.push(image);
+        }
     }
 
     if (Object.keys(invalidInputs).length > 0) {
@@ -74,7 +90,7 @@ exports.validateProduct = asyncHandler(async (req, res) => {
                 console.log(err);
             });
     });
-});
+}});
 
 exports.addProduct = asyncHandler(async function (req, res, next) {
     const { id, name, price, description, material, category, countInStock } =

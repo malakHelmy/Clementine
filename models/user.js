@@ -32,8 +32,12 @@ const userSchema = mongoose.Schema(
         address: String,
         wishlist: [{type: mongoose.Schema.Types.ObjectId,
         ref: 'products'}],
-        orders: [{type: mongoose.Schema.Types.ObjectId,
-            ref:'orders'}],
+        orders: [
+            {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: 'orders',
+            },
+          ],
     },
     { timestamps: true }
 );
