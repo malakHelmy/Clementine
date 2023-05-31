@@ -14,6 +14,7 @@ const errors = {};
 
 
 router.post('/checkout', async (req, res)=>{
+    
     const { userFullName, city, shippingAddress1, CreditCardNumber, exp_month } = req.body;
     const cardformat = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
 
@@ -40,32 +41,45 @@ router.post('/checkout', async (req, res)=>{
         return res.status(400).json({ errors });
     }
 
-    let totalAmount = 0;
+    let totalAmountfinal = 0;
     req.session.cart.items.forEach((items)=>{
         if(items.quantity>1){
-            totalAmount+=items.price * items.quantity;
+            totalAmountfinal+=items.price * items.quantity;
 
         }
         else{
-            totalAmount+=items.price;
+            totalAmountfinal+=items.price;
         }
     })
     try {
 
-        // creating a new order
-        const order = new Order({
-            fullName: userFullName,
-            city,
-            shippingAddress1,
-            CreditCardNumber,
-            exp_month,
-        });
-
+     
         // adding the new order to the user's list of orders
-        const user = await User.findOne({ _id: req.session._id });
-        user.orders=user.cart;
+        const user = await User.findOne({ email: req.session._id });
+
+        const order = new Order({ //new order
+            id: req.params._id,
+            orderItems:[
+                req.session.cart.items
+            ],
+            city: req.body.city,
+            shippingAddress1: req.body.shippingAddress1,
+            CreditCardNumber: req.body.CreditCardNumber,
+            exp_month: req.body.exp_month,
+            state: req.body.state,
+            status: req.body.status,
+            totalAmount: totalAmountfinal
+
+
+        })
+        
+        req.session.cart.items.forEach((items)=>{
+            user.orders = items;
+        })
+
+    
         user.orders.push(order);
-        user.cart=[]; //emptying the session cart
+        req.session.cart=[]; //emptying the session cart
         await user.save();
         await order.save();
 
