@@ -34,26 +34,28 @@ body {
 }
 
 .lgbutton {
-    margin: 5%;
-    background-color: black;
-    text-align: center;
-    border: none;
-    color: white;
-    line-height: 40px;
-    font-weight: 600;
-    font-size: 20px;
-    letter-spacing: 4px;
-    height: 40px;
-    width: 54%;
+   
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 9%;
+  border: none;
+  background: #242424;
+  color: #ffffff;
+  width: 180px;
+  height: 50px;
+  font-size: 14px;
+  cursor: pointer;
+  /*font-size: 20px; */
+  letter-spacing: 2px;
+  transform: translateY(-15px);
 }
+
 
 .lgbutton:hover {
-    background: #b58422;
-    transition: 0.7s ease;
-    cursor: pointer;
-    letter-spacing: 6px;
+  background: #d79e2e;
+  transition: 0.7s ease-in-out;
+  cursor: pointer;
+  letter-spacing: 3px;
 }
-
 
 .signInform {
 
@@ -140,29 +142,29 @@ body {
 }
 
 .subutton {
-    margin-top: -5%;
-    margin-bottom: 5%;
-    margin-left: 5%;
-    margin-right: 5%;
-    background-color: black;
-    text-align: center;
-    border: none;
-    color: white;
-    line-height: 40px;
-    font-weight: 600;
-    font-size: 20px;
-    letter-spacing: 5px;
-    height: 40px;
-    width: 42%;
+   
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 9%;
+  border: none;
+  background: #242424;
+  color: #ffffff;
+  width: 180px;
+  height: 50px;
+  font-size: 14px;
+  cursor: pointer;
+  /*font-size: 20px; */
+  letter-spacing: 2px;
+  transform: translateY(-35px);
 }
+
 
 .subutton:hover {
-    background: #b58422;
-    transition: 0.7s ease;
-    cursor: pointer;
-    letter-spacing: 6px;
-}
+  background: #d79e2e;
+  transition: 0.7s ease-in-out;
+  cursor: pointer;
+  letter-spacing: 3px;
 
+}
 #passlabel {
     font-size: 15px;
     position: absolute;

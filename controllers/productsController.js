@@ -341,7 +341,6 @@ exports.getNewIn = asyncHandler(async(req, res) => {
     Product.find()
         .sort({ date: -1 })
         .then((result) => {
-            result = result.slice(0, 10);
             res.render('pages/products', {
                 productTitle: 'New In',
                 body,

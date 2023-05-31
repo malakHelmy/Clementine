@@ -111,7 +111,7 @@ mongoose
 app.get(`/`, async (req, res) => {
     const product = await Product.find()
         .sort({ date: -1 })
-        .limit(10) // retrieve only 6 products
+        .limit(10) // retrieve only 10 products
         .then((result) => {
             const product = result.length > 0 ? result : null; // check if newIn products are available
             res.render('pages/index', {
