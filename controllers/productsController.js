@@ -304,7 +304,7 @@ exports.removeFromWishlist = asyncHandler(async (wishuserID, removeprod) => {
         } else {
             console.log('product was not found');
         }
-        console.log(userWish.wishList);
+        console.log(userWish.wishlist);
     } catch (err) {
         console.log('could not remove product');
     }
@@ -333,7 +333,7 @@ exports.removeFromWishlist = asyncHandler(async (wishuserID, removeprod) => {
 //     }
 // });
 
-exports.getNewIn = asyncHandler(async(req, res) => {
+exports.getNewIn = asyncHandler(async (req, res) => {
     const User = await user.findOne({ email: req.session.user });
 
     const body = `Explore our newest collections, each piece is crafted with the utmost care and attention to detail,

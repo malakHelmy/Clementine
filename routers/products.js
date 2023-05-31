@@ -181,13 +181,28 @@ router.post('/add-to-wishlist', async (req, res) => {
 });
 router.post('/remove-from-wishlist', async (req, res) => {
     const wishuserID = req.session.user;
-    const removeprod = req.body.wishprodID;
-    try {
-        products.removeFromWishlist(wishuserID, removeprod);
-        res.status(200);
-    } catch (error) {
-        console.error(error);
-        res.status(500);
+    if (wishuserID) {
+        let payload = req.body.payload;
+        if (payload !== '') {
+            try {
+                console.log(payload);
+                await products.removeFromWishlist(wishuserID, payload);
+                var User = await user.findOne({ email: wishuserID });
+                var wishlistItems = await Product.find({
+                    _id: { $in: User.wishlist },
+                });
+                res.send({ payload: wishlistItems });
+            } catch (error) {
+                console.error(error);
+                res.status(500);
+            }
+        } else {
+            res.status(400);
+            console.log('Payload is missing or empty');
+        }
+    } else {
+        res.status(401);
+        console.log('User is not logged in');
     }
 });
 // router.post(`/`, async (req, res) => {
