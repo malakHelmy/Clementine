@@ -2,7 +2,7 @@ const express = require('express');
 const Cart = require('../models/cart');
 const { Product } = require('../models/product');
 const { Order } = require('../models/order');
-const { User } = require('../models/user');
+const user = require('../models/user');
 const router = express.Router();
 const checkoutController = require('../controllers/checkoutController');
 
@@ -13,55 +13,45 @@ const errors = {};
 
 
 
-router.post('/checkout', async (req, res)=>{
-    
-    const { userFullName, city, shippingAddress1, CreditCardNumber, exp_month } = req.body;
-    const cardformat = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+router.post('/', async (req, res) => {
 
-
-    if (!userFullName.trim()) {
-        errors.userFullName = 'Full name is required';
-    }
-
-    if (!city.trim()) {
-        errors.city = 'City is required';
-    }
-
-    if (!shippingAddress1.trim()) {
-        errors.shippingAddress1 = 'Address is required';
-    }
-
-    if (!CreditCardNumber.trim()) {
-        errors.CreditCardNumber = 'Credit card number is required';
-    } else if (!CreditCardNumber.match(cardformat)) {
-        errors.CreditCardNumber = 'Invalid credit card number';
-    }
-
-    if (Object.keys(errors).length > 0) {
-        return res.status(400).json({ errors });
-    }
 
     let totalAmountfinal = 0;
-    req.session.cart.items.forEach((items)=>{
-        if(items.quantity>1){
-            totalAmountfinal+=items.price * items.quantity;
+    req.session.cart.items.forEach((items) => {
+        if (items.quantity > 1) {
+            totalAmountfinal += items.price * items.quantity;
 
         }
-        else{
-            totalAmountfinal+=items.price;
+        else {
+            totalAmountfinal += items.price;
         }
     })
     try {
 
-     
-        // adding the new order to the user's list of orders
-        const user = await User.findOne({ email: req.session._id });
 
-        const order = new Order({ //new order
-            id: req.params._id,
-            orderItems:[
-                req.session.cart.items
-            ],
+        // adding the new order to the user's list of orders
+        const User = await user.findOne({ email: req.session.user });
+        let products = [];
+        let cart = req.session.cart;
+        cart.items.forEach((items) => {
+            products.push(items.id);
+        })
+
+
+        console.log(products);
+        const productinCart = await Product.find({
+            _id: { $in: products }, //to find all ids el gowa our array
+        });
+        console.log(productinCart);
+        if (!User) {
+            res.status(404).console.log("Cannot find user");
+        }
+
+
+        const order = new Order({
+            userID: User._id,
+            userFullName: User.firstname + ' ' + User.lastname,
+            orderItems: productinCart,
             city: req.body.city,
             shippingAddress1: req.body.shippingAddress1,
             CreditCardNumber: req.body.CreditCardNumber,
@@ -69,17 +59,14 @@ router.post('/checkout', async (req, res)=>{
             state: req.body.state,
             status: req.body.status,
             totalAmount: totalAmountfinal
-
-
         })
-        
-        req.session.cart.items.forEach((items)=>{
+
+        req.session.cart.items.forEach((items) => {
             user.orders = items;
         })
 
-    
         user.orders.push(order);
-        req.session.cart=[]; //emptying the session cart
+        req.session.cart = []; //emptying the session cart
         await user.save();
         await order.save();
 
@@ -95,35 +82,34 @@ router.post('/checkout', async (req, res)=>{
 
 router.get(`/`, function (req, res) {
 
-    if(req.session.cart==undefined)
-    {
+    if (req.session.cart == undefined) {
         res.render('pages/checkout', {
             user: req.session.user == undefined ? undefined : req.session.user,
             cart: req.session.cart == undefined ? undefined : req.session.cart,
-            totalamount:undefined,
-            errors: {} 
+            totalamount: undefined,
+            errors: {}
 
         });
-    }else{
+    } else {
         let totalAmount = 0;
 
-        req.session.cart.items.forEach((items)=>{
-            if(items.quantity>1){
-                totalAmount+=items.price * items.quantity;
-    
+        req.session.cart.items.forEach((items) => {
+            if (items.quantity > 1) {
+                totalAmount += items.price * items.quantity;
+
             }
-            else{
-                totalAmount+=items.price;
+            else {
+                totalAmount += items.price;
             }
         })
         res.render('pages/checkout', {
             user: req.session.user == undefined ? undefined : req.session.user,
             cart: req.session.cart == undefined ? undefined : req.session.cart,
-            totalamount:totalAmount,
-            errors: {} 
+            totalamount: totalAmount,
+            errors: {}
         });
     }
-  
+
 });
 
 module.exports = router;
