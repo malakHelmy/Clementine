@@ -56,7 +56,7 @@
                           </a>
                         </td>
                         <td>
-                          <form method="POST" action="/editemployers/<%= employer._id %>?_method=DELETE"
+                          <form method="POST" action="/employersdash/<%= employer._id %>?_method=DELETE"
                             onsubmit="return confirm('Are you sure you want to delete this employer?');">
                             <!-- a hidden input field to store the employer ID -->
                             <input type="hidden" name="employerId" value="<%= employer._id %>">

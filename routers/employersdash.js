@@ -15,6 +15,17 @@ router.get('/', async(req, res) =>{
     res.status(500).send('Internal Server Error');
     }
 } )
+
+router.post('/:id', async (req, res) => {
+    try {
+      const empid = req.params.id;
+      await Employer.findByIdAndRemove(empid);
+      res.redirect('/employersdash');
+    } catch (error) {
+      console.log('Error deleting employee:', error);
+      res.redirect('/employersdash');
+    }
+  });
   
   module.exports = router;
 
