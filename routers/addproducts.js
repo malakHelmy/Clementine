@@ -7,70 +7,33 @@ const { addProduct } = require('../controllers/addProductController');
 const productstorage = multer.diskStorage({
   destination: 'public/Images',
   filename: (req, file, myfunc) => {
-    myfunc(null, file.originalname); 
+    myfunc(null, file.originalname);
   },
 });
-const upload = multer({ storage: productstorage }).array('photo', 6);
 
-router.get('/add', (req, res) => {
-  const invalidInputs = {};
-  res.render('pages/addproducts', { invalidInputs });
-});
+const upload = multer({
+  storage: productstorage,
+  fileFilter: (req, file, cb) => {
+    if (file.fieldname === 'photo') {
+      cb(null, true);
+    } else {
+      cb(new Error('Invalid field name'), false);
+    }
+  },
+}).fields([{ name: 'photo', maxCount: 6 }]);
 
 router.get('/view', (req, res) => {
   res.render('pages/displayproducts');
 });
 
-router.get('/addproducts', (req, res) => {
+router.get('/', (req, res) => {
   const invalidInputs = {};
-  const files = req.files || [];
-  res.render('pages/addproducts', { invalidInputs, files });
+  const images = []; // intializing an empty array of images
+  res.render('pages/addproducts', {
+    invalidInputs, images
+  }); // passing the images array to ejs
 });
 
-router.post('/addproducts', upload, async (req, res) => {
-  const { name, price, description, material, category, countInStock } = req.body;
-  const images = req.files.map(file => file.path);
-
-  const product = new Product({
-    name,
-    price,
-    description,
-    material,
-    category,
-    countInStock,
-    images,
-  });
-
-  try {
-    awaitproduct.save();
-    res.redirect('/view');
-  } catch (error) {
-    console.error(error);
-    res.render('pages/addproducts', { error: 'Failed to add product' });
-  }
-});
-
-router.post('/uploadfiles', (req, res) => {
-  upload(req, res, (error) => {
-    if (error) {
-      console.error(error);
-      res.status(500).send('Failed to upload images');
-    } else {
-      res.render('pages/images', { files: req.files });
-    }
-  });
-  product
-    .save()
-    .then(() => {
-      return Product.find();
-    })
-    .then((products) => {
-      res.render('pages/displayproducts', { products });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.render('pages/addproducts');
-    });
-});
+router.post('/', upload, addProduct);
 
 module.exports = router;

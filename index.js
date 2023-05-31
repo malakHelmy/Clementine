@@ -170,7 +170,12 @@ app.get('/contactus', function (req, res) {
 
 /* --------- DASHBOARDS -----*/
 app.get('/dashboard', (req, res) => {
-    res.render('pages/dashboard', { currentPage: 'dashboard' });
+    res.render('pages/dashboard', {
+        user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
+
+        currentPage: 'dashboard'
+    });
 });
 
 app.get('/addproducts', (req, res) => {
@@ -199,10 +204,10 @@ app.get(`/updateorder`, function (req, res) {
 app.get(`/ordersdash`, function (req, res) {
     res.render('pages/ordersdash');
 });
-app.get(`/myprofile`, function(req, res){
+app.get(`/myprofile`, function (req, res) {
     res.render('pages/myprofile', {
         user: req.session.user == undefined ? undefined : req.session.user,
-      
+
     })
 })
 app.get(`/userprofile`, function (req, res) {
@@ -211,8 +216,8 @@ app.get(`/userprofile`, function (req, res) {
         cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
-app.get(`/userprofileorder`, (req, res)=>{
-    res.render('pages/userprofileorder',{
+app.get(`/userprofileorder`, (req, res) => {
+    res.render('pages/userprofileorder', {
         user: req.session.user == undefined ? undefined : req.session.user,
     })
 })
@@ -236,7 +241,7 @@ app.get(`/signup`, function (req, res) {
     });
 });
 
-app.post('/sign-up-action', (req, res) => {});
+app.post('/sign-up-action', (req, res) => { });
 /* --------- SIGN UP AND LOG IN END ---*/
 //CONTACT US MAILER START
 

@@ -33,7 +33,7 @@
                     <h1>Jewelry</h1>
                     <div id="products-container">
                         <div class="addcust" id="addcust">
-                            <form class="form" action="/addproducts" method="post">
+                            <form class="form" action="/addproducts" method="POST" enctype="multipart/form-data">
                                 <div class="add">
                                     <h2 class="add-title">Add A Product</h2>
                                 </div>
@@ -54,11 +54,19 @@
                                     </div>
 
                                     <div class="input-group">
-                                        <label for="pass">Product Image</label>
-                                        <div>
-                                            <label class="add-photo-btn">Upload Image
-                                                <span>
-                                               
+                                        <label class="add-photo-btn">Upload Image
+                                            <span>
+                                              <input type="file" id="myfile" name="photo">
+                                              <% if (images && images.length> 0) { %>
+                                                <% images.forEach(file=> { %>
+                                                  <img src="<%= file.path %>" alt="<%= file.filename %>" />
+                                                <% }) %>
+                                              <% } else { %>
+                                                <p>No images uploaded</p>
+                                              <% } %>
+                                            </span>
+                                          </label>
+                                        </div>
                                         <span class="errormsg"></span>
                                     </div>
 
