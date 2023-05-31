@@ -16,7 +16,10 @@ router.post('/', (req, res) => {
   product
     .save()
     .then(() => {
-      res.render('pages/displayproducts');
+      return Product.find();
+    })
+    .then((products) => {
+      res.render('pages/displayproducts', { products });
     })
     .catch((err) => {
       console.log(err);
