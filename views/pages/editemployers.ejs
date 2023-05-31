@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- material icons cdn -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+    <link rel="stylesheet" href="/css/editcustdash.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Edit Employer</title>
+</head>
+<body>
+    <div class="container">
+        <%- include('../partials/dashboardsidebar', { currentPage: 'employersdash' }) %>
+
+
+        <main>
+            <h1>Edit Employer</h1>
+            <div id="employers-container">
+                <div class="addcust" id="addcust">
+                    <form class="form" action="/editemployers/<%= employer.id %>" method="POST">
+                        <div class="add">
+                            <h2 class="add-title">You're updating: <%= employer.name %></h2>
+                        </div>
+                        <div class="employers-container" style="display: block;">
+                            <div class="input-group">
+                                <label for="name">Employer Name</label>
+                                <div>
+                                    <input id="name" type="text" placeholder="Employer name" name="name"
+                                        value="<%= employer.name %>">
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="email">Employer Email</label>
+                                <div>
+                                    <input id="email" type="email" placeholder="Employer email" name="email"
+                                        value="<%= employer.email %>">
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="password">Employer Password</label>
+                                <div>
+                                    <input id="password" type="password" placeholder="Employer password"
+                                        name="password" value="<%= employer.password %>">
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="phone">Employer Phone</label>
+                                <div>
+                                    <input id="phone" type="text" placeholder="Employer phone" name="phone"
+                                        value="<%= employer.phone %>">
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="isAdmin">Is Admin?</label>
+                                <div>
+                                    <input id="isAdmin" type="checkbox" name="isAdmin" <% if(employer.isAdmin) { %>checked<% } %>>
+                                </div>
+                            </div>
+
+                            <button type="submit" id="update">Update</button>
+                            <a href="/employers" id="cancel">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="update-msg">
+                    <span>Employer Updated Successfully.</span>
+                </div>
+                <div id="delete-msg">
+                    <span>Employer Deleted Successfully.</span>
+                </div>
+
+                <script src="/js/orders.js"></script>
+            </div>
+        </main>
+
+    </div>
+
+</body>
+
+</html>

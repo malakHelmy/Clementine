@@ -36,6 +36,7 @@ const searchRoutes = require('./routers/searchbar');
 const logoutroute = require('./routers/logout');
 const employersRouter = require('./routers/employersdash');
 const addempRouter = require('./routers/addemployers');
+const editempRouter = require('./routers/editemployers');
 
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
@@ -89,6 +90,8 @@ app.use('/displayproducts', displayProdRouter);
 app.use('/', searchRoutes);
 app.use('/logout', logoutroute);
 app.use('/addemployers', addempRouter);
+app.use('/editemployers', editempRouter);
+
 
 const { Product } = require('./models/product');
 const { OrderItem } = require('./models/order-items');
@@ -108,7 +111,7 @@ mongoose
 app.get(`/`, async (req, res) => {
     const product = await Product.find()
         .sort({ date: -1 })
-        .limit(10) // retrieve only 6 products
+        .limit(10) // retrieve only 10 products
         .then((result) => {
             const product = result.length > 0 ? result : null; // check if newIn products are available
             res.render('pages/index', {
@@ -224,6 +227,9 @@ app.get(`/employersdash`, function (req, res) {
 });
 app.get(`/addemployers`, function (req, res) {
     res.render('pages/addemployers');
+});
+app.get(`/editemployers`, function (req, res) {
+    res.render('pages/editemployers');
 });
 
 /* --------- DASHBOARDS END -----*/
