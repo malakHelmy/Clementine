@@ -104,12 +104,16 @@ router.post(`/`, async  (req, res) => {
               });
             } 
             else{
-
-            //   res.render('pages/signup',{ user: req.session.user == undefined ? undefined : req.session.user,
-            //   cart: req.session.cart == undefined ? undefined : req.session.cart,
-            //    error:Error
-            // })
-
+              Error.emailerror='existed email';
+              let err={
+                firsterror:Error.firsterror,
+                lasterror:Error.lasterror,
+                emailerror:Error.emailerror,
+                passerror:Error.passerror,
+                confirmpasserror:Error.confirmpasserror,
+                phoneerror:Error.phoneerror
+              }
+              res.send(err);
             }               
          }).catch( err => {
           console.log(err);
