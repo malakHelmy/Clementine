@@ -21,13 +21,13 @@ router.post(`/`, async  (req, res) => {
     passerror:String,
     confirmpasserror:String,
   }
-  if(firstnamevalue=='')
+  if(firstnamevalue.trim()=='')
   {
     Error.firsterror='Please enter Firstname';
      c++;
   }
   
-  if(lastnamevalue=='')
+  if(lastnamevalue.trim()=='')
   {
     Error.lasterror='Please enter Lastname';
     c++;
