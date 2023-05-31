@@ -8,14 +8,20 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify({ email: data }),
             success: function (response) {
-                $('#emaillabel').html('Email is ' + response);
-
                 if (response == 'taken') {
-                    $('#emaillabel').css("color", "red");
+                    $('#emaillabel').html('Email already exists ');
+                    const pass=document.getElementById('email');
+                    const formc=pass.parentElement;
+                    formc.className='textfield failed';
                 }
-                else {
-                    $('#emaillabel').css("color", "green");
-                }
+                 else {
+                      $('#emaillabel').html('Email is available');
+                      $('#emaillabel').css("color", "green");
+                      const pass=document.getElementById('email');
+                      const formc=pass.parentElement;
+                      formc.className='textfield success';
+                 }
+             
             },
             error:function(err){
 
