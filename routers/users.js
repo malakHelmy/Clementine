@@ -4,14 +4,14 @@ const bcrypt=require('bcrypt')
 const router = express.Router();
 router.post(`/`, async  (req, res) => {
 
-  const firstnamevalue=req.body.firstname;
-  const lastnamevalue=req.body.lastname;
-  const passvalue=req.body.password;
-  const confirmpassvalue=req.body.confirmpassword;
-  const phonevalue=req.body.phone;
-  const emailvalue=req.body.email;
+  const firstnamevalue=req.body.inputs.firstname;
+  const lastnamevalue=req.body.inputs.lastname;
+  const passvalue=req.body.inputs.password;
+  const confirmpassvalue=req.body.inputs.confirmpassword;
+  const phonevalue=req.body.inputs.phone;
+  const emailvalue=req.body.inputs.email;
 
-
+ 
   let c=0;
   let Error={
     firsterror:String,
@@ -65,7 +65,7 @@ router.post(`/`, async  (req, res) => {
   }
   if(phonevalue.length==11 && !isNaN(phonevalue))
   {
-    Error.phoneerror='right phone number';
+    Error.phoneerror='Please enter right phone number';
   }
   else
   {
@@ -123,6 +123,12 @@ router.post(`/`, async  (req, res) => {
        
 
 });
+
+
+
+
+
+
 router.post(`/checkemail`, async  (req, res) => {
   var query = { email: req.body.email };
   User.find(query)
