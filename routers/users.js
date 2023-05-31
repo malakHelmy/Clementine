@@ -48,6 +48,16 @@ router.post(`/`, async  (req, res) => {
     c++;
   }
   else{
+    var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+
+    // Test the password against the pattern
+    var isValid = passwordPattern.test(req.body.inputs.password);
+      if(isValid ){
+
+      }else{
+        Error.passerror='password must contain at least 8 characters,one lowercase letter,one uppercase letter and one digit';
+        c++;
+      }
   }
   if(confirmpassvalue==''){
     Error.confirmpasserror='Please enter Confirm Password';
@@ -75,34 +85,45 @@ router.post(`/`, async  (req, res) => {
             lastname:req.body.inputs.lastname,
             email:req.body.inputs.email,
             password: await bcrypt.hash(req.body.inputs.password,12),
+            phone:req.body.inputs.phone
           }
           const users=new User(user);
          const check= User.findOne({email:req.body.inputs.email}).then((result)=>{
-          console.log(result);
+       
             if(result==undefined)
             {
+              console.log("true");
               users
               .save()
               .then( (result) => {
-                 
                 req.session.user=req.body.inputs.email;
                 if(req.session.cart!=undefined)
-                req.session.cart.items.forEach((items) => {
-                  items.email=req.session.user;
-                });  
-                res.redirect('/')
+                {
+                  req.session.cart.items.forEach((items) => {
+                    items.email=req.session.user;
+                  }); 
+                }
+               res.redirect('/checkout')
+              //   res.render('pages/index', {
+              //     user: req.session.user == undefined ? undefined : req.session.user,
+              //     cart:req.session.cart == undefined? undefined: req.session.cart,
+              // });
               })
               .catch( err => {
                 console.log(err);
               });
             } 
             else{
-
-              res.render('pages/signup',{ user: req.session.user == undefined ? undefined : req.session.user,
-              cart: req.session.cart == undefined ? undefined : req.session.cart,
-               error:Error
-            })
-
+              Error.emailerror='existed email';
+              let err={
+                firsterror:Error.firsterror,
+                lasterror:Error.lasterror,
+                emailerror:Error.emailerror,
+                passerror:Error.passerror,
+                confirmpasserror:Error.confirmpasserror,
+                phoneerror:Error.phoneerror
+              }
+              res.send(err);
             }               
          }).catch( err => {
           console.log(err);
