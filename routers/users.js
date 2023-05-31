@@ -39,9 +39,10 @@ router.post(`/`, async  (req, res) => {
     Error.emailerror='Please enter Email';
     c++;
   }
+
   else{
     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    var isValid = emailPattern.test(req.body.email);
+    var isValid = emailPattern.test(req.body.inputs.email);
     if(isValid){
 
     }else{
@@ -49,6 +50,8 @@ router.post(`/`, async  (req, res) => {
       c++;
     }
   } 
+
+
    if(passvalue=='' )
   {
     Error.passerror='Please enter Password';
