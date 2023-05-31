@@ -8,8 +8,10 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify({ email: data }),
             success: function (response) {
+
                 if (response == 'taken') {
                     $('#emaillabel').html('Email already exists ');
+                    $('#emaillabel').css("color", "red");
                     const pass=document.getElementById('email');
                     const formc=pass.parentElement;
                     formc.className='textfield failed';
@@ -22,6 +24,7 @@ $(document).ready(function () {
                       formc.className='textfield success';
                  }else{
                     $('#emaillabel').html('Email is Invalid');
+                    $('#emaillabel').css("color", "red");
                     const pass=document.getElementById('email');
                     const formc=pass.parentElement;
                     formc.className='textfield failed';
