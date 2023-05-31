@@ -29,7 +29,6 @@ router.post('/delete', async (req, res) => {
     res.redirect('/displayproducts');
   } catch (error) {
     console.log(error);
-    // Handle any errors that occur
     res.render('pages/error');
   }
 });
