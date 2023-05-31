@@ -14,118 +14,98 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Admin Dashboard</title>
     </head>
-
-
-
-
     <body>
-
-
         <div class="container">
 
             <%- include('../partials/dashboardsidebar', { currentPage: 'displayproducts' }) %>
-
-
-
-
 
                 <main>
                     <h1>Jewelry</h1>
                     <div id="products-container">
                         <div class="addcust" id="addcust">
-                            <form class="form" action="/addproducts" method="POST" enctype="multipart/form-data">
-                                <div class="add">
-                                    <h2 class="add-title">Add A Product</h2>
+                            <form class="form" action="/addproducts" method="POST" enctype="multipart/form-data"">
+                                <div class=" add">
+                                <h2 class="add-title">Add A Product</h2>
+                        </div>
+                        <div class="products-container" style="display: block;">
+
+                            <div class="input-group">
+                                <label for="email">Product ID</label>
+                                <div><input id="custemail" type="text" placeholder="Product id" name="id">
                                 </div>
-                                <div class="products-container" style="display: block;">
+                                <span class="errormsg"></span>
+                            </div>
 
-                                    <div class="input-group">
-                                        <label for="email">Product ID</label>
-                                        <div><input id="custemail" type="text" placeholder="Product id" name="id">
-                                        </div>
-                                        <span class="errormsg"></span>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label for="pass">Product Name </label>
-                                        <div> <input id="password" type="text" placeholder="Product name" name="name">
-                                        </div>
-                                        <span class="errormsg"></span>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label class="add-photo-btn">Upload Image
-                                            <span>
-                                              <input type="file" id="myfile" name="photo">
-                                              <% if (images && images.length> 0) { %>
-                                                <% images.forEach(file=> { %>
-                                                  <img src="<%= file.path %>" alt="<%= file.filename %>" />
-                                                <% }) %>
-                                              <% } else { %>
-                                                <p>No images uploaded</p>
-                                              <% } %>
-                                            </span>
-                                          </label>
-                                        </div>
-                                        <span class="errormsg"></span>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label for="pass">Product Price</label>
-                                        <div><input id="passconf" type="text" placeholder="Prodct price" name="price">
-                                        </div>
-                                        <span class="errormsg"></span>
-                                    </div>
-
-
-                                    <div class="input-group">
-                                        <label for="pass">Product Description</label>
-                                        <div><input id="passconf" type="text" placeholder="Prodct Description"
-                                                name="description" class="description">
-                                        </div>
-                                        <span class="errormsg"></span>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label for="pass">Material</label>
-                                        <div><input id="passconf" type="text" placeholder="Product Material"
-                                                name="material">
-                                        </div>
-                                        <span class="errormsg"></span>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label for="pass">Category</label>
-                                        <div><input id="passconf" type="text" placeholder="Product category"
-                                                name="category">
-                                        </div>
-                                        <span class="errormsg"></span>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label for="pass">Count in Stock</label>
-                                        <div><input id="passconf" type="text" placeholder="count in stock"
-                                                name="countInStock">
-                                        </div>
-                                        <span class="errormsg"></span>
-                                    </div>
-
-
-
-
-                                    <button type="add" id="add">Add</button><span>
-                                        <button id="cancel" href="/addproducts">Cancel</button></span>
-
+                            <div class="input-group">
+                                <label for="pass">Product Name </label>
+                                <div> <input id="password" type="text" placeholder="Product name" name="name">
                                 </div>
-                            </form>
+                                <span class="errormsg"></span>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="add-photo-btn">Upload Image
+
+                                    <input type="file" name="img" multiple>
+
+                                </label>
+                            </div>
+                            <span class="errormsg"></span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="pass">Product Price</label>
+                            <div><input id="passconf" type="text" placeholder="Prodct price" name="price">
+                            </div>
+                            <span class="errormsg"></span>
+                        </div>
+
+
+                        <div class="input-group">
+                            <label for="pass">Product Description</label>
+                            <div><input id="passconf" type="text" placeholder="Prodct Description" name="description"
+                                    class="description">
+                            </div>
+                            <span class="errormsg"></span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="pass">Material</label>
+                            <div><input id="passconf" type="text" placeholder="Product Material" name="material">
+                            </div>
+                            <span class="errormsg"></span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="pass">Category</label>
+                            <div><input id="passconf" type="text" placeholder="Product category" name="category">
+                            </div>
+                            <span class="errormsg"></span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="pass">Count in Stock</label>
+                            <div><input id="passconf" type="text" placeholder="count in stock" name="countInStock">
+                            </div>
+                            <span class="errormsg"></span>
                         </div>
 
 
 
 
+                        <button type="add" id="add">Add</button><span>
+                            <button id="cancel" href="/addproducts">Cancel</button></span>
+
+                    </div>
+                    </form>
+        </div>
 
 
-                        <script src="js/orders.js"></script>
+
+
+
+
+        <script src="js/orders.js"></script>
 
     </body>
 

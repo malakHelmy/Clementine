@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/Signup.css">
     <link rel="stylesheet" href="/css/style.css">
-    
+   
+
     <title> Sign Up</title>
 </head>
 <body>
@@ -17,9 +18,9 @@
 
                 <h2>Sign Up Information </h2>
                 
-                <form action="/user" method="post"  class="signInform" id="signInform" >
+                <form class="signInform" id="signInform" >
                      <div class="textfield"> 
-                         <input type="text" name="firstname" onsubmit="return checkinputs()" id="firstname" >
+                         <input type="text" name="firstname"  id="firstname" >
                           <label for="firstname" id="firstnamelabel"></label>
                          <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
                          <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
@@ -43,7 +44,7 @@
                          <label for="">E-mail</label>      
                      </div>
                      <div class="textfield"> 
-                         <input type="password" name="password" id="pass" >
+                         <input type="password" name="password" id="password" >
                          <label for="firstname" id="passlabel"></label>
                          <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
                          <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
@@ -51,7 +52,7 @@
                          <label for="">Password</label>      
                      </div>
                      <div class="textfield" >  
-                        <input type="password" name="confirmpassword" id="confirmpass" >
+                        <input type="password" name="confirmpassword" id="confirmpassword" >
                         <label for="firstname" id="confirmpasslabel"></label>
                         <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
                         <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
@@ -61,14 +62,7 @@
                      <!-- <div class="textfield">
                           <input type="date" name="dob">     
                      </div> -->
-                     <div class="textfield">
-                           <input type="text" name="phone" id="phone" >
-                           <label for="firstname" id="phonelabel"></label>
-                           <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
-                           <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
-                           <span class="sp1"></span>
-                            <label for="">Phone </label>   
-                     </div>
+                    
                      <p class="disclaimer">By providing your personal information, you agreed to our Privacy & Cookies Policy.
                     </p>
                      <input type="submit" class="submit">
@@ -82,11 +76,11 @@
         <section class="signIn">
 
             <h2>Sign Up Information </h2>
-            //onsubmit="return checkinputs()"
-            <form action="/user" method="post"  class="signInform" id="signInform" >
+         
+            <form  method="post"  class="signInform" id="signInform" >
                  <div class="textfield"> 
                      <input type="text" name="firstname"  id="firstname" >
-                      <label for="firstname" id="firstnamelabel"></label>
+                      <label for="firstname" id="firstnamelabel"><%= error.firsterror %></label>
                      <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
                      <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                      <span class="sp1"></span>
@@ -94,7 +88,7 @@
                  </div>
                  <div class="textfield" > 
                      <input type="text" name="lastname" id="lastname" >
-                     <label for="firstname" id="lastnamelabel"></label>
+                     <label for="firstname" id="lastnamelabel"><%= error.lasterror %></label>
                      <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
                      <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                      <span class="sp1"></span>
@@ -109,16 +103,16 @@
                      <label for="">E-mail</label>      
                  </div>
                  <div class="textfield"> 
-                     <input type="password" name="password" id="pass" >
-                     <label for="firstname" id="passlabel"></label>
+                     <input type="password" name="password" id="password" >
+                     <label for="firstname" id="passlabel"><%= error.passerror %></label>
                      <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
                      <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                      <span class="sp1"></span>
                      <label for="">Password</label>      
                  </div>
                  <div class="textfield" >  
-                    <input type="password" name="confirmpassword" id="confirmpass" >
-                    <label for="firstname" id="confirmpasslabel"></label>
+                    <input type="password" name="confirmpassword" id="confirmpassword" >
+                    <label for="firstname" id="confirmpasslabel"><%= error.confirmpasserror %></label>
                     <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
                     <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                     <span class="sp1"></span>
@@ -127,19 +121,7 @@
                  <!-- <div class="textfield">
                       <input type="date" name="dob">     
                  </div> -->
-                 <div class="textfield">
-                       <input type="text" name="phone" id="phone" >
-                       <% if(error.phoneerror == 'right phone number'){ %>
-                        <label for="firstname" id="phonelabel"> </label>
-                       <% }else{ %>
-                        <label for="firstname" id="phonelabel"> <%= error.phoneerror %>  </label>
-                        
-                        <% } %>
-                       <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
-                       <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
-                       <span class="sp1"></span>
-                        <label for="">Phone </label>   
-                 </div>
+                
                  <p class="disclaimer">By providing your personal information, you agreed to our Privacy & Cookies Policy.
                 </p>
                  <input type="submit" class="submit">
@@ -159,10 +141,10 @@
         <p id="loginlink">Already have an account?
             <a href="login.html" class="loginlink"> Log In </a> </p>
           <script src="js/validation.js"></script>
-          <script src="js/ajax.js"></script>
-    </section>
+          <script src="js/ajaxsignup.js"></script>
+     </section>
   
-
+ <script src="js/ajax.js"></script>
     <%- include('../partials/footer') %>
 
     
