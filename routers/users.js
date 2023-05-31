@@ -77,6 +77,7 @@ router.post(`/`, async  (req, res) => {
           }
           const users=new User(user);
          const check= User.findOne({email:req.body.inputs.email}).then((result)=>{
+          console.log(result);
             if(result==undefined)
             {
               users
@@ -115,10 +116,8 @@ router.post(`/`, async  (req, res) => {
             passerror:Error.passerror,
             confirmpasserror:Error.confirmpasserror,
           }
-
           res.send(err);
         }
-       
 
 });
 
