@@ -10,9 +10,7 @@ router.post(`/`, async  (req, res) => {
   const confirmpassvalue=req.body.inputs.confirmpassword;
   const phonevalue=req.body.inputs.phone;
   const emailvalue=req.body.inputs.email;
-
- console.log(req.body.inputs)
-
+  
   let c=0;
   let Error={
     firsterror:String,
@@ -20,6 +18,7 @@ router.post(`/`, async  (req, res) => {
     emailerror:String,
     passerror:String,
     confirmpasserror:String,
+    phoneerror:String
   }
   if(firstnamevalue.trim()=='')
   {
@@ -61,11 +60,13 @@ router.post(`/`, async  (req, res) => {
   }
   else if(confirmpassvalue==passvalue)
   {
-
   }
- 
-  console.log(Error);
- 
+  if(phonevalue.length==11 && !isNaN(phonevalue) ){
+  }
+  else{
+    Error. phoneerror='Please enter right a phone number';
+    c++;
+  }
         if(c==0)
         {
 
@@ -115,6 +116,7 @@ router.post(`/`, async  (req, res) => {
             emailerror:Error.emailerror,
             passerror:Error.passerror,
             confirmpasserror:Error.confirmpasserror,
+            phoneerror:Error.phoneerror
           }
           res.send(err);
         }
