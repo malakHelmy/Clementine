@@ -1,8 +1,12 @@
+const { count } = require("../models/cart");
+
 exports.addProduct = async (req, res) => {
     const { name, price, description, material, category, countInStock } = req.body;
     let invalidInputs = {};
     let files = req.files;
     let images = [];
+    let priceformat = !/^\d+(.\d{1,2})?$/;
+    let countformat = !/^\d+$/;
 
     if (!name || name.trim() === "") {
         invalidInputs.name = "Invalid jewelry name, please try again.";
@@ -18,9 +22,7 @@ exports.addProduct = async (req, res) => {
 
     if (!price || price.trim() === "") {
         invalidInputs.price = "You must enter a price value.";
-    }
-
-    if (!/^\d+(.\d{1,2})?$/.test(price)) {
+    } else if (!price.match(priceformat)) {
         invalidInputs.price = "Invalid price input.";
     }
 
@@ -30,7 +32,7 @@ exports.addProduct = async (req, res) => {
 
     if (!countInStock || countInStock.trim() === "") {
         invalidInputs.countInStock = "Please enter the count in stock.";
-    } else if (!/^\d+$/.test(countInStock)) {
+    } else if (!count.match(countformat)) {
         invalidInputs.countInStock = "Count in stock must be a positive integer.";
     }
 
