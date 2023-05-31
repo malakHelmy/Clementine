@@ -11,7 +11,8 @@ router.post(`/`, async  (req, res) => {
   const phonevalue=req.body.inputs.phone;
   const emailvalue=req.body.inputs.email;
 
- 
+ console.log(req.body.inputs)
+
   let c=0;
   let Error={
     firsterror:String,
@@ -19,7 +20,6 @@ router.post(`/`, async  (req, res) => {
     emailerror:String,
     passerror:String,
     confirmpasserror:String,
-    phoneerror:String
   }
   if(firstnamevalue=='')
   {
@@ -33,9 +33,8 @@ router.post(`/`, async  (req, res) => {
     c++;
   }
   else{
-
   }
-  
+
   if(emailvalue=='')
   {
     Error.emailerror='Please enter Email';
@@ -62,36 +61,29 @@ router.post(`/`, async  (req, res) => {
   }
   else if(confirmpassvalue==passvalue)
   {
+
   }
-  if(phonevalue.length==11 && !isNaN(phonevalue))
-  {
-    Error.phoneerror='Please enter right phone number';
-  }
-  else
-  {
-    Error.phoneerror='Please enter right phone number';
-    c++;
-  }
+ 
   console.log(Error);
  
         if(c==0)
         {
+
           const user={
-            firstname:req.body.firstname,
-            lastname:req.body.lastname,
-            email:req.body.email,
-            password: await bcrypt.hash(req.body.password,12),
-            phone:req.body.phone
+            firstname:req.body.inputs.firstname,
+            lastname:req.body.inputs.lastname,
+            email:req.body.inputs.email,
+            password: await bcrypt.hash(req.body.inputs.password,12),
           }
           const users=new User(user);
-         const check= User.findOne({email:req.body.email}).then((result)=>{
+         const check= User.findOne({email:req.body.inputs.email}).then((result)=>{
             if(result==undefined)
             {
               users
               .save()
               .then( (result) => {
                  
-                req.session.user=req.body.email;
+                req.session.user=req.body.inputs.email;
                 if(req.session.cart!=undefined)
                 req.session.cart.items.forEach((items) => {
                   items.email=req.session.user;
@@ -115,19 +107,20 @@ router.post(`/`, async  (req, res) => {
         });
         }
         else{
-          res.render('pages/signup',{ user: req.session.user == undefined ? undefined : req.session.user,
-            cart: req.session.cart == undefined ? undefined : req.session.cart, 
-            error:Error
-          })
+
+          let err={
+            firsterror:Error.firsterror,
+            lasterror:Error.lasterror,
+            emailerror:Error.emailerror,
+            passerror:Error.passerror,
+            confirmpasserror:Error.confirmpasserror,
+          }
+
+          res.send(err);
         }
        
 
 });
-
-
-
-
-
 
 router.post(`/checkemail`, async  (req, res) => {
   var query = { email: req.body.email };
