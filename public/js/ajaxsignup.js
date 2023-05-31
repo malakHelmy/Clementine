@@ -9,6 +9,7 @@ $(document).ready(function () {
          confirmpassword: $('#confirmpassword').val(),
          phone: $('#phone').val()
     };
+    let c=0;
         $.ajax({
             url: '/user',
             method: 'POST',
@@ -21,6 +22,7 @@ $(document).ready(function () {
                         const pass=document.getElementById('password');
                         const formc= pass.parentElement;
                         formc.className='textfield failed';
+                        c++;
                  }
                  else{
                     $('#passlabel').html( '');
@@ -35,7 +37,7 @@ $(document).ready(function () {
                      const pass=document.getElementById('firstname');
                      const formc= pass.parentElement;
                      formc.className='textfield failed';
-
+                     c++;
                  }else{
 
                     $('#firstnamelabel').html('');
@@ -49,7 +51,7 @@ $(document).ready(function () {
                     const pass=document.getElementById('lastname');
                     const formc= pass.parentElement;
                     formc.className='textfield failed';
-
+                    c++;
                  }else{
 
                     $('#lastnamelabel').html('');
@@ -64,7 +66,7 @@ $(document).ready(function () {
                     const pass=document.getElementById('confirmpassword');
                     const formc= pass.parentElement;
                     formc.className='textfield failed';
-
+                    c++;
                  }else{
 
                     $('#confirmpasslabel').html( '');
@@ -78,7 +80,7 @@ $(document).ready(function () {
                     const pass=document.getElementById('phone');
                     const formc= pass.parentElement;
                     formc.className='textfield failed';
-
+                    c++;
                  }else{
 
                     $('#phonelabel').html( '');
@@ -87,11 +89,23 @@ $(document).ready(function () {
                     formc.className='textfield success';
                  }
 
+                    if(c==0){
+                        $.ajax({
+                            url: '/',
+                            method: 'GET',
+                            success: function (response) {
+                 
+                                window.location.href = '/';
 
+                            },
+                            error:function(err){
+                
+                            }
+                        });
+                    }
 
             },
             error:function(err){
-
             }
         });
     });
