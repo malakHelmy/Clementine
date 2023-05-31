@@ -7,6 +7,7 @@ $(document).ready(function () {
          email: $('#email').val(),
          password: $('#password').val(),
          confirmpassword: $('#confirmpassword').val(),
+         phone: $('#phone').val()
     };
         $.ajax({
             url: '/user',
