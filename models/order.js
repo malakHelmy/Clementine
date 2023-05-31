@@ -22,7 +22,7 @@ const orderSchema = mongoose.Schema({
 orderItems: [
     {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "orderitems",
+        ref: "products",
         required: true,
     },
 ],
@@ -55,11 +55,10 @@ totalAmount: {
         default: 0,
     },
 
-phone_num: {
-    type: String,
-        required: true,
-            ref: 'user',
-    },
+// phone_num: {
+//     type: String,
+//         required: true,
+//     },
 dateOrdered: {
     type: Date,
         default: Date.now,

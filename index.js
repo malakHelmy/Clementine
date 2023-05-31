@@ -298,7 +298,6 @@ app.post(`/contactus`, function (req, res) {
 });
 /* ---------CONTACT US FORM MAILER END --------*/
 
-app.post('/updateorder', function (req, res) {
     app.post('/updateorder', function (req, res) {
         var orderId = req.body._id;
         var status = req.body.status;
@@ -337,7 +336,6 @@ app.post('/updateorder', function (req, res) {
             }
         });
     });
-});
 
 app.listen(port, () => {
     console.log('http://localhost:8080');
