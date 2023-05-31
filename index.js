@@ -19,6 +19,8 @@ const connectLivereload = require('connect-livereload');
 const api_key = process.env.OPENAI_API_KEY;
 
 //Routes
+const dashboardRouter = require('./routers/dashboard');
+
 const addProdRouter = require('./routers/addproducts');
 const editProdRouter = require('./routers/editproducts');
 const cartRouter = require('./routers/cart');
@@ -39,6 +41,8 @@ const addempRouter = require('./routers/addemployers');
 const editempRouter = require('./routers/editemployers');
 const checkoutRouter = require('./routers/checkout');
 const addcustRouter = require('./routers/addcustomers');
+
+
 
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
@@ -95,6 +99,7 @@ app.use('/addemployers', addempRouter);
 app.use('/editemployers', editempRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/addcustomers', addcustRouter);
+app.use('/dashboard', dashboardRouter);
 
 
 
