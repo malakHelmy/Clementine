@@ -40,7 +40,14 @@ router.post(`/`, async  (req, res) => {
     c++;
   }
   else{
- 
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var isValid = emailPattern.test(req.body.email);
+    if(isValid){
+
+    }else{
+      Error.emailerror='Email is Invalid';
+      c++;
+    }
   } 
    if(passvalue=='' )
   {
@@ -79,7 +86,6 @@ router.post(`/`, async  (req, res) => {
   }
         if(c==0)
         {
-
           const user={
             firstname:req.body.inputs.firstname,
             lastname:req.body.inputs.lastname,
@@ -145,19 +151,27 @@ router.post(`/`, async  (req, res) => {
 });
 
 router.post(`/checkemail`, async  (req, res) => {
-  var query = { email: req.body.email };
-  User.find(query)
-      .then(result => {
-          if (result.length > 0) {
-              res.send('taken');
-          }
-          else {
-              res.send('available');
-          }
-      })
-      .catch(err => {
-          console.log(err);
-      });
+  
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var isValid = emailPattern.test(req.body.email);
+  if(isValid)
+  {
+    var query = { email: req.body.email };
+    User.find(query)
+        .then(result => {
+            if (result.length > 0) {
+                res.send('taken');
+            }
+            else {
+                res.send('available');
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
+  }else{
+    res.send('wrong');
+  }
 });
 
 

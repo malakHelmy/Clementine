@@ -11,16 +11,16 @@
     <link rel="stylesheet" href="/css/products.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <style>
-        #filter{
+        #filter {
             height: 40px;
             width: 60px;
             /* font-weight: bold; */
             font-size: 17px;
             border-color: rgba(128, 128, 128, 0.082);
-             border-radius: 2px;
-                background-color: white;
-                color:black;
-                cursor: pointer;
+            border-radius: 2px;
+            background-color: white;
+            color: black;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -29,72 +29,74 @@
 
     <%- include('../partials/navbar') %>
 
-        
-           <% if(material!=''){ %>
+
+        <% if(material!='' ){ %>
             <div class="sorting">
-                   <label for="">Sort by</label>
-                    <form action="/products/ <%- material %>/ <%- category %>/  <%- body %> / <%- productTitle %>"  method="post">
-                                    <select name="sort" id="sort">
-                                       <option value="Highestprice">Highest price</option>
-                                       <option value="Lowestprice">Lowest price</option>
-                                    </select>
-                                    <input type="submit" value="Filter" id="filter">
-                     </form>
+                <label for="">Sort by</label>
+                <form action="/products/ <%- material %>/ <%- category %>/  <%- body %> / <%- productTitle %>"
+                    method="post">
+                    <select name="sort" id="sort">
+                        <option value="Highestprice">Highest price</option>
+                        <option value="Lowestprice">Lowest price</option>
+                    </select>
+                    <input type="submit" value="Filter" id="filter">
+                </form>
             </div>
-           <% } %>         
-         
+            <% } %>
 
-        <section id="rings-intro">
-            <h1 class="rings-intro-title">
-                <%= productTitle %>
 
-            </h1>
-            <p class="snip">
-                <%=body %>
-            </p>
-        </section>
-        <section class="product-container">
-            <% if(products !='' ) {%>
-                <% products.forEach((items)=> {%>
-                    <div class="box">
-                        <% if (User !=undefined) { %>
-                            <%if(User.wishlist.includes(items._id)){%>
-                                <a alt="" class="ri-heart-fill" id="included-icon-<%= items._id %>"
-                                    data-productid="<%= items._id %>">
-                                </a>
-                                <% }else { %>
-                                    <a alt="" class="ri-heart-line" id="heart-icon-<%= items._id %>"
-                                        data-productid="<%= items._id %>">
-                                    </a>
-                                    <% } %> %>
+                <section id="rings-intro">
+                    <h1 class="rings-intro-title">
+                        <%= productTitle %>
+
+                    </h1>
+                    <p class="snip">
+                        <%=body %>
+                    </p>
+                </section>
+                <section class="product-container">
+                    <% if(products !='' ) {%>
+                        <% products.forEach((items)=> {%>
+                            <div class="box">
+                                <% if (User !=undefined) { %>
+                                    <%if(User.wishlist.includes(items._id)){%>
+                                        <a alt="" class="ri-heart-fill" id="included-icon-<%= items._id %>"
+                                            data-productid="<%= items._id %>">
+                                        </a>
                                         <% }else { %>
                                             <a alt="" class="ri-heart-line" id="heart-icon-<%= items._id %>"
                                                 data-productid="<%= items._id %>">
                                             </a>
-                                            <% } %>
-                                                <a href="/product/<%- items._id %>">
-                                                    <img class="imgg" src="/Images/<%- items.image %>" alt="">
-                                                </a>
-                                                <div class="items">
-                                                    <div class="prodetails">
-                                                        <p>
-                                                            <%= items.name%>
-                                                        </p>
-                                                        <p class="price"> EGP
-                                                            <%= items.price%>
-                                                        </p>
-                                                    </div>
-                                                    <form action="/cart/<%= items._id %>" method="post"><input
-                                                            type="submit" value="Add to cart" class="btn"></form>
-                                                </div>
-                    </div>
-                    <% }) %>
-                        <% } %>
-        </section>
-        <% if (user !=undefined) {%>
-            <script src="/js/prod.js"></script>
-            <% } %>
-                <%- include('../partials/footer') -%>
+                                            <% } %> %>
+                                                <% }else { %>
+                                                    <a alt="" class="ri-heart-line" id="heart-icon-<%= items._id %>"
+                                                        data-productid="<%= items._id %>">
+                                                    </a>
+                                                    <% } %>
+                                                        <a href="/product/<%- items._id %>">
+                                                            <img class="imgg" src="/Images/<%- items.image %>" alt="">
+                                                        </a>
+                                                        <div class="items">
+                                                            <div class="prodetails">
+                                                                <p>
+                                                                    <%= items.name%>
+                                                                </p>
+                                                                <p class="price"> EGP
+                                                                    <%= items.price%>
+                                                                </p>
+                                                            </div>
+                                                            <form action="/cart/<%= items._id %>" method="post"><input
+                                                                    type="submit" value="Add to cart" class="btn">
+                                                            </form>
+                                                        </div>
+                            </div>
+                            <% }) %>
+                                <% } %>
+                </section>
+                <% if (user !=undefined) {%>
+                    <script src="/js/prod.js"></script>
+                    <% } %>
+                        <%- include('../partials/footer') -%>
 
 </body>
 

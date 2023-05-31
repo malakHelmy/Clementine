@@ -19,7 +19,7 @@ let wishlistWrap = document.querySelector('.wishlist-wrap');
 closeIcons.forEach((closeIcon) => {
     closeIcon.addEventListener('click', async () => {
         var wishprodID = closeIcon.dataset.wishid;
-        fetch('/remove-from-wishlist', {
+        fetch('/remove-wishlist', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

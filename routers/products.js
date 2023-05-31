@@ -179,7 +179,20 @@ router.post('/add-to-wishlist', async (req, res) => {
         res.status(500);
     }
 });
+
 router.post('/remove-from-wishlist', async (req, res) => {
+    const wishuserID = req.session.user;
+    const removeprod = req.body.wishprodID;
+    try {
+        products.removeFromWishlist(wishuserID, removeprod);
+        res.status(200);
+    } catch (error) {
+        console.error(error);
+        res.status(500);
+    }
+});
+
+router.post('/remove-wishlist', async (req, res) => {
     const wishuserID = req.session.user;
     if (wishuserID) {
         let payload = req.body.payload;

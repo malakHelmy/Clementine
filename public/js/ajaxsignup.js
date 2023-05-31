@@ -90,6 +90,10 @@ $(document).ready(function () {
                  }
                  if(response.emailerror != undefined)
                  {
+                    $('#emaillabel').html(response.emailerror);
+                    const pass=document.getElementById('email');
+                    const formc= pass.parentElement;
+                    formc.className='textfield failed';
                     c++;
                  }
 
