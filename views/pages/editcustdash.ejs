@@ -9,6 +9,7 @@
     <!-- material icons cdn -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
     <link rel="stylesheet" href="/css/editcustdash.css">
+    <link rel="stylesheet" href="/css/displayproducts.css">
     <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Admin Dashboard</title>
@@ -31,65 +32,7 @@
 
 
         <main>
-            <h1>Customers</h1>
-            <div id="customers-container">
-                <div class="addcust" id="addcust">
-                    <form action="/editcustdash" method="post" class="signInform" onsubmit="return checkinputs()">
-                        <div class="add">
-                            <h2 class="add-title">Add A Customer</h2>
-                        </div>
-                        <div class="customers-container" style="display: block;">
-
-                            <div class="input-group">
-                                <label for="firstname">First Name</label>
-                                <div><input id="firstname" type="text" placeholder="First Name" name="firstname">
-                                </div>
-                                <span id="firstnamelabel"></span>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="lastname">Last Name</label>
-                                <div><input id="lastname" type="text" placeholder="Customer's Last Name"
-                                        name="lastname">
-                                </div>
-                                <span id="lastnamelabel"></span>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="email">Email</label>
-                                <div><input id="email" type="email" placeholder="Customer's Email" name="email">
-                                </div>
-                                <span id="emaillabel"></span>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="pass">Password</label>
-                                <div> <input id="pass" type="password" placeholder="Customer's Password" name="pass">
-                                </div>
-                                <span id="passlabel"></span>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="pass">Confirm password</label>
-                                <div> <input id="confirmpass" type="password" placeholder="Customer's Password"
-                                        name="confirmpass">
-                                </div>
-                                <span id="confirmpasslabel"></span>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="phone">Phone</label>
-                                <div><input id="phone" type="text" placeholder="Customer's Phone Number" name="phone">
-                                </div>
-                                <span id="phonelabel"></span>
-                            </div>
-                            <input type="submit" value="Add" id="add">
-
-
-                        </div>
-                    </form>
-                    <script src="js/validation.js"></script>
-                </div>
+            
 
                 <div>
 
@@ -99,6 +42,10 @@
                             <div class="search_orders">
                                 <input type="search" placeholder="Search existing customers...">
                             </div>
+                            <div class="add_product">
+                                <a href="/addcustomers">
+                                  <button class="btn add-product"><i class="fa fa-plus"></i> Add Product</button>
+                                </a>
                         </section>
                         <section class="table_body">
                             <table>

@@ -18,7 +18,7 @@
     <div class="container">
 
 
-        <%- include('../partials/dashboardsidebar') %>
+        <%- include('../partials/dashboardsidebar', { currentPage: 'dashboard' }) %>
 
 
 
@@ -98,39 +98,33 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Product Name</th>
-                            <th>Product Number</th>
-                            <th>Payment</th>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>City</th>
+                            <th>Order Date</th>
                             <th>Status</th>
+                            <th>Amount</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
+                        <% recentOrders.forEach((order) => { %>
                         <tr>
-                            <td>18K Gold Diamond & Colored Stones Statementring</td>
-                            <td>009</td>
-                            <td>due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
+                            <td><%= order._id %></td>
+                            <td><%= order.userFullName %></td>
+                            <td><%= order.city %></td>
+                            <td><%= order.dateOrdered %></td>
+                            <td><%= order.status %></td>
+                            <td><%= order.totalAmount %></td>
+                            <td class="primary"><a href="/ordersdash/<%= order._id %>">Details</a></td>
                         </tr>
-                        <tr>
-                            <td>Neck 3</td>
-                            <td>013</td>
-                            <td>due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Ring 5</td>
-                            <td>015</td>
-                            <td>due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
+                        <% }); %>
                     </tbody>
                 </table>
-                <a href="">Show All</a>
+                <a href="/ordersdash">Show All</a>
             </div>
+            
+              
         </main>
         <!-- end of main -->
 
