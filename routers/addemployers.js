@@ -9,7 +9,7 @@ router.get('/addemployers', (req, res) => {
 });
 
 // Route for handling the form submission
-router.post('/addemployers', (req, res) => {
+router.post('/', (req, res) => {
   const { name, email, password, phone, isAdmin } = req.body;
 
   const newEmployer = new Employer({
@@ -22,7 +22,7 @@ router.post('/addemployers', (req, res) => {
 
   newEmployer.save()
     .then(() => {
-      res.redirect('/dashboard'); 
+      res.redirect('/employersdash'); 
     })
     .catch((error) => {
       res.render('error.ejs', { error }); 

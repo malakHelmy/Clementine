@@ -32,7 +32,9 @@
         </div>
         </a>
         <li class="nav-item">
-            <a class="nav-link" href="#" style="color: black;"> <span class="fas fa-user pe-2"></span> Hello,<%= user %> <span
+            <a class="nav-link" href="#" style="color: black;"> <span class="fas fa-user pe-2"></span> Hello,<% if(user != undefined) {%>
+                <%= user.firstname %>
+                <% } %> <span
                     id="user" on></span></a>
         </li>
         </ul>
@@ -56,7 +58,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/user-order" class="text-decoration-none d-flex align-items-start">
+                            <a href="/userprofileorder" class="text-decoration-none d-flex align-items-start">
                                 <div class="fas fa-box-open pt-2 me-3"></div>
                                 <div class="d-flex flex-column">
                                     <div class="link">My Orders</div>
@@ -96,7 +98,7 @@
             </div>
             <div class="col-lg-9 my-lg-0 my-1">
                 <div id="main-content" class="bg-white border">
-                    <%- include('./userprofilemain') %>
+                    <%- include('../partials/userprofilemain') %>
                 </div>
             </div>
         </div>

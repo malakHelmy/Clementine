@@ -59,6 +59,18 @@ router.post('/uploadfiles', (req, res) => {
       res.render('pages/images', { files: req.files });
     }
   });
+  product
+    .save()
+    .then(() => {
+      return Product.find();
+    })
+    .then((products) => {
+      res.render('pages/displayproducts', { products });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render('pages/addproducts');
+    });
 });
 
 module.exports = router;
