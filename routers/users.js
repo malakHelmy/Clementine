@@ -10,6 +10,8 @@ router.post(`/`, async  (req, res) => {
   const confirmpassvalue=req.body.confirmpassword;
   const phonevalue=req.body.phone;
   const emailvalue=req.body.email;
+
+
   let c=0;
   let Error={
     firsterror:String,
@@ -61,15 +63,16 @@ router.post(`/`, async  (req, res) => {
   else if(confirmpassvalue==passvalue)
   {
   }
-  if(phonevalue.length==11 )//typeof 37 === "number"; 
+  if(phonevalue.length==11 && !isNaN(phonevalue))
   {
 
   }
   else
   {
-    Error.phoneerror='Please enter Matching Password';
+    Error.phoneerror='Please enter right phone number';
     c++;
   }
+  console.log(Error);
  
         if(c==0)
         {
