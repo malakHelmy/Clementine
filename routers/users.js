@@ -48,6 +48,15 @@ router.post(`/`, async  (req, res) => {
     c++;
   }
   else{
+    var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    // Test the password against the pattern
+    var isValid = passwordPattern.test(req.body.inputs.password);
+      if(isValid ){
+
+      }else{
+        Error.passerror='password must contain at least 8 characters,one lowercase letter,one uppercase letter and one digit';
+        c++;
+      }
   }
   if(confirmpassvalue==''){
     Error.confirmpasserror='Please enter Confirm Password';
