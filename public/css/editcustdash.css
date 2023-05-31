@@ -75,7 +75,8 @@ input[type=password] {
 .custbuttons {
     display: block;
 }
-#cancel{
+
+#cancel {
     background-color: #a0a3b7;
     color: #fff;
     margin: 5%;
@@ -102,6 +103,7 @@ input[type=password] {
     font-size: 20px;
     padding: 1% 0;
 }
+
 #view {
     background-color: #a0a3b7;
     color: #fff;
@@ -110,13 +112,15 @@ input[type=password] {
     font-size: 20px;
     padding: 1% 0;
 }
-#view:hover{
+
+#view:hover {
     cursor: pointer;
     background-color: #6a6666;
     color: white;
     letter-spacing: 1px;
     transition: 0.6s ease;
 }
+
 #update:hover {
     cursor: pointer;
     background-color: #6a6666;
@@ -199,26 +203,26 @@ input[type=password] {
 
 
 /* product edit */
-.pdes{
+.pdes {
     height: 100px;
 }
 
 
-.add-photo-btn{
-    position:relative;
-    overflow:hidden;
-    cursor:pointer;
-    text-align:center;
-    background-color:#a0a3b7;
-    color:#fff;
-    display:block;
-    width:300px;
-    height:40px;
-    font-size:20px;
-    line-height:40px;
+.add-photo-btn {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    background-color: #a0a3b7;
+    color: #fff;
+    display: block;
+    width: 300px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 40px;
 }
 
-.add-photo-btn:hover{
+.add-photo-btn:hover {
     cursor: pointer;
     background-color: #6a6666;
     color: white;
@@ -235,11 +239,10 @@ main {
 
 .product-container {
     margin-top: -200px;
-    margin-left:-40px
-    
+    margin-left: -40px
 }
 
-.product-container img{
+.product-container img {
 
     height: 60%;
     width: 60%;
@@ -355,19 +358,19 @@ main.table {
     overflow: overlay;
 }
 
-.table_body::-webkit-scrollbar{
+.table_body::-webkit-scrollbar {
     width: 0.5rem;
     height: 0.5rem;
-    
+
 }
 
-.table_body::-webkit-scrollbar-thumb{
+.table_body::-webkit-scrollbar-thumb {
     border-radius: .5rem;
     background-color: rgba(81, 81, 81, 0.267);
     visibility: hidden;
 }
 
-.table_body:hover::-webkit-scrollbar-thumb{ 
+.table_body:hover::-webkit-scrollbar-thumb {
     visibility: visible;
 }
 
@@ -387,7 +390,9 @@ td img {
     vertical-align: middle;
 }
 
-table, th, td {
+table,
+th,
+td {
     border-collapse: collapse;
     padding: 1rem;
     text-align: left;
@@ -403,7 +408,7 @@ thead th {
 }
 
 tbody tr:nth-child(even) {
-    background-color: #0000000b;
+    background-color: #8528280b;
 }
 
 tbody tr {
@@ -438,6 +443,7 @@ tbody tr.hide td img {
     height: 0;
     transition: .2s ease-in-out .5s;
 }
+
 .hide {
     display: none;
 }
@@ -480,6 +486,7 @@ tbody tr.hide td img {
     background-color: #d893a3;
     color: #b30021;
 }
+
 .status_instock {
     padding: .4rem 0;
     border-radius: 2rem;
@@ -501,15 +508,15 @@ thead th span.icon-arrow {
     height: 1.3rem;
     border-radius: 50%;
     border: 1.4px solid transparent;
-    
+
     text-align: center;
     font-size: 1rem;
-    
+
     margin-left: .5rem;
     transition: .2s ease-in-out;
 }
 
-thead th:hover span.icon-arrow{
+thead th:hover span.icon-arrow {
     border: 1.4px solid #6c00bd;
 }
 
@@ -517,16 +524,17 @@ thead th:hover {
     color: #6c00bd;
 }
 
-thead th.active span.icon-arrow{
+thead th.active span.icon-arrow {
     background-color: #6c00bd;
     color: #fff;
 }
 
-thead th.asc span.icon-arrow{
+thead th.asc span.icon-arrow {
     transform: rotate(180deg);
 }
 
-thead th.active,tbody td.active {
+thead th.active,
+tbody td.active {
     color: #6c00bd;
 }
 
@@ -548,12 +556,72 @@ thead th.active,tbody td.active {
     margin-right: 5px;
 }
 
-   
 
-    
 
-    th {
-      font-weight: bold;
-    }
 
-   
+
+th {
+    font-weight: bold;
+}
+
+
+
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.popup-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 150px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+}
+
+.popup-message {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.popup-buttons button {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.popup-buttons button.confirm {
+    background-color: #af1201;
+    color: #fff;
+}
+
+.popup-buttons button.cancel {
+    background-color: #7e7e7e;
+    color: #fff;
+}
