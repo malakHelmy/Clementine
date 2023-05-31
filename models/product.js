@@ -32,12 +32,10 @@ const productSchema = mongoose.Schema(
         },
         material: {
             type: String,
-            enum: ['Gold', 'Platinum', 'Silver'],
             required: true,
         },
         category: {
             type: String,
-            enum: ['ring', 'necklace', 'earring'],
             required: true,
         },
 
