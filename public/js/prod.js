@@ -38,6 +38,3 @@ removeWish.forEach((closeIcon) => {
 })
 var select = document.getElementById('sort');
 var value = select.options[select.selectedIndex].value;
-console.log(value);
-console.log("ah");
-
