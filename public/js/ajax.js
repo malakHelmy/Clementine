@@ -14,12 +14,18 @@ $(document).ready(function () {
                     const formc=pass.parentElement;
                     formc.className='textfield failed';
                 }
-                 else {
+                 else if(response == 'available'){
                       $('#emaillabel').html('Email is available');
                       $('#emaillabel').css("color", "green");
                       const pass=document.getElementById('email');
                       const formc=pass.parentElement;
                       formc.className='textfield success';
+                 }else{
+                    $('#emaillabel').html('Email is Invalid');
+                    const pass=document.getElementById('email');
+                    const formc=pass.parentElement;
+                    formc.className='textfield failed';
+
                  }
              
             },
