@@ -40,7 +40,14 @@ router.post(`/`, async  (req, res) => {
     c++;
   }
   else{
- 
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var isValid = emailPattern.test(req.body.email);
+    if(isValid){
+
+    }else{
+      Error.emailerror='Email is Invalid';
+      c++;
+    }
   } 
    if(passvalue=='' )
   {
@@ -79,7 +86,6 @@ router.post(`/`, async  (req, res) => {
   }
         if(c==0)
         {
-
           const user={
             firstname:req.body.inputs.firstname,
             lastname:req.body.inputs.lastname,
@@ -166,11 +172,6 @@ router.post(`/checkemail`, async  (req, res) => {
   }else{
     res.send('wrong');
   }
-
-
-
-
-  
 });
 
 
