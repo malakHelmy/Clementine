@@ -8,27 +8,69 @@ $(document).ready(function () {
          password: $('#password').val(),
          confirmpassword: $('#confirmpassword').val(),
     };
-
-        console.log(data)
-
         $.ajax({
             url: '/user',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({ inputs: data }),
             success: function (response) {
-                $('#emaillabel').html(response.emailerror);
-                $('#passlabel').html( response.passerror);
-                $('#firstnamelabel').html( response.firsterror);
-               $('#confirmpasslabel').html( response.confirmpasserror);
-               $('#lastnamelabel').html( response.lasterror);
-               console.log(response)
-                // if (response == 'taken') {
-                //     $('#emaillabel').css("color", "red");
-                // }
-                // else {
-                //     $('#emaillabel').css("color", "green");
-                // }
+                 if(response.passerror != undefined)
+                 {
+                        $('#passlabel').html( response.passerror);
+                        const pass=document.getElementById('password');
+                        const formc= pass.parentElement;
+                        formc.className='textfield failed';
+                 }
+                 else{
+                    $('#passlabel').html( '');
+                    const pass=document.getElementById('password');
+                    const formc= pass.parentElement;
+                    formc.className='textfield success';
+                 }
+            
+                 if(response.firsterror != undefined)
+                 {
+                     $('#firstnamelabel').html( response.firsterror);
+                     const pass=document.getElementById('firstname');
+                     const formc= pass.parentElement;
+                     formc.className='textfield failed';
+
+                 }else{
+
+                    $('#firstnamelabel').html('');
+                    const pass=document.getElementById('firstname');
+                    const formc= pass.parentElement;
+                    formc.className='textfield success';
+                 }
+                 if(response.lasterror != undefined)
+                 {
+                    $('#lastnamelabel').html( response.lasterror);
+                    const pass=document.getElementById('lastname');
+                    const formc= pass.parentElement;
+                    formc.className='textfield failed';
+
+                 }else{
+
+                    $('#lastnamelabel').html('');
+                    const pass=document.getElementById('lastname');
+                    const formc= pass.parentElement;
+                    formc.className='textfield success';
+                 }
+
+                 if(response.confirmpasserror != undefined)
+                 {
+                    $('#confirmpasslabel').html( response.confirmpasserror);
+                    const pass=document.getElementById('confirmpassword');
+                    const formc= pass.parentElement;
+                    formc.className='textfield failed';
+
+                 }else{
+
+                    $('#confirmpasslabel').html( '');
+                    const pass=document.getElementById('confirmpassword');
+                    const formc= pass.parentElement;
+                    formc.className='textfield success';
+                 }
             },
             error:function(err){
 
