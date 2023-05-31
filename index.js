@@ -36,7 +36,7 @@ const searchRoutes = require('./routers/searchbar');
 const logoutroute = require('./routers/logout');
 const employersRouter = require('./routers/employersdash');
 const addempRouter = require('./routers/addemployers');
-const editempRouer =  require('./routers/editemployers');
+const editempRouter = require('./routers/editemployers');
 
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
@@ -90,7 +90,7 @@ app.use('/displayproducts', displayProdRouter);
 app.use('/', searchRoutes);
 app.use('/logout', logoutroute);
 app.use('/addemployers', addempRouter);
-app.use('/editemployers', addempRouter);
+app.use('/editemployers', editempRouter);
 
 
 const { Product } = require('./models/product');
