@@ -38,6 +38,7 @@ const employersRouter = require('./routers/employersdash');
 const addempRouter = require('./routers/addemployers');
 const editempRouter = require('./routers/editemployers');
 const checkoutRouter = require('./routers/checkout');
+const addcustRouter = require('./routers/addcustomers');
 
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
@@ -93,6 +94,7 @@ app.use('/logout', logoutroute);
 app.use('/addemployers', addempRouter);
 app.use('/editemployers', editempRouter);
 app.use('/checkout', checkoutRouter);
+app.use('/addcustomers', addcustRouter);
 
 
 
@@ -196,8 +198,8 @@ app.get(`/editcustdash`, function (req, res) {
     res.render('pages/editcustdash');
 });
 
-app.post(`/editcustdash`, function (req, res) {
-    res.render('pages/editcustdash');
+app.get(`/addcustomers`, function (req, res) {
+    res.render('pages/addcustomers');
 });
 
 app.get(`/updatedeletecust`, function (req, res) {

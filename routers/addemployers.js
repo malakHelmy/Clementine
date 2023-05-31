@@ -3,12 +3,9 @@ const Employer = require('../models/employer');
 const bcrypt=require('bcrypt')
 const router = express.Router();
 
-// Route for displaying the addemployers.ejs form
-router.get('/addemployers', (req, res) => {
-  res.render('addemployers.ejs');
-});
 
-// Route for handling the form submission
+
+//handling the form submission
 router.post('/', (req, res) => {
   const { name, email, password, phone, isAdmin } = req.body;
 
