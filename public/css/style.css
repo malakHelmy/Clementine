@@ -358,7 +358,8 @@ body {
     margin-top: 10px;
 }
 
-.btn-wrapper span {
+.btn-wrapper .num,
+.add {
     width: 100%;
     text-align: center;
     font-size: 30px;
@@ -366,18 +367,15 @@ body {
     font-weight: 300;
 }
 
-.btn-wrapper span.num,
-span.num1 {
+.btn-wrapper .num {
     font-size: 20px;
     border-right: 2px solid rgba(0, 0, 0, 0.2);
     border-left: 2px solid rgba(0, 0, 0, 0.2);
     pointer-events: none;
 }
 
-.btn-wrapper span.add,
-span.minus,
-span.add1,
-span.minus1 {
+.btn-wrapper .add,
+.minus {
     font-size: 20px;
 }
 

@@ -77,9 +77,9 @@
 
 
 
-                                                <div class="cart-item">
-                                                    <% if(cart!=undefined && cart.items!='' ){ %>
 
+                                                <% if(cart!=undefined && cart.items!='' ){ %>
+                                                    <div class="cart-item">
                                                         <% cart.items.forEach((items)=> {%>
                                                             <% if(items.quantity>0){ %>
                                                                 <button class="remove-btn" onclick=""><i
@@ -111,23 +111,24 @@
                                                                     <p>There is no items</p>
                                                                     <% } %>
 
-                                                </div>
-                                                <!--Item 2-->
-
-                                                <div class="total">
-                                                    <div class="shipping">
-                                                        <p><span>Subtotal</span> <span>EGP <span id="total-before">
-                                                                    262000</span></span></p>
-                                                        <p><span>Shipping</span> <span>EGP <span>100</span></span></p>
                                                     </div>
-                                                    <p><span>Total</span> <span>EGP <span
-                                                                id="total-after">2620100</span></span>
-                                                    </p>
-                                                </div>
-                                                <div class="checkout-btn">
-                                                    <button class="checkout"
-                                                        onclick="location.href='/checkout'">CHECKOUT</button>
-                                                </div>
+                                                    <!--Item 2-->
+
+                                                    <div class="total">
+                                                        <div class="shipping">
+                                                            <p><span>Subtotal</span> <span>EGP <span id="total-before">
+                                                                        262000</span></span></p>
+                                                            <p><span>Shipping</span> <span>EGP <span>100</span></span>
+                                                            </p>
+                                                        </div>
+                                                        <p><span>Total</span> <span>EGP <span
+                                                                    id="total-after">2620100</span></span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="checkout-btn">
+                                                        <button class="checkout"
+                                                            onclick="location.href='/checkout'">CHECKOUT</button>
+                                                    </div>
                                             </div>
                                         </div>
                                     </div>
