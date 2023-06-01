@@ -74,14 +74,11 @@
                                             <div class="cart-wrapper">
                                                 <h2 class="ShopBag">My Shopping Bag</h2>
                                                 <div class="line"></div>
-
-
-
-
+                                                <!-- Cart start -->
                                                 <% if(cart!=undefined && cart.items!='' ){ %>
-                                                    <div class="cart-item">
-                                                        <% cart.items.forEach((items)=> {%>
-                                                            <% if(items.quantity>0){ %>
+                                                    <% cart.items.forEach((items)=> {%>
+                                                        <% if(items.quantity>0){ %>
+                                                            <div class="cart-item">
                                                                 <button class="remove-btn" onclick=""><i
                                                                         class="ri-close-line"></i></button>
                                                                 <img src="./Images/<%- items.image %>" alt="">
@@ -90,45 +87,60 @@
                                                                         <%= items.name %>
                                                                     </div>
                                                                     <div class="btn-wrapper">
-
-                                                                        <span class="minus"> <a
-                                                                                href="/cart/minus/<%- items.id %>">-</a></span>
+                                                                        <a class="cartminus"
+                                                                            data-minusid="<%= items.id %>">
+                                                                            <span class="minus">
+                                                                                -
+                                                                            </span>
+                                                                        </a>
                                                                         <span class="num">
                                                                             <%= items.quantity %>
                                                                         </span>
-                                                                        <span class="add"> <a
-                                                                                href="cart/plus/<%- items.id %>">+</a>
-                                                                        </span>
-
+                                                                        <a class="cartplus"
+                                                                            data-addid="<%= items.id %>">
+                                                                            <span class="add">
+                                                                                +
+                                                                            </span>
+                                                                        </a>
                                                                     </div>
-                                                                    <button class="wishlist-btn" onclick="">Add to
+                                                                    <button class="wishlist-btn"
+                                                                        data-productid="<%- items.id %>"
+                                                                        onclick="wishlist()">Add to
                                                                         Wishlist
-                                                                        </p></button>
-                                                                    <div class="price"> Price: <%= items.price %>
+                                                                    </button>
+                                                                    <div class="price"> Price: <%= items.price *
+                                                                            items.quantity %>
                                                                     </div>
                                                                 </div>
-                                                                <%} }) }else{ %>
-                                                                    <p>There is no items</p>
-                                                                    <% } %>
+                                                            </div>
+                                                         <%} }) }else{ %>
+                                                            <div class="cart-item">
 
-                                                    </div>
-                                                    <!--Item 2-->
-
-                                                    <div class="total">
-                                                        <div class="shipping">
-                                                            <p><span>Subtotal</span> <span>EGP <span id="total-before">
-                                                                        262000</span></span></p>
-                                                            <p><span>Shipping</span> <span>EGP <span>100</span></span>
-                                                            </p>
-                                                        </div>
-                                                        <p><span>Total</span> <span>EGP <span
-                                                                    id="total-after">2620100</span></span>
-                                                        </p>
-                                                    </div>
-                                                    <div class="checkout-btn">
-                                                        <button class="checkout"
-                                                            onclick="location.href='/checkout'">CHECKOUT</button>
-                                                    </div>
+                                                                <div class="empty">Your cart is empty</div>
+                                                            </div>
+                                                             <% } %>
+                                                            <div class="total">
+                                                                <div class="shipping">
+                                                                        <p><span>Subtotal</span> <span>EGP <span id="total-before">
+                                                                            <% var price=0 %>
+                                                                            <% if(cart!=undefined && cart.items!='' ){ var price=0%>
+                                                                                <% cart.items.forEach((items)=> {%>
+                                                                                    <%if(items.quantity> 0){ %>
+                                                                                        <% price +=(items.price * items.quantity) %>
+                                                                                            <% }})} %>
+                                                                                         <%= price%>
+                                                                                    </span></span></p>
+                                                                        <p><span>Shipping</span> <span>EGP<span>100</span></span>
+                                                                        </p>
+                                                                </div>
+                                                                <p><span>Total</span> <span>EGP <span id="total-after">
+                                                                                    <%=price +=100%>
+                                                                    </span></span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="checkout-btn">
+                                                                <button class="checkout" onclick="location.href='/checkout'">CHECKOUT</button>
+                                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -147,6 +159,5 @@
         });
     });
 </script>
-<script src="../../public/js/trial.js"></script>
-<script src="../../public/js/cart.js"></script>
+
 <!-- Navigation Bar End -->

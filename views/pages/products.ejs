@@ -3,13 +3,17 @@
 
 <head>
 
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/products.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
     <style>
         #filter {
             height: 40px;
@@ -85,18 +89,21 @@
                                                                     <%= items.price%>
                                                                 </p>
                                                             </div>
-                                                            <form action="/cart/<%= items._id %>" method="post"><input
-                                                                    type="submit" value="Add to cart" class="btn">
-                                                            </form>
+                                                            <button class="btn" data-cartitem="<%= items._id %>">
+                                                                Add to cart
+                                                            </button>
                                                         </div>
                             </div>
                             <% }) %>
                                 <% } %>
                 </section>
+                
                 <% if (user !=undefined) {%>
                     <script src="/js/prod.js"></script>
                     <% } %>
+                        <script src="/js/cart.js"></script>
                         <%- include('../partials/footer') -%>
+                        
 
 </body>
 

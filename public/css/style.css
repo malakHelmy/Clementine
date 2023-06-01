@@ -348,7 +348,7 @@ body {
 
 .btn-wrapper {
     height: 30px;
-    width: 80px;
+    width: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -358,25 +358,22 @@ body {
     margin-top: 10px;
 }
 
-.btn-wrapper .num,
-.add {
-    width: 100%;
-    text-align: center;
-    font-size: 30px;
+.btn-wrapper span.minus,
+.btn-wrapper span.add {
     cursor: pointer;
     font-weight: 300;
+    font-size: 20px;
 }
 
 .btn-wrapper .num {
+    font-weight: 300;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 100%;
     font-size: 20px;
     border-right: 2px solid rgba(0, 0, 0, 0.2);
     border-left: 2px solid rgba(0, 0, 0, 0.2);
     pointer-events: none;
-}
-
-.btn-wrapper .add,
-.minus {
-    font-size: 20px;
 }
 
 .wishlist-btn {
@@ -387,10 +384,18 @@ body {
     background: none;
     text-decoration: underline;
     opacity: 65%;
+    cursor: pointer;
+
 }
 
 .wishlist-btn:hover {
     opacity: 100%;
+}
+
+.cart-item .empty {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
 }
 
 .total {
@@ -855,12 +860,6 @@ body {
     right: 13px;
 
 }
-
-
-
-
-
-
 
 /*.mid-ad img {
     width: 100%;
