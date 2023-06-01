@@ -11,13 +11,15 @@ const errors = {};
 
 router.post('/', async (req, res) => {
     let totalAmountfinal = 0;
-    req.session.cart.items.forEach((items) => {
-        if (items.quantity > 1) {
-            totalAmountfinal += items.price * items.quantity;
-        } else {
-            totalAmountfinal += items.price;
-        }
-    });
+    if (req.session.cart.items != undefined) {
+        req.session.cart.items.forEach((items) => {
+            if (items.quantity > 1) {
+                totalAmountfinal += items.price * items.quantity;
+            } else {
+                totalAmountfinal += items.price;
+            }
+        });
+    }
     try {
         // adding the new order to the user's list of orders
         const User = await user.findOne({ email: req.session.user });
@@ -29,7 +31,7 @@ router.post('/', async (req, res) => {
 
         console.log(products);
         const productinCart = await Product.find({
-            _id: { $in: products }, 
+            _id: { $in: products },
         });
         console.log(productinCart);
         if (!User) {
@@ -49,6 +51,7 @@ router.post('/', async (req, res) => {
             status: req.body.status,
             totalAmount: totalAmountfinal,
         });
+        //$push adds the order id to the orders array in the user schema
         await user.findOneAndUpdate(
             { email: req.session.user },
             { $push: { orders: order._id } },
@@ -56,13 +59,21 @@ router.post('/', async (req, res) => {
         );
         await User.save();
         await order.save();
-
+        productinCart.forEach(async (product) => {
+            await Product.findOneAndUpdate(
+                { _id: product._id },
+                {
+                    countInStock: product.countInStock - 1,
+                },
+                { new: true }
+            );
+        });
         console.log('order placed successfuly.');
-
+        req.session.cart = undefined;
         res.render('pages/placedOrder', {
             order,
             user: req.session.user == undefined ? undefined : req.session.user,
-            cart: req.session.cart == undefined ? undefined : req.session.cart,
+            cart: req.session.cart,
         });
     } catch (err) {
         console.error(err);
