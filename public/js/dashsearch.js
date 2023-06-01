@@ -18,14 +18,28 @@ function searchTable() {
     });
 }
 
-function showPopup(customerId) {
-    document.getElementById("customerId").value = customerId;
-    document.getElementById("popup-container").style.display = "block";
+function deleteCustomer(event) {
+    const customerId = event.target.getAttribute('data-customer-id'); //from ejs to send data leh
+    if (confirm('Are you sure you want to delete this customer?')) {
+        fetch(`/editcustdash/${customerId}`, { 
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.ok) {
+                    const targetcustrow = event.target.closest('tr');
+                    targetcustrow.parentElement.removeChild(targetcustrow);
+                } else {
+                    throw new Error('Failed to delete customer, please try again.');
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert('Failed to delete customer, please try again.');
+            });
+    }
 }
-function hidePopup() {
-    document.getElementById("customerId").value = "";
-    document.getElementById("popup-container").style.display = "none";
-}
-function deleteCustomer(customerId) {
-    document.querySelector(`form[action="/editcustdash/${customerId}"]`).submit();
-}
+
+const deleteButtons = document.querySelectorAll('.delete-customer');
+deleteButtons.forEach(button => { //to target ay customer mn table
+    button.addEventListener('click', deleteCustomer);
+});

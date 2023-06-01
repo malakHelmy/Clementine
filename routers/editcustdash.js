@@ -21,15 +21,14 @@ router.get('/', async (req, res) => {
 
 
 
-
-router.post('/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const customerId = req.params.id;
     await User.findByIdAndRemove(customerId);
-    res.redirect('/editcustdash');
+    res.json({ message: 'Customer deleted successfully.' });
   } catch (error) {
     console.log('Error deleting customer:', error);
-    res.redirect('/editcustdash');
+    res.status(500).json({ error: 'Sorry, an error occured. Please try again.' });
   }
 });
 
