@@ -7,7 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/chechkout.css">
     <link rel="stylesheet" type="text/css" href="/css/Signup.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+    <!-- to access font awesome cdn icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <title>Clementine</title>
 </head>
 
@@ -15,7 +26,7 @@
     <%- include('../partials/navbar') %>
 
         <% if(totalamount==undefined){ %>
-            <h1 class="notfound">No items found.</h1>
+            <h1 class="notfound">No items were found in your cart.</h1>
             <% } else { %>
                 <section id="totalAmountReveal">
                     Total amount:
@@ -26,7 +37,7 @@
 
                 <section id="checkout-container">
                     <h2>Billing Address </h2>
-                    <form action="/checkout" method="post" >
+                    <form class="checkoutForm" action="/checkout" method="post" >
 
                         <div class="textfield">
                             <input type="text" name="userFullName" id="firstname">
@@ -142,7 +153,7 @@
                                 address same as billing
                             </label>
                             <input type="submit" class="submit" value="Place Order" class="place-order"><a
-                                class="place-link" href="/index">Place Order</a>
+                                class="place-link" href="/">Place Order</a>
                         </div>
                         </div>
 

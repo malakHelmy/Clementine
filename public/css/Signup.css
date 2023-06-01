@@ -1,28 +1,8 @@
-@font-face {
+.notfound{
     font-family: 'Zapf';
-    src: url(../Fonts/Zapf.ttf);
-    font-weight: 100;
-    font-style: normal;
 }
-
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-.logo-toggle-container img{
-    box-sizing: border-box;
-}
-
-body {
-    width: 100%;
-    height: 100vh;
-}
-
-
 .signIn {
-    width: 30%;
+    width: 40%;
     position: relative;
     top: 400px;
     margin-bottom: 6%;
@@ -51,9 +31,8 @@ body {
     border: none;
     color: white;
     padding: 15px 32px;
-    display: inline-block;
     font-size: 20px;
-    width: 90%;
+    width: 100%;
     letter-spacing: 5px;
 }
 
@@ -74,14 +53,15 @@ body {
 .textfield {
     position: relative;
     border-bottom: 1px solid #adadad;
-    margin: 30px 0;
+    margin: 40px 0;
     display: block;
 }
 
 .textfield input{
     width: 100%;
-    height: 40px;
-    font-size: 16px;
+    height: 20px;
+    margin-top: 20px;
+    font-size: 19px;
     border: none;
     outline: none;
     }
@@ -89,12 +69,13 @@ body {
 
     position: absolute;
     top: 30%;
-    left: 5px;
+    left: 7px;
     pointer-events: none;
     transform: translateY(-120%);
-    font-size: 20px;
+    font-size: 22px;
     transition: .4s;
     font-weight: 590;
+    font-family: 'Zapf';
     }
     
 
