@@ -43,7 +43,7 @@ const checkoutRouter = require('./routers/checkout');
 const addcustRouter = require('./routers/addcustomers');
 
 //controller
-const costumerController = require('.//controllers/customersController')
+const costumerController = require('./controllers/customersController');
 
 
 //const updatecustRoute = require('./routers/updatedeletecust');

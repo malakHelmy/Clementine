@@ -19,13 +19,20 @@ function searchTable() {
 }
 
 function deleteCustomer(event) {
-    const customerId = event.target.getAttribute('data-customer-id'); //from ejs to send data leh
-    if (confirm('Are you sure you want to delete this customer?')) {
-        fetch(`/editcustdash/${customerId}`, { 
-            method: 'DELETE'
+    const form = event.target.closest('form');
+    if (form && confirm('Are you sure you want to delete this customer?')) {
+        const customerId = form.customerId.value;
+        fetch(`/editcustdash/${customerId}?ajax=true`, {
+            method: 'POST',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            //ashan yearf en fetch is made using ajax
+            //to indicate that a request is an ajax request p.s. not an offical http eader
         })
             .then(response => {
-                if (response.ok) {
+                return response.json();
+            })
+            .then(data => {
+                if (data.message === "User deleted successfully") {
                     const targetcustrow = event.target.closest('tr');
                     targetcustrow.parentElement.removeChild(targetcustrow);
                 } else {
@@ -33,13 +40,17 @@ function deleteCustomer(event) {
                 }
             })
             .catch(error => {
-                console.error(error);
-                alert('Failed to delete customer, please try again.');
+                console.error('Error:', error);
+                const errmsg = document.getElementById('errmsgdel');
+                errmsg.textContent = error.message;
             });
     }
 }
 
-const deleteButtons = document.querySelectorAll('.delete-customer');
-deleteButtons.forEach(button => { //to target ay customer mn table
-    button.addEventListener('click', deleteCustomer);
+document.addEventListener('click', event => {
+    const deleteButton = event.target.closest('.delete-customer');
+    if (deleteButton) {
+        event.preventDefault();
+        deleteCustomer(event);
+    }
 });
