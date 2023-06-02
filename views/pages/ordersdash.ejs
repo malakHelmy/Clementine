@@ -79,10 +79,11 @@
                     <a href="/ordersdash/<%= orders._id %>">
                       <button class="btn edit-product"><i class="fa fa-edit"></i></button>
                     </a>
-                    <form method="POST" action="/ordersdash/<%= orders._id %>?_method=DELETE"
-                      onsubmit="return confirm('Are you sure you want to delete this order?');">
-                      <input type="hidden" name="productId" value="<%= orders._id %>">
-                      <button class="btn" type="submit"><i class="fa fa-trash"></i></button>
+                    <form method="POST" action="/ordersdash/<%= order._id %>?_method=DELETE">
+                      <input type="hidden" name="orderId" value="<%= orders._id %>">
+                      <button class="btn delete-order" type="submit"><i class="fa fa-trash"></i></button>
+                      <div id="errmsgdel"></div>
+
                     </form>
                   </td>
                 </tr>
@@ -95,5 +96,7 @@
       </main>
 </body>
 <script src="/js/dashsearch.js"></script>
+<script src="/js/ajax-delorder.js"></script>
+
 
 </html>
