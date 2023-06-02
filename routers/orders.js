@@ -3,19 +3,33 @@ const { Order } = require('../models/order');
 const { User } = require('../models/user');
 const { OrderItem } = require('../models/order-items');
 const router = express.Router();
+const { Product } = require('../models/product');
+
 
  //adding a new order to the schema
  router.post(`/`, async (req, res) => {
     const orderItemsIds = Promise.all(
         //.map ashan andna array of order items
+
         req.body.orderItems.map(async (orderItem) => {
+            const product = await Product.findById(orderItem.product).select('name');
             let newOrderItem = new OrderItem({
-                quantity: orderItem.quantity,
-                product: orderItem.product,
+              quantity: orderItem.quantity,
+              product: orderItem.product,
+              name: product.name
             });
             newOrderItem = await newOrderItem.save();
             return newOrderItem._id;
-        })
+          })
+        
+        // req.body.orderItems.map(async (orderItem) => {
+        //     let newOrderItem = new OrderItem({
+        //         quantity: orderItem.quantity,
+        //         product: orderItem.product,
+        //     });
+        //     newOrderItem = await newOrderItem.save();
+        //     return newOrderItem._id;
+        // })
     );
 
     const orderItemIdsresolved = await orderItemsIds;

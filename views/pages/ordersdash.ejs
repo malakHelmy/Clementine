@@ -1,24 +1,23 @@
-
 <!DOCTYPE html>
-<html lang="en" title="Coding design">
+<html lang="en">
 
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- material icons cdn -->
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
-    <link rel="stylesheet" href="/css/editcustdash.css">
-   <link rel="stylesheet" href="/css/dashboard.css">
-   <link rel="stylesheet" href="/css/style.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <title>Admin Dashboard</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- material icons cdn -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+  <link rel="stylesheet" href="/css/editcustdash.css">
+  <link rel="stylesheet" href="/css/displayproducts.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Admin Dashboard</title>
 </head>
 </head>
 
 <body>
 
-   <div class="container">
+  <div class="container">
 
     <%- include('../partials/dashboardsidebar', { currentPage: 'ordersdash' }) %>
 
@@ -27,68 +26,75 @@
 
 
 
-    <main class="table">
+      <main class="table">
         <section class="table_header">
-            <h1>Track Orders</h1>
-            <div class="search_orders">
-                <input type="search" placeholder="Search Orders...">
-            </div>
-           
+          <h1>Track Orders</h1>
+          <div class="search_orders">
+            <input type="search" placeholder="Search Orders...">
+          </div>
+
         </section>
         <section class="table_body">
-            <table>
-                <thead>
-                  <tr>
-                    <th>Order ID</th>
-                    <th>Customer</th>
-                    <th>City</th>
-                    <th>Order Date</th>
-                    <th>Status</th>
-                    <th>Amount</th>
-                    <th>Update/Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <% order.forEach(function(orders) {%>
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>City</th>
+                <th>Order Date</th>
+                <th>Status</th>
+                <th>Amount</th>
+                <th>Update/Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% order.forEach(function(orders) {%>
 
-                    <tr>
-                        <td> <%= orders._id %> </td>
-                        <td> <%= orders.userFullName %> </td>
-                        <td> <%= orders.city %> </td>
-                        <td> <%= orders.dateOrdered %> </td>
-                        <td>
-                            <% if (orders.status === "Shipped") { %>
-                                <p class="status_shipped">Shipped</p>
-                              <% } else if (orders.status === "Delivered") { %>
-                                <p class="status_delivered">Delivered</p>
-                              <% } else if (orders.status === "Pending") { %>
-                                <p class="status_pending">Pending</p>
-                              <% } else if (orders.status === "Cancelled") { %>
-                                <p class="status_cancelled">Cancelled</p>
-                              <% } %> 
-                           <!---<p class="status_delivered">---> 
-                        </td>
-                        <td> <strong> EGP <%= orders.totalAmount %> </strong></td>
-                        <td>
-                            <a href="/ordersdash/<%= orders._id %>">
-                              <button class="btn edit-product"><i class="fa fa-edit"></i></button>
-                            </a>
-                            <form method="POST" action="/ordersdash/<%= orders._id %>?_method=DELETE"
-                              onsubmit="return confirm('Are you sure you want to delete this order?');">
-                              <!-- a hidden input field is added to store the order ID -->
-                              <input type="hidden" name="productId" value="<%= orders._id %>">
-                              <button class="btn" type="submit"><i class="fa fa-trash"></i></button>
-                            </form>
-                          </td>
-                    </tr>
-                    <% }); %>
+                <tr>
+                  <td>
+                    <%= orders._id %>
+                  </td>
+                  <td>
+                    <%= orders.userFullName %>
+                  </td>
+                  <td>
+                    <%= orders.city %>
+                  </td>
+                  <td>
+                    <%= orders.dateOrdered %>
+                  </td>
+                  <td>
+                    <% if (orders.status==="Shipped" ) { %>
+                      <p class="status_shipped">Shipped</p>
+                      <% } else if (orders.status==="Delivered" ) { %>
+                        <p class="status_delivered">Delivered</p>
+                        <% } else if (orders.status==="Pending" ) { %>
+                          <p class="status_pending">Pending</p>
+                          <% } else if (orders.status==="Cancelled" ) { %>
+                            <p class="status_cancelled">Cancelled</p>
+                            <% } %>
+                  </td>
+                  <td> <strong> EGP <%= orders.totalAmount %> </strong></td>
+                  <td>
+                    <a href="/ordersdash/<%= orders._id %>">
+                      <button class="btn edit-product"><i class="fa fa-edit"></i></button>
+                    </a>
+                    <form method="POST" action="/ordersdash/<%= orders._id %>?_method=DELETE"
+                      onsubmit="return confirm('Are you sure you want to delete this order?');">
+                      <!-- a hidden input field is added to store the order ID -->
+                      <input type="hidden" name="productId" value="<%= orders._id %>">
+                      <button class="btn" type="submit"><i class="fa fa-trash"></i></button>
+                    </form>
+                  </td>
+                </tr>
+                <% }); %>
 
-                </tbody>
-            </table>
+            </tbody>
+          </table>
         </section>
 
-    </main>
+      </main>
 </body>
-    <script src="/js/dashsearch.js"></script>
+<script src="/js/dashsearch.js"></script>
 
 </html>
