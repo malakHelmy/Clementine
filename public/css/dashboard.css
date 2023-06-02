@@ -534,6 +534,10 @@ main .recent-orders a {
     display: flex;
     align-items: center;
 }
+.left{
+    color: var(--color-dark);
+margin-top: 10px;
+}
 
 /* responsive */
 
