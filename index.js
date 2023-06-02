@@ -42,6 +42,8 @@ const editempRouter = require('./routers/editemployers');
 const checkoutRouter = require('./routers/checkout');
 const addcustRouter = require('./routers/addcustomers');
 
+//controller
+const costumerController = require('.//controllers/customersController')
 
 
 //const updatecustRoute = require('./routers/updatedeletecust');
@@ -223,6 +225,8 @@ app.get(`/myprofile`, function (req, res) {
 
     })
 })
+app.post(`/change_password`,costumerController.changePassword);
+
 app.get(`/userprofile`, function (req, res) {
     res.render('pages/userprofile', {
         user: req.session.user == undefined ? undefined : req.session.user,
