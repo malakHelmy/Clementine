@@ -87,26 +87,22 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <form method="POST" action="/editcustdash/<%= user._id %>?_method=DELETE"
-                                                    onsubmit="event.preventDefault(); showPopup('<%= user._id %>');">
-                                                    <!-- a hidden input field is added to store the customer ID -->
+                                                <form method="POST"
+                                                    action="/editcustdash/<%= user._id %>?_method=DELETE"
+                                                    onsubmit="return confirm('Are you sure you want to delete this customer?');">
                                                     <input type="hidden" name="customerId" value="<%= user._id %>">
                                                     <button class="btn delete-customer" type="submit"><i
                                                             class="fa fa-trash"></i></button>
-                                                            <div class="popup-container" id="popup-container">
-                                                                <div class="popup-box">
-                                                                    <div class="popup-message">Are you sure you want to delete this customer?</div>
-                                                                    <div class="popup-buttons">
-                                                                        <button class="cancel" onclick="hidePopup()">Cancel</button>
-                                                                      <button class="confirm" onclick="deleteCustomer('<%= user._id %>')">Delete</button> 
+                                                    <div id="errmsgdel"></div>
+
                                                 </form>
                                             </td>
                                         </tr>
                                         <% }); %>
                                 </tbody>
                             </table>
-                            
-                           </section>
+
+                        </section>
                     </main>
                 </div>
 
@@ -117,6 +113,7 @@
 
                 <script src="/js/editcustdash.js"></script>
                 <script src="/js/dashsearch.js"></script>
+                <script src="/js/ajax-delcust.js"></script>
                 <script src="/js/validation.js"></script>
 
 </body>

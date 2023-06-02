@@ -25,25 +25,30 @@ router.get('/', async (req, res) => {
 router.post('/:id', async (req, res) => {
   try {
     const customerId = req.params.id;
-    await User.findByIdAndRemove(customerId);
-    res.redirect('/editcustdash');
+    await User.findOneAndDelete({ _id: customerId });
+    console.log(customerId);
+    if (req.query.ajax)
+      return res.json({ message: "User deleted successfully" });
   } catch (error) {
     console.log('Error deleting customer:', error);
-    res.redirect('/editcustdash');
+    res.status(500)
+      .json({ error: 'Failed to delete customer, please try again.' });
   }
 });
 
-router.get('/:id', (req, res) =>{
+
+
+router.get('/:id', (req, res) => {
   User.findById(req.params.id)
-  .then((result) => {
-    res.render('pages/updatedeletecust', {
-      viewTitle:'Update Customer',
-      customer: result
+    .then((result) => {
+      res.render('pages/updatedeletecust', {
+        viewTitle: 'Update Customer',
+        customer: result
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 });
 
 
@@ -51,7 +56,7 @@ router.get('/:id', (req, res) =>{
 router.post('/:id/update', async (req, res) => {
   try {
     const customerId = req.params.id;
-    const updates = req.body; // assuming the updated datais passed in the request body
+    const updates = req.body;
     await User.findByIdAndUpdate(customerId, updates);
     res.redirect('/editcustdash');
   } catch (error) {

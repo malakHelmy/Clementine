@@ -18,14 +18,3 @@ function searchTable() {
     });
 }
 
-function showPopup(customerId) {
-    document.getElementById("customerId").value = customerId;
-    document.getElementById("popup-container").style.display = "block";
-}
-function hidePopup() {
-    document.getElementById("customerId").value = "";
-    document.getElementById("popup-container").style.display = "none";
-}
-function deleteCustomer(customerId) {
-    document.querySelector(`form[action="/editcustdash/${customerId}"]`).submit();
-}

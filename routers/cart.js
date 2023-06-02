@@ -3,6 +3,18 @@ const Cart = require('../models/cart');
 const { Product } = require('../models/product');
 const router = express.Router();
 
+router.get('/', (req,res)=>{
+
+    res.render('pages/cart', {
+        user: req.session.user == undefined ? undefined : req.session.user,
+        cart:req.session.cart == undefined? undefined: req.session.cart,
+
+    });
+})
+
+
+
+
 router.post('/minus', (req, res) => {
     console.log("minus");
     let i = 0;
@@ -63,37 +75,5 @@ router.post(`/add-to-cart`, async (req, res) => {
         });
 });
 
-// router.post(`/:id/:page`, async (req, res) => {
-//     Product.findById(req.params.id)
-//         .then(async (result) => {
-//             const cart = {
-//                 id: result.id,
-//                 name: result.name,
-//                 image: result.image,
-//                 price: result.price,
-//             };
-//             await Cart.findOneAndUpdate(
-//                 cart,
-//                 {
-//                     id: result.id,
-//                     name: result.name,
-//                     image: result.image,
-//                     price: result.price,
-//                     $inc: {
-//                         quantity: 1,
-//                     },
-//                 },
-//                 {
-//                     upsert: true,
-//                 }
-//             );
-//             setTimeout(() => {
-//                 res.redirect(`/products/${req.params.page}`);
-//             }, 700);
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//         });
-// });
 
 module.exports = router;
