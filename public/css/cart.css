@@ -4,7 +4,7 @@
 
 /* shopping cart start */
 /* left bar start*/
-#shopcart-wrapper {
+.shopcart-wrapper {
     max-width: 1000px;
     margin: 0 auto;
 }
@@ -17,13 +17,10 @@
 }
 
 .prod {
-    display: flex;
+    display: block;
     width: 99%;
 }
 
-.cart-items {
-    flex: 75%;
-}
 
 .cart-box {
     width: 95%;
@@ -37,18 +34,17 @@
 }
 
 .cart-box img {
-    width: 300px;
-    height: 200px;
-    padding: 3%;
+    width: fit-content;
 }
 
-.wishlist{
+.wishlist {
     border-style: none;
     background: none;
     text-decoration: underline;
     opacity: 65%;
 }
-.wishlist:hover{
+
+.wishlist:hover {
     opacity: 100%;
 }
 
@@ -69,7 +65,7 @@
 }
 
 .prod-content button.remove-btn,
- i.ri-close-line {
+i.ri-close-line {
     border-style: none;
     background: none;
     float: right;
@@ -83,50 +79,62 @@
     opacity: 100%;
 }
 
-.prod-content .price1,
-.prod-content .price2,
-.prod-content .price3{
+.prod-content .price {
     font-weight: 400;
     margin-bottom: 50px;
 }
 
-.btn-wrap {
-    height: 30px;
-    width: 80px;
+.btn-wrapper {
+    height: 27px;
+    width: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: white;
     border-radius: 9px;
     border: 1px solid rgb(204, 199, 199);
+    margin-top: 10px;
 }
 
-.btn-wrap span {
-    width: 100%;
-    text-align: center;
-    font-size: 30px;
+.btn-wrapper .checkoutminus .minus,
+.btn-wrapper .checkoutplus .add {
     cursor: pointer;
     font-weight: 300;
-}
-
-.btn-wrap span.num2,
-span.num3, span.num4 {
     font-size: 20px;
     height: 100%;
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
-    border-left: 1px solid rgba(0, 0, 0, 0.2);
-    pointer-events: none;
-    padding-top: 1%;
+    padding-bottom: 2px;
 }
-
-.btn-wrap span.add2,
-span.minus2, span.add3,
-span.minus3, span.add4,
-span.minus4{
-    font-size: 20px;
-    height: 100%;
-    padding-top: 1%;
+.btn-wrapper .checkoutminus .minus{
+    padding-right: 12px;
+}
+.btn-wrapper .checkoutplus .add{
+    padding-left: 12px;
+}
+.btn-wrapper .num {
     font-weight: 300;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 100%;
+    font-size: 20px;
+    border-right: 2px solid rgba(0, 0, 0, 0.2);
+    border-left: 2px solid rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+.wishlist-btn {
+    display: block;
+    float: left;
+    margin-top: 10px;
+    border-style: none;
+    background: none;
+    text-decoration: underline;
+    opacity: 65%;
+    cursor: pointer;
+
+}
+
+.wishlist-btn:hover {
+    opacity: 100%;
 }
 
 /* left bar end */
@@ -134,12 +142,13 @@ span.minus4{
 /* right bar start */
 
 .right-bar {
-    flex: 35%;
+    width: 95%;
     margin-left: 20px;
     padding: 20px;
     height: 100%;
     border: 1px solid rgb(233, 233, 233);
     align-items: center;
+    margin-bottom: 30px;
 }
 
 .right-bar hr {

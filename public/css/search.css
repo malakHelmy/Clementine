@@ -4,8 +4,13 @@ h1 {
     font-size: 45px;
 }
 
-input{
+input {
     outline: none;
+}
+
+input::placeholder {
+    font-size: 12px;
+    font-style: italic;
 }
 
 input[type="text"] {

@@ -9,6 +9,7 @@ function closesidebar() {
 }
 
 let cartwrap = document.querySelector('.cart-wrapper');
+let shopwrap = document.querySelector('.shopcart-wrapper');
 
 $(document).on('click', '.cartplus', async function () {
     var plusID = $(this).data('addid');
@@ -429,3 +430,5 @@ cartButton.forEach((cart) => {
             });
     });
 });
+
+//checkout cart
