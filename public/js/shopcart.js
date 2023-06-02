@@ -14,7 +14,7 @@ $(document).on('click', '.checkoutplus', async function () {
         let productCount = 0;
         let price = 0;
         let payload = data.payload;
-        if (payload.items.length > 0) {
+        if (payload != undefined && payload.items != '') {
             productCount = payload.items.length;
             shopwrap.innerHTML += `<h1 class="cart-header">your shopping bag (${productCount} items)</h1>
             <div class="prod">
@@ -58,7 +58,11 @@ $(document).on('click', '.checkoutplus', async function () {
                                         </span>
                                     </a>
                                 </div>
-                                <button class="wishlist-btn" data-productid="${items.id}">Add to Wishlist </button>
+                                <button class="wishlist-btn" data-productid="${
+                                    items.id
+                                }">Add to
+                                    Wishlist
+                                </button>
                             </div>
                         </div>`;
                 }
@@ -136,10 +140,14 @@ $(document).on('click', '.checkoutminus', async function () {
                     price += items.price * items.quantity;
                     shopwrap.innerHTML += `
                         <div class="cart-box">
-                            <img src="/Images/${items.image}">
+                            <img src="/Images/${
+                                items.image
+                            }">
                             <div class="prod-content">
                                 <h3>
-                                    ${items.name}<button class="remove-btn"><i
+                                    ${
+                                        items.name
+                                    }<button class="remove-btn"><i
                                                 class="ri-close-line"></i></button>
                                 </h3>
                                 <h4 class="price">
@@ -148,7 +156,9 @@ $(document).on('click', '.checkoutminus', async function () {
 
 
                                 <div class="btn-wrapper">
-                                    <a class="checkoutminus" data-minid="<${items.id}">
+                                    <a class="checkoutminus" data-minid="<${
+                                        items.id
+                                    }">
                                         <span class="minus">
                                             -
                                         </span>
@@ -156,13 +166,17 @@ $(document).on('click', '.checkoutminus', async function () {
                                     <span class="num">
                                         ${items.quantity}
                                     </span>
-                                    <a class="checkoutplus" data-plusid="${items.id}">
+                                    <a class="checkoutplus" data-plusid="${
+                                        items.id
+                                    }">
                                         <span class="add">
                                             +
                                         </span>
                                     </a>
                                 </div>
-                                <button class="wishlist-btn" data-productid="${items.id}">Add to
+                                <button class="wishlist-btn" data-productid="${
+                                    items.id
+                                }">Add to
                                     Wishlist
                                 </button>
                             </div>
@@ -193,7 +207,8 @@ $(document).on('click', '.checkoutminus', async function () {
                             <p><span>Shipping</span> <span>EGP100</span></p>
                             <hr>
                             <p><span>Total</span> <span class="totalafter">EGP ${price + 100} </span></p>
-                            <button onclick="location.href='/checkout'" class="checkout-btn">CHECKOUT</button>
+                            <button onclick="location.href='/checkout'"
+                                class="checkout-btn">CHECKOUT</button>
 
                             <div class="payment-method">
                                 <p></p>
