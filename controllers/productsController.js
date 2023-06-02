@@ -2,21 +2,51 @@ const { Product } = require('../models/product');
 const user = require('../models/user');
 const asyncHandler = require('express-async-handler');
 
-exports.getAllProducts = (User, req, res) => {
+// const limit = parseInt(req.query.limit);
+
+//     const startindex=(page - 1) * limit;
+//     const endindex=page*limit;
+
+//     const results = {}
+
+
+//     if(endindex<0){
+//     results.next= {
+//         page: page + 1,
+//         limit: limit
+//     }
+// }
+
+//     if(startindex>0){ //means en array isn't  starting from the first user
+//         results.previous= {
+//             page: page - 1,
+//             limit: limit
+//         }
+//     }
+
+//     results.results = Product.slice(startindex, endindex);
+//     res.json(results);
+exports.getAllProducts = async (User, req, res) => {
+    const page = req.query.page || 1;
+    const prodperpage = 4;
+    const count = await Product.countDocuments();
+
     Product.find()
+        .skip(prodperpage * page - prodperpage)
+        .limit(prodperpage)
+        .exec()
         .then((result) => {
+            const totalpages = Math.ceil(count / productsPerPage);
+            const current = parseInt(page) || 1;
+
             res.render('pages/products', {
-                user:
-                    req.session.user == undefined
-                        ? undefined
-                        : req.session.user,
-                cart:
-                    req.session.cart == undefined
-                        ? undefined
-                        : req.session.cart,
+                user: req.session.user == undefined ? undefined : req.session.user,
+                cart: req.session.cart == undefined ? undefined : req.session.cart,
                 User,
                 products: result,
                 Id: req.params.id,
+                current: current,
+                pages: totalpages,
             });
         })
         .catch((err) => {
@@ -52,32 +82,49 @@ exports.deleteProduct = (req, res) => {
 //     });
 // });
 //diamond
-exports.getDrings = (User, req, res) => {
+exports.getDrings = async (User, req, res) => {
+    const page = req.query.page || 1;
+    const prodperpage = 4;
+    const count = await Product.countDocuments();
+
+
     var body = `The brilliance and sparkle of a diamond is unmatched, creating a stunning statement piece that will make any outfit shine. From delicate solitaires to intricate halo designs, there are endless options for diamond rings to suit every taste and budget. Whether you prefer a classic round cut or a unique fancy shape, a diamond ring is a timeless investment that will be treasured for generations to come.`;
     Product.find({ material: 'diamond', category: 'ring' })
-        .then((result) => {
-            res.render('pages/products', {
-                productTitle: 'Diamond Rings',
-                body,
-                user:
-                    req.session.user == undefined
-                        ? undefined
-                        : req.session.user,
-                cart:
-                    req.session.cart == undefined
-                        ? undefined
-                        : req.session.cart,
-                products: result,
-                User,
-                Id: req.params.id,
-                material: 'diamond',
-                category: 'ring',
-            });
-        })
-        .catch((err) => {
-            console.log('error loading');
-        });
-};
+    .skip(prodperpage * page - prodperpage)
+    .limit(prodperpage)
+    .exec()
+    .then((result) => {
+      const totalpages = Math.ceil(count / prodperpage); // use the correct variable name
+      const current = parseInt(page) || 1;
+  
+      res.render('pages/products', {
+        productTitle: 'Diamond Rings',
+        body,
+        user:
+          req.session.user == undefined
+            ? undefined
+            : req.session.user,
+        cart:
+          req.session.cart == undefined
+            ? undefined
+            : req.session.cart,
+        products: result,
+        User,
+        products: result,
+        Id: req.params.id,
+        current: current,
+        pages: totalpages,
+        material: 'diamond',
+        category: 'ring',
+      });
+    })
+    .catch((err) => {
+      console.error('Error loading products:', err); // log the error to the console
+      res.status(500).send('Error loading products'); // send a 500 status code to the client
+    });
+
+}
+
 exports.getDnecklaces = (User, req, res) => {
     const body = `Diamond necklaces are a captivating and exquisite embellishment that can elevate any ensemble with their timeless allure and radiance. The brilliance of diamonds creates a spellbinding display of light that catches the eye and draws attention to the neckline, making a diamond necklace a perfect accessory for any occasion. Whether it's a delicate pendant or a striking statement piece, diamond necklaces can be customized to reflect any style or budget. The durability of diamonds ensures that a diamond necklace is an investment that will endure beyond a lifetime. Diamonds signify love and commitment, making a diamond necklace a popular choice for special events such as weddings, anniversaries, or birthdays. A diamond necklace can be worn alone as a stunning centerpiece or layered with other necklaces to create a unique and fashionable look.`;
     Product.find({ material: 'diamond', category: 'necklace' })
