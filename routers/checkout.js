@@ -5,7 +5,12 @@ const { Order } = require('../models/order');
 const user = require('../models/user');
 const router = express.Router();
 const checkoutController = require('../controllers/checkoutController');
-const {checkoutCont} = checkoutController;
+const { checkoutCont } = checkoutController;
+const nodemailer = require('nodemailer');
+const ejs = require('ejs');
+
+
+
 
 // router.post('/checkout', checkoutController.checkoutCont);
 const errors = {};
@@ -52,14 +57,7 @@ router.post('/', async (req, res) => {
             status: req.body.status,
             totalAmount: totalAmountfinal,
         });
-        //$push adds the order id to the orders array in the user schema
-        await user.findOneAndUpdate(
-            { email: req.session.user },
-            { $push: { orders: order._id } },
-            { new: true }
-        );
-        await User.save();
-        await order.save();
+
         productinCart.forEach(async (product) => {
             await Product.findOneAndUpdate(
                 { _id: product._id },
@@ -69,6 +67,59 @@ router.post('/', async (req, res) => {
                 { new: true }
             );
         });
+
+        //$push adds the order id to the orders array in the user schema
+        await user.findOneAndUpdate(
+            { email: req.session.user },
+            { $push: { orders: order._id } },
+            { new: true }
+        );
+
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'clementineco2023@gmail.com',
+                pass: 'lmkwmjbyftpuzwhz',
+            },
+        });
+        var mailOptions = {
+            from: 'clementineco2023@gmail.com',
+            to: req.session.user,
+            subject: 'Order Confirmation',
+            html: ejs.render(
+                `
+                <p>Dear ${order.userFullName},</p>
+                <p>Thank you for your order of ${order.orderItems.length} item(s) for a total of EGP ${order.totalAmount}.</p>
+                <p>Your order includes:</p>
+                <ul>
+                  <% order.orderItems.forEach(function(item) { %>
+                    <li><%= item.name %></li>
+                  <% }); %>
+                </ul>
+                <p>We have received your order and are processing it now. We will notify you by email once your order has been shipped.</p>
+                <p>You can keep track of your order through its ID: ${order._id}</p>
+                <p>Thank you for choosing us.</p>
+                <p>With love,</p>
+                <p>Clementine.</p>
+
+
+        `,
+        { order: order }
+
+            ),
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+                return res.send('Error.');
+            } else {
+                console.log('Email sent:' + info.response);
+                // Save the order details to your database or perform other actions as needed
+                return res.redirect('/');
+            }
+        });
+
         console.log('order placed successfuly.');
         req.session.cart = undefined;
         res.render('pages/placedOrder', {
@@ -81,6 +132,9 @@ router.post('/', async (req, res) => {
         res.status(500).json({ errors: { server: 'Server error' } });
     }
 });
+
+
+
 
 router.get(`/`, function (req, res) {
     if (req.session.cart == undefined) {

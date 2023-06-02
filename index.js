@@ -302,44 +302,7 @@ app.post(`/contactus`, function (req, res) {
 });
 /* ---------CONTACT US FORM MAILER END --------*/
 
-    app.post('/updateorder', function (req, res) {
-        var orderId = req.body._id;
-        var status = req.body.status;
-
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'clementineco2023@gmail.com',
-                pass: 'lmkwmjbyftpuzwhz',
-            },
-        });
-
-        var mailOptions = {
-            from: 'clementineco2023@gmail.com',
-            to: req.body.email,
-            subject: 'Order Confirmation',
-            html: ejs.render(
-                `
-      <p>Dear <%= userFullName %>,</p>
-      <p>Thank you for your order of <%= quantity %> <%= orderItem %>(s) for a total of <%= price %>.</p>
-      <p>We have received your order and are processing it now. We will notify you by email once your order has been shipped.</p>
-      <p>Thank you for choosing us!</p>
-    `,
-                { userFullName, quantity, OrderItem, price }
-            ),
-        };
-
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error);
-                return res.send('Error.');
-            } else {
-                console.log('Email sent:' + info.response);
-                // Save the order details to your database or perform other actions as needed
-                return res.redirect('/');
-            }
-        });
-    });
+   
 
 app.listen(port, () => {
     console.log('http://localhost:8080');
