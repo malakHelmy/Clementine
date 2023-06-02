@@ -4,14 +4,13 @@ const { Product } = require('../models/product');
 const router = express.Router();
 
 router.post('/search', async (req, res) => {
-    let payload = req.body.payload.trim();
-    let search = await Product.find({
-        name: { $regex: new RegExp('^' + payload + '.*', 'i') },
-    }).exec();
-    //limit serach results to 10
-    search = search.slice(0, 10);
-
-    res.send({ payload: search });
+  let payload = req.body.payload.trim();
+  let search = await Product.find({
+    name: { $regex: new RegExp(payload + '.*', 'i') }
+  })
+    .limit(10)
+    .exec();
+  res.send({ payload: search });
 });
 // router.post('/search', async (req, res) => {
 //   try {
