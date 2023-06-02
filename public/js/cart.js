@@ -11,31 +11,29 @@ function closesidebar() {
 
 let cartwrap = document.querySelector('.cart-wrapper');
 
-let cartPlus = document.querySelectorAll('.cartplus');
-cartPlus.forEach((plus) => {
-    plus.addEventListener('click', async () => {
-        var plusID = plus.dataset.addid;
-        fetch('/cart/plus', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ payload: plusID }),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                cartwrap.innerHTML = '';
-                cartwrap.innerHTML = ` <h2 class="ShopBag">My Shopping Bag</h2>
+$(document).on('click', '.cartplus', async function () {
+    var plusID = $(this).data('addid');
+    fetch('/cart/plus', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ payload: plusID }),
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            cartwrap.innerHTML = '';
+            cartwrap.innerHTML = ` <h2 class="ShopBag">My Shopping Bag</h2>
             <div class="line"></div>`;
-                let payload = data.payload;
-                var price = 0;
-                if (payload != undefined && payload.items != '') {
-                    payload.items.forEach((items) => {
-                        if (items.quantity > 0) {
-                            cartwrap.innerHTML += `<div class="cart-item">
+            let payload = data.payload;
+            var price = 0;
+            if (payload != undefined && payload.items != '') {
+                payload.items.forEach((items) => {
+                    if (items.quantity > 0) {
+                        cartwrap.innerHTML += `<div class="cart-item">
                         <button class="remove-btn" onclick=""><i
                                 class="ri-close-line"></i></button>
-                        <img src="./Images/${items.image}" alt="">
+                        <img src="/Images/${items.image}" alt="">
                         <div class="details">
                             <div class="name">
                             ${items.name}
@@ -68,17 +66,17 @@ cartPlus.forEach((plus) => {
                             </div>
                         </div>
                     </div>`;
-                            price += items.price * items.quantity;
-                        }
-                    });
-                } else {
-                    cartwrap.innerHTML += ` <div class="cart-item">
+                        price += items.price * items.quantity;
+                    }
+                });
+            } else {
+                cartwrap.innerHTML += ` <div class="cart-item">
 
                 <div class="empty">Your cart is empty</div>
             </div>`;
-                }
+            }
 
-                cartwrap.innerHTML += `<div class="total">
+            cartwrap.innerHTML += `<div class="total">
             <div class="shipping">
                     <p><span>Subtotal</span> <span>EGP <span id="total-before">
                         ${price}</span></span></p>
@@ -93,35 +91,32 @@ cartPlus.forEach((plus) => {
         <div class="checkout-btn">
             <button class="checkout" onclick="location.href='/checkout'">CHECKOUT</button>
         </div>`;
-            });
-    });
+        });
 });
 
-let cartMinus = document.querySelectorAll('.cartminus');
-cartMinus.forEach((minus) => {
-    minus.addEventListener('click', async () => {
-        var minusID = minus.dataset.minusid;
-        fetch('/cart/minus', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ payload: minusID }),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                cartwrap.innerHTML = '';
-                cartwrap.innerHTML = ` <h2 class="ShopBag">My Shopping Bag</h2>
+$(document).on('click', '.cartminus', async function () {
+    var minusID = $(this).data('minusid');
+    fetch('/cart/minus', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ payload: minusID }),
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            cartwrap.innerHTML = '';
+            cartwrap.innerHTML = ` <h2 class="ShopBag">My Shopping Bag</h2>
                 <div class="line"></div>`;
-                let payload = data.payload;
-                var price = 0;
-                if (payload != undefined && payload.items != '') {
-                    payload.items.forEach((items) => {
-                        if (items.quantity > 0) {
-                            cartwrap.innerHTML += `<div class="cart-item">
+            let payload = data.payload;
+            var price = 0;
+            if (payload != undefined && payload.items != '') {
+                payload.items.forEach((items) => {
+                    if (items.quantity > 0) {
+                        cartwrap.innerHTML += `<div class="cart-item">
                             <button class="remove-btn" onclick=""><i
                                     class="ri-close-line"></i></button>
-                            <img src="./Images/${items.image}" alt="">
+                            <img src="/Images/${items.image}" alt="">
                             <div class="details">
                                 <div class="name">
                                 ${items.name}
@@ -154,17 +149,17 @@ cartMinus.forEach((minus) => {
                                 </div>
                             </div>
                         </div>`;
-                            price += items.price * items.quantity;
-                        }
-                    });
-                } else {
-                    cartwrap.innerHTML += ` <div class="cart-item">
+                        price += items.price * items.quantity;
+                    }
+                });
+            } else {
+                cartwrap.innerHTML += ` <div class="cart-item">
 
                     <div class="empty">Your cart is empty</div>
                 </div>`;
-                }
+            }
 
-                cartwrap.innerHTML += `<div class="total">
+            cartwrap.innerHTML += `<div class="total">
                 <div class="shipping">
                         <p><span>Subtotal</span> <span>EGP <span id="total-before">
                             ${price}</span></span></p>
@@ -179,8 +174,7 @@ cartMinus.forEach((minus) => {
             <div class="checkout-btn">
                 <button class="checkout" onclick="location.href='/checkout'">CHECKOUT</button>
             </div>`;
-            });
-    });
+        });
 });
 
 const addtocart = document.querySelectorAll('.btn');
@@ -206,7 +200,7 @@ addtocart.forEach((cart) => {
                             cartwrap.innerHTML += `<div class="cart-item">
                         <button class="remove-btn" onclick=""><i
                                 class="ri-close-line"></i></button>
-                        <img src="./Images/${items.image}" alt="">
+                        <img src="/Images/${items.image}" alt="">
                         <div class="details">
                             <div class="name">
                             ${items.name}
@@ -266,6 +260,91 @@ addtocart.forEach((cart) => {
             <button class="checkout" onclick="location.href='/checkout'">CHECKOUT</button>
         </div>`;
             });
+    });
+});
 
+const atc = document.querySelectorAll('.atc');
+atc.forEach((cart) => {
+    cart.addEventListener('click', async () => {
+        var cartProd = cart.dataset.cartitem;
+        fetch('/cart/add-to-cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ payload: cartProd }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                cartwrap.innerHTML = ` <h2 class="ShopBag">My Shopping Bag</h2>
+            <div class="line"></div>`;
+                let payload = data.payload;
+                var price = 0;
+                if (payload != undefined && payload.items != '') {
+                    payload.items.forEach((items) => {
+                        if (items.quantity > 0) {
+                            cartwrap.innerHTML += `<div class="cart-item">
+                        <button class="remove-btn" onclick=""><i
+                                class="ri-close-line"></i></button>
+                        <img src="/Images/${items.image}" alt="">
+                        <div class="details">
+                            <div class="name">
+                            ${items.name}
+                            </div>
+                            <div class="btn-wrapper">
+                                <a class="cartminus"
+                                    data-minusid="${items.id}">
+                                    <span class="minus">
+                                        -
+                                    </span>
+                                </a>
+                                <span class="num">
+                                  ${items.quantity}
+                                </span>
+                                <a class="cartplus"
+                                    data-addid="${items.id}">
+                                    <span class="add" >
+                                        +
+                                    </span>
+                                </a>
+                            </div>
+                            <button class="wishlist-btn"
+                                data-productid="${items.id}"
+                                onclick="wishlist()">Add to
+                                Wishlist
+                            </button>
+                            <div class="price"> Price: ${
+                                items.price * items.quantity
+                            }
+                            </div>
+                        </div>
+                    </div>`;
+                            price += items.price * items.quantity;
+                        }
+                    });
+                    $('.cart-window').fadeToggle('slow');
+                } else {
+                    cartwrap.innerHTML += ` <div class="cart-item">
+
+                <div class="empty">Your cart is empty</div>
+            </div>`;
+                }
+
+                cartwrap.innerHTML += `<div class="total">
+            <div class="shipping">
+                    <p><span>Subtotal</span> <span>EGP <span id="total-before">
+                        ${price}</span></span></p>
+                    <p><span>Shipping</span> <span>EGP<span>100</span></span>
+                    </p>
+            </div>
+            <p><span>Total</span> <span>EGP <span id="total-after">
+                                ${price + 100}
+                </span></span>
+            </p>
+        </div>
+        <div class="checkout-btn">
+            <button class="checkout" onclick="location.href='/checkout'">CHECKOUT</button>
+        </div>`;
+            });
     });
 });

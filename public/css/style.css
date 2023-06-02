@@ -754,7 +754,7 @@ body {
     text-transform: capitalize;
 }
 
-.card-btn {
+.btn {
     position: absolute;
     bottom: 10px;
     left: 50%;
@@ -771,11 +771,11 @@ body {
     opacity: 0;
 }
 
-.product-card:hover .card-btn {
+.product-card:hover .btn {
     opacity: 1;
 }
 
-.card-btn:hover {
+.btn:hover {
     background: #efefef;
 }
 
