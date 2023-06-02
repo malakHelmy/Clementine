@@ -218,6 +218,32 @@ router.post('/remove-wishlist', async (req, res) => {
         console.log('User is not logged in');
     }
 });
+router.post('/add-wishlist', async (req, res) => {
+    const wishuserID = req.session.user;
+    if (wishuserID) {
+        let payload = req.body.payload;
+        if (payload !== '') {
+            try {
+                console.log(payload);
+                await products.removeFromWishlist(wishuserID, payload);
+                var User = await user.findOne({ email: wishuserID });
+                var wishlistItems = await Product.find({
+                    _id: { $in: User.wishlist },
+                });
+                res.send({ payload: wishlistItems });
+            } catch (error) {
+                console.error(error);
+                res.status(500);
+            }
+        } else {
+            res.status(400);
+            console.log('Payload is missing or empty');
+        }
+    } else {
+        res.status(401);
+        console.log('User is not logged in');
+    }
+});
 // router.post(`/`, async (req, res) => {
 //     const cat = await Category.findById(req.body.category);
 //     if (!cat) {
