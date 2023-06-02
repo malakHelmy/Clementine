@@ -32,8 +32,9 @@
                                         <a href="/product/<%- items._id %>">
                                         <img src="./Images/<%- items.image %>" class="product-thumb" alt="">
                                         </a>
-                                        <form action="/cart/<%= items._id %>" method="post"><input type="submit"
-                                    value="Add to cart" class="card-btn"></form>
+                                        <button class="btn" data-cartitem="<%= items._id %>">
+                                            Add to cart
+                                        </button>
                                 </div>
                                 <div class="product-info">
                                     <h2 class="product-brand">
@@ -59,6 +60,7 @@
 
         </div>
         <script src="/js/wish.js"></script>
+        <script src="/js/cart.js"></script>
         <%- include('../partials/footer') %>
 
 </body>

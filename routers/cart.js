@@ -16,11 +16,12 @@ router.post('/minus', (req, res) => {
     });
     res.send({ payload: req.session.cart });
 });
-router.post('/plus', (req, res) => {
-    console.log("plus");
+router.post('/plus', async (req, res) => {
+    const product = await Product.findOne({ _id: req.body.payload })
     req.session.cart.items.forEach((items) => {
         if (items.id == req.body.payload) {
-            items.quantity++;
+            if(items.quantity < product.countInStock){items.quantity++;}
+            
         }
     });
     res.send({ payload: req.session.cart });

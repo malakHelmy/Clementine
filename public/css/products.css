@@ -79,7 +79,7 @@ body {
   color: rgb(123, 123, 123);
 }
 
-.btn {
+.cartbtn {
   width: 100%;
   border: none;
   height: 30px;
@@ -97,11 +97,11 @@ body {
   transform: translateY(-0.1px);
 }
 
-.box:hover .btn {
+.box:hover .cartbtn {
   transform: translateY(-0.1px);
 }
 
-.btn:hover {
+.cartbtn:hover {
   background: #d79e2e;
   color: white;
   transition: 0.7s ease;
