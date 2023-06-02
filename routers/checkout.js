@@ -63,8 +63,7 @@ router.post('/', async (req, res) => {
             await Product.findOneAndUpdate(
                 { _id: product._id },
                 {
-                    countInStock: product.countInStock - cart.items.quantity,
-                },
+                    countInStock: parseInt(product.countInStock) - parseInt(cart.items.find(item => item.id == product._id).quantity),                },
                 { new: true }
             );
         });
