@@ -75,7 +75,7 @@ $(document).on('click', '.checkoutplus', async function () {
             <p><span>Total</span> <span class="totalafter">EGP ${
                 price + 100
             } </span></p>
-            <button onclick="location.href='./checkout.html'"
+            <button onclick="location.href='/checkout'"
                 class="checkout-btn">CHECKOUT</button>
 
             <div class="payment-method">
@@ -98,7 +98,7 @@ $(document).on('click', '.checkoutplus', async function () {
                             <p><span>Total</span> <span class="totalafter">EGP ${
                                 price + 100
                             } </span></p>
-                            <button onclick="location.href='./checkout.html'"
+                            <button onclick="location.href='/checkout'"
                                 class="checkout-btn">CHECKOUT</button>
 
                             <div class="payment-method">

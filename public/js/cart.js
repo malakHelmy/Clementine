@@ -9,7 +9,7 @@ function closesidebar() {
 }
 
 let cartwrap = document.querySelector('.cart-wrapper');
-let shopwrap = document.querySelector('.shopcart-wrapper');
+
 
 $(document).on('click', '.cartplus', async function () {
     var plusID = $(this).data('addid');
@@ -89,7 +89,7 @@ $(document).on('click', '.cartplus', async function () {
             </p>
         </div>
         <div class="checkout-btn">
-            <button class="checkout" onclick="location.href='/checkout'">CHECKOUT</button>
+            <button class="checkout" onclick="location.href='/cart'">CHECKOUT</button>
         </div>`;
         });
 });
@@ -172,7 +172,7 @@ $(document).on('click', '.cartminus', async function () {
                 </p>
             </div>
             <div class="checkout-btn">
-                <button class="checkout" onclick="location.href='/checkout'">CHECKOUT</button>
+                <button class="checkout" onclick="location.href='/cart'">CHECKOUT</button>
             </div>`;
         });
 });
@@ -256,7 +256,7 @@ addtocart.forEach((cart) => {
             </p>
         </div>
         <div class="checkout-btn">
-            <button class="checkout" onclick="location.href='/checkout'">CHECKOUT</button>
+            <button class="checkout" onclick="location.href='/cart'">CHECKOUT</button>
         </div>`;
             });
     });
@@ -341,7 +341,7 @@ atc.forEach((cart) => {
             </p>
         </div>
         <div class="checkout-btn">
-            <button class="checkout" onclick="location.href='/checkout'">CHECKOUT</button>
+            <button class="checkout" onclick="location.href='/cart'">CHECKOUT</button>
         </div>`;
             });
     });
@@ -425,7 +425,7 @@ cartButton.forEach((cart) => {
             </p>
         </div>
         <div class="checkout-btn">
-            <button class="checkout" onclick="location.href='/checkout'">CHECKOUT</button>
+            <button class="checkout" onclick="location.href='/cart'">CHECKOUT</button>
         </div>`;
             });
     });
