@@ -15,6 +15,7 @@ exports.updatecust = async(req, res) => {
     }
   }
 
+//still in progress
 
 exports.changePassword = async (req, res) => {
   console.log('Change password');
