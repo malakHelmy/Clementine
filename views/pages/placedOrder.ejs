@@ -7,6 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="css/placedOrder.css">
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+
+<!-- to access font awesome cdn icons -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <title>Order Placed</title>
 </head>
 
@@ -14,9 +23,14 @@
     <%- include('../partials/navbar') %>
         <div class="bodyText">
             <% if(order !=undefined ){ %>
-                <h1>
-                    Order <%= order._id%> was placed successfully!
-                </h1>
+
+            <h1 class="po1">Thank you for choosing us.</h1>
+            <h6 class="po6"> Order <%= order._id%> was placed successfully!
+            </h6>
+
+                <h5 class="po5"> You will get a confirmation mail shortly. You can track your order's progress through your profile. </h5>
+            <h5 class="po5">Please, if you have any concerns, do not hesitate to 
+                <span><a class="po5a" href="/contactus" >contact us. </a></span> </h5>
                 <% } %>
         </div>
         <%- include('../partials/footer') %>

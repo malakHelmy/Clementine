@@ -89,7 +89,7 @@ router.post('/', async (req, res) => {
             html: ejs.render(
                 `
                 <p>Dear ${order.userFullName},</p>
-                <p>Thank you for your order of ${order.orderItems.length} items for a total of EGP ${order.totalAmount}.</p>
+                <p>Thank you for your order of ${order.orderItems.length} item(s) for a total of EGP ${order.totalAmount}.</p>
                 <p>Your order includes:</p>
                 <ul>
                   <% order.orderItems.forEach(function(item) { %>
