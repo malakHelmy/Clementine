@@ -227,17 +227,6 @@ app.get(`/myprofile`, function (req, res) {
 })
 app.post(`/change_password`,costumerController.changePassword);
 
-app.get(`/userprofile`, function (req, res) {
-    res.render('pages/userprofile', {
-        user: req.session.user == undefined ? undefined : req.session.user,
-        cart: req.session.cart == undefined ? undefined : req.session.cart,
-    });
-});
-app.get(`/userprofileorder`, (req, res) => {
-    res.render('pages/userprofileorder', {
-        user: req.session.user == undefined ? undefined : req.session.user,
-    })
-})
 app.get(`/displayproducts`, function (req, res) {
     res.render('pages/displayproducts');
 });

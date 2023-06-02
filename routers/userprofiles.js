@@ -3,29 +3,29 @@ const { Order } = require('../models/order');
 //const { OrderItem } = require('../models/order-items');
 const { Product } = require('../models/product');
 const user = require('../models/user');
+const users = require('../controllers/userprofileController');
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-    const User = await user.findOne({ email: req.session.user });
-    if (!User) {
-        console.log('User was not found');
-        return res.status(500);
-    }
-    const loggedInUserName = User.firstname;
-    const wishlistItems = await Product.find({
-        _id: { $in: User.wishList },
-    });
-    const wishlistcount = wishlistItems.length;
-    Order.find()
-        .then(async (orderslist) => {
-            res.render('pages/userprofile', {
-                wishlistItemCount: undefined ? undefined : wishlistcount,
-                user: undefined ? undefined : User,
-                order: orderslist,
-            });
-        })
-        .catch((err) => {
-            console.log(err);
+router.get(`/`, async (req, res) => {
+    if (req.session.user != undefined) {
+        const userProfile = await user.findOne({ email: req.session.user });
+        const userOrder = await Order.find({
+            userID: { $in: userProfile._id },
         });
+        const wishlistItems = await Product.find({
+            _id: { $in: userProfile.wishList },
+        });
+        if (!userOrder) {
+            console.log('no orders were found');
+        }
+        res.render('pages/userprofilemain', {
+            user: req.session.user == undefined ? undefined : userProfile,
+            cart: req.session.cart == undefined ? undefined : req.session.cart,
+            orders: userOrder,
+            wishlist : wishlistItems
+        });
+    }
 });
+router.get(`/order`, users.getOrders);
+
 module.exports = router;
