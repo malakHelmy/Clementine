@@ -5,6 +5,7 @@ const PaymentGateway = require('../models/paymentgateway');
 const cart = require('../models/cart');
 
 
+
 exports.checkoutCont = asyncHandler(async (req, res, next) => {
     const { userFullName, shippingAddress1, city, state, zip, CreditCardNumber, exp_month, exp_year, cvv } = req.body;
     const cardformat = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;

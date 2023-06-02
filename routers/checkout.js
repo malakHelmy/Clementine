@@ -5,6 +5,7 @@ const { Order } = require('../models/order');
 const user = require('../models/user');
 const router = express.Router();
 const checkoutController = require('../controllers/checkoutController');
+const {checkoutCont} = checkoutController;
 
 // router.post('/checkout', checkoutController.checkoutCont);
 const errors = {};
@@ -63,7 +64,8 @@ router.post('/', async (req, res) => {
             await Product.findOneAndUpdate(
                 { _id: product._id },
                 {
-                    countInStock: parseInt(product.countInStock) - parseInt(cart.items.find(item => item.id == product._id).quantity),                },
+                    countInStock: parseInt(product.countInStock) - parseInt(cart.items.find(item => item.id == product._id).quantity),
+                },
                 { new: true }
             );
         });
