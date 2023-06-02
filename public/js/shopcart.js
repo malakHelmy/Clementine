@@ -1,3 +1,4 @@
+let shopwrap = document.querySelector('.shopcart-wrapper');
 
 $(document).on('click', '.checkoutplus', async function () {
     var plusID = $(this).data('plusid');
