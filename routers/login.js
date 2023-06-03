@@ -13,6 +13,9 @@ router.get(`/`, function (req, res) {
 });
 
 router.post(`/`, async (req, res) => {
+
+    const Error={emailerror:String,Passerror:String};
+
     const result = await User.findOne({ email: req.body.inputs.email });
     if (result) {
         if (await bcrypt.compare(req.body.inputs.password, result.password)) {
@@ -52,22 +55,14 @@ router.post(`/`, async (req, res) => {
             }
             res.send('true');
         } else {
-            res.render('pages/login', {
-                user:
-                    req.session.user == undefined
-                        ? undefined
-                        : req.session.user,
-                cart:
-                    req.session.cart == undefined
-                        ? undefined
-                        : req.session.cart,
-            });
+            Error.Passerror="Please enter right password";
+            res.send(Error);
         }
     } else {
-        res.render('pages/login', {
-            user: req.session.user == undefined ? undefined : req.session.user,
-            cart: req.session.cart == undefined ? undefined : req.session.cart,
-        });
+        
+         Error.emailerror="Please enter right email";
+         Error.Passerror="Please enter right email first";
+         res.send(Error);
     }
 });
 
