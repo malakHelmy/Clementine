@@ -97,47 +97,55 @@
                             <% }) %>
                                 <% } %>
                 </section>
-                
+
                 <% if (user !=undefined) {%>
+
+
+
                     <script src="/js/prod.js"></script>
                     <% } %>
-                    <nav aria-label="Products Pagination">
-                        <ul class="pagination justify-content-center mt-5">
-                          <% if (current == 1) { %>
-                            <li class="page-item disabled">
-                              <a href="#" class="page-link">First</a>
-                            </li>
-                          <% } else { %>
-                            <li class="page-item">
-                              <a href="?page=1" class="page-link">First</a>
-                            </li>
-                          <% } %>
-                          <% for (let i = 1; i <= pages; i++) { %>
-                            <% if (i == current) { %>
-                              <li class="page-item active">
-                                <a href="#" class="page-link"><%= i %></a>
-                              </li>
-                            <% } else { %>
-                              <li class="page-item">
-                                <a href="?page=<%= i %>" class="page-link"><%= i %></a>
-                              </li>
-                            <% } %>
-                          <% } %>
-                          <% if (current == pages) { %>
-                            <li class="page-item disabled">
-                              <a href="#" class="page-link">Last</a>
-                            </li>
-                          <% } else { %>
-                            <li class="page-item">
-                              <a href="?page=<%= pages %>" class="page-link">Last</a>
-                            </li>
-                          <% } %>
-                        </ul>
-                      </nav>
-                      
-                      <script src="/js/cart.js"></script>
+                        <section class="pagination">
+                            <ul class="pages-links-list">
+                                <% if (current==1) { %>
+                                    <li class="page-item disabled">
+                                        <a href="#" class="page-link">FIRST</a>
+                                    </li>
+                                    <% } else { %>
+                                        <li class="page-item">
+                                            <a href="?page=1" class="page-link">FIRST</a>
+                                        </li>
+                                        <% } %>
+                                            <% for (let i=1; i <=pages; i++) { %>
+                                                <% if (i==current) { %>
+                                                    <li class="page-item active">
+                                                        <a href="#" class="page-link">
+                                                            <%= i %>
+                                                        </a>
+                                                    </li>
+                                                    <% } else { %>
+                                                        <li class="page-item">
+                                                            <a href="?page=<%= i %>" class="page-link">
+                                                                <%= i %>
+                                                            </a>
+                                                        </li>
+                                                        <% } %>
+                                                            <% } %>
+                                                                <% if (current==pages) { %>
+                                                                    <li class="page-item disabled">
+                                                                        <a href="#" class="page-link">LAST</a>
+                                                                    </li>
+                                                                    <% } else { %>
+                                                                        <li class="page-item">
+                                                                            <a href="?page=<%= pages %>"
+                                                                                class="page-link">LAST</a>
+                                                                        </li>
+                                                                        <% } %>
+                            </ul>
+                        </section>
+
+                        <script src="/js/cart.js"></script>
                         <%- include('../partials/footer') -%>
-                        
+
 
 </body>
 

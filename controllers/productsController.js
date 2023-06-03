@@ -85,43 +85,43 @@ exports.deleteProduct = (req, res) => {
 exports.getDrings = async (User, req, res) => {
     const page = req.query.page || 1;
     const prodperpage = 4;
-    const count = await Product.countDocuments();
+    const count = await Product.countDocuments({material: 'diamond', category: 'ring'});
 
 
     var body = `The brilliance and sparkle of a diamond is unmatched, creating a stunning statement piece that will make any outfit shine. From delicate solitaires to intricate halo designs, there are endless options for diamond rings to suit every taste and budget. Whether you prefer a classic round cut or a unique fancy shape, a diamond ring is a timeless investment that will be treasured for generations to come.`;
     Product.find({ material: 'diamond', category: 'ring' })
-    .skip(prodperpage * page - prodperpage)
-    .limit(prodperpage)
-    .exec()
-    .then((result) => {
-      const totalpages = Math.ceil(count / prodperpage); // use the correct variable name
-      const current = parseInt(page) || 1;
-  
-      res.render('pages/products', {
-        productTitle: 'Diamond Rings',
-        body,
-        user:
-          req.session.user == undefined
-            ? undefined
-            : req.session.user,
-        cart:
-          req.session.cart == undefined
-            ? undefined
-            : req.session.cart,
-        products: result,
-        User,
-        products: result,
-        Id: req.params.id,
-        current: current,
-        pages: totalpages,
-        material: 'diamond',
-        category: 'ring',
-      });
-    })
-    .catch((err) => {
-      console.error('Error loading products:', err); // log the error to the console
-      res.status(500).send('Error loading products'); // send a 500 status code to the client
-    });
+        .skip(prodperpage * page - prodperpage)
+        .limit(prodperpage)
+        .exec()
+        .then((result) => {
+            const totalpages = Math.ceil(count / prodperpage); // use the correct variable name
+            const current = parseInt(page) || 1;
+
+            res.render('pages/products', {
+                productTitle: 'Diamond Rings',
+                body,
+                user:
+                    req.session.user == undefined
+                        ? undefined
+                        : req.session.user,
+                cart:
+                    req.session.cart == undefined
+                        ? undefined
+                        : req.session.cart,
+                products: result,
+                User,
+                products: result,
+                Id: req.params.id,
+                current: current,
+                pages: totalpages,
+                material: 'diamond',
+                category: 'ring',
+            });
+        })
+        .catch((err) => {
+            console.error('Error loading products:', err); // log the error to the console
+            res.status(500).send('Error loading products'); // send a 500 status code to the client
+        });
 
 }
 
