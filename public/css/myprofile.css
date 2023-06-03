@@ -3,13 +3,14 @@ body {
     background-color: #f4f4f4;
     padding: 20px;
   }
-
-  h1 {
-    color: #333;
-    text-align: center;
-    margin-top: 20px;
-  }
-
+.changePass h1 {
+  padding-top: 100px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid #adadad;
+  font-family: 'Zapf';
+  letter-spacing: 2px;
+  text-align: center;
+}
   .container {
     max-width: 400px;
     margin: 0 auto;
