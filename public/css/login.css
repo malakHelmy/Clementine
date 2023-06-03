@@ -48,8 +48,23 @@ body {
   letter-spacing: 2px;
   transform: translateY(-15px);
 }
+.textfield img{
+    position: absolute;
+    top: 21px;
+    left: 100%;
+}
+.textfield.success img.true{
 
+    visibility: visible;
+}
+.textfield img{
 
+    visibility: hidden;
+}
+.textfield.failed img.false{
+
+    visibility: visible;
+}
 .lgbutton:hover {
   background: #d79e2e;
   transition: 0.7s ease-in-out;
@@ -68,6 +83,7 @@ body {
     position: relative;
     border-bottom: 1px solid #adadad;
     margin: 5%;
+    
 }
 
 .textfield input {
@@ -108,6 +124,7 @@ body {
     height: 2px;
     top: 40px;
     left: -1px;
+
 }
 
 .textfield input:focus~span::before {
@@ -202,4 +219,17 @@ body {
 .su-link {
     color: white;
     text-decoration: none;
+}
+.emaillabel{
+    position: absolute;
+    left: 0px;
+    top: 40px;
+    /* display: block; */
+}
+
+.passlabel{
+position: relative;
+left: 20px;
+top: -18px;
+
 }
