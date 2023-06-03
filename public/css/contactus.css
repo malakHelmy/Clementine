@@ -18,23 +18,22 @@ body {
 .bodyimage img {
     width: 100%;
     height: auto;
-    padding-bottom: 20px;
+    margin-bottom: 10%;
 }
 
 /* contact form start */
 .contact {
     position: relative;
     height: 100vh;
-    padding: 50px 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* text-align: center; */
+    margin-bottom: 10%;
 }
 
 .content {
-    max-width: 800px;
+    max-width: 900px;
     text-align: center;
     background: #fff;
 }
@@ -163,14 +162,15 @@ body {
 @media (max-width: 800px)
 {
     .content{
-        margin-bottom: 30%;
+        margin-bottom: 20%;
         background: transparent;
     }
     .contact{
-        margin-top: 50%;
-        padding: 50px;
+        margin-top: 70%;
         max-width: 100%;
-        margin-bottom: 20%;
+    }
+    .fcontainer{
+        margin-top: 30%;
     }
     .containers{
         flex-direction: column;
