@@ -24,12 +24,14 @@ body {
     margin-bottom: 20px;
   }
 
-  label {
-    display: block;
-    margin-bottom: 10px;
-    color: #333;
-    font-weight: bold;
-  }
+label {
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'zapf';
+}
+
 
   input[type="password"] {
     width: 100%;
