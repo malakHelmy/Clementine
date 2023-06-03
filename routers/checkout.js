@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
     }
     try {
         // adding the new order to the user's list of orders
-        const User = await user.findOne({ email: req.session.user });
+        let User = await user.findOne({ email: req.session.user });
         let products = [];
         let cart = req.session.cart;
         cart.items.forEach((items) => {
@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
             res.status(404).console.log('Cannot find user');
         }
 
-        const order = new Order({
+        let order = new Order({
             userID: User._id,
             userFullName: User.firstname + ' ' + User.lastname,
             orderItems: productinCart,
@@ -75,7 +75,7 @@ router.post('/', async (req, res) => {
             { $push: { orders: order._id } },
             { new: true }
         );
-
+        await order.save();
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
