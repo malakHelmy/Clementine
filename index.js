@@ -42,10 +42,6 @@ const editempRouter = require('./routers/editemployers');
 const checkoutRouter = require('./routers/checkout');
 const addcustRouter = require('./routers/addcustomers');
 
-//controller
-const costumerController = require('./controllers/customersController');
-
-
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
 
@@ -222,10 +218,11 @@ app.get(`/ordersdash`, function (req, res) {
 app.get(`/myprofile`, function (req, res) {
     res.render('pages/myprofile', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
+        error:undefined,
 
     })
 })
-app.post(`/change_password`,costumerController.changePassword);
 
 app.get(`/displayproducts`, function (req, res) {
     res.render('pages/displayproducts');
