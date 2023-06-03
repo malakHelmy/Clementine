@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
+    <!-- <link rel="stylesheet" href="css/Signup.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
@@ -21,22 +22,27 @@
         <!-- Sign in form -->
         <div class="signIn">
             <div class="left">
-                <form action="/login" method="post" onsubmit="return checkfields()" class="signInform" id="signInform" >
+                <form  method="post" onsubmit="return checkfields()" class="signInform" id="signInform" >
                     <h2>Login</h2>
 
                     <div class="textfield">
-                        <input type="email" name="email" required>
+                        <input type="email" name="email" id="email" required>
                         <span class="sp1"></span>
-                        <label for="">E-mail</label>
+                        <label for="">E-mail</label> 
+                        <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                        <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                        <span class="emaillabel"></span>
                     </div>
+                  
                     <div class="textfield">
-                        <input type="password" name="password" id="pass">
-                         
-                        <label for="" id="passlabel"></label>
-
+                        <input type="password" name="password" id="password">
+                      
+                        <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                        <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                         <span class="sp1"></span>
                         <label for="">Password</label>
                     </div>
+                    <div class="passlabel">kssssssssssss</div>
 
                     <input type="submit" class="lgbutton" value="LOG IN">
                     <br><br>
@@ -51,7 +57,7 @@
                         }
                     }
                 </script>
-
+                <script src="js/loginajax.js"></script>
             </div>
 
             <div class="right">
