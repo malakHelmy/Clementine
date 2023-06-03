@@ -25,6 +25,7 @@ router.post('/', async (req, res) => {
                 totalAmountfinal += items.price;
             }
         });
+        totalAmountfinal += 100;
     }
     try {
         // adding the new order to the user's list of orders
@@ -154,6 +155,7 @@ router.get(`/`, function (req, res) {
                 totalAmount += items.price;
             }
         });
+        totalAmount += 100;
         res.render('pages/checkout', {
             user: req.session.user == undefined ? undefined : req.session.user,
             cart: req.session.cart == undefined ? undefined : req.session.cart,
