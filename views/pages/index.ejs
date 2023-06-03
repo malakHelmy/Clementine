@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 
     <!-- to access font awesome cdn icons -->
@@ -15,196 +15,225 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <title>Clementine</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/socket.js"></script>
 </head>
 
 <body>
 
     <%- include('../partials/navbar') %>
-        <%- include('../partials/header') %>
+    <%- include('../partials/header') %>
 
 
-            <section id="intro">
-                <h1 class="intro-title">Infinite (Re)Invention</h1>
-                <p class="intro-p">Since 2000, our passion for innovation and design, and mastery of crystal cutting has
-                    defined
-                    Clementine as the leading jewelry and accessories brand.
-                </p>
-            </section>
+    <section id="intro">
+        <h1 class="intro-title">Infinite (Re)Invention</h1>
+        <p class="intro-p">Since 2000, our passion for innovation and design, and mastery of crystal cutting has
+            defined
+            Clementine as the leading jewelry and accessories brand.
+        </p>
+    </section>
 
 
-            <!--intro starts-->
+    <!--intro starts-->
 
 
-            <!--row 1 star-->
-            <section class="row1-maintitle reveal">
-                <h1>Crystals In Mesmerizing Constellations </h1>
-            </section>
-            <section class="row1-container reveal">
-                <a href="./gnecklaces" class="row1-title">
-                    <img src="./Images/y2.png" alt="necklaces">
-                    <class="row1-neck">Necklaces</h3>
-                        <div>
-                            <button href="./gnecklaces" class="row1btn">Shop Now</button>
-                        </div>
-                </a>
-                <a href="./dearrings" class="row1-title">
-                    <img src="./Images/y1.png" alt="earrings">
-                    <class="row1-neck">Earrings</h3>
-                        <div>
-                            <button href="./dearrings" class="row1btn">Shop Now</button>
-                        </div>
-                </a>
-            </section>
-
-
-
-
-
-            <!-- homepage products start -->
-            <section class="homepage-products reveal">
-
-                <h1 class="homepage-p-title">New Collection</h1>
-                <img src="/Images/arrow2.png" width="10px" class="prev_arrow" onclick="newcollectionslider()"></button>
-                <img src="/Images/arrow.png" width="10px" class="next_arrow" onclick="newcollectionslider()"></button>
-
-
-                <div class="product-container-home">
-                    <% if(product !='' ) {%>
-                        <% product.forEach((items)=> {%>
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <a href="/product/<%- items._id %>">
-                                        <img src="./Images/<%- items.image %>" class="product-thumb" alt="">
-                                    </a>
-                                    <button class="btn" data-cartitem="<%= items._id %>">
-                                        Add to cart
-                                    </button>
-                                </div>
-                                <div class="product-info">
-                                    <h2 class="product-brand">
-                                        <%= items.name%>
-                                    </h2>
-                                    <span class="price">EGP <%= items.price%></span>
-                                </div>
-                            </div>
-                            <% }) %>
-                                <% } %>
+    <!--row 1 star-->
+    <section class="row1-maintitle reveal">
+        <h1>Crystals In Mesmerizing Constellations </h1>
+    </section>
+    <section class="row1-container reveal">
+        <a href="./gnecklaces" class="row1-title">
+            <img src="./Images/y2.png" alt="necklaces">
+            <class="row1-neck">Necklaces</h3>
+                <div>
+                    <button href="./gnecklaces" class="row1btn">Shop Now</button>
                 </div>
-            </section>
-            <div class="videobreak reveal">
-                <div class="vidmain-title">
-                    <h1>IGNITE <div class="br1">YOUR</div>DREAMS </h1>
+        </a>
+        <a href="./dearrings" class="row1-title">
+            <img src="./Images/y1.png" alt="earrings">
+            <class="row1-neck">Earrings</h3>
+                <div>
+                    <button href="./dearrings" class="row1btn">Shop Now</button>
                 </div>
-                <video ctontrols autoplay muted loop class="vidmain">
-                    <source src="./Images/vidmain.mp4" type="video/mp4">
-                </video>
-            </div>
+        </a>
+    </section>
 
 
-            <!-- homepage end -->
 
 
-            <!-- further ads start -->
 
-            <div class="ad1-container reveal">
-                <div class="ad1-img">
-                    <img src="./Images/ad1.png">
-                </div>
-                <div class="ad1-text">
-                    <h1>Pieces of Pure Wonder </h1>
-                    <p>Our Millenia family is a contemporary interpretation of our heritage and expertise. The science
-                        of
-                        crystal cutting meets the magic of light refraction in bold designs that go right to the heart
-                        of who we
-                        are.
-                    </p>
-                    <button class="ad1-btn">
-                        Discover More
+    <!-- homepage products start -->
+    <section class="homepage-products reveal">
+
+        <h1 class="homepage-p-title">New Collection</h1>
+        <img src="/Images/arrow2.png" width="10px" class="prev_arrow" onclick="newcollectionslider()"></button>
+        <img src="/Images/arrow.png" width="10px" class="next_arrow" onclick="newcollectionslider()"></button>
+
+
+        <div class="product-container-home">
+            <% if(product !='' ) {%>
+            <% product.forEach((items)=> {%>
+            <div class="product-card">
+                <div class="product-image">
+                    <a href="/product/<%- items._id %>">
+                        <img src="./Images/<%- items.image %>" class="product-thumb" alt="">
+                    </a>
+                    <button class="btn" data-cartitem="<%= items._id %>">
+                        Add to cart
                     </button>
                 </div>
-            </div>
-            <div class="ad2-container reveal">
-                <div class="ad2-text">
-                    <h1>Kaleidoscopic Hues</h1>
-                    <p>Step inside a vibrant wonderland, where confidence is colorful and coordinating crystals make
-                        <br> every look pop. Push the boundaries in party pink, shine bright in bold metallics, bring
-                        positive
-                        vibes in sunshine yellow, deep dive into a spectrum of blues, or channel your inner goddess in
-                        emerald
-                        green.
-                    </p>
-                    <button class="ad2-btn">
-                        Discover More
-                    </button>
+                <div class="product-info">
+                    <h2 class="product-brand">
+                        <%= items.name%>
+                    </h2>
+                    <span class="price">EGP <%= items.price%></span>
                 </div>
-                <div class="ad2-img">
-                    <img src="./Images/ad2.png">
-                </div>
-
             </div>
+            <% }) %>
+            <% } %>
+        </div>
+    </section>
+    <div class="videobreak reveal">
+        <div class="vidmain-title">
+            <h1>IGNITE <div class="br1">YOUR</div>DREAMS </h1>
+        </div>
+        <video ctontrols autoplay muted loop class="vidmain">
+            <source src="./Images/vidmain.mp4" type="video/mp4">
+        </video>
+    </div>
+
+
+    <!-- homepage end -->
+
+
+    <!-- further ads start -->
+
+    <div class="ad1-container reveal">
+        <div class="ad1-img">
+            <img src="./Images/ad1.png">
+        </div>
+        <div class="ad1-text">
+            <h1>Pieces of Pure Wonder </h1>
+            <p>Our Millenia family is a contemporary interpretation of our heritage and expertise. The science
+                of
+                crystal cutting meets the magic of light refraction in bold designs that go right to the heart
+                of who we
+                are.
+            </p>
+            <button class="ad1-btn">
+                Discover More
+            </button>
+        </div>
+    </div>
+    <div class="ad2-container reveal">
+        <div class="ad2-text">
+            <h1>Kaleidoscopic Hues</h1>
+            <p>Step inside a vibrant wonderland, where confidence is colorful and coordinating crystals make
+                <br> every look pop. Push the boundaries in party pink, shine bright in bold metallics, bring
+                positive
+                vibes in sunshine yellow, deep dive into a spectrum of blues, or channel your inner goddess in
+                emerald
+                green.
+            </p>
+            <button class="ad2-btn">
+                Discover More
+            </button>
+        </div>
+        <div class="ad2-img">
+            <img src="./Images/ad2.png">
+        </div>
+
+    </div>
 
 
 
-            <!-- collection ad start -->
-            <!-- <section class="mid-ad">
+    <!-- collection ad start -->
+    <!-- <section class="mid-ad">
         <img src="Images/valentinesheader.png" href="" alt="newcollection" class="ad1">
 
     </section> */ -->
 
-            <h1 class="categories-title reveal">SHOP BY CATEGORY</h1>
-            <!-- collection ad end  -->
+    <h1 class="categories-title reveal">SHOP BY CATEGORY</h1>
+    <!-- collection ad end  -->
 
-            <!-- categories start -->
-            <section class="categories-container reveal">
-                <a href="./dbracelets" class="category">
-                    <img src="./Images/diacat.jpg" alt="">
-                    <p class="category-title">DIAMOND <br> JEWELRY</p>
-                </a>
-                <a href="./gnecklaces" class="category">
-                    <img src="./Images/goldcatt.jpg" alt="">
-                    <p class="category-title">GOLD <br> JEWELRY</p>
-                </a>
-            </section>
-            <!-- categories end -->
-
-
-
-            <!-- services start -->
-            <section class="services reveal">
-                <div class="serwrap">
-                    <div class="listing-01">
-                        <h2>Quality for our jewelry creations</h2>
-                        <p>Our top priority is producing top-notch jewelry.</p>
-                    </div>
-                    <div class="listing-02">
-                        <h2>Our jewelry services</h2>
-                        <p>Personalize, adjust or revive your jewelry creations thanks to our services offer.</p>
-                    </div>
-                    <div class="listing-03">
-                        <h2>Our watchmaking services</h2>
-                        <p>Ensure optimal maintenance of your watchmaking creations over the years.</p>
-                    </div>
-                </div>
-            </section>
-            <!-- services end -->
-
-            <!-- contact us start-->
-            <section class="contact-footer" id="contact-footer">
-
-                <h1 class="contact-heading"> Have any questions?</h1>
-                <div class="c-button ">
-                    <button class="sub-contact-btn"> <a href="./contactus"
-                            style="text-decoration: none; color:white">CONTACT US </a></button>
-
-                </div>
-            </section>
-            <!-- contact us end-->
-
-            <%- include('../partials/footer') -%>
+    <!-- categories start -->
+    <section class="categories-container reveal">
+        <a href="./dbracelets" class="category">
+            <img src="./Images/diacat.jpg" alt="">
+            <p class="category-title">DIAMOND <br> JEWELRY</p>
+        </a>
+        <a href="./gnecklaces" class="category">
+            <img src="./Images/goldcatt.jpg" alt="">
+            <p class="category-title">GOLD <br> JEWELRY</p>
+        </a>
+    </section>
+    <!-- categories end -->
 
 
-                <script src="/js/trial.js"></script>
-                <script src="/js/cart.js"></script>
+
+    <!-- services start -->
+    <section class="services reveal">
+        <div class="serwrap">
+            <div class="listing-01">
+                <h2>Quality for our jewelry creations</h2>
+                <p>Our top priority is producing top-notch jewelry.</p>
+            </div>
+            <div class="listing-02">
+                <h2>Our jewelry services</h2>
+                <p>Personalize, adjust or revive your jewelry creations thanks to our services offer.</p>
+            </div>
+            <div class="listing-03">
+                <h2>Our watchmaking services</h2>
+                <p>Ensure optimal maintenance of your watchmaking creations over the years.</p>
+            </div>
+        </div>
+    </section>
+    <!-- services end -->
+
+    <!-- contact us start-->
+    <section class="contact-footer" id="contact-footer">
+
+        <h1 class="contact-heading"> Have any questions?</h1>
+        <div class="c-button ">
+            <button class="sub-contact-btn"> <a href="./contactus" style="text-decoration: none; color:white">CONTACT US
+                </a></button>
+
+        </div>
+    </section>
+    <!-- contact us end-->
+
+    <!-- Chat Icon -->
+    <div id="chat-icon-container">
+        <div id="chat-icon" onclick="toggleChatWindow()">
+            <i class="fas fa-comments"></i>
+        </div>
+    </div>
+
+    <!-- Chat Window -->
+<div id="chat-window">
+    <div id="chat-header">
+        <h2>Chat with us</h2>
+        <div id="close-chat" onclick="toggleChatWindow()">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+    <div id="chat-body">
+        <!-- Chat messages will be displayed here -->
+    </div>
+    <div id="chat-footer">
+        <input type="text" id="chat-input" placeholder="Type your message..." />
+        <button id="send-message" onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+
+
+    <%- include('../partials/footer') -%>
+
+
+    <script src="/js/trial.js"></script>
+    <script src="/js/cart.js"></script>
+
 
 </body>
 

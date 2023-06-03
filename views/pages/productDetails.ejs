@@ -56,15 +56,13 @@
                 <hr>
                 <p>
                 <p class="aboutring"><b> Brand:</b> Clementine </p>
-                <p class="aboutring"><b> Collection:</b>
+                <p class="aboutring"><b> Type:</b>
                     <%= products.category%>
                 </p>
                 <p class="aboutring"><b> Metal:</b>
                     <%= products.material %>
                 </p>
-                <p class="aboutring"><b> Product Number:</b>
-                    <%= products.id %>
-                </p>
+                
                 </p>
                 <div class="priceinfo">
 
@@ -107,9 +105,16 @@
                 <div class="btnsdiv">
 
                     <button value="IN-STORE PICK UP" class="ispu">IN-STORE PICK UP</button>
-                    <button class="atc" data-cartitem="<%= products._id %>">
-                        ADD TO CART
-                    </button>
+                    <%if (products.countInStock> 0){%>
+                        <button class="atc" data-cartitem="<%= products._id %>">
+                            Add to cart
+                        </button>
+                        <% } else {%>
+                            <button class="atc">
+                                Out of stock
+                            </button>
+                            <% } %>
+
                 </div>
                 <section id="payinfo">
                     <p>4 interest-free payments of EGP 470 with <span class="special1">Klarna</span>. <span> <a href="#"
@@ -210,9 +215,16 @@
                                                                 <%= items.price%>
                                                             </p>
                                                         </div>
-                                                        <button class="cartbtn" data-cartitem="<%= items._id %>">
-                                                            Add to cart
-                                                        </button>
+
+                                                        <%if (items.countInStock> 0){%>
+                                                            <button class="cartbtn" data-cartitem="<%= items._id %>">
+                                                                Add to cart
+                                                            </button>
+                                                            <% } else {%>
+                                                                <button class="cartbtn">
+                                                                    Out of stock
+                                                                </button>
+                                                                <% } %>
                                                     </div>
                         </div>
                         <% }) %>

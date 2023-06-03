@@ -89,9 +89,15 @@
                                                                     <%= items.price%>
                                                                 </p>
                                                             </div>
+                                                            <%if (items.countInStock> 0){%>
                                                             <button class="cartbtn" data-cartitem="<%= items._id %>">
                                                                 Add to cart
                                                             </button>
+                                                            <% } else {%>
+                                                                <button class="cartbtn">
+                                                                   Out of stock
+                                                                </button>
+                                                                <% } %>
                                                         </div>
                             </div>
                             <% }) %>

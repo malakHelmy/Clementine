@@ -1,0 +1,25 @@
+.form-horizontal{
+    margin-left: 15%;
+}
+.panel-body h1{
+    margin-left: 35%;
+}
+
+.formerror{
+    display: none;
+    color: brown;
+}
+
+.formerror.show{
+    display: block;
+}
+
+#submitBtn{
+    color: rgba(172, 255, 47, 0.61);
+}
+
+@media screen and (max-width:600px){
+    .form-horizontal{
+        margin-left: 0%;
+    }
+}

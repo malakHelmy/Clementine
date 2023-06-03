@@ -18,6 +18,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        <span class="nav-link-text">Chat</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/logout">
                         <span class="nav-link-text">Logout</span>
                     </a>
@@ -67,21 +72,20 @@
                             <div class="dropdown-header noti-title">
                                 <h6 class="text-overflow m-0">Welcome,<%= user.firstname  %> </h6>
                             </div>
-                            <a href="#!" class="dropdown-item">
+                            <a href="/userprofile" class="dropdown-item">
                                 
                                 <span>My profile</span>
                             </a>
-                            <a href="#!" class="dropdown-item">
+                            <a href="/userprofile/order" class="dropdown-item">
                                 
                                 <span>Orders</span>
                             </a>
                             
-                            <a href="#!" class="dropdown-item">
-                                <i class="fa fa-phone"></i>
+                            <a href="/contactus" class="dropdown-item">
                                 <span>Support</span>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="#!" class="dropdown-item">
+                            <a href="/logout" class="dropdown-item">
                                 <i class="fa fa-sign-out-alt"></i>
                                 <span>Logout</span>
                             </a>

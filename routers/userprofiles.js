@@ -25,5 +25,27 @@ router.get(`/`, async (req, res) => {
     }
 });
 router.get(`/order`, users.getOrders);
+router.get(`/editprofile`, users.getUserEditor);
+
+router.get(`/order/:id`, async (req, res) => {
+    const userProfile = await user.findOne({ email: req.session.user });
+    if (!userProfile) {
+        console.log('user was not found');
+        res.render('pages/404');
+    }
+    let userOrder = await Order.findOne({ _id: req.params.id });
+    console.log(userOrder);
+    let orderitem = await Product.find({_id : {$in : userOrder.orderItems}});
+    console.log(orderitem);
+
+    res.render('pages/userOrder', {
+        user: req.session.user == undefined ? undefined : userProfile,
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
+        order: userOrder,
+        orderitems : orderitem,
+    });
+});
+
+router.post('/editprofile', users.editUser );
 
 module.exports = router;

@@ -12,6 +12,20 @@ const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
 const bcrypt = require('bcrypt')
 const User = require('./models/user');
+const io = require('socket.io')(3000);
+
+io.on('connection', socket => {
+    socket.emit('chat-message', 'Hello, how can I help you?');
+
+    // Listen for chat messages from the client
+    socket.on('chat message', (message) => {
+        console.log('Message:', message);
+
+        // Broadcast the message to all connected clients
+        io.emit('chat message', message);
+    });
+});
+
 // for auto refresh
 const livereload = require('livereload');
 const connectLivereload = require('connect-livereload');

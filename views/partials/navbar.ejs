@@ -3,6 +3,8 @@
     <div class="navigation">
         <div class="container">
             <div class="navbar">
+               <div id="google_translate_element"></div>
+
                 <div class="logo-toggle-container">
                     <a href="/">
                         <img src="/Images/logoo copy.png">
@@ -157,6 +159,10 @@
             $(".navigation .menu").stop().slideToggle();
         });
     });
+     function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
 </script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <!-- Navigation Bar End -->
