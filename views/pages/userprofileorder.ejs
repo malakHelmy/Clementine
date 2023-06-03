@@ -18,57 +18,59 @@
             <h1>Your Orders
             </h1>
             <br>
-                <% if(orders !='' ) {%>
-                    <div class="col-lg-8">
-                        <% var count = 0; orders.forEach((order)=>{ %>
-                            <div class="card">
-                                <div class="card-header bg-transparent">
-                                    <h6 class="text-uppercase text-muted ls-1 mb-1"></h6>
-                                    <h5 class="h3 mb-0">Order <%= count += 1 %></h5>
-                                    <div class="text-uppercase">Order <%= order._id %>
+            <% if(orders !='' ) {%>
+                <div class="col-lg-8">
+                    <% var count=0; orders.forEach((order)=>{ %>
+                        <div class="card">
+                            <div class="card-header bg-transparent">
+                                <h6 class="text-uppercase text-muted ls-1 mb-1"></h6>
+                                <h5 class="h3 mb-0">Order <%= count +=1 %>
+                                </h5>
+                                <div class="text-uppercase">Order <%= order._id %>
 
-                                            <div class="blue-label ms-auto text-uppercase">paid</div>
-                                    </div>
-                                    <div class="fs-8">Products #<%= order.orderItems.length %>
-                                    </div>
-                                    <div class="fs-8">
-                                        <%= order.dateOrdered %>
-                                    </div>
-                                    <div class="d-sm-flex align-items-sm-start justify-content-sm-between">
-
-                                        <% if (order.status==="Shipped" ) { %>
-                                            <div class="status">Status : <p class="status_shipped">Shipped</p>
-                                            </div>
-                                            <% } else if (order.status==="Delivered" ) { %>
-                                                <div class="status">Status : <p class="status_delivered">Delivered</p>
-                                                </div>
-                                                <% } else if (order.status==="Pending" ) { %>
-                                                    <div class="status">Status : <p class="status_pending">Pending</p>
-                                                    </div>
-                                                    <% } else if (order.status==="Cancelled" ) { %>
-                                                        <div class="status">Status : <p class="status_cancelled">
-                                                                Cancelled
-                                                            </p>
-                                                        </div>
-                                                        <% } %>
-                                    </div>
-                                    <div class="btn btn-primary text-uppercase" location.href='/userprofileorder'>order
-                                        info
-                                    </div>
-
-
+                                        <div class="blue-label ms-auto text-uppercase">paid</div>
                                 </div>
+                                <div class="fs-8">Products #<%= order.orderItems.length %>
+                                </div>
+                                <div class="fs-8">
+                                    <%= order.dateOrdered %>
+                                </div>
+                                <div class="d-sm-flex align-items-sm-start justify-content-sm-between">
+
+                                    <% if (order.status==="Shipped" ) { %>
+                                        <div class="status">Status : <p class="status_shipped">Shipped</p>
+                                        </div>
+                                        <% } else if (order.status==="Delivered" ) { %>
+                                            <div class="status">Status : <p class="status_delivered">Delivered</p>
+                                            </div>
+                                            <% } else if (order.status==="Pending" ) { %>
+                                                <div class="status">Status : <p class="status_pending">Pending</p>
+                                                </div>
+                                                <% } else if (order.status==="Cancelled" ) { %>
+                                                    <div class="status">Status : <p class="status_cancelled">
+                                                            Cancelled
+                                                        </p>
+                                                    </div>
+                                                    <% } %>
+                                </div>
+                                <a href='/userprofile/order/<%- order._id %>'>
+                                    <button class="btn btn-primary text-uppercase">order
+                                        info
+                                    </button></a>
+
 
                             </div>
 
-                            <% })} %>
-                                <div class="card-body">
+                        </div>
 
-                                </div>
+                        <% })} %>
+                            <div class="card-body">
 
-                    </div>
-            </div>
-        
+                            </div>
+
+                </div>
+        </div>
+
         <!-- Footer -->
         <script
             src="https://rawcdn.githack.com/Loopple/loopple-public-assets/5cef8f62939eeb089fa26d4c53a49198de421e3d/argon-dashboard/js/vendor/jquery.min.js"></script>

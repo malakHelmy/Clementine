@@ -42,7 +42,8 @@ router.post('/', async (req, res) => {
         });
         console.log(productinCart);
         if (!User) {
-            res.status(404).console.log('Cannot find user');
+            res.status(404);
+            console.log('Cannot find user');
         }
 
         let order = new Order({
