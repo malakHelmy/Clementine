@@ -1,8 +1,6 @@
 $(document).ready(function () {
     $("#signInform").on('submit', function (e) {
         e.preventDefault();
-        console.log($('#email').val());
-        console.log($('#password').val());
         var data ={email: $('#email').val(),
         password: $('#password').val()
     };
@@ -25,25 +23,27 @@ $(document).ready(function () {
                     });
                 }
 
-                if (response == 'taken') {
-                    $('#emaillabel').html('Email already exists ');
-                    $('#emaillabel').css("color", "red");
+                if (response.emailerror != undefined) {
+                    $('#emaillabel').html(response.emailerror);
+                    $('#emaillabel').css("color", "rgb(97, 9, 9)");
                     const pass=document.getElementById('email');
+
                     const formc=pass.parentElement;
                     formc.className='textfield failed';
+                }else{
+                    $('#emaillabel').html('');
+                    $('#emaillabel').css("color", "green");
+                    const pass=document.getElementById('email');
+                    const formc=pass.parentElement;
+                    formc.className='textfield success';
                 }
-                 else if(response == 'available'){
-                      $('#emaillabel').html('Email is available');
-                      $('#emaillabel').css("color", "green");
-                      const pass=document.getElementById('email');
+
+                 if(response.Passerror != undefined){
+                      $('#passlabell').html(response.Passerror);
+                   
+                      const pass=document.getElementById('password');
                       const formc=pass.parentElement;
-                      formc.className='textfield success';
-                 }else{
-                    $('#emaillabel').html('Email is Invalid');
-                    $('#emaillabel').css("color", "red");
-                    const pass=document.getElementById('email');
-                    const formc=pass.parentElement;
-                    formc.className='textfield failed';
+                      formc.className='textfield failed';
                  }
              
             },
