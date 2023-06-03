@@ -94,6 +94,31 @@
         </div>
     </section>
 
+    <script>
+        $('form').on('submit', (e)=>{
+            e.preventDefault();
+
+            const uemail=$('#email').val().trim();
+            const subject = $('#subject').val().trim();
+            const text = $('#message').val().trim();
+
+            const formData = {
+                uemail,
+                subject,
+                text
+            };
+
+            $.post('/checkout', data, function(){
+                console.log('server recieved data');
+
+
+            });
+
+
+        })
+    </script>
+
+
     <%- include('../partials/footer') -%>
     
     <script src="/js/contactus.js"></script> 

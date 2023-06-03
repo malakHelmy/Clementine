@@ -338,7 +338,7 @@ app.post(`/contactus`, function (req, res) {
             console.log('Email sent:' + info.response);
             res.send('Successfully sent.');
         }
-        express.response.redirect('/');
+        res.redirect('/');
     });
 });
 /* ---------CONTACT US FORM MAILER END --------*/
