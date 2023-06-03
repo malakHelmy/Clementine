@@ -12,91 +12,108 @@ exports.validateProduct = asyncHandler(async (req, res) => {
     }
     imgFile = req.files['img'][0];
     uploadPath = path.join(req.body.id + path.extname(imgFile.name));
-const { count } = require("../models/cart");
+    const { count } = require("../models/cart");
 
-exports.addProduct = async (req, res) => {
-    const { name, price, description, material, category, countInStock } = req.body;
-    let invalidInputs = {};
-    let files = req.files;
-    let images = [];
-    let priceformat = !/^\d+(.\d{1,2})?$/;
-    let countformat = !/^\d+$/;
 
-    if (!name || name.trim() === '') {
-        invalidInputs.name = 'Invalid jewelry name, please try again.';
-    }
 
-    if (!description || description.trim() === '') {
-        invalidInputs.description = 'You must define the product.';
-    }
 
-    if (!material || material.trim() === '') {
-        invalidInputs.material = 'Please enter the material of the jewelry.';
-    }
+    exports.addProduct = async (req, res) => {
+        const { name, price, description, material, category, countInStock } = req.body;
+        let invalidInputs = {};
+        let files = req.files;
+        let images = [];
+        let priceformat = !/^\d+(.\d{1,2})?$/;
+        let countformat = !/^\d+$/;
 
-    if (!price || price.trim() === "") {
-        invalidInputs.price = "You must enter a price value.";
-    } else if (!price.match(priceformat)) {
-        invalidInputs.price = "Invalid price input.";
-    }
-
-    if (!category || category.trim() === '') {
-        invalidInputs.category = 'Please enter the category.';
-    }
-
-    if (!countInStock || countInStock.trim() === "") {
-        invalidInputs.countInStock = "Please enter the count in stock.";
-    } else if (!count.match(countformat)) {
-        invalidInputs.countInStock = "Count in stock must be a positive integer.";
-    }
-
-    if (!files || Object.keys(files).length === 0) {
-        invalidInputs.images = "Please upload at least one image.";
-    } else {
-        for (let file of files) {
-            let image = {
-                filename: file.filename,
-                path: file.path,
-            };
-            images.push(image);
+        if (!name || name.trim() === '') {
+            invalidInputs.name = 'Invalid jewelry name, please try again.';
         }
-    }
 
-    if (Object.keys(invalidInputs).length > 0) {
-        return res.status(404).json({ errors: invalidInputs });
-    }
+        if (!description || description.trim() === '') {
+            invalidInputs.description = 'You must define the product.';
+        }
 
-    // Use the mv() method to place the file somewhere on your server
-    imgFile.mv(uploadPath, function (err) {
-        if (err) res.status(500).send(err);
+        if (!material || material.trim() === '') {
+            invalidInputs.material = 'Please enter the material of the jewelry.';
+        }
 
-        const product = new Product({
-            id: req.body.id,
-            name: req.body.name,
-            image: req.body.id,
-            images: req.body.id,
-            price: req.body.price,
-            description: req.body.description,
-            material: req.body.material,
-            category: req.body.category,
-            countInStock: req.body.countInStock,
-        });
-        product
-            .save()
-            .then((result) => {
-                res.redirect('/addproducts');
-            })
-            .catch((err) => {
-                console.log(err);
+        if (!price || price.trim() === "") {
+            invalidInputs.price = "You must enter a price value.";
+        } else if (!price.match(priceformat)) {
+            invalidInputs.price = "Invalid price input.";
+        }
+
+        if (!category || category.trim() === '') {
+            invalidInputs.category = 'Please enter the category.';
+        }
+
+        if (!countInStock || countInStock.trim() === "") {
+            invalidInputs.countInStock = "Please enter the count in stock.";
+        } else if (!count.match(countformat)) {
+            invalidInputs.countInStock = "Count in stock must be a positive integer.";
+        }
+        if (!req.files || Object.keys(req.files).length === 0) {
+            return res.status(400).json({ error: 'No files were uploaded.' });
+        }
+        if (!req.files.img || req.files.img.length === 0) {
+            return res.status(400).json({ error: 'No image files were uploaded.' });
+        }
+
+        // if (!files || Object.keys(files).length === 0) {
+        //     invalidInputs.images = "Please upload at least one image.";
+        // } else {
+        //     for (let file of files) {
+        //         let image = {
+        //             filename: file.filename,
+        //             path: file.path,
+        //         };
+        //         images.push(image);
+        //     }
+        // }
+
+        if (Object.keys(invalidInputs).length > 0) {
+            return res.status(404).json({ errors: invalidInputs });
+        }
+
+
+        // Use the mv() method to place the file somewhere on your server
+        imgFile.mv(uploadPath, function (err) {
+            if (err) res.status(500).send(err);
+
+            const product = new Product({
+                id: req.body.id,
+                name: req.body.name,
+                image: req.body.id,
+                images: req.body.id,
+                price: req.body.price,
+                description: req.body.description,
+                material: req.body.material,
+                category: req.body.category,
+                countInStock: req.body.countInStock,
             });
-    });
-}});
+            product
+                .save()
+                .then((result) => {
+                    res.redirect('/displayproducts');
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        });
+    }
+});
+
 
 exports.addProduct = asyncHandler(async function (req, res, next) {
     const { id, name, price, description, material, category, countInStock } =
         req.body;
     let imgFiles = [];
     let uploadPaths = [];
+
+    if (!req.files || !Array.isArray(req.files.img) || req.files.img.length === 0
+    || req.files.img.length < 4) {
+        return res.status(400).json({ error: 'Please upload 4 images of the product.' });
+    }
 
     if (Array.isArray(req.files.img)) {
         imgFiles = [...req.files.img];
@@ -131,7 +148,7 @@ exports.addProduct = asyncHandler(async function (req, res, next) {
     product
         .save()
         .then((result) => {
-            res.redirect('/view');
+            res.redirect('/displayproducts');
         })
         .catch((err) => {
             console.log(err);

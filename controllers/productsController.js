@@ -438,7 +438,7 @@ exports.getNewIn = asyncHandler(async (req, res) => {
     try {
         const result = await Product.find()
             .sort({ date: -1 })
-            .skip(prodperpage * page - prodperpage)
+            .skip(prodperpage * page - prodperpage) //calculates the index of the first item to display on the current page
             .limit(prodperpage)
             .exec();
 
