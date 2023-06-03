@@ -65,6 +65,7 @@ body {
 
     visibility: visible;
 }
+
 .lgbutton:hover {
   background: #d79e2e;
   transition: 0.7s ease-in-out;
@@ -95,6 +96,12 @@ body {
     border: none;
     outline: none;
 }
+
+#passlabell,.emaillabel{
+    
+    color: rgb(97, 9, 9);
+}
+
 
 .textfield label {
 
@@ -231,5 +238,4 @@ body {
 position: relative;
 left: 20px;
 top: -18px;
-
 }
