@@ -224,6 +224,30 @@ app.get(`/myprofile`, function (req, res) {
 
     })
 })
+app.post('/validate_old_password', async (req, res) => {
+    // Get the old password from the request body
+    const oldPassword = req.body.oldPassword;
+
+    // Perform the validation against the password stored in the database
+    // Here, you would use your database library (e.g., Mongoose for MongoDB) to query and compare the passwords
+    User.findOne({ email: req.session.user }, (err, user) => {
+        if (err) {
+            // Error occurred while querying the database
+            console.error(err);
+            res.status(500).json({ valid: false });
+        } else {
+            if (user && user.password === oldPassword) {
+                // Old password is valid
+                res.json({ valid: true });
+            } else {
+                // Old password is invalid
+                res.json({ valid: false });
+            }
+        }
+    });
+});
+
+
 app.post('/change_password', async (req, res) => {
     const oldPassword = req.body.oldPassword;
     const newPassword = req.body.newPassword;
