@@ -29,7 +29,9 @@ const userSchema = mongoose.Schema(
             type: Boolean,
             default : false,
         },
-        address: String,
+        address: [{
+            type: String,
+        }],
         wishlist: [{type: mongoose.Schema.Types.ObjectId,
         ref: 'products'}],
         orders: [

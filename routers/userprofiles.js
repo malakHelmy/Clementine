@@ -25,5 +25,8 @@ router.get(`/`, async (req, res) => {
     }
 });
 router.get(`/order`, users.getOrders);
+router.get(`/editprofile`, users.getUserEditor);
+
+router.post('/editprofile', users.editUser );
 
 module.exports = router;
