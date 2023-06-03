@@ -13,9 +13,9 @@ router.get(`/`, function (req, res) {
 });
 
 router.post(`/`, async (req, res) => {
-    const result = await User.findOne({ email: req.body.email });
+    const result = await User.findOne({ email: req.body.inputs.email });
     if (result) {
-        if (await bcrypt.compare(req.body.password, result.password)) {
+        if (await bcrypt.compare(req.body.inputs.password, result.password)) {
             req.session.user = req.body.email;
             if (req.session.cart != undefined)
                 req.session.cart.items.forEach((items) => {
@@ -50,7 +50,7 @@ router.post(`/`, async (req, res) => {
                     }
                 });
             }
-            res.redirect('/');
+            res.send('true');
         } else {
             res.render('pages/login', {
                 user:
