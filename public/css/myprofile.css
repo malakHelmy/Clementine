@@ -53,6 +53,13 @@ body {
   button[type="submit"]:hover {
     background-color: #555;
   }
+@media screen and (max-width: 900px)
+{
+    .changePass{
+        top: 65%;
+        width: 90%;
+    }
+}
 
 .changePass {
   width: 40%;
