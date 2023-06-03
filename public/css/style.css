@@ -1329,9 +1329,9 @@ body {
     bottom: 20px;
     right: 20px;
     z-index: 9999;
-  }
-  
-  #chat-icon {
+}
+
+#chat-icon {
     background-color: #333;
     color: #fff;
     width: 60px;
@@ -1343,9 +1343,9 @@ body {
     font-size: 24px;
     cursor: pointer;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-  }
-  
-  #chat-window {
+}
+
+#chat-window {
     position: fixed;
     bottom: 90px;
     right: 20px;
@@ -1358,65 +1358,65 @@ body {
     transition: all 0.3s ease-in-out;
     transform: translateY(100%);
     opacity: 0;
-  }
-  
-  #chat-window.active {
+}
+
+#chat-window.active {
     transform: translateY(0);
     opacity: 1;
-  }
-  
-  #chat-header {
+}
+
+#chat-header {
     padding: 12px 16px;
     background-color: #333;
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  #chat-header h2 {
+}
+
+#chat-header h2 {
     margin: 0;
     font-size: 16px;
-  }
-  
-  #close-chat {
+}
+
+#close-chat {
     color: #fff;
     cursor: pointer;
-  }
-  
-  #chat-body {
+}
+
+#chat-body {
     padding: 16px;
-  }
-  
-  .message {
+}
+
+.message {
     margin-bottom: 10px;
     padding: 8px;
     border-radius: 4px;
-  }
-  
-  .message.sent {
+}
+
+.message.sent {
     background-color: #f2f2f2;
     text-align: right;
-  }
-  
-  .message.received {
+}
+
+.message.received {
     background-color: #e6e6e6;
-  }
-  
-  #chat-footer {
+}
+
+#chat-footer {
     padding: 12px 16px;
     display: flex;
     align-items: center;
-  }
-  
-  #chat-input {
+}
+
+#chat-input {
     flex-grow: 1;
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
-  }
-  
-  #send-message {
+}
+
+#send-message {
     margin-left: 10px;
     padding: 8px 16px;
     border-radius: 4px;
@@ -1424,5 +1424,21 @@ body {
     color: #fff;
     border: none;
     cursor: pointer;
-  }
-  
+}
+
+.goog-logo-link {
+    display: none !important;
+}
+
+.goog-te-gadget {
+    color: transparent !important;
+}
+
+#google_translate_element select {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 3px;
+    padding: 6px 8px
+}
+
