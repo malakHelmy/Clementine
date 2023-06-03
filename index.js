@@ -10,7 +10,8 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
-
+const bcrypt = require('bcrypt')
+const User = require('./models/user');
 // for auto refresh
 const livereload = require('livereload');
 const connectLivereload = require('connect-livereload');
@@ -223,6 +224,36 @@ app.get(`/myprofile`, function (req, res) {
 
     })
 })
+app.post('/change_password', async (req, res) => {
+    const oldPassword = req.body.oldPassword;
+    const newPassword = req.body.newPassword;
+    const confirmPassword = req.body.confirmPassword;
+  
+    // Authenticate the user
+    const user = await User.findOne({ email: req.session.user }).exec();
+    if (!user) {
+      res.send({ success: false, message: 'User not found' });
+      return;
+    }
+  
+    const isOldPasswordValid = await bcrypt.compare(oldPassword, user.password);
+    if (!isOldPasswordValid) {
+      res.send({ success: false, message: 'Old password is incorrect' });
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+        res.send({ success: false, message: 'New password and confirm password do not match' });
+        return;
+      }
+  
+    // Update the password in the database
+    const hashedNewPassword = await bcrypt.hash(newPassword, saltRounds);
+    user.password = hashedNewPassword;
+    await user.save();
+  
+    res.send({ success: true, message: 'Password updated successfully' });
+  });
+
 
 app.get(`/displayproducts`, function (req, res) {
     res.render('pages/displayproducts');
