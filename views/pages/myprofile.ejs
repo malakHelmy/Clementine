@@ -15,7 +15,7 @@
 
 <body>
     <div class="col-lg-3 my-lg-0 my-md-1">
-       
+         <section class="changePass">
     <h1>Change Password</h1>
    
         <form method="POST" action="/change_password">
@@ -32,9 +32,12 @@
                 placeholder="Confirm Password" required>
 
             <button type="submit">Change Password</button>
-    
+     
     </form>
-
+</section>
+ <script src="js/changePassValidation.js"></script>
+   <script src="js/ajaxChangePass.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </body>
 
 </html>
