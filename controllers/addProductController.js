@@ -131,7 +131,7 @@ exports.addProduct = asyncHandler(async function (req, res, next) {
     product
         .save()
         .then((result) => {
-            res.redirect('/view');
+            res.redirect('/displayproducts');
         })
         .catch((err) => {
             console.log(err);

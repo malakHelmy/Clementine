@@ -4,6 +4,10 @@ const multer = require('multer');
 const router = express.Router();
 const products = require('../controllers/addProductController');
 
+router.get('/view', (req, res) => {
+    res.render('pages/displayproducts');
+});
+
 const productstorage = multer.diskStorage({
     destination: 'public/Images',
     filename: (req, file, myfunc) => {
@@ -22,9 +26,7 @@ const upload = multer({
   },
 }).fields([{ name: 'img', maxCount: 4 }]);
 
-router.get('/view', (req, res) => {
-    res.render('pages/displayproducts');
-});
+
 
 router.get('/', (req, res) => {
     let invalidInputs = {};
