@@ -34,7 +34,8 @@
     "nodemailer": "^6.9.2",
     "nodemailer-express-handlebars": "^6.1.0",
     "openai": "^3.2.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "socket.io": "^4.6.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
