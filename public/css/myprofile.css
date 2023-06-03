@@ -53,3 +53,12 @@ body {
   button[type="submit"]:hover {
     background-color: #555;
   }
+
+.changePass {
+  width: 40%;
+  position: relative;
+  top: 70px;
+  margin-bottom: 6%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+}
