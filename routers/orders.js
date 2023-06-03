@@ -3,6 +3,8 @@ const { Order } = require('../models/order');
 const { User } = require('../models/user');
 const { OrderItem } = require('../models/order-items');
 const router = express.Router();
+const { Product } = require('../models/product');
+
 
  //adding a new order to the schema
  router.post(`/`, async (req, res) => {
