@@ -52,18 +52,24 @@ exports.validateProduct = asyncHandler(async (req, res) => {
         } else if (!count.match(countformat)) {
             invalidInputs.countInStock = "Count in stock must be a positive integer.";
         }
-
-        if (!files || Object.keys(files).length === 0) {
-            invalidInputs.images = "Please upload at least one image.";
-        } else {
-            for (let file of files) {
-                let image = {
-                    filename: file.filename,
-                    path: file.path,
-                };
-                images.push(image);
-            }
+        if (!req.files || Object.keys(req.files).length === 0) {
+            return res.status(400).json({ error: 'No files were uploaded.' });
         }
+        if (!req.files.img || req.files.img.length === 0) {
+            return res.status(400).json({ error: 'No image files were uploaded.' });
+        }
+
+        // if (!files || Object.keys(files).length === 0) {
+        //     invalidInputs.images = "Please upload at least one image.";
+        // } else {
+        //     for (let file of files) {
+        //         let image = {
+        //             filename: file.filename,
+        //             path: file.path,
+        //         };
+        //         images.push(image);
+        //     }
+        // }
 
         if (Object.keys(invalidInputs).length > 0) {
             return res.status(404).json({ errors: invalidInputs });
@@ -105,8 +111,8 @@ exports.addProduct = asyncHandler(async function (req, res, next) {
     let uploadPaths = [];
 
     if (!req.files || !Array.isArray(req.files.img) || req.files.img.length === 0
-    || req.files.img.length < 5) {
-        return res.status(400).json({ error: 'Please upload 5 images.' });
+    || req.files.img.length < 4) {
+        return res.status(400).json({ error: 'Please upload 4 images of the product.' });
     }
 
     if (Array.isArray(req.files.img)) {
