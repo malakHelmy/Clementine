@@ -10,7 +10,8 @@ exports.getOrders = asyncHandler(async (req, res) => {
         console.log('user was not found');
         res.render('pages/404');
     }
-    const userOrder = await Order.find({ userID: { $in: userProfile._id } });
+    const userOrder = await Order.find({ _id: { $in: userProfile.orders} });
+    
     if(!userOrder)
     {
         console.log('no orders were found');

@@ -9,10 +9,8 @@ const router = express.Router();
 router.get(`/`, async (req, res) => {
     if (req.session.user != undefined) {
         const userProfile = await user.findOne({ email: req.session.user });
-        const userOrder = await Order.find({
-            userID: { $in: userProfile._id },
-        });
-        const wishlistItems = await Product.find({
+        var userOrder = await Order.find({ userID: { $in: userProfile._id } });
+        var wishlistItems = await Product.find({
             _id: { $in: userProfile.wishList },
         });
         if (!userOrder) {
