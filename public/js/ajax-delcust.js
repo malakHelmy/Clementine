@@ -1,3 +1,4 @@
+let timeoutbug = null;
 
 function deleteCustomer(event) {
     const form = event.target.closest('form');
@@ -7,7 +8,7 @@ function deleteCustomer(event) {
             method: 'POST',
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
             //ashan yearf en fetch is made using ajax
-            //to indicate that a request is an ajax request p.s. not an offical http eader
+            // p.s. not an offical http header
         })
             .then(response => {
                 return response.json();
@@ -16,7 +17,17 @@ function deleteCustomer(event) {
                 if (data.message === "User deleted successfully") {
                     const targetcustrow = event.target.closest('tr');
                     targetcustrow.parentElement.removeChild(targetcustrow);
+                    const succmsg = document.getElementById('successmsg');
+                    succmsg.textContent = 'Customer successfully deleted.';
+                    succmsg.classList.add('show'); //mn css
+                    clearTimeout(timeoutbug); //attempting to fix timeout overridden bug
+                    timeoutbug = setTimeout(hidemsg, 3000);
                 } else {
+                    const errmsg = document.getElementById('errmsgdel');
+                    errmsg.textContent = error.message;
+                    errmsg.classList.add('show');
+                    clearTimeout(timeoutbug);
+                    timeoutbug = setTimeout(hidemsg, 3000);
                     throw new Error('Failed to delete customer, please try again.');
                 }
             })
@@ -35,3 +46,16 @@ document.addEventListener('click', event => {
         deleteCustomer(event);
     }
 });
+
+function hidemsg() {
+    const errmsg = document.getElementById('errmsgdel');
+    const succmsg = document.getElementById('successmsg');
+    if (errmsg.classList.contains('show')) { //checks lw css of .show mwgod
+      errmsg.classList.remove('show');
+    }
+    if (succmsg.classList.contains('show')) {
+      succmsg.classList.remove('show');
+    }
+  }
+  
+  setTimeout(hidemsg, 3000);

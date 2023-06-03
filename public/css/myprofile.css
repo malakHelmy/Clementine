@@ -1,55 +1,86 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    padding: 20px;
-  }
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
-  h1 {
-    color: #333;
-    text-align: center;
-    margin-top: 20px;
-  }
+.container {
+  position: relative;
+  max-width: 400px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
 
-  .container {
-    max-width: 400px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
 
-  .form-group {
-    margin-bottom: 20px;
-  }
 
-  label {
-    display: block;
-    margin-bottom: 10px;
-    color: #333;
-    font-weight: bold;
-  }
+.form-group {
+  margin-bottom: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
+label {
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'zapf';
+}
 
-  button[type="submit"] {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-    transition: background-color 0.3s;
-  }
+.changePass h1 {
+  padding-top: 100px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid #adadad;
+  font-family: 'Zapf';
+  letter-spacing: 2px;
+  text-align: center;
+}
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
 
-  button[type="submit"]:hover {
-    background-color: #555;
-  }
+button[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+button[type="submit"]:hover {
+  background-color: #d79e2e;
+}
+
+@media screen and (max-width: 900px)
+{
+    .changePass{
+        top: 65%;
+        width: 90%;
+    }
+}
+.changePass {
+  width: 40%;
+  position: relative;
+  top: 70px;
+  margin-bottom: 6%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+}
+

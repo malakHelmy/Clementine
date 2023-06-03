@@ -18,18 +18,17 @@ router.get('/', async (req, res) => {
 });
 
 // Delete a product
-router.post('/delete', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
-    const { productId } = req.body;
-
-    // Find the product by ID and remove it from the database
-    await Product.findByIdAndRemove(productId);
-
-    // Redirect back to the displayproducts page
-    res.redirect('/displayproducts');
+    const productId = req.params.id;
+    await Product.findOneAndDelete({ _id: productId });
+    console.log(productId);
+    if (req.query.ajax)
+      return res.json({ message: "Product deleted successfully" });
   } catch (error) {
-    console.log(error);
-    res.render('pages/error');
+    console.log('Error deleting product:', error);
+    res.status(500)
+      .json({ error: 'Failed to delete product, please try again.' });
   }
 });
 
