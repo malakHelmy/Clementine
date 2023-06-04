@@ -24,6 +24,9 @@ router.post('/', async (req, res) => {
     confirmpasserror:String,
     phoneerror:String
   }
+
+   console.log(req.body.inputs)
+
   if(firstnamevalue.trim()=='')
   {
     Error.firsterror='Please enter Firstname';
@@ -84,14 +87,16 @@ router.post('/', async (req, res) => {
   else if(confirmpassvalue==passvalue)
   {
   }
-  if(phonevalue.length!=11 &&  isNaN(phonevalue )){
-
+  if(phonevalue.length==11 &&  !isNaN(phonevalue) ){
+ 
   }
   else{
-    Error.phoneerror='Please enter right a phone number';
+    Error. phoneerror='Please enter right a phone number';
     c++;
   }
-        if(c==0)
+  console.log(Error)
+       
+  if(c==0)
         {
           const user={
             firstname:req.body.inputs.firstname,
@@ -115,6 +120,7 @@ router.post('/', async (req, res) => {
               .catch( err => {
                 console.log(err);
               });
+
             } 
             else{
               Error.emailerror='existed email';
