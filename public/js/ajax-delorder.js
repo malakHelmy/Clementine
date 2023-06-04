@@ -6,7 +6,7 @@ function deleteOrder(orderID) {
     if (form) {
         const orderID = form.orderID.value;
 
-        fetch(`/ordersdash/${productId}?ajax=true`, {
+        fetch(`/ordersdash/${orderID}?ajax=true`, {
             method: 'DELETE',
             headers: { 'X-Requested-With': 'XMLHttpRequest' },
 
