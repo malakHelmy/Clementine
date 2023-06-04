@@ -49,6 +49,8 @@ const checkoutRouter = require('./routers/checkout');
 const addcustRouter = require('./routers/addcustomers');
 const reviewsRouter = require('./routers/reviews');
 const reportsRouter = require('./routers/reports');
+const adminprofileRouter = require('./routers/adminprofile');
+
 
 
 //const updatecustRoute = require('./routers/updatedeletecust');
@@ -109,6 +111,7 @@ app.use('/customers', addcustRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/reviews', reviewsRouter);
 app.use('/reports', reportsRouter);
+app.use('/adminprofile', adminprofileRouter);
 
 
 
@@ -226,6 +229,14 @@ app.get(`/updateorder`, function (req, res) {
 app.get(`/ordersdash`, function (req, res) {
     res.render('pages/ordersdash');
 });
+app.get(`/adminprofile`, function(req, res) {
+    res.render('pages/adminprofile', {
+        user: req.session.user == undefined ? undefined : req.session.user,
+        error:undefined,
+
+    })
+})
+
 app.get(`/myprofile`, function (req, res) {
     res.render('pages/myprofile', {
         user: req.session.user == undefined ? undefined : req.session.user,
@@ -234,59 +245,6 @@ app.get(`/myprofile`, function (req, res) {
 
     })
 })
-app.post('/validate_old_password', async (req, res) => {
-    // Get the old password from the request body
-    const oldPassword = req.body.oldPassword;
-
-    // Perform the validation against the password stored in the database
-    // Here, you would use your database library (e.g., Mongoose for MongoDB) to query and compare the passwords
-    User.findOne({ email: req.session.user }, (err, user) => {
-        if (err) {
-            // Error occurred while querying the database
-            console.error(err);
-            res.status(500).json({ valid: false });
-        } else {
-            if (user && user.password === oldPassword) {
-                // Old password is valid
-                res.json({ valid: true });
-            } else {
-                // Old password is invalid
-                res.json({ valid: false });
-            }
-        }
-    });
-});
-
-
-app.post('/change_password', async (req, res) => {
-    const oldPassword = req.body.oldPassword;
-    const newPassword = req.body.newPassword;
-    const confirmPassword = req.body.confirmPassword;
-  
-    // Authenticate the user
-    const user = await User.findOne({ email: req.session.user }).exec();
-    if (!user) {
-      res.send({ success: false, message: 'User not found' });
-      return;
-    }
-  
-    const isOldPasswordValid = await bcrypt.compare(oldPassword, user.password);
-    if (!isOldPasswordValid) {
-      res.send({ success: false, message: 'Old password is incorrect' });
-      return;
-    }
-    if (newPassword !== confirmPassword) {
-        res.send({ success: false, message: 'New password and confirm password do not match' });
-        return;
-      }
-  
-    // Update the password in the database
-    const hashedNewPassword = await bcrypt.hash(newPassword, saltRounds);
-    user.password = hashedNewPassword;
-    await user.save();
-  
-    res.send({ success: true, message: 'Password updated successfully' });
-  });
 
 
 app.get(`/displayproducts`, function (req, res) {

@@ -61,9 +61,9 @@
 
                         <h1 class="add-title" style="font-size: 15px;">Order Items:</h1>
                         <ul>
-                          <% order.orderItems.forEach(item => { %>
-                            <li><%= item.name %></li>
-                          <% }); %>
+                            <% order.orderItems.forEach(function(item) { %>
+                                <li><%= item.name %></li>
+                              <% }); %>
                         </ul>
                         <input type="submit" id="update" class="update-btn" value="Update"></button>
                         <button id="cancel" href="/ordersdash" id="cancel" class="delete-btn">Cancel</button>
@@ -74,7 +74,7 @@
                 </div>
 
 
-
+ 
               
                 <script src="/js/editcustdash.js"></script>
                 <script src="/js/dashsearch.js"></script>
