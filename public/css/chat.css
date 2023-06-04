@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@100;300;400;500;700;800;900&display=swap");
 
-/* Reset styles */
 * {
   margin: 0;
   padding: 0;
@@ -8,13 +6,11 @@
   font-family: "Alegreya Sans", sans-serif;
 }
 
-/* Body styles */
 body {
   background: #343541;
   overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
-/* App container styles */
 #app {
   width:100vw;
   height: 100vh;
@@ -25,7 +21,6 @@ body {
   justify-content: space-between;
 }
 
-/* Chat container styles */
 #chat_container {
   width:950px;
   flex-direction: column;
@@ -43,18 +38,15 @@ body {
   display: none;
 }
 
-/* Wrapper styles */
 .wrapper {
   width: 100%;
   padding: 15px;
 }
 
-/* AI message styles */
 .ai {
   background: #40414F;
 }
 
-/* Chat styles */
 .chat {
   width: 100%;
   max-width: 1280px;
@@ -65,7 +57,6 @@ body {
   gap: 10px;
 }
 
-/* Profile styles */
 .profile {
   width: 36px;
   height: 36px;
@@ -76,19 +67,16 @@ body {
   align-items: center;
 }
 
-/* AI profile styles */
 .ai .profile {
   background: #10a37f;
 }
 
-/* Profile image styles */
 .profile img {
   width: 60%;
   height: 60%;
   object-fit: contain;
 }
 
-/* Message styles */
 .message {
   flex: 1;
   color: #dcdcdc;
@@ -105,12 +93,12 @@ body {
   display: none;
 }
 
-/* Form styles */
+
 form {
   position: fixed;
   bottom: 0;
-  left: 350px; /* Adjust the value to match the width of the sidebar */
-  width: calc(100% - 400px); /* Adjust the value to exclude the width of the sidebar */
+  left: 350px; 
+  width: calc(100% - 400px);
   max-width: 1280px;
   margin: 0 auto;
   padding: 10px;
@@ -119,11 +107,9 @@ form {
   flex-direction: row;
   align-items: center;
   gap: 10px;
-  z-index: 1; /* Ensure the form is above the chat container */
   margin-bottom: 10px;
 }
 
-/* Textarea styles */
 textarea {
   flex: 1; /* Let the textarea grow to fill the remaining space */
   color: #fff;
@@ -135,17 +121,15 @@ textarea {
   outline: none;
 }
 
-/* Button styles */
 button {
-  width: 30px; /* Adjust the width as needed */
-  height: 30px; /* Adjust the height as needed */
+  width: 30px; 
+  height: 30px; 
   outline: 0;
   border: 0;
   cursor: pointer;
   background: transparent;
 }
 
-/* Image inside form styles */
 form img {
   width: 30px;
   height: 30px;
