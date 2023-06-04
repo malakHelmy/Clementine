@@ -7,8 +7,7 @@ const router = express.Router();
 
 //handling the form submission
 router.post('/',async (req, res) => {
-  const { name, email, password, phone, isAdmin } = req.body;
-
+ 
 
   const user={
     name:req.body.name,
@@ -18,9 +17,7 @@ router.post('/',async (req, res) => {
     isAdmin:Boolean(isAdmin)
   }
 
-   
   const newEmployer = new Employer(user);
-
   newEmployer.save()
     .then(() => {
       res.redirect('/employersdash'); 
@@ -28,6 +25,30 @@ router.post('/',async (req, res) => {
     .catch((error) => {
       res.render('error.ejs', { error }); 
     });
+});
+
+router.post('/checkemail', async  (req, res) => {
+ 
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var isValid = emailPattern.test(req.body.email);
+  if(isValid)
+  {
+    var query = { email: req.body.email };
+    Employer.find(query)
+        .then(result => {
+            if (result.length > 0) {
+                res.send('taken');
+            }
+            else {
+                res.send('available');
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
+  }else{
+    res.send('wrong');
+  }
 });
 
 
