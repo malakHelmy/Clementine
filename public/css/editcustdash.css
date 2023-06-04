@@ -18,7 +18,6 @@
     margin: 5%;
 }
 
-
 .add-title {
     color: rgb(4, 4, 4);
     margin: 5%;
@@ -624,4 +623,99 @@ th {
 .popup-buttons button.cancel {
     background-color: #7e7e7e;
     color: #fff;
+}
+
+#errmsgdel {
+    color: rgb(142, 38, 38);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    margin-top: 10px;
+    letter-spacing: 1px;
+
+}
+
+#successmsg {
+    color: rgb(27, 130, 27);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    margin-top: 10px;
+    letter-spacing: 1px;
+
+
+}
+
+#errmsgdel,
+#successmsg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.568);
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    z-index: 9999;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+#errmsgdel.show,
+#successmsg.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.confirmation-dialog {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.dialog-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 30%;
+    text-align: center;
+    font-size: 16px;
+}
+
+.dialog-buttons {
+    margin-top: 20px;
+}
+
+.confirm-button,
+.cancel-button {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.confirm-button {
+    background-color: #a51c1c;
+    color: white;
+    margin-right: 20px;
+}
+
+.cancel-button {
+    background-color: #999999;
+    color: white;
+}
+
+.confirm-button:hover,
+.cancel-button:hover {
+    opacity: 0.8;
+    
 }

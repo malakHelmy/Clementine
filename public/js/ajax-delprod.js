@@ -1,9 +1,28 @@
 let timeoutbug = null;
 
+function confirmDelete(event) {
+  event.preventDefault();
+  var confirmationDialog = document.getElementById("confirmationDialog");
+  confirmationDialog.style.display = "block";
+
+  var confirmButton = document.getElementById("confirmButton");
+  var cancelButton = document.getElementById("cancelButton");
+
+  confirmButton.onclick = function() {
+    confirmationDialog.style.display = "none";
+    deleteProduct(event);
+  }
+
+  cancelButton.onclick = function() {
+    confirmationDialog.style.display = "none";
+  }
+  return false;
+}
+
 function deleteProduct(event) {
     //listens for a click event w tearf el clicked element
   const form = event.target.closest('form'); //.closest=> to find nearest ancestor element 
-  if (form && confirm('Are you sure you want to delete this product?')) {
+  if (form) {
     //checks id form is not null
     const productId = form.productId.value;
     fetch(`/displayproducts/${productId}?ajax=true`, {
@@ -44,7 +63,7 @@ document.addEventListener('click', event => {
   const deleteButton = event.target.closest('.delete-product');
   if (deleteButton) {
     event.preventDefault();
-    deleteProduct(event);
+    confirmDelete(event);
   }
 });
 

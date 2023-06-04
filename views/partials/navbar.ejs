@@ -1,10 +1,12 @@
 <!-- Navigation Bar Start -->
+<div id="google_translate_element"></div>
+
+
 <section id="navigationbar">
     <div class="navigation">
         <div class="container">
             <div class="navbar">
-               <div id="google_translate_element"></div>
-
+                <div id="weglot_here"></div>
                 <div class="logo-toggle-container">
                     <a href="/">
                         <img src="/Images/logoo copy.png">
@@ -159,10 +161,12 @@
             $(".navigation .menu").stop().slideToggle();
         });
     });
-     function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-}
+    
+  Weglot.initialize({
+        api_key: 'wg_0bf2bb7e290e72f3fd8b2539acb64ed99'});
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+
+  
 <!-- Navigation Bar End -->

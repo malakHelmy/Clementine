@@ -235,3 +235,9 @@ body {
     font-size: 30px;
   }
 }
+#emaillabel,#reviewlabel,#summarylabel{
+
+  position: absolute;
+  left: 0;
+  top: 50px;
+}

@@ -12,19 +12,10 @@ const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
 const bcrypt = require('bcrypt')
 const User = require('./models/user');
-const io = require('socket.io')(3000);
 
-io.on('connection', socket => {
-    socket.emit('chat-message', 'Hello, how can I help you?');
 
-    // Listen for chat messages from the client
-    socket.on('chat message', (message) => {
-        console.log('Message:', message);
 
-        // Broadcast the message to all connected clients
-        io.emit('chat message', message);
-    });
-});
+  
 
 // for auto refresh
 const livereload = require('livereload');
@@ -56,7 +47,7 @@ const addempRouter = require('./routers/addemployers');
 const editempRouter = require('./routers/editemployers');
 const checkoutRouter = require('./routers/checkout');
 const addcustRouter = require('./routers/addcustomers');
-
+const reviewsRouter = require('./routers/reviews');
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
 
@@ -111,8 +102,9 @@ app.use('/logout', logoutroute);
 app.use('/addemployers', addempRouter);
 app.use('/editemployers', editempRouter);
 app.use('/checkout', checkoutRouter);
-app.use('/addcustomers', addcustRouter);
+app.use('/customers', addcustRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/reviews', reviewsRouter);
 
 
 
@@ -352,12 +344,12 @@ app.post(`/contactus`, function (req, res) {
             console.log('Email sent:' + info.response);
             res.send('Successfully sent.');
         }
-        express.response.redirect('/');
+        res.redirect('/');
     });
 });
 /* ---------CONTACT US FORM MAILER END --------*/
 
-   
+
 
 app.listen(port, () => {
     console.log('http://localhost:8080');

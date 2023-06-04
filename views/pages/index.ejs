@@ -14,9 +14,8 @@
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+
     <title>Clementine</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/socket.js"></script>
 </head>
 
 <body>
@@ -202,37 +201,12 @@
     </section>
     <!-- contact us end-->
 
-    <!-- Chat Icon -->
-    <div id="chat-icon-container">
-        <div id="chat-icon" onclick="toggleChatWindow()">
-            <i class="fas fa-comments"></i>
-        </div>
-    </div>
 
-    <!-- Chat Window -->
-<div id="chat-window">
-    <div id="chat-header">
-        <h2>Chat with us</h2>
-        <div id="close-chat" onclick="toggleChatWindow()">
-            <i class="fas fa-times"></i>
-        </div>
-    </div>
-    <div id="chat-body">
-        <!-- Chat messages will be displayed here -->
-    </div>
-    <div id="chat-footer">
-        <input type="text" id="chat-input" placeholder="Type your message..." />
-        <button id="send-message" onclick="sendMessage()">Send</button>
-    </div>
-</div>
+<%- include('../partials/footer') -%>
 
+<script src="/js/trial.js"></script>
+<script src="/js/cart.js"></script>
 
-
-    <%- include('../partials/footer') -%>
-
-
-    <script src="/js/trial.js"></script>
-    <script src="/js/cart.js"></script>
 
 
 </body>
