@@ -101,7 +101,7 @@ router.post(`/`, async  (req, res) => {
        
             if(result==undefined)
             {
-              console.log("true");
+             
               users
               .save()
               .then( (result) => {
