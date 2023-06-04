@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
@@ -33,15 +35,23 @@
 
     <%- include('../partials/navbar') %>
 
+        <section id="rings-intro">
+            <h1 class="rings-intro-title">
+                <%= productTitle %>
 
+            </h1>
+            <p class="snip">
+                <%=body %>
+            </p>
+        </section>
         <% if(material!='' ){ %>
             <div class="sorting">
                 <label for="">Sort by</label>
                 <form action="/products/ <%- material %>/ <%- category %>/  <%- body %> / <%- productTitle %>"
                     method="post">
                     <select name="sort" id="sort">
-                        <option value="Highestprice">Highest price</option>
-                        <option value="Lowestprice">Lowest price</option>
+                        <option value="Highestprice">  Highest price</option>
+                        <option value="Lowestprice">  Lowest price</option>
                     </select>
                     <input type="submit" value="Filter" id="filter">
                 </form>
@@ -49,15 +59,7 @@
             <% } %>
 
 
-                <section id="rings-intro">
-                    <h1 class="rings-intro-title">
-                        <%= productTitle %>
 
-                    </h1>
-                    <p class="snip">
-                        <%=body %>
-                    </p>
-                </section>
                 <section class="product-container">
                     <% if(products !='' ) {%>
                         <% products.forEach((items)=> {%>
@@ -90,14 +92,15 @@
                                                                 </p>
                                                             </div>
                                                             <%if (items.countInStock> 0){%>
-                                                            <button class="cartbtn" data-cartitem="<%= items._id %>">
-                                                                Add to cart
-                                                            </button>
-                                                            <% } else {%>
-                                                                <button class="cartbtn">
-                                                                   Out of stock
+                                                                <button class="cartbtn"
+                                                                    data-cartitem="<%= items._id %>">
+                                                                    Add to cart
                                                                 </button>
-                                                                <% } %>
+                                                                <% } else {%>
+                                                                    <button class="cartbtn">
+                                                                        Out of stock
+                                                                    </button>
+                                                                    <% } %>
                                                         </div>
                             </div>
                             <% }) %>
