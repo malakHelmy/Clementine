@@ -3,16 +3,34 @@ const user = require('../models/employer');
 const admins = require('../controllers/adminprofileController');
 const router = express.Router();
 
-router.get(`/`, async (req, res) => {
-    if (req.session.user != undefined) {
-        const adminprof = await user.findOne({ email: req.session.user });
-
-        res.render('pages/adminprofile', {
-            admin: req.session.user == undefined ? undefined : adminprof,
-        });
+router.get('/', async (req, res) => {
+    if (req.session.user == undefined ) {
+        res.redirect('/login');
+        return;
     }
+
+    const admininfo = await user.findOne({ email: req.session.user });
+
+    res.render('pages/adminprofile', {
+        admin: admininfo,
+    });
 });
 
-router.post(`/adminprofile`, admins.editAdmin);
+router.post('/', async (req, res) => {
+    const updates = req.body;
+    let adminprof = await user.findOne({ email: req.session.user });
+
+
+    let updatedAdmin = await user.findByIdAndUpdate(
+        { _id: adminprof._id },
+       { email: req.body.email,
+        password: req.body.password,
+        phone: req.body.phone,
+       },
+       {new:true}
+    );
+    console.log(updatedAdmin);
+    res.render('pages/adminprofile')
+});
 
 module.exports = router;

@@ -35,41 +35,38 @@
                             </div>
                             <div class="products-container" style="display: block;">
 
-                                <div class="form-group">
-                                    <label for="phone">Mobile number</label>
-                                    <div> <input type="text" id="pnumber" name="pnumber"></div>
-                                    <p id="pnumbErr" class="formerror">Invalid Phone number</p>
+                                <div class="input-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" value="<%= admin.email %>" required>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">E-mail address</label>
-                                <input type="email" class="form-control" id="email" name="email">
-                                <p id="emailErr" class="formerror">Invalid Email</p>
-                            </div>
-
-                    <div class="form-group">
-                        <label for="password">Current password</label>
-                        <input type="password" class="form-control" id="cpass" name="cpass">
-                        <p id="cpassErr" class="formerror">Invalid password</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">New password</label>
-                    <input type="password" class="form-control" id="newpass" name="newpass">
-                    <p id="newpassErr" class="formerror"></p>
-                </div>
-    </div>
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-default">Submit</button>
-        <button class="btn btn-default" href="/dashboard">Cancel</button>
-        <p id="submitBtn" class="formerror"> Your account was updated successfully</p>
-    </div>
-    </div>
-    </div>
-    </div>
-    </form>
-    <script src="js/changePassValidation.js"></script>
-    <script src="js/ajaxChangePass.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+                                
+                                <div class="input-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" value="<%= admin.password %>" required>
+                                </div>
+                                <span id="passlabel"></span>
+                                
+                                <div class="input-group">
+                                    <label for="confirmpass">Confirm password</label>
+                                    <input id="confirmpass" type="password" placeholder="Confirm password" name="confirmpass" required>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="phone">Phone</label>
+                                    <input type="tel" id="phone" name="phone" value="<%= admin.phone %>">
+                                </div>
+                                <span id="phonelabel"></span>
+                                <input type="submit" id="update" class="update-btn" value="Update"></button>
+                                <button id="cancel" href="/editcustdash" id="cancel" class="delete-btn">Cancel</button>
+                                </form>
+                            <script src="/js/validation.js"></script>
+        
+                        </div>
+        
+        
+        
+                      
+                        <script src="/js/editcustdash.js"></script>
+                        <script src="/js/dashsearch.js"></script>
+                        <script src="/js/validation.js"></script>
 </body>
