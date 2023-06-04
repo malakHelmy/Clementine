@@ -233,9 +233,6 @@ $(document).ready(function () {
                if(response.phoneerror != undefined)
                {
                   $('#phonelabel').html( response.phoneerror);
-                  const pass=document.getElementById('phone');
-                  const formc= pass.parentElement;
-                  formc.className='textfield failed';
                   c++;
                }else{
 
