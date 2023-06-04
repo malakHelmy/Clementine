@@ -1,6 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { Configuration, OpenAIApi } = require('openai');
+const {
+  Product
+} = require('../models/product');
+const user = require('../models/user');
+const users = require('../controllers/userprofileController');
+const {
+  Configuration,
+  OpenAIApi
+} = require('openai');
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -11,9 +19,16 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
+
+
 router.get('/', (req, res) => {
-  res.render('pages/chatbot');
+  
+  res.render('pages/chatbot', {
+    user
+  })
 });
+
+
 
 router.get('/hello', (req, res) => {
   res.status(200).send({
