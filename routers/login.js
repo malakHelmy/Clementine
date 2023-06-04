@@ -22,7 +22,7 @@ router.post(`/`, async (req, res) => {
 
     if (result) {
         if (await bcrypt.compare(req.body.inputs.password, result.password)) {
-            req.session.user = req.body.email;
+            req.session.user = req.body.inputs.email;
             if (req.session.cart != undefined)
                 req.session.cart.items.forEach((items) => {
                     items.email = req.session.user;
