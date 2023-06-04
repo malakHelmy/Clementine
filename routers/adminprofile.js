@@ -15,6 +15,8 @@ router.get('/', async (req, res) => {
 
     res.render('pages/adminprofile', {
         admin: admininfo,
+        currentPage: 'settings',
+        req: req
     });
 });
 
@@ -38,11 +40,11 @@ router.post('/', async (req, res) => {
 
     const isOldPasswordValid = await bcrypt.compare(oldPassword, admin.password);
     if (!isOldPasswordValid) {
-        res.send({ success: false, message: 'Old password is incorrect' });
+        res.redirect('/adminprofile?success=false&message=Old+password+is+incorrect');
         return;
     }
     if (newPassword !== confirmPassword) {
-        res.send({ success: false, message: 'New password and confirm password do not match' });
+        res.redirect('/adminprofile?success=false&message=New+password+and+confirm+password+do+not+match');
         return;
     }
 
@@ -50,7 +52,6 @@ router.post('/', async (req, res) => {
     admin.password = hashedNewPassword;
     await admin.save();
 
-    res.send({ success: true, message: 'Password updated successfully' });
+    res.redirect('/adminprofile?success=true&message=Password+updated+successfully');
 });
-
 module.exports = router;

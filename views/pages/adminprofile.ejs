@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,61 +11,73 @@
     <link rel="stylesheet" href="/css/editcustdash.css">
     <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <title>Admin Profile</title>
-  </head>
-  <body>
-    <div class="container">
-      <% include('../partials/dashboardsidebar', { currentPage: 'settings' }) %>
-      <main>
-        <h1>Admin Profile</h1>
-        <div id="products-container">
-          <div class="addcust" id="addcust">
-            <form class="form" action="/adminprofile" method="POST" onsubmit="checkFields()">
-              <div class="add">
-                <h2 class="add-title">Settings</h2>
-              </div>
-              <div class="products-container" style="display: block;">
-                <div class="input-group">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" name="email" value="<%= admin.email %>" required>
-                </div>
-                <div class="input-group">
-                  <label for="oldPassword" id="oldPassLabel">Old Password</label>
-                  <input type="password" id="oldPassword" name="oldPassword" class="form-control" placeholder="Old Password" required>
-                </div>
-                <span id="oldPassLabel"></span>
-                <div classContinuation:
+</head>
 
-                <div class="input-group">
-                  <label for="newPassword" id="newPassLabel">New Password</label>
-                  <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="New Password" required>
+<body>
+
+    <div class="container">
+        <%- include('../partials/dashboardsidebar', { currentPage: 'settings' }) %>
+
+
+
+    
+              <main>
+                <h1>Admin Profile</h1>
+                <div id="products-container">
+                  <div class="addcust" id="addcust">
+                    <div class="message-container">
+                        <% if (req.query.success === 'true') { %>
+                          <div class="success-message"><%= req.query.message %></div>
+                        <% } else if (req.query.success === 'false') { %>
+                          <div class="error-message"><%= req.query.message %></div>
+                        <% } %>
+                      </div>
+                    <form class="form" action="/adminprofile" method="POST" onsubmit="checkFields()">
+                      <div class="add">
+                        <h2 class="add-title">Settings</h2>
+                      </div>
+                      <div class="products-container" style="display: block;">
+                        <div class="input-group">
+                          <label for="email">Email</label>
+                          <input type="email" id="email" name="email" value="<%= admin.email %>" required>
+                        </div>
+                        <div class="input-group">
+                          <label for="oldPassword" id="oldPassLabel">Old Password</label>
+                          <input type="password" id="oldPassword" name="oldPassword" class="form-control" placeholder="Old Password" required>
+                        </div>
+                        <span id="oldPassLabel"></span>
+                        <div classContinuation:
+        
+                        <div class="input-group">
+                          <label for="newPassword" id="newPassLabel">New Password</label>
+                          <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="New Password" required>
+                        </div>
+                        <span id="newPassLabel"></span>
+                        <div class="input-group">
+                          <label for="confirmPassword" id="confPasswordLabel">Confirm password</label>
+                          <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+                        </div>
+                        <span id="confPasswordLabel"></span>
+                        <div class="input-group">
+                          <label for="phone">Phone</label>
+                          <input type="tel" id="phone" name="phone" value="<%= admin.phone %>">
+                        </div>
+                        <span id="phonelabel"></span>
+                        <input type="submit" id="update" class="update-btn" value="Update">
+                        <button id="cancel" href="/adminprofile" id="cancel" class="delete-btn">Cancel</button>
+                    </form>
+                    <script src="/js/validation.js"></script>
+                    <script src="/js/changePassValidation.js"></script>
+                    <script src="/js/ajaxChangePass.js"></script>
+                  </div>
                 </div>
-                <span id="newPassLabel"></span>
-                <div class="input-group">
-                  <label for="confirmPassword" id="confPasswordLabel">Confirm password</label>
-                  <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm Password" required>
-                </div>
-                <span id="confPasswordLabel"></span>
-                <div class="input-group">
-                  <label for="phone">Phone</label>
-                  <input type="tel" id="phone" name="phone" value="<%= admin.phone %>">
-                </div>
-                <span id="phonelabel"></span>
-                <input type="submit" id="update" class="update-btn" value="Update">
-                <button id="cancel" href="/adminprofile" id="cancel" class="delete-btn">Cancel</button>
-            </form>
+              </main>
+            </div>
+            <script src="/js/editcustdash.js"></script>
+            <script src="/js/dashsearch.js"></script>
             <script src="/js/validation.js"></script>
-            <script src="/js/changePassValidation.js"></script>
-            <script src="/js/ajaxChangePass.js"></script>
-          </div>
-        </div>
-      </main>
-    </div>
-    <script src="/js/editcustdash.js"></script>
-    <script src="/js/dashsearch.js"></script>
-    <script src="/js/validation.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-  </body>
-</html>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+          </body>
+        
