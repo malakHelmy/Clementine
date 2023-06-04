@@ -49,6 +49,8 @@ const checkoutRouter = require('./routers/checkout');
 const addcustRouter = require('./routers/addcustomers');
 const reviewsRouter = require('./routers/reviews');
 const reportsRouter = require('./routers/reports');
+const adminprofileRouter = require('./routers/adminprofile');
+
 
 
 //const updatecustRoute = require('./routers/updatedeletecust');
@@ -109,6 +111,7 @@ app.use('/customers', addcustRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/reviews', reviewsRouter);
 app.use('/reports', reportsRouter);
+app.use('/adminprofile', adminprofileRouter);
 
 
 

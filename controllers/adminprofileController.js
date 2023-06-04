@@ -5,7 +5,7 @@ const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcrypt');
 
 
-exports.editAdmin = asyncHandler(async (req, res) => {
+exports.editAdmin = async (req, res) => {
     let adminprof = await user.findOne({ email: req.session.user });
 
     let passvalue = req.body.cpass;
@@ -110,4 +110,4 @@ exports.editAdmin = asyncHandler(async (req, res) => {
     } else {
         res.redirect('back');
     }
-});
+};
