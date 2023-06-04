@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Employer</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -32,26 +33,26 @@
                             <div class="input-group">
                                 <label for="name">Name</label>
                                 <input id="name" type="text" placeholder="Employer's Name" name="name" required>
-                                <span class="errormsg"></span>
+                                <span id="namelabel"   ></span>
                             </div>
 
                             <div class="input-group">
                                 <label for="email">Email</label>
                                 <input id="email" type="email" placeholder="Employer's Email" name="email" required>
-                                <span class="errormsg"></span>
+                                <span id="emaillabel"  ></span>
                             </div>
 
                             <div class="input-group">
                                 <label for="password">Password</label>
                                 <input id="password" type="password" placeholder="Employer's Password" name="password"
                                     required>
-                                <span class="errormsg"></span>
+                                <span id="passlabel"   ></span>
                             </div>
 
                             <div class="input-group">
                                 <label for="phone">Phone</label>
                                 <input id="phone" type="text" placeholder="Employer's Phone" name="phone" required>
-                                <span class="errormsg"></span>
+                                <span id="phonelabel"></span>
                             </div>
 
                             <div class="input-group">
@@ -60,11 +61,11 @@
                                     Is Admin
                                 </label>
                             </div>
-
-                            <button type="add" id="add">Add</button><span>
+                            <input type="submit" id="add" value="Add">
                             <button id="cancel" href="/addemployers">Cancel</button></span>
 
                     </form>
+                    <script src="js/addemp.js"></script>
                 
                 </div>
             </div>
