@@ -90,11 +90,11 @@ router.get('/:id', (req, res) => {
             console.log(err);
         });
 });
-
 router.post('/:id', async (req, res) => {
     try {
       const orderID = req.params.id;
       await Order.findOneAndDelete({ _id: orderID });
+      console.log(orderID);
       console.log(`Order with ID ${orderID} deleted.`);
   
       if (req.query.ajax) {
@@ -108,7 +108,6 @@ router.post('/:id', async (req, res) => {
         .json({ error: 'Failed to delete order, please try again.' });
     }
   });
-
 //editing and updating status
 router.post('/:id/update', async (req, res) => {
 
