@@ -26,7 +26,7 @@ function deleteProduct(event) {
     //checks id form is not null
     const productId = form.productId.value;
     fetch(`/displayproducts/${productId}?ajax=true`, {
-      method: 'POST',
+      method: 'DELETE',
       headers: { 'X-Requested-With': 'XMLHttpRequest' },
     })
       .then(response => {
