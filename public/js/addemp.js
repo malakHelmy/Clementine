@@ -4,12 +4,12 @@ $(document).ready(function () {
         e.preventDefault();
         var data = $('#email').val();
         $.ajax({
-            url: '/customers/checkemail',
+            url: '/addemployers/checkemail',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({ email: data }),
             success: function (response) {
-                console.log(response)
+    
                 if (response == 'taken') {
                     $('#emaillabel').html('Email already exists ');
                     $('#emaillabel').css("color", "red");
@@ -32,20 +32,25 @@ $(document).ready(function () {
     });
   });
 
-$(document).ready(function () {
+  $(document).ready(function () {
     $("#signInform").on('submit', function (e) {
         e.preventDefault();
+
+        var checkbox = document.getElementById("isAdmin");
+        var check = checkbox.checked;
+     
         const inputs = { 
-         firstname:  $('#firstname').val(),
-         lastname: $('#lastname').val(),
+         name:  $('#name').val(),
          email: $('#email').val(),
          password: $('#password').val(),
          confirmpassword: $('#confirmpassword').val(),
-         phone: $('#phone').val()
+         phone: $('#phone').val(),
+         isAdmin:check
     };
+    console.log(inputs)
     let c=0;
         $.ajax({
-            url: '/customers',
+            url: '/addemployers',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({ inputs  }),
@@ -66,31 +71,20 @@ $(document).ready(function () {
                     review.value = "";
                     $('#passlabel').html('');
 
-                    var first = document.getElementById("firstname");
+                    var first = document.getElementById("name");
                     first.value = "";
-                    $('#firstnamelabel').html('');
-
-                    var last= document.getElementById("lastname");
-                    last.value = "";
-                    $('#lastnamelabel').html('');
+                    $('#namelabel').html('');
 
                     var phone= document.getElementById("phone");
                    phone.value = "";
                     $('#phonelabel').html('');
 
                 }else{
-                    if(response.firsterror == undefined){
-                        $('#firstnamelabel').html('');
+                    if(response.nameerror == undefined){
+                        $('#namelabel').html('');
                     }else{
-                        $('#firstnamelabel').html( response.firsterror);
+                        $('#namelabel').html( response.nameerror);
                     } 
-    
-                    if(response.lasterror == undefined){
-                        $('#lastnamelabel').html('');
-                    }else{
-                        $('#lastnamelabel').html( response.lasterror);
-                    } 
-    
     
                     if(response.emailerror != undefined)
                     {
@@ -135,8 +129,3 @@ $(document).ready(function () {
         });
     });
   });
-  
-  
-  
-  
-  
