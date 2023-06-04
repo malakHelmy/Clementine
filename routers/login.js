@@ -10,11 +10,11 @@ const crypto = require('crypto');
 
 
 
-router.get(`/resetpassword`, async (req, res) => {
+router.post(`/resetpassword`, async (req, res) => {
 
     const token = crypto.randomBytes(20).toString('hex');
     console.log(token);
-    const resetLink = `http://yourwebsite.com/reset-password/${token}`;
+    const resetLink = `http://localhost:8080/reset-password/${token}`;
  
 
     var transporter = nodemailer.createTransport({
@@ -46,6 +46,14 @@ router.get(`/resetpassword`, async (req, res) => {
 
 router.get(`/`, function (req, res) {
     res.render('pages/login', {
+        user: req.session.user == undefined ? undefined : req.session.user,
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
+    });
+});
+
+
+router.get(`/forgetpass`, function (req, res) {
+    res.render('pages/forgetpass', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
