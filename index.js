@@ -226,6 +226,14 @@ app.get(`/updateorder`, function (req, res) {
 app.get(`/ordersdash`, function (req, res) {
     res.render('pages/ordersdash');
 });
+app.get(`/adminprofile`, function(req, res) {
+    res.render('pages/adminprofile', {
+        user: req.session.user == undefined ? undefined : req.session.user,
+        error:undefined,
+
+    })
+})
+
 app.get(`/myprofile`, function (req, res) {
     res.render('pages/myprofile', {
         user: req.session.user == undefined ? undefined : req.session.user,
@@ -239,7 +247,6 @@ app.post('/validate_old_password', async (req, res) => {
     const oldPassword = req.body.oldPassword;
 
     // Perform the validation against the password stored in the database
-    // Here, you would use your database library (e.g., Mongoose for MongoDB) to query and compare the passwords
     User.findOne({ email: req.session.user }, (err, user) => {
         if (err) {
             // Error occurred while querying the database
