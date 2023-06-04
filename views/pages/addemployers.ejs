@@ -25,34 +25,39 @@
             <h1>Employers</h1>
             <div id="addemployers-container">
                 <div class="addemployers">
-                    <form class="form" action="/addemployers" method="post">
+                    <form class="form"  id="signInform" method="post">
                         <div class="add">
                             <h2 class="add-title">Add Employer</h2>
                         </div>
                         <div class="employers-container">
                             <div class="input-group">
                                 <label for="name">Name</label>
-                                <input id="name" type="text" placeholder="Employer's Name" name="name" required>
+                                <input id="name" type="text" placeholder="Employer's Name" name="name" >
                                 <span id="namelabel"   ></span>
                             </div>
 
                             <div class="input-group">
                                 <label for="email">Email</label>
-                                <input id="email" type="email" placeholder="Employer's Email" name="email" required>
-                                <span id="emaillabel"  ></span>
+                                <input id="email" type="email" placeholder="Employer's Email" name="email" >
+                                <span class="errormsg" id="emaillabel"  ></span>
                             </div>
 
                             <div class="input-group">
                                 <label for="password">Password</label>
                                 <input id="password" type="password" placeholder="Employer's Password" name="password"
-                                    required>
+                                    >
                                 <span id="passlabel"   ></span>
                             </div>
-
+                            <div class="input-group">
+                                <label for="password">Confirm Password</label>
+                                <input id="confirmpassword" type="password" placeholder="Employer's confirm password" name="password"
+                                    >
+                                <span id="confirmpasslabel"  ></span>
+                            </div>
                             <div class="input-group">
                                 <label for="phone">Phone</label>
-                                <input id="phone" type="text" placeholder="Employer's Phone" name="phone" required>
-                                <span id="phonelabel"></span>
+                                <input id="phone" type="text" placeholder="Employer's Phone" name="phone" >
+                                <span class="errormsg"  id="phonelabel"></span>
                             </div>
 
                             <div class="input-group">
@@ -65,7 +70,7 @@
                             <button id="cancel" href="/addemployers">Cancel</button></span>
 
                     </form>
-                    <script src="js/addemp.js"></script>
+                    <script src="/js/addemp.js"></script>
                 
                 </div>
             </div>
