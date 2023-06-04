@@ -8,39 +8,58 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
+router.get(`/resetpassword/:token`, async (req, res) => {
 
+
+res.redirect('/')
+});
 
 router.post(`/resetpassword`, async (req, res) => {
 
-    const token = crypto.randomBytes(20).toString('hex');
-    console.log(token);
-    const resetLink = `http://localhost:8080/reset-password/${token}`;
- 
+    if(req.body.email=='')
+  {
+    res.send('error')
+  }
+  else{
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var isValid = emailPattern.test(req.body.email);
+    if(isValid){
+        const token = crypto.randomBytes(20).toString('hex');
+        console.log(token);
+        const resetLink = `http://localhost:8080/login/resetpassword/${token}`;
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'clementineco2023@gmail.com',
+                pass: 'lmkwmjbyftpuzwhz',
+            },
+        });
+        const mailOptions = {
+        from: 'clementineco2023@gmail.com',
+        to: req.body.email,
+        subject: 'Password Reset',
+        html: `Click the following link to reset your password: <a href="${resetLink}">${resetLink}</a>`,
+      };
+    
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log(error);
+          res.status(500).json({ message: 'Failed to send email' });
+        } else {
+          res.json({ message: 'Email sent successfully' });
+        }
+      });
+      res.send('done')
 
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'clementineco2023@gmail.com',
-            pass: 'lmkwmjbyftpuzwhz',
-        },
-    });
-
-    const mailOptions = {
-    from: 'clementineco2023@gmail.com',
-    to: 'saheramr1515@gmail.com',
-    subject: 'Password Reset',
-    html: `Click the following link to reset your password: <a href="${resetLink}">${resetLink}</a>`,
-  };
-
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-      res.status(500).json({ message: 'Failed to send email' });
-    } else {
-      res.json({ message: 'Email sent successfully' });
+    }else{
+    res.send('error')
     }
-  });
+
+
+
+
+  } 
+   
 
 });
 
