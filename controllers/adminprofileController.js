@@ -5,7 +5,7 @@ const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcrypt');
 
 
-exports.editAdmin = async (req, res) => {
+exports.validateAdmin = async (req, res) => {
     let adminprof = await user.findOne({ email: req.session.user });
 
     let passvalue = req.body.cpass;

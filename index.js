@@ -245,58 +245,6 @@ app.get(`/myprofile`, function (req, res) {
 
     })
 })
-app.post('/validate_old_password', async (req, res) => {
-    // Get the old password from the request body
-    const oldPassword = req.body.oldPassword;
-
-    // Perform the validation against the password stored in the database
-    User.findOne({ email: req.session.user }, (err, user) => {
-        if (err) {
-            // Error occurred while querying the database
-            console.error(err);
-            res.status(500).json({ valid: false });
-        } else {
-            if (user && user.password === oldPassword) {
-                // Old password is valid
-                res.json({ valid: true });
-            } else {
-                // Old password is invalid
-                res.json({ valid: false });
-            }
-        }
-    });
-});
-
-
-app.post('/change_password', async (req, res) => {
-    const oldPassword = req.body.oldPassword;
-    const newPassword = req.body.newPassword;
-    const confirmPassword = req.body.confirmPassword;
-  
-    // Authenticate the user
-    const user = await User.findOne({ email: req.session.user }).exec();
-    if (!user) {
-      res.send({ success: false, message: 'User not found' });
-      return;
-    }
-  
-    const isOldPasswordValid = await bcrypt.compare(oldPassword, user.password);
-    if (!isOldPasswordValid) {
-      res.send({ success: false, message: 'Old password is incorrect' });
-      return;
-    }
-    if (newPassword !== confirmPassword) {
-        res.send({ success: false, message: 'New password and confirm password do not match' });
-        return;
-      }
-  
-    // Update the password in the database
-    const hashedNewPassword = await bcrypt.hash(newPassword, saltRounds);
-    user.password = hashedNewPassword;
-    await user.save();
-  
-    res.send({ success: true, message: 'Password updated successfully' });
-  });
 
 
 app.get(`/displayproducts`, function (req, res) {
