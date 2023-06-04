@@ -22,7 +22,19 @@ $(document).ready(function () {
                         }
                     });
                 }
-
+                
+                if(response=='employer'){
+                    $.ajax({
+                        url: '/dashboard',
+                        method: 'GET',
+                        success: function (response) {
+                            window.location.href = '/dashboard';
+                        },
+                        error:function(err){
+                        }
+                    });
+                }
+                 
                 if (response.emailerror != undefined) {
                     $('#emaillabel').html(response.emailerror);
                     $('#emaillabel').css("color", "rgb(97, 9, 9)");
