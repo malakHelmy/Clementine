@@ -88,6 +88,7 @@ $(document).ready(function () {
                     const formc= pass.parentElement;
                     formc.className='textfield success';
                  }
+                 
                  if(response.emailerror != undefined)
                  {
                     $('#emaillabel').html(response.emailerror);
