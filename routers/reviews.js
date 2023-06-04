@@ -16,7 +16,16 @@ router.post(`/`, async  (req, res) => {
        if(req.body.inputs.email==''){
            Error.emailerror=' Please enter an email';
            c++;
+        }else{
+          var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          var isValid = emailPattern.test(req.body.inputs.email);
+          if(isValid){
+            }else{
+             Error.emailerror='Email is Invalid';
+             c++;
+            }
         }
+
 
        if(req.body.inputs.summary==''){
         Error.summaryerror='summary is required ';
