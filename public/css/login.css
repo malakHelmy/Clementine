@@ -182,10 +182,11 @@ body {
     .signInform {
         border-right: none;
         padding: 0;
-        width: 80%;
+        width: 90%;
     }
 
     .left {
+        flex: 50%;
         margin-top: 5%;
         border-bottom: 1px solid #adadad;
         width: 100%;
