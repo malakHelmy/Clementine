@@ -92,7 +92,7 @@ router.get('/:id', (req, res) => {
 });
 
 
-router.delete('/:id', async (req, res) => {
+router.post('/:id', async (req, res) => {
     try {
         const orderID = req.params.id;
         await Order.findOneAndDelete({ _id: orderID });
