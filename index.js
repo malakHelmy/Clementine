@@ -47,7 +47,7 @@ const addempRouter = require('./routers/addemployers');
 const editempRouter = require('./routers/editemployers');
 const checkoutRouter = require('./routers/checkout');
 const addcustRouter = require('./routers/addcustomers');
-
+const reviewsRouter = require('./routers/reviews');
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
 
@@ -104,6 +104,7 @@ app.use('/editemployers', editempRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/addcustomers', addcustRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/reviews', reviewsRouter);
 
 
 
