@@ -91,22 +91,23 @@ router.get('/:id', (req, res) => {
         });
 });
 
-
 router.post('/:id', async (req, res) => {
     try {
-        const orderID = req.params.id;
-        await Order.findOneAndDelete({ _id: orderID });
-        console.log(orderID);
-
-        if (req.query.ajax)
-            return res.json({ message: "Order deleted successfully" });
+      const orderID = req.params.id;
+      await Order.findOneAndDelete({ _id: orderID });
+      console.log(`Order with ID ${orderID} deleted.`);
+  
+      if (req.query.ajax) {
+        res.json({ message: "Order deleted successfully" });
+      } else {
+        res.redirect('/ordersdash');
+      }
+    } catch (error) {
+      console.error('Error deleting order: ', error);
+      res.status(500)
+        .json({ error: 'Failed to delete order, please try again.' });
     }
-    catch (error) {
-        console.log('Error deleting order: ', error);
-        res.status(500)
-            .json({ error: 'Failed to delete customer, please try again.' });
-    }
-});
+  });
 
 //editing and updating status
 router.post('/:id/update', async (req, res) => {
