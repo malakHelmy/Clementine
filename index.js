@@ -48,6 +48,9 @@ const editempRouter = require('./routers/editemployers');
 const checkoutRouter = require('./routers/checkout');
 const addcustRouter = require('./routers/addcustomers');
 const reviewsRouter = require('./routers/reviews');
+const reportsRouter = require('./routers/reports');
+
+
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
 
@@ -105,6 +108,7 @@ app.use('/checkout', checkoutRouter);
 app.use('/customers', addcustRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/reviews', reviewsRouter);
+app.use('/reports', reportsRouter);
 
 
 
@@ -287,6 +291,9 @@ app.post('/change_password', async (req, res) => {
 
 app.get(`/displayproducts`, function (req, res) {
     res.render('pages/displayproducts');
+});
+app.get(`/reports`, function (req, res) {
+    res.render('pages/reports');
 });
 app.get(`/employersdash`, function (req, res) {
     res.render('pages/employersdash');
