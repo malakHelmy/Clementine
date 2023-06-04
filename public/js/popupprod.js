@@ -34,17 +34,41 @@ $(document).ready(function () {
             data: JSON.stringify({ inputs: data }),
             success: function (response) {
 
+                if(response == 'done')
+                {
+
+                    var email = document.getElementById("email");
+                    email.value = "";
+                    $('#emaillabel').html('');
+
+                    var summary = document.getElementById("summary");
+                    summary.value = "";
+                    $('#summarylabel').html('');
+
+                    var review = document.getElementById("review");
+                    review.value = "";
+                    $('#reviewlabel').html('');
+
+
+                }
                 if(response.emailerror != undefined){
                     $('#emaillabel').html(response.emailerror);
                     $('#emaillabel').css("color", "rgb(97, 9, 9)");
+                }else{
+                    $('#emaillabel').html('');
                 }
                 if(response.summaryerror != undefined){
                     $('#summarylabel').html(response.summaryerror);
                     $('#summarylabel').css("color", "rgb(97, 9, 9)");
+                }else{
+                    $('#summarylabel').html('');
+
                 }
                 if(response.reviewerror != undefined){
                     $('#reviewlabel').html(response.reviewerror);
                     $('#reviewlabel').css("color", "rgb(97, 9, 9)");
+                }else{
+                    $('#reviewlabel').html('');
                 }
             },
             error:function(err){
