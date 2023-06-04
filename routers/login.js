@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const Cart = require('../models/cart');
 const User = require('../models/user');
+const Employer = require('../models/employer');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 
@@ -17,6 +18,8 @@ router.post(`/`, async (req, res) => {
     const Error={emailerror:String,Passerror:String};
 
     const result = await User.findOne({ email: req.body.inputs.email });
+    const empresult = await Employer.findOne({ email: req.body.inputs.email });
+
     if (result) {
         if (await bcrypt.compare(req.body.inputs.password, result.password)) {
             req.session.user = req.body.email;
@@ -40,6 +43,7 @@ router.post(`/`, async (req, res) => {
                         req.session.cart.items.push(items);
                     }
                 });
+
             } else if (result != undefined && req.session.cart == undefined) {
                 let c = 0;
                 result.forEach((items) => {
@@ -58,12 +62,26 @@ router.post(`/`, async (req, res) => {
             Error.Passerror="Please enter right password";
             res.send(Error);
         }
-    } else {
+    }else if(empresult){
+    
+        if (await bcrypt.compare(req.body.inputs.password, empresult.password)) {
+
+            req.session.user=empresult.email;
+            req.session.admin=empresult.isAdmin;
+            res.send('employer')
+            
+        }else{
+            Error.Passerror="Please enter right password";
+            res.send(Error);
+        }
+
+    }else  {
         
          Error.emailerror="Please enter right email";
          Error.Passerror="Please enter right email first";
          res.send(Error);
     }
+
 });
 
 module.exports = router;
