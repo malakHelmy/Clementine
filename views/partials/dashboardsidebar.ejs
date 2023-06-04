@@ -2,13 +2,13 @@
 <aside>
     <div class="top">
         <div class="logo">
-            <img src="/Images/logoo copy.png" alt="">
-        </div>
+            <a href="/"> <img src="/Images/logoo copy.png" alt="">
+            </a> </div>
         <div class="close" id="close-btn">
             <span class="material-symbols-sharp">close</span>
         </div>
     </div>
-    <div class="sidebar">   
+    <div class="sidebar">
         <a href="/dashboard" class="<%= currentPage === 'dashboard' ? 'active' : '' %>">
             <span class="material-symbols-sharp">dashboard</span>
             <h3>Dashboard</h3>
@@ -17,21 +17,21 @@
             <span class="material-symbols-sharp">person</span>
             <h3>Customers</h3>
         </a>
-        
+
         <a href="ordersdash" class="<%= currentPage === 'ordersdash' ? 'active' : '' %>">
             <span class="material-symbols-sharp">receipt_long</span>
             <h3>Orders</h3>
         </a>
-        
-        <%# if (isAdmin) { %>
-    <a href="employersdash" class="<%= currentPage === 'employersdash' ? 'active' : '' %>">
-        <span class="material-symbols-sharp">business</span>
-        <h3>Employers</h3>
-    </a>
-<%# } %>
 
-        
-        
+        <%# if (isAdmin) { %>
+        <a href="employersdash" class="<%= currentPage === 'employersdash' ? 'active' : '' %>">
+            <span class="material-symbols-sharp">business</span>
+            <h3>Employers</h3>
+        </a>
+        <%# } %>
+
+
+
         <a href="" class="<%= currentPage === 'analytics' ? 'active' : '' %>">
             <span class="material-symbols-sharp">insights</span>
             <h3>Analytics</h3>
