@@ -1,6 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { Configuration, OpenAIApi } = require('openai');
+const {
+  Product
+} = require('../models/product');
+const user = require('../models/user');
+const users = require('../controllers/userprofileController');
+const {
+  Configuration,
+  OpenAIApi
+} = require('openai');
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -11,9 +19,16 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
+
+
 router.get('/', (req, res) => {
-  res.render('pages/chatbot');
+  
+  res.render('pages/chatbot', {
+    user
+  })
 });
+
+
 
 router.get('/hello', (req, res) => {
   res.status(200).send({
@@ -26,7 +41,40 @@ router.post('/', async (req, res) => {
     const prompt = req.body.prompt;
     if (prompt.toLowerCase() === 'hi') {
       res.status(200).send({
-        bot: 'Hi there! How can I assist you today?',
+        bot: 'Hi there! I am a Clementine chatbot. How can I assist you today?',
+      });
+      return;
+    }
+
+    else if (/cancel my order/i.test(prompt)) {
+      res.status(200).send({
+        bot: 'Cancellations are allowed within 48 hours of placing the order. Kindly send us an email through the contact us page with the request and we’ll get back to you.',
+      });
+      return;
+    }
+    else if (/track my order/i.test(prompt)) {
+      res.status(200).send({
+        bot: 'Your order status will be automatically updated with every progress. You can track it through your profile.',
+      });
+      return;
+    }
+    else if (/Where can i find you/i.test(prompt)) {
+      res.status(200).send({
+        bot: 'We are a boutique jewellery studio based in Cairo, Egypt. ',
+      });
+      return;
+    }
+    else if (/are returns allowed/i.test(prompt)) {
+      res.status(200).send({
+        bot: 'Returns are allowed only within two weeks of the purchase date.',
+      });
+      return;
+    }
+   
+    else if (/current time/i.test(prompt)) {
+      const currentTime = new Date().toLocaleTimeString();
+      res.status(200).send({
+        bot: `The current time is ${currentTime}. I'm a Clementine chatbot, happy to assist you!`,
       });
       return;
     }
@@ -40,8 +88,14 @@ router.post('/', async (req, res) => {
       presence_penalty: 0,
     });
 
+    const botResponse = response.data.choices[0].text;
+
+  // Customize the response based on the jewelry boutique persona
+  const jewelryBotResponse = `As a jewelry boutique assistant, I can provide some general insights. ${botResponse}`;
+
+
     res.status(200).send({
-      bot: response.data.choices[0].text,
+      bot: jewelryBotResponse,
     });
   } catch (error) {
     console.error(error);

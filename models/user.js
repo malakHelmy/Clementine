@@ -40,6 +40,9 @@ const userSchema = mongoose.Schema(
               ref: 'orders',
             },
           ],
+          Token:String,
+          Tokenexpiry:Date,
+
     },
     { timestamps: true }
 );
