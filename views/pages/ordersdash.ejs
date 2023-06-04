@@ -79,11 +79,10 @@
                     <a href="/ordersdash/<%= orders._id %>">
                       <button class="btn edit-product"><i class="fa fa-edit"></i></button>
                     </a>
-                    <form method="POST" action="/ordersdash/<%= order._id %>?_method=DELETE">
+                    <form method="POST" action="/ordersdash/<%= order._id %>?_method=DELETE" class="delete-form">
                       <input type="hidden" name="orderId" value="<%= orders._id %>">
-                      <button class="btn delete-order" type="submit"><i class="fa fa-trash"></i></button>
+                      <button class="btn delete-order" type="button"><i class="fa fa-trash"></i></button>
                       <div id="errmsgdel"></div>
-
                     </form>
                   </td>
                 </tr>
