@@ -102,7 +102,7 @@ app.use('/logout', logoutroute);
 app.use('/addemployers', addempRouter);
 app.use('/editemployers', editempRouter);
 app.use('/checkout', checkoutRouter);
-app.use('/addcustomers', addcustRouter);
+app.use('/customers', addcustRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/reviews', reviewsRouter);
 
