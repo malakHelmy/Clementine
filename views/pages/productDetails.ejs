@@ -235,21 +235,21 @@
                         <%= products.name%>
                     </b> </p>
                 <div class="signIn">
-
-                    <form action="/reviews/ <%- products._id  %>" method="post" class="signInform">
+                    <span id="productid" class="<%= products._id %>"></span>
+                    <form  method="post" class="signInform" id="signInform">
                         <div class="textfield">
-                            <input type="email" name="email">
-                            <span class="sp1"></span>
+                            <input type="email" name="email" id="email">
+                            <span class="sp1" id="emaillabel"></span>
                             <label for="">E-mail</label>
                         </div>
                         <div class="textfield">
-                            <input type="text" name="summary">
-                            <span class="sp1"></span>
+                            <input type="text" name="summary" id="summary">
+                            <span class="sp1" id="summarylabel"></span>
                             <label for="summary">Summary</label>
                         </div>
                         <div class="textfield">
-                            <input type="text" name="review">
-                            <span class="sp1"></span>
+                            <input type="text" name="review" id="review">
+                            <span class="sp1" id="reviewlabel"></span>
                             <label for="">Review</label>
                         </div>
                         <input type="submit" class="submit">
