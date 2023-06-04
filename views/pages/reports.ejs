@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+    <link rel="stylesheet" href="/css/editcustdash.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Reports</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <!-- Include the sidebar partial -->
+            <%- include('../partials/dashboardsidebar', { currentPage: 'reports' }) %>
+        </div>
+        <div class="content">
+            <h1>Reports</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Summary</th>
+                        <th>Review</th>
+                        <th>Product ID</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (reviews && reviews.length > 0) { %>
+                    <% reviews.forEach(review => { %>
+                    <tr>
+                        <td><%= review.email %></td>
+                        <td><%= review.summary %></td>
+                        <td><%= review.review %></td>
+                        <td><%= review.productId %></td>
+                        <td><%= review.createdAt %></td>
+                    </tr>
+                    <% }) %>
+                    <% } else { %>
+                    <tr>
+                        <td colspan="5">No reviews found.</td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
