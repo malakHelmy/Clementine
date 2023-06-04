@@ -126,8 +126,6 @@ $(document).ready(function () {
                     }else{
                         $('#phonelabel').html( response.phoneerror);
                     } 
-
-
                 }
 
                 
