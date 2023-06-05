@@ -8,6 +8,63 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
+router.post(`/newpassword`, async (req, res) => {
+
+const Error={passerror:String,confirmerror:String};
+console.log(req.body.inputs. confirmpassword )
+if(req.body.inputs.password=='')
+{
+    Error.passerror='Please enter password';
+    Error.confirmerror='Please enter password first';
+    
+}else{
+
+    var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    var isValid = passwordPattern.test(req.body.inputs.password);
+      if(isValid ){
+
+      }else{
+        Error.passerror='password must contain at least 8 characters,one lowercase letter,one uppercase letter and one digit';
+        Error.confirmerror='Please enter a right password first';
+        
+      }
+}
+
+if(req.body.inputs. confirmpassword=='')
+{
+    Error.confirmerror='Please enter password ';
+   
+}else if(req.body.inputs. confirmpassword == req.body.inputs.password )
+{
+  
+}else{
+    Error.confirmerror='Please enter a matching password ';
+    
+}
+
+if(req.body.inputs.confirmpassword == req.body.inputs.password )
+{
+    const doc = await User.findOneAndUpdate({email:req.session.reset},
+        {
+           password:await bcrypt.hash(req.body.inputs.password,12),
+           Token:undefined,
+           Tokenexpiry:undefined
+        }, 
+        {
+       new: true
+     });
+     
+     req.session.reset=undefined;
+     res.send('done')
+}else{
+    res.send(Error)
+}
+
+})
+
+
+
+
 router.get(`/resetpassword/:token`, async (req, res) => {
 
     const result = await User.findOne({ email: req.session.reset});
@@ -17,8 +74,6 @@ router.get(`/resetpassword/:token`, async (req, res) => {
 
     if(result)
     {
-     console.log(req.params.token)
-     console.log(result.token)
         if( currentDate < result.Tokenexpiry )
        {
        
@@ -34,7 +89,6 @@ router.get(`/resetpassword/:token`, async (req, res) => {
    else{
     res.send('Error occured')
    }
-
 
 });
 
