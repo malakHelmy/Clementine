@@ -11,7 +11,9 @@ const crypto = require('crypto');
 router.post(`/newpassword`, async (req, res) => {
 
 const Error={passerror:String,confirmerror:String};
+
 console.log(req.body.inputs. confirmpassword )
+
 if(req.body.inputs.password=='')
 {
     Error.passerror='Please enter password';
@@ -42,7 +44,7 @@ if(req.body.inputs. confirmpassword=='')
     
 }
 
-if(req.body.inputs.confirmpassword == req.body.inputs.password )
+if(req.body.inputs.confirmpassword == req.body.inputs.password && req.body.inputs.password !='' )
 {
     const doc = await User.findOneAndUpdate({email:req.session.reset},
         {
