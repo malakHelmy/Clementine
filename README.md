@@ -1,4 +1,4 @@
-# Clementine, Web-Development-Project
+# Clementine, a Web Development Project.
 
 <h1 align="center">Welcome to Clementine</h1>
 <h3 align="left">Project Description:</h3>
@@ -12,7 +12,7 @@ which sells specifically diamond and gold, catered towards women around the age 
 <p>This project will hopefully act as a guideline to any of us( the contributors ) if we needed to develop a website in the future</p>
 
 <h3 align="left">Our Features:</h3>
-<p> Sophisticated Product Display: We ensured that the products are displayed in a sophisticated manner, with high-quality images and detailed product descriptions. This helps customers make informed decisions while shopping and to draw the user's attention and make the website more engaging. </p>
+<h4> Sophisticated Product Display: We ensured that the products are displayed in a sophisticated manner, with high-quality images and detailed product descriptions. This helps customers make informed decisions while shopping and to draw the user's attention and make the website more engaging. </h4>
 
 <p> User Authentication: We included user authentication functionality, allowing customers to create accounts and log in to access their order history, saved items, carts and other personalized features </p>
 
