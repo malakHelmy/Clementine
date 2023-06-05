@@ -14,7 +14,25 @@ function confirmDelete(event) {
       var orderID = event.target.elements.orderID.value;
       confirmForm.elements.orderID.value = orderID;
       confirmationDialog.style.display = "none";
+      
+      fetch('/ordersdash/delete', {
+        method: 'POST',
+        body: new FormData(confirmForm)
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = '/ordersdash';
+        } else {
+          throw new Error('Failed to delete order');
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        alert(error.message);
+      });
+      
+      return false;
     }
   
     return false;
-}
+  }
