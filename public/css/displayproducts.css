@@ -1,3 +1,25 @@
+:root {
+    --color-primary: #9675b0;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(99, 104, 155, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f0f2f5; 
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
 .main.table {
     width: 75vw;
     height: 90vh;
@@ -257,22 +279,27 @@ tbody td.active {
 .testimonial {
     width: 300px;
     padding: 20px;
-    margin: 20px;
+    margin: 30px;
     background-color: #f8f9fa;
     border-radius: 5px;
     text-align: center;
+    border-radius: var(--border-radius-2);
+    box-shadow: var(--box-shadow);
+    
+
 }
 
 .testimonial h4 {
-    color: #5a2e7d;
+    color: #5f397a;
     font-size: 18px;
     margin-bottom: 10px;
 }
 
 .rev {
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .rev_id{
-    font-size: 12px;
+    font-size: 13px;
 }
