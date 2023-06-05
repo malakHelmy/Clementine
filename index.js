@@ -262,6 +262,9 @@ app.get(`/addemployers`, function (req, res) {
 app.get(`/editemployers`, function (req, res) {
     res.render('pages/editemployers');
 });
+app.get(`/404`, function (req, res) {
+    res.render('pages/404');
+});
 
 /* --------- DASHBOARDS END -----*/
 
