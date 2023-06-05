@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session');
-const Cart = require('../models/cart');
+
 const User = require('../models/user');
 const Employer = require('../models/employer');
 const bcrypt = require('bcrypt');
@@ -186,43 +186,34 @@ router.post(`/`, async (req, res) => {
 
     if (result) {
 
-        if (await bcrypt.compare(req.body.inputs.password, result.password)) {
+        if (await bcrypt.compare(req.body.inputs.password, result.password))
+         {
             req.session.user = req.body.inputs.email;
-            if (req.session.cart != undefined)
-                req.session.cart.items.forEach((items) => {
-                    items.email = req.session.user;
-                });
+         
 
-            const result = await Cart.find({ email: req.body.email });
-            console.log(result);
-            if (result != undefined && req.session.cart != undefined) {
-                result.forEach((items) => {
-                    let c = 0;
-                    req.session.cart.items.forEach((items2) => {
-                        if (items.id == items2.id) {
-                            items2.quantity += items.quantity;
-                            c++;
-                        }
-                    });
-                    if (c == 0) {
-                        req.session.cart.items.push(items);
-                    }
-                });
-
-            } else if (result != undefined && req.session.cart == undefined) {
-                let c = 0;
-                result.forEach((items) => {
-                    if (c == 0) {
-                        c++;
+            const result2 = await User.findOne({email: req.body.inputs.email });
+            console.log( "result is :" + result2.cart);
+         
+            if (result2.cart != undefined && req.session.cart != undefined && result2.cart != '') {
+             
+                req.session.cart.items.push(result.cart)
+            
+            } else if (result2.cart != undefined && req.session.cart == undefined && result2.cart != '') {
                         req.session.cart = {
-                            items: [items],
+                            items: [ {
+                                id: String,
+                                name: String,
+                                image:String,
+                                price: Number,
+                                quantity:Number,
+                            }],
                         };
-                    } else {
-                        req.session.cart.items.push(items);
-                    }
-                });
+                 
+                        req.session.cart.items=result2.cart;
             }
+
             res.send('true');
+
         } else {
             Error.Passerror="Please enter right password";
             res.send(Error);
