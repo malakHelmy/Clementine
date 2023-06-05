@@ -1,7 +1,6 @@
 # Clementine
 
 # Web-Development-Project
-Web Development Project
 
 <h1 align="center">Welcome to our group project</h1>
 <h3 align="left">Project Description:</h3>
@@ -28,9 +27,7 @@ Sophisticated Product Display: We ensured that the products are displayed in a s
 <p> Team Collaboration: We worked collaboratively as a team, communicating effectively to ensure that all elements of the website work together seamlessly. </p>
 
 <h3 align="left">Setbacks: </h3>
-<p>Putting together all objects while keeping the theme/design of the website refined posed a bit of a challenge to us, since it was a group project, and it is safe to say that everyone has their own coding style. Fortunately, we managed to have everything work seemlessly together with great communication and working together as a team</p>
-<p>Using the github domain to view a sample of the website sparked some issues seeing that some files would not load which prevented some parts of the website from looking finnished and flawless. So downloading the zip file and clicking on index.html is the only solution to see the website in its absolute essence for now.
-</p>
+
 
 <h3 align="left">The Contributors:</h3>
 <p> This project was delivered to you by
