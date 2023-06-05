@@ -226,7 +226,7 @@ main {
 
 }
 
-main h1 {
+main h1 , h2 {
     color: var(--color-dark);
     font-weight: 400;
 }
@@ -539,6 +539,37 @@ main .recent-orders a {
 margin-top: 10px;
 }
 
+
+
+
+/* Employer Info */
+.employer-info {
+    padding: 2rem;
+    background-color: var(--color-white);
+    margin-bottom: 1.8rem;
+    margin-top: 1.8rem;
+    border-radius: var(--border-radius-2);
+    box-shadow: var(--box-shadow);
+  }
+  
+  .employer-info h2 {
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  
+  .employer-info p {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  
+  
+ 
+
+  
+
+  
+  
 /* responsive */
 
 @media screen and (max-width:1200px) {
@@ -578,3 +609,4 @@ margin-top: 10px;
     }
 
 }
+
