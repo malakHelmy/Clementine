@@ -11,19 +11,31 @@ const crypto = require('crypto');
 router.get(`/resetpassword/:token`, async (req, res) => {
 
     const result = await User.findOne({ email: req.session.reset});
+
+  
+ var currentDate = new Date();
+
     if(result)
     {
-
+     console.log(req.params.token)
+     console.log(result.token)
+        if( currentDate < result.Tokenexpiry )
+       {
+       
         res.render('pages/resetpass', {
             user: req.session.user == undefined ? undefined : req.session.user,
             cart: req.session.cart == undefined ? undefined : req.session.cart,
         });
 
-
+       }else{
+        res.send('Token has expired')
+       }
     }
    else{
     res.send('Error occured')
    }
+
+
 });
 
 router.post(`/resetpassword`, async (req, res) => {
@@ -40,7 +52,6 @@ router.post(`/resetpassword`, async (req, res) => {
         const result = await User.findOne({ email: req.body.email });
         if(result)
         {
-            
             req.session.reset=req.body.email;
             const token = crypto.randomBytes(20).toString('hex');
             var currentDate = new Date();
