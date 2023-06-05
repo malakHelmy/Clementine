@@ -1,19 +1,17 @@
-
-
 /* variable declaration */
 :root {
-    --color-primary: #a0a3b7;
-    --color-danger: #deca69;
-    --color-success: #a8e0ed;
+    --color-primary: #7380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
     --color-warning: #ffbb55;
     --color-white: #fff;
     --color-info-dark: #7d8da1;
     --color-info-light: #dce1eb;
-    --color-dark: #44454b;
+    --color-dark: #363949;
     --color-light: rgba(132, 139, 200, 0.18);
     --color-primary-variant: #111e88;
     --color-dark-variant: #677483;
-    --color-background: #ffffff;
+    --color-background: #f6f6f9;
     --card-border-radius: 2rem;
     --border-radius-1: 0.4rem;
     --border-radius-2: 0.8rem;
@@ -146,6 +144,7 @@ aside .top {
     color: var(--color-dark);
 }
 
+
 aside .close {
     display: none;
 }
@@ -223,6 +222,7 @@ aside .sidebar .message-count {
 /* MAIN */
 main {
     margin-top: 1.4rem;
+    padding-top:30px;
 
 }
 
@@ -397,17 +397,17 @@ main .recent-orders a {
 /* right */
 .right {
     margin-top: 1.4rem;
+    
 }
 
 .right .top {
     display: flex;
     justify-content: end;
     gap: 2rem;
+    
 }
 
-.right .top button {
-    display: none;
-}
+
 
 .right .theme-toggler {
     background: var(--color-light);
@@ -436,33 +436,15 @@ main .recent-orders a {
     border-radius: var(--border-radius-1);
 }
 
-/* recent updates */
-.right .recent-updates {
-    margin-top: 1rem;
+
+
+
+
+
+
+.left{
+    padding-top: 30px;
 }
-
-.right .recent-updates h2 {
-    margin-bottom: 0.8rem;
-    color: var(--color-dark);
-
-}
-
-.right .recent-updates .updates {
-    background: var(--color-white);
-    padding: var(--card-padding);
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--box-shadow);
-    transition: all 300ms ease;
-}
-
-.right .recent-updates .updates:hover {
-    box-shadow: none;
-}
-
-.right .recent-updates .updates .update {
-    margin-bottom: 1rem;
-}
-
 /* sales analytics */
 .right .sales-analytics {
     margin-top: 2rem;
