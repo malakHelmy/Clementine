@@ -31,8 +31,6 @@ router.get('/', async (req, res) => {
                 }
 
 
-
-            
        
     }
     req.session.destroy();
