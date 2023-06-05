@@ -370,14 +370,12 @@ exports.addToWishlist = asyncHandler(async (userID, prodID) => {
         });
         const alreadyadded = wishlistItems.includes(prodID);
         if (alreadyadded) {
-            console.log(userWish.wishList);
         } else {
             await user.findOneAndUpdate(
                 { email: userID },
                 { $push: { wishlist: prodID } },
                 { new: true }
             );
-            console.log(userWish.wishList);
         }
     } catch (err) {
         console.log(err);
@@ -398,7 +396,6 @@ exports.removeFromWishlist = asyncHandler(async (wishuserID, removeprod) => {
         } else {
             console.log('product was not found');
         }
-        console.log(userWish.wishlist);
     } catch (err) {
         console.log('could not remove product');
     }

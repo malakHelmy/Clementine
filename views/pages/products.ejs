@@ -34,7 +34,6 @@
 <body>
 
     <%- include('../partials/navbar') %>
-
         <section id="rings-intro">
             <h1 class="rings-intro-title">
                 <%= productTitle %>
@@ -50,23 +49,22 @@
                 <form action="/products/ <%- material %>/ <%- category %>/  <%- body %> / <%- productTitle %>"
                     method="post">
                     <select name="sort" id="sort">
-                        <option value="Highestprice">  Highest price</option>
-                        <option value="Lowestprice">  Lowest price</option>
+                        <option value="Highestprice"> Highest price</option>
+                        <option value="Lowestprice"> Lowest price</option>
                     </select>
                     <input type="submit" value="Filter" id="filter">
                 </form>
             </div>
             <% } %>
 
-
-
                 <section class="product-container">
+                    <div id="popup" class="popup"></div>
                     <% if(products !='' ) {%>
                         <% products.forEach((items)=> {%>
                             <div class="box">
                                 <% if (User !=undefined) { %>
                                     <%if(User.wishlist.includes(items._id)){%>
-                                        <a alt="" class="ri-heart-fill" id="included-icon-<%= items._id %>"
+                                        <a alt="" class="ri-heart-fill" id="heart-icon-<%= items._id %>"
                                             data-productid="<%= items._id %>">
                                         </a>
                                         <% }else { %>
@@ -97,7 +95,7 @@
                                                                     Add to cart
                                                                 </button>
                                                                 <% } else {%>
-                                                                    <button class="cartbtn">
+                                                                    <button class="disabledbtn">
                                                                         Out of stock
                                                                     </button>
                                                                     <% } %>
@@ -159,7 +157,6 @@
                                                                                 </li>
                                                                                 <% } %>
                                                                                     <% } %>
-
                                                                                         <% if (current==pages) { %>
                                                                                             <li
                                                                                                 class="page-item disabled">
@@ -172,6 +169,7 @@
                                                                                                         class="page-link">LAST</a>
                                                                                                 </li>
                                                                                                 <% } %>
+
                             </ul>
                         </section>
 

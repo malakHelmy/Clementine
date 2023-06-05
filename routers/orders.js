@@ -6,18 +6,17 @@ const router = express.Router();
 const { Product } = require('../models/product');
 const nodemailer = require('nodemailer');
 
-
-
 //adding a new order to the schema
 router.post(`/`, async (req, res) => {
     const orderItemsIds = Promise.all(
-        //.map ashan andna array of order items
         req.body.orderItems.map(async (orderItem) => {
-            const product = await Product.findById(orderItem.product).select('name');
+            const product = await Product.findById(orderItem.product).select(
+                'name'
+            );
             let newOrderItem = new OrderItem({
                 quantity: orderItem.quantity,
                 product: orderItem.product,
-                name: product.name
+                name: product.name,
             });
             newOrderItem = await newOrderItem.save();
             return newOrderItem._id;
@@ -34,7 +33,6 @@ router.post(`/`, async (req, res) => {
 
     const orderItemIdsresolved = await orderItemsIds;
     let add_order = {
-
         orderItems: orderItemIdsresolved,
         order_id: req.body.order_id,
         userID: req.body.userID,
@@ -56,28 +54,20 @@ router.post(`/`, async (req, res) => {
         })
         .catch((err) => {
             console.log(err);
-        })
-});
-
-
-
-
-router.get(`/`, async (req, res) => {
-
-    Order.find()
-        .then(async (orderslist) => {
-            res.render('pages/ordersdash', {
-                order: orderslist
-            })
-
-        })
-        .catch((err) => {
-
-            console.log(err);
         });
 });
 
-
+router.get(`/`, async (req, res) => {
+    Order.find()
+        .then(async (orderslist) => {
+            res.render('pages/ordersdash', {
+                order: orderslist,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
 
 router.get('/:id', (req, res) => {
     Order.findById(req.params.id)
@@ -85,7 +75,7 @@ router.get('/:id', (req, res) => {
         .then((result) => {
             res.render('pages/updateorder', {
                 viewTitle: 'Update Order',
-                order: result
+                order: result,
             });
         })
         .catch((err) => {
@@ -111,8 +101,6 @@ router.get('/:id', (req, res) => {
 //     }
 //   });
 
-
-
 router.post('/:id', async (req, res) => {
     try {
         const orderID = req.params.id;
@@ -124,7 +112,6 @@ router.post('/:id', async (req, res) => {
         res.redirect('/ordersdash');
     }
 });
-
 
 router.post('/:id/update', async (req, res) => {
     try {
@@ -149,7 +136,7 @@ router.post('/:id/update', async (req, res) => {
                 auth: {
                     user: 'clementineco2023@gmail.com',
                     pass: 'lmkwmjbyftpuzwhz',
-                }
+                },
             });
 
             const user = order.userID;
@@ -157,7 +144,7 @@ router.post('/:id/update', async (req, res) => {
                 from: 'clementineco2023@gmail.com',
                 to: user.email,
                 subject: 'Order Cancelled',
-                text: `Dear ${order.userFullName},\n\nYour order with Order ID ${orderID} has been cancelled.\n\nThank you.`
+                text: `Dear ${order.userFullName},\n\nYour order with Order ID ${orderID} has been cancelled.\n\nThank you.`,
             };
 
             transporter.sendMail(mailOptions, (error, info) => {
@@ -174,7 +161,7 @@ router.post('/:id/update', async (req, res) => {
                 auth: {
                     user: 'clementineco2023@gmail.com',
                     pass: 'lmkwmjbyftpuzwhz',
-                }
+                },
             });
 
             const user = order.userID;
@@ -225,22 +212,6 @@ router.post('/:id/update', async (req, res) => {
         res.redirect('/ordersdash');
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* router.get(`/`, async (req, res) => {
 //.populate -> if i want to know the user who ordered

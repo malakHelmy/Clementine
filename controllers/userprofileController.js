@@ -62,7 +62,7 @@ exports.editUser = asyncHandler(async (req, res) => {
         firstnamevalue = userProfile.firstname;
     }
 
-    if (lastnamevalue== '') {
+    if (lastnamevalue == '') {
         lastnamevalue = userProfile.lastname;
     } else {
     }
@@ -75,7 +75,6 @@ exports.editUser = asyncHandler(async (req, res) => {
         var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         var isValid = emailPattern.test(emailvalue);
         if (isValid) {
-            
         } else {
             Error.emailerror = 'Email is Invalid';
             c++;
@@ -105,6 +104,7 @@ exports.editUser = asyncHandler(async (req, res) => {
             if (passVal) {
                 var isValid = passwordPattern.test(confirmpassvalue);
                 if (isValid) {
+                    confirmpassvalue = await bcrypt.hash(confirmpassvalue, 12);
                 } else {
                     Error.confirmpasserror =
                         'password must contain at least 8 characters,one lowercase letter,one uppercase letter and one digit';

@@ -3,36 +3,29 @@ const Cart = require('../models/cart');
 const { Product } = require('../models/product');
 const router = express.Router();
 
-router.get('/', (req,res)=>{
-
+router.get('/', (req, res) => {
     res.render('pages/cart', {
         user: req.session.user == undefined ? undefined : req.session.user,
-        cart:req.session.cart == undefined? undefined: req.session.cart,
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
-    
-})
-
+});
 
 router.post('/remove', (req, res) => {
-
     let i = 0;
     req.session.cart.items.forEach((items, index) => {
         if (items.id == req.body.id) {
-                req.session.cart.items.splice(index, 1);
-            
+            req.session.cart.items.splice(index, 1);
         }
     });
 
     req.session.cart.items.forEach((items, index) => {
-       console.log(items);
-        });
+        console.log(items);
+    });
 
     res.send({ payload: req.session.cart });
-})
-
+});
 
 router.post('/minus', (req, res) => {
- 
     let i = 0;
     req.session.cart.items.forEach((items, index) => {
         if (items.id == req.body.payload) {
@@ -45,11 +38,12 @@ router.post('/minus', (req, res) => {
     res.send({ payload: req.session.cart });
 });
 router.post('/plus', async (req, res) => {
-    const product = await Product.findOne({ _id: req.body.payload })
+    const product = await Product.findOne({ _id: req.body.payload });
     req.session.cart.items.forEach((items) => {
         if (items.id == req.body.payload) {
-            if(items.quantity < product.countInStock){items.quantity++;}
-            
+            if (items.quantity < product.countInStock) {
+                items.quantity++;
+            }
         }
     });
     res.send({ payload: req.session.cart });
@@ -90,6 +84,5 @@ router.post(`/add-to-cart`, async (req, res) => {
             console.log(err);
         });
 });
-
 
 module.exports = router;
