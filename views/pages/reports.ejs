@@ -12,51 +12,39 @@
   <link rel="stylesheet" href="/css/displayproducts.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
   <title>Reports</title>
+
+  
 </head>
 
 <body>
   <div class="container">
     <%- include('../partials/dashboardsidebar', { currentPage: 'reports' }) %>
     <div class="content">
-      <main class="table">
-        <section class="table_header">
-          <h1>Reports</h1>
-          <div class="search_orders">
-            <input type="search" placeholder="Search reports...">
-          </div>
-        </section>
-        <section class="table_body">
-          <table>
-            <thead>
-              <tr>
-                <th>Email</th>
-                <th>Summary</th>
-                <th>Review</th>
-                <th>Product ID</th>
-                <th>Timestamp</th>
-              </tr>
-            </thead>
-            <tbody>
+        <main class="table">
+            <section class="table_header">
+              <h1>Reports and Reviews: </h1>
+              
+            </section>
+            <section class="testimonials">
               <% if (reviews && reviews.length > 0) { %>
-              <% reviews.forEach(review => { %>
-              <tr>
-                <td><%= review.email %></td>
-                <td><%= review.summary %></td>
-                <td><%= review.review %></td>
-                <td><%= review.productId %></td>
-                <td><%= review.createdAt %></td>
-              </tr>
-              <% }) %>
+                <% reviews.forEach(review => { %>
+                  <div class="testimonial">
+                    <div class="content">
+                      <h4><%= review.email %></h4>
+                      <p class="rev_id">Reviewing: <%= review.productName %></p>
+            
+                      <p class="rev">Review: <%= review.review %></p>
+            
+                    </div>
+                  </div>
+                <% }) %>
               <% } else { %>
-              <tr>
-                <td colspan="5">No reviews found.</td>
-              </tr>
+                <p>No reviews found.</p>
               <% } %>
-            </tbody>
-          </table>
-        </section>
-      </main>
+            </section>
+          </main>
     </div>
   </div>
   <script src="/js/editcustdash.js"></script>

@@ -16,6 +16,7 @@ const reviewsSchema = mongoose.Schema(
         },
         productId:{ 
         type: String,
+        ref: 'products',
         required: true},
     },
     { timestamps: true }

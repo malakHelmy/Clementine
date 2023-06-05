@@ -117,6 +117,8 @@ router.post('/:id/update', async (req, res) => {
     try {
         const orderID = req.params.id;
         const updates = req.body;
+        const orderr = await Order.findById(orderID).populate('orderItems');
+        const orderitems = orderr.name;
 
         const order = await Order.findById(orderID).populate('userID');
         if (!order) {
@@ -166,8 +168,33 @@ router.post('/:id/update', async (req, res) => {
             const mailOptions = {
                 from: 'clementineco2023@gmail.com',
                 to: user.email,
-                subject: 'Order Cancelled',
-                text: `Dear ${order.userFullName},\n\nYour order with Order ID ${orderID} has been shipped!\n\nThank you.`,
+                subject: 'Order Shipped',
+                text: `Dear ${order.userFullName},\n\nYour order with Order ID ${orderID} has been shipped!\n\nThank you.`
+            };
+
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error(error);
+                } else {
+                    console.log(`Email sent: ${info.response}`);
+                }
+            });
+        }
+        if (newStatus === 'Delivered' && oldStatus !== 'Delivered') {
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'clementineco2023@gmail.com',
+                    pass: 'lmkwmjbyftpuzwhz',
+                }
+            });
+
+            const user = order.userID;
+            const mailOptions = {
+                from: 'clementineco2023@gmail.com',
+                to: user.email,
+                subject: 'Order Delivered',
+                text: `Dear ${order.userFullName},\n\n Your order should have been delivered to you. Please let us know your feedback and if you have any inquiries.\n\nWith love, \n\nClementine.`
             };
 
             transporter.sendMail(mailOptions, (error, info) => {

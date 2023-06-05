@@ -1,3 +1,25 @@
+:root {
+    --color-primary: #9675b0;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(99, 104, 155, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f0f2f5; 
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
 .main.table {
     width: 75vw;
     height: 90vh;
@@ -66,7 +88,7 @@
     visibility: hidden;
 }
 
-.table_body:hover::-webkit-scrollbar-thumb{ 
+.table_body:hover::-webkit-scrollbar-thumb {
     visibility: visible;
 }
 
@@ -82,7 +104,9 @@ td img {
     vertical-align: middle;
 }
 
-table, th, td {
+table,
+th,
+td {
     border-collapse: collapse;
     padding: 1rem;
     text-align: left;
@@ -182,7 +206,7 @@ thead th span.icon-arrow {
     transition: .2s ease-in-out;
 }
 
-thead th:hover span.icon-arrow{
+thead th:hover span.icon-arrow {
     border: 1.4px solid #6c00bd;
 }
 
@@ -190,16 +214,17 @@ thead th:hover {
     color: #6c00bd;
 }
 
-thead th.active span.icon-arrow{
+thead th.active span.icon-arrow {
     background-color: #6c00bd;
     color: #fff;
 }
 
-thead th.asc span.icon-arrow{
+thead th.asc span.icon-arrow {
     transform: rotate(180deg);
 }
 
-thead th.active, tbody td.active {
+thead th.active,
+tbody td.active {
     color: #6c00bd;
 }
 
@@ -212,9 +237,9 @@ thead th.active, tbody td.active {
 .add_product {
     text-align: center;
     margin: 20px 0;
-  }
-  
-  .add-product {
+}
+
+.add-product {
     display: inline-block;
     padding: 8px 18px;
     font-size: 15.5px;
@@ -225,15 +250,56 @@ thead th.active, tbody td.active {
     border: none;
     border-radius: 2px;
     cursor: pointer;
-  }
-  
-  .add-product:hover {
+}
+
+.add-product:hover {
     background-color: #828282;
     transition: 2s ease;
 
-  }
-  
-  .add-product i {
+}
+
+.add-product i {
     margin-right: 3px;
-  }
-  
+}
+
+
+
+.testimonials {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    max-height: 80vh;
+    /* Set a max height to the testimonials section */
+}
+
+.testimonial {
+    width: 300px;
+    padding: 20px;
+    margin: 30px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    text-align: center;
+    border-radius: var(--border-radius-2);
+    box-shadow: var(--box-shadow);
+    
+
+}
+
+.testimonial h4 {
+    color: #5f397a;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.rev {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.rev_id{
+    font-size: 13px;
+}

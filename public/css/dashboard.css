@@ -1,6 +1,6 @@
 /* variable declaration */
 :root {
-    --color-primary: #7b7d89;
+    --color-primary: #9675b0;
     --color-danger: #ff7782;
     --color-success: #7dbfa9;
     --color-warning: #ffbb55;
@@ -535,12 +535,13 @@ margin-top: 10px;
   }
   
   .employer-info h2 {
+    letter-spacing: 1px;
     font-weight: 500;
     margin-bottom: 1rem;
   }
   
   .employer-info p {
-    font-size: 1.4rem;
+    font-size: 17px;
     margin-bottom: 0.8rem;
   }
   
