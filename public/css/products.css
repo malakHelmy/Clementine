@@ -94,12 +94,28 @@ body {
 
 }
 
+.disabledbtn {
+  width: 100%;
+  border: none;
+  height: 30px;
+  font-size: 16px;
+  color: white;
+  background-color: rgb(152, 116, 32);
+  transform: translateY(3.5rem);
+  transition: .5s;
+  font-family: 'Zapf';
+
+}
+
 .box:hover .items {
   border: none;
   transform: translateY(-0.1px);
 }
 
 .box:hover .cartbtn {
+  transform: translateY(-0.1px);
+}
+.box:hover .disabledbtn {
   transform: translateY(-0.1px);
 }
 
@@ -109,6 +125,11 @@ body {
   transition: 0.7s ease;
   cursor: pointer;
   letter-spacing: 2px;
+}
+.disabledbtn:hover {
+  color: white;
+  transition: 0.7s ease;
+  cursor: pointer;
 }
 
 .box .ri-heart-line,

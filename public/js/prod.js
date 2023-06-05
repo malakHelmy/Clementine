@@ -1,5 +1,5 @@
 
-const wishlistIcons = document.querySelectorAll('.ri-heart-line');
+var wishlistIcons = document.querySelectorAll('.ri-heart-line');
 
 wishlistIcons.forEach((icon) => {
     icon.addEventListener('click', async () => {
@@ -17,7 +17,7 @@ wishlistIcons.forEach((icon) => {
     });
 });
 
-const removeWish = document.querySelectorAll('.ri-heart-fill');
+var removeWish = document.querySelectorAll('.ri-heart-fill');
 
 removeWish.forEach((closeIcon) => {
     closeIcon.addEventListener('click', async () => {

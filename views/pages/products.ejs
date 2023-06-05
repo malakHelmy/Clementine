@@ -50,8 +50,8 @@
                 <form action="/products/ <%- material %>/ <%- category %>/  <%- body %> / <%- productTitle %>"
                     method="post">
                     <select name="sort" id="sort">
-                        <option value="Highestprice">  Highest price</option>
-                        <option value="Lowestprice">  Lowest price</option>
+                        <option value="Highestprice"> Highest price</option>
+                        <option value="Lowestprice"> Lowest price</option>
                     </select>
                     <input type="submit" value="Filter" id="filter">
                 </form>
@@ -97,7 +97,7 @@
                                                                     Add to cart
                                                                 </button>
                                                                 <% } else {%>
-                                                                    <button class="cartbtn">
+                                                                    <button class="disabledbtn">
                                                                         Out of stock
                                                                     </button>
                                                                     <% } %>
@@ -151,15 +151,13 @@
                                                                                 <%= i %>
                                                                             </a>
                                                                         </li>
-                                                                        <% } else if ((i==2 && current>= 4) || (i ==
-                                                                            pages-1 && current <= pages-4)) { %>
+                                                                        <% } else if ((i==2 && current>= 4) || (i == pages-1 && current <= pages-4)) { %>
                                                                                 <li class="page-item disabled">
                                                                                     <a href="#"
                                                                                         class="page-link">...</a>
                                                                                 </li>
                                                                                 <% } %>
                                                                                     <% } %>
-
                                                                                         <% if (current==pages) { %>
                                                                                             <li
                                                                                                 class="page-item disabled">
@@ -168,10 +166,10 @@
                                                                                             </li>
                                                                                             <% } else { %>
                                                                                                 <li class="page-item">
-                                                                                                    <a href="?page=<%= pages %>"
-                                                                                                        class="page-link">LAST</a>
+                                                                                                    <a href="?page=<%= pages %>"class="page-link">LAST</a>
                                                                                                 </li>
                                                                                                 <% } %>
+
                             </ul>
                         </section>
 
