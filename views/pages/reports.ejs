@@ -33,10 +33,10 @@
                   <div class="testimonial">
                     <div class="content">
                       <h4><%= review.email %></h4>
-                      <p><%= review.productId %></p>
-    
-                      <p><%= review.review %></p>
-    
+                      <p class="rev_id">Reviewing: <%= review.productName %></p>
+            
+                      <p class="rev">Review: <%= review.review %></p>
+            
                     </div>
                   </div>
                 <% }) %>

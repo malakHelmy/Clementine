@@ -59,12 +59,7 @@
                             <input type="text" id="city" name="city" value="<%= order.city %>">
                         </div>
 
-                        <h1 class="add-title" style="font-size: 15px;">Order Items:</h1>
-                        <ul>
-                            <% order.orderItems.forEach(function(item) { %>
-                                <li><%= item.name %></li>
-                              <% }); %>
-                        </ul>
+                       
                         <input type="submit" id="update" class="update-btn" value="Update"></button>
                         <button id="cancel" href="/ordersdash" id="cancel" class="delete-btn">Cancel</button>
 

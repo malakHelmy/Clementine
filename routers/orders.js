@@ -130,6 +130,8 @@ router.post('/:id/update', async (req, res) => {
     try {
         const orderID = req.params.id;
         const updates = req.body;
+        const orderr = await Order.findById(orderID).populate('orderItems');
+        const orderitems = orderr.name;
 
         const order = await Order.findById(orderID).populate('userID');
         if (!order) {
