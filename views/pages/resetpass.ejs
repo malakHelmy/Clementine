@@ -36,7 +36,7 @@
         <section class="signIn">
 
             <h2>Change password</h2>
-            <form  class="signInform" id="signInform" >
+            <form method="post" class="signInform" id="signInform" >
                  
                  <div class="textfield"> 
                      <input type="password" name="email" id="password" >  
@@ -45,7 +45,7 @@
                      <label for="">New password</label>      
                  </div>
                  <div class="textfield"> 
-                    <input type="password" name="email" id="confrimpassword" >  
+                    <input type="password" name="email" id="confirmpassword" >  
                     <label  id="confirmpasslabel"></label>
                     <span class="sp1"></span>          
                     <label for="">Confirm new password</label>      
@@ -53,9 +53,10 @@
                  <input type="submit" class="submit">
                  <br><br>
             </form>
+            <script src="/js/resetajax.js"></script>
         </section>
   
- <script src="/js/forgetajax.js"></script>
+ 
     <%- include('../partials/footer') %>
 
     
