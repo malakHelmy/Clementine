@@ -34,6 +34,7 @@
 <body>
 
     <%- include('../partials/navbar') %>
+    <div id="popup" class="popup"></div>
         <section id="rings-intro">
             <h1 class="rings-intro-title">
                 <%= productTitle %>
@@ -58,7 +59,6 @@
             <% } %>
 
                 <section class="product-container">
-                    <div id="popup" class="popup"></div>
                     <% if(products !='' ) {%>
                         <% products.forEach((items)=> {%>
                             <div class="box">
