@@ -14,11 +14,17 @@ which sells specifically diamond and gold, catered towards women around the age 
 <h3 align="left">Our Features:</h3>
 <p> Sophisticated Product Display: We ensured that the products are displayed in a sophisticated manner, with high-quality images and detailed product descriptions. This helps customers make informed decisions while shopping and to draw the user's attention and make the website more engaging. </p>
 
+<p> User Authentication: We included user authentication functionality, allowing customers to create accounts and log in to access their order history, saved items, carts and other personalized features </p>
+
 <p> User-friendly Navigation: We made sure to facilitate the experience for both clients and admins dynamically so that they can navigate through the website with ease. </p>
+
+<p>Search bar functionality: We implemented a search bar that allows customers to quickly find the product they are looking for. This helps to save time and makes the shopping experience more efficient.</p>
 
 <p> Easy Checkout Process: We included a simple and easy checkout process that allows customers to complete their purchase quickly and efficiently, and regularly updating them with their orders' status updates through email to assure them. </p>
 
-<p> Responsive Design: We made sure that the website is responsive to different screen sizes and devices, ensuring that all users can access the website regardless of their device. </p>
+<p> Responsive Design and animations: We want to serve the best user exprience we could, so we made sure that the website is responsive to different screen sizes and devices, ensuring that all users can access the website regardless of their device while maintaining eye catching features. </p>
+
+<p> Admin Dashboard: We created an admin dashboard that allows admins to manage products, orders, and customers. This makes it easy for them to keep track of inventory, process orders, and handle customer inquiries </p>
 
 <p> Team Collaboration: We worked collaboratively as a team, communicating effectively to ensure that all elements of the website work together seamlessly. </p>
 
