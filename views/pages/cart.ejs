@@ -24,73 +24,80 @@
         <div class="shopcart-wrapper">
             <% var productCount=0;%>
                 <% if(cart !=undefined ) {%>
-                    <h1 class="cart-header">your shopping bag (<%= cart.items.length %> items)</h1>
-                    <div class="prod">
-                        <div class="cart-items">
-                            <% cart.items.forEach((items)=> {%>
-                                <div class="cart-box">
-                                    <img src="/Images/<%= items.image %>" alt="earring 8">
-                                    <div class="prod-content">
-                                        <h3>
-                                            <%= items.name %><button class="remove-btn"><i
-                                                        class="ri-close-line"></i></button>
-                                        </h3>
-                                        <h4 class="price">
-                                            EGP <%= items.price * items.quantity %>
-                                        </h4>
-
-
-                                        <div class="btn-wrapper">
-                                            <a class="checkoutminus" data-minid="<%= items.id %>">
-                                                <span class="minus">
-                                                    -
-                                                </span>
-                                            </a>
-                                            <span class="num">
-                                                <%= items.quantity %>
-                                            </span>
-                                            <a class="checkoutplus" data-plusid="<%= items.id %>">
-                                                <span class="add">
-                                                    +
-                                                </span>
-                                            </a>
-                                        </div>
-                                        <button class="wishlist-btn" data-productid="<%- items.id %>">Add to
-                                            Wishlist
-                                        </button>
-                                    </div>
-                                </div>
-                            <%}) %>
-                        </div>
-
-                        <% }else{ %>
-                            <h1 class="cart-header">your shopping bag is empty</h1>
+                    <% if (cart.items.length==1) {%>
+                        <h1 class="cart-header">your shopping bag (<%= cart.items.length %> item)</h1>
+                        <% } else {%>
+                            <h1 class="cart-header">your shopping bag (<%= cart.items.length %> items)</h1>
                             <% } %>
-                                <div class="right-bar">
-                                    <p><span>Subtotal</span><span class="subtotal"> EGP <% var price=0 %>
-                                                <% if(cart!=undefined && cart.items!='' ){ var price=0%>
-                                                    <% cart.items.forEach((items)=> {%>
-                                                        <%if(items.quantity> 0){ %>
-                                                            <% price +=(items.price * items.quantity) %>
-                                                                <% }})} %>
-                                                                    <%= price%></span></p>
-                                    <p><span>Shipping</span> <span>EGP100</span></p>
-                                    <hr>
-                                    <p><span>Total</span> <span class="totalafter">EGP <%=price +=100%></span></p>
-                                    <button onclick="location.href='/checkout'"class="checkout-btn">CHECKOUT</button>
+                                <div class="prod">
+                                    <div class="cart-items">
+                                        <% cart.items.forEach((items)=> {%>
+                                            <div class="cart-box">
+                                                <img src="/Images/<%= items.image %>" alt="earring 8">
+                                                <div class="prod-content">
+                                                    <h3>
+                                                        <%= items.name %>
+                                                            <button class="remove-btn"><i
+                                                                    class="ri-close-line" data-productid=""></i></button>
+                                                    </h3>
+                                                    <h4 class="price">
+                                                        EGP <%= items.price * items.quantity %>
+                                                    </h4>
 
-                                    <div class="payment-method">
-                                        <p></p>
-                                        <hr>
-                                        Checkout quickly and securely with
-                                        <br>
 
-                                        <img src="./Images/cash.svg" alt="">
-                                        <img src="./Images/visa.svg" alt="">
-                                        <img src="./Images/mastercard.svg" alt="">
+                                                    <div class="btn-wrapper">
+                                                        <a class="checkoutminus" data-minid="<%= items.id %>">
+                                                            <span class="minus">
+                                                                -
+                                                            </span>
+                                                        </a>
+                                                        <span class="num">
+                                                            <%= items.quantity %>
+                                                        </span>
+                                                        <a class="checkoutplus" data-plusid="<%= items.id %>">
+                                                            <span class="add">
+                                                                +
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <button class="wishlist-btn" data-productid="<%- items.id %>">Add to
+                                                        Wishlist
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <%}) %>
                                     </div>
+
+                                    <% }else{ %>
+                                        <h1 class="cart-header">your shopping bag is empty</h1>
+                                        <% } %>
+                                            <div class="right-bar">
+                                                <p><span>Subtotal</span><span class="subtotal"> EGP <% var price=0 %>
+                                                            <% if(cart!=undefined && cart.items!='' ){ var price=0%>
+                                                                <% cart.items.forEach((items)=> {%>
+                                                                    <%if(items.quantity> 0){ %>
+                                                                        <% price +=(items.price * items.quantity) %>
+                                                                            <% }})} %>
+                                                                                <%= price%></span></p>
+                                                <p><span>Shipping</span> <span>EGP100</span></p>
+                                                <hr>
+                                                <p><span>Total</span> <span class="totalafter">EGP <%=price +=100%>
+                                                            </span></p>
+                                                <button onclick="location.href='/checkout'"
+                                                    class="checkout-btn">CHECKOUT</button>
+
+                                                <div class="payment-method">
+                                                    <p></p>
+                                                    <hr>
+                                                    Checkout quickly and securely with
+                                                    <br>
+
+                                                    <img src="./Images/cash.svg" alt="">
+                                                    <img src="./Images/visa.svg" alt="">
+                                                    <img src="./Images/mastercard.svg" alt="">
+                                                </div>
+                                            </div>
                                 </div>
-                </div>
         </div>
         <script src="/js/shopcart.js"></script>
         <script src="/js/wish.js"></script>
