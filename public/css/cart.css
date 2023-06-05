@@ -230,7 +230,7 @@ i.ri-close-line {
         margin-right: -2%;
     }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 400px) {
     .cart-header{
         font-size: 30px;
     }
