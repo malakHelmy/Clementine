@@ -77,37 +77,52 @@ router.get(`/`, async (req, res) => {
 
 
 
-router.get('/:id', (req, res) => {
-    Order.findById(req.params.id)
-        // .populate('userID', '_id')
-        .then((result) => {
-            res.render('pages/updateorder', {
-                viewTitle: 'Update Order',
-                order: result
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async(req, res) => {
     try {
       const orderID = req.params.id;
       await Order.findOneAndDelete({ _id: orderID });
-      console.log(orderID);
       console.log(`Order with ID ${orderID} deleted.`);
-  
-      if (req.query.ajax) {
-        res.json({ message: "Order deleted successfully" });
-      } else {
-        res.redirect('/ordersdash');
-      }
-    } catch (error) {
-      console.error('Error deleting order: ', error);
-      res.status(500)
-        .json({ error: 'Failed to delete order, please try again.' });
+      res.redirect('/ordersdash');
+    }
+    catch(error) {
+      console.log('Error deleting order: ', error);
+      res.redirect('/ordersdash');
     }
   });
+// router.delete('/:id', async (req, res) => {
+//     try {
+//       const orderID = req.params.id;
+//       await Order.findOneAndDelete({ _id: orderID });
+//       console.log(orderID);
+//       console.log(`Order with ID ${orderID} deleted.`);
+  
+//       if (req.query.ajax) {
+//         res.json({ message: "Order deleted successfully" });
+//       } else {
+//         res.redirect('/ordersdash');
+//       }
+//     } catch (error) {
+//       console.error('Error deleting order: ', error);
+//       res.status(500)
+//         .json({ error: 'Failed to delete order, please try again.' });
+//     }
+//   });
+
+
+
+  router.post('/:id', async(req, res) => {
+    try {
+        const orderID = req.params.id;
+        await Order.findByIdAndRemove(orderID);
+         console.log(`Order with ID ${orderID} deleted.`);
+
+        res.redirect('/ordersdash');
+    }
+    catch(error) {
+        console.log('Error deleting order: ', error);
+        res.redirect('/ordersdash');
+    }
+  })
 //editing and updating status
 router.post('/:id/update', async (req, res) => {
 

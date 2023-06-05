@@ -13,10 +13,26 @@ router.get('/', (req,res)=>{
 })
 
 
+router.post('/remove', (req, res) => {
+
+    let i = 0;
+    req.session.cart.items.forEach((items, index) => {
+        if (items.id == req.body.id) {
+                req.session.cart.items.splice(index, 1);
+            
+        }
+    });
+
+    req.session.cart.items.forEach((items, index) => {
+       console.log(items);
+        });
+
+    res.send({ payload: req.session.cart });
+})
 
 
 router.post('/minus', (req, res) => {
-    console.log("minus");
+ 
     let i = 0;
     req.session.cart.items.forEach((items, index) => {
         if (items.id == req.body.payload) {
