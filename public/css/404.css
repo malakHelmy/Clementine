@@ -1,4 +1,45 @@
+body {
+    background-image: url("/images/backk.jpg");
+    background-size: cover;
+    background-position: center;
+}
 
-.body{
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
     text-align: center;
+}
+
+.content {
+    background-color: rgba(255, 255, 255, 0.8); /* Adjust the opacity as needed */
+    padding: 20px;
+}
+
+h1 {
+    font-size: 64px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 24px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #555;
 }
