@@ -264,10 +264,15 @@ tbody td.active {
 }
 
 .testimonial h4 {
+    color: #5a2e7d;
     font-size: 18px;
     margin-bottom: 10px;
 }
 
-.testimonial p {
-    font-size: 14px;
+.rev {
+    font-size: 15px;
+}
+
+.rev_id{
+    font-size: 12px;
 }
