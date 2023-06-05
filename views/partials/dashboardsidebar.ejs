@@ -31,16 +31,7 @@
         <%# } %>
 
 
-
-        <a href="" class="<%= currentPage === 'analytics' ? 'active' : '' %>">
-            <span class="material-symbols-sharp">insights</span>
-            <h3>Analytics</h3>
-        </a>
-        <a href="/chat" class="<%= currentPage === 'chat' ? 'active' : '' %>">
-            <span class="material-symbols-sharp">chat</span>
-            <h3>Chat</h3>
-            <span class="message-count">3</span>
-        </a>
+    
         <a href="/displayproducts" class="<%= currentPage === 'displayproducts' ? 'active' : '' %>">
             <span class="material-symbols-sharp">inventory</span>
             <h3>Products</h3>
@@ -52,6 +43,10 @@
         <a href="/adminprofile" class="<%= currentPage === 'settings' ? 'active' : '' %>">
             <span class="material-symbols-sharp">Settings</span>
             <h3>Settings</h3>
+        </a>
+        <a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>">
+            <span class="material-symbols-sharp">home</span>
+            <h3>Return to Homepage</h3>
         </a>
         <a href="/">
             <span class="material-symbols-sharp">logout</span>
