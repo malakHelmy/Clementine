@@ -14,13 +14,11 @@ they hopefully face no troubles. Keeping the user experience in mind by easing u
 <p>This project will hopefully act as a guideline to any of us( the contributors ) if we needed to develop a website in the future</p>
 
 <h3 align="left">Our Features:</h3>
-Sophisticated Product Display: We ensured that the products are displayed in a sophisticated manner, with high-quality images and detailed product descriptions. This helps customers make informed decisions while shopping.
-
-<p> Eye-catching Features: We included eye-catching features such as a carousel slider on the home page and a hover effect on the product images. These features help to draw the user's attention and make the website more engaging. </p>
+<p> Sophisticated Product Display: We ensured that the products are displayed in a sophisticated manner, with high-quality images and detailed product descriptions. This helps customers make informed decisions while shopping and to draw the user's attention and make the website more engaging. </p>
 
 <p> User-friendly Navigation: We made sure to facilitate the experience for both clients and admins dynamically so that they can navigate through the website with ease. We also used a minimalist design and ensured that the website is responsive to different screen ratios. </p>
 
-<p> Easy Checkout Process: We included a simple and easy checkout process that allows customers to complete their purchase quickly and efficiently. </p>
+<p> Easy Checkout Process: We included a simple and easy checkout process that allows customers to complete their purchase quickly and efficiently, and regularly updating them with their orders' status updates through email to assure them. </p>
 
 <p> Responsive Design: We made sure that the website is responsive to different screen sizes and devices, ensuring that all users can access the website regardless of their device. </p>
 
