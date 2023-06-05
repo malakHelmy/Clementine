@@ -19,6 +19,39 @@ body {
     'Helvetica Neue', sans-serif;
 }
 
+.popup {
+  margin-left: 75%;
+  width: 300px;
+  background-color: #eaeaea;
+  padding: 2%;
+  text-align: center;
+  visibility: hidden;
+  position: absolute;
+  transition: 0.7 ease;
+  z-index: 999;
+}
+
+.open-popup {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+  opacity: 0.79;
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 0.79;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 0.79;}
+}
+.popup span {
+  color: #d79e2e;
+  font-weight: 400;
+}
+
 .parent {
   margin-top: 20px;
   position: relative;

@@ -171,13 +171,15 @@ router.get('/wishlist', async (req, res) => {
 router.post('/add-to-wishlist', async (req, res) => {
     const userID = req.session.user;
     const prod = req.body.prodID;
+    let product = await Product.findOne({ _id: prod });
     try {
         products.addToWishlist(userID, prod);
-        res.status(200);
+        res.status(200).send({ product });
     } catch (error) {
         console.error(error);
         res.status(500);
     }
+    
 });
 
 router.post('/remove-from-wishlist', async (req, res) => {

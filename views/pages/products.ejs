@@ -34,7 +34,6 @@
 <body>
 
     <%- include('../partials/navbar') %>
-
         <section id="rings-intro">
             <h1 class="rings-intro-title">
                 <%= productTitle %>
@@ -58,9 +57,8 @@
             </div>
             <% } %>
 
-
-
                 <section class="product-container">
+                    <div id="popup" class="popup"></div>
                     <% if(products !='' ) {%>
                         <% products.forEach((items)=> {%>
                             <div class="box">
@@ -151,7 +149,8 @@
                                                                                 <%= i %>
                                                                             </a>
                                                                         </li>
-                                                                        <% } else if ((i==2 && current>= 4) || (i == pages-1 && current <= pages-4)) { %>
+                                                                        <% } else if ((i==2 && current>= 4) || (i ==
+                                                                            pages-1 && current <= pages-4)) { %>
                                                                                 <li class="page-item disabled">
                                                                                     <a href="#"
                                                                                         class="page-link">...</a>
@@ -166,7 +165,8 @@
                                                                                             </li>
                                                                                             <% } else { %>
                                                                                                 <li class="page-item">
-                                                                                                    <a href="?page=<%= pages %>"class="page-link">LAST</a>
+                                                                                                    <a href="?page=<%= pages %>"
+                                                                                                        class="page-link">LAST</a>
                                                                                                 </li>
                                                                                                 <% } %>
 

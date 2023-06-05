@@ -21,7 +21,6 @@
 <body>
 
     <%- include('../partials/navbar') %>
-
         <div class="parent">
 
             <div class="card-wrapper">
@@ -85,20 +84,21 @@
 
 
                 <div class="wishlist" id="wishlist">
-
+                    
                     <% if (User !=undefined) { %>
                         <%if(User.wishlist.includes(products._id)){%>
-                            <img src="/Images/darkfav.png" alt="" id="darkfav" data-removeid="<%- products._id %>"
-                                onclick="remove()" title="remove from wishlist">
+                            <img src="/Images/darkfav.png" alt="" id="darkfav" class="darkfav" data-wishid="<%= products._id %>" title="remove from wishlist">
+                            <span class="savesmall">REMOVE FROM WISHLIST</span>
                             <% }else { %>
-                                <img src="/Images/whiteheart.png" alt="" id="fav" data-wishid="<%= products._id %>"
-                                    onclick="add()" title="add to wishlist">
+                                <img src="/Images/whiteheart.png" alt="" id="fav" class="fav" data-wishid="<%= products._id %>" title="add to wishlist">
+                                <span class="savesmall">SAVE TO WISHLIST</span>
                                 <% } %> %>
                                     <% }else { %>
-                                        <img src="/Images/whiteheart.png" alt="" id="fav"
+                                        <img src="/Images/whiteheart.png" alt="" id="fav" class="fav"
                                             data-wishid="<%= products._id %>" title="add to wishlist">
-                                        <% } %>
                                             <span class="savesmall">SAVE TO WISHLIST</span>
+                                        <% } %>
+                                            
                 </div>
 
                 <br>

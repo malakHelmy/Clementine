@@ -1,4 +1,6 @@
 // var wishlistIcons = document.querySelectorAll('.ri-heart-line');
+
+var popup = document.getElementById('popup');
 $(document).on('click', '.ri-heart-line', async function () {
     var prodID = $(this).data('productid');
     document
@@ -10,8 +12,21 @@ $(document).on('click', '.ri-heart-line', async function () {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ prodID }),
-    });
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            let product = data.product;
+            popup.classList.add('open-popup');
+            popup.innerHTML = ``;
+            popup.innerHTML += `You have added <span> ${product.name} </span>to your wishlist`;
+            setTimeout(function () {
+                popup.className = 'popup';
+            }, 3000);
+            
+        });
 });
+
+
 
 // var removeWish = document.querySelectorAll('.ri-heart-fill');
 

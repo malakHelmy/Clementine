@@ -13,6 +13,39 @@ body {
     'Helvetica Neue', sans-serif;
 }
 
+.popup {
+  margin-left: 75%;
+  width: 300px;
+  background-color: #eaeaea;
+  padding: 2%;
+  text-align: center;
+  visibility: hidden;
+  position: absolute;
+  transition: 0.7 ease;
+  z-index: 999;
+}
+
+.open-popup {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+  opacity: 0.79;
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 0.79;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 0.79;}
+}
+.popup span {
+  color: #d79e2e;
+  font-weight: 400;
+}
+
 .product-container {
   display: flex;
   flex-wrap: wrap;
@@ -115,6 +148,7 @@ body {
 .box:hover .cartbtn {
   transform: translateY(-0.1px);
 }
+
 .box:hover .disabledbtn {
   transform: translateY(-0.1px);
 }
@@ -126,6 +160,7 @@ body {
   cursor: pointer;
   letter-spacing: 2px;
 }
+
 .disabledbtn:hover {
   color: white;
   transition: 0.7s ease;
@@ -183,7 +218,7 @@ body {
 }
 
 .rings-intro-title {
-  
+
   letter-spacing: 2px;
   font-family: 'Zapf';
   font-size: 35px;
@@ -245,18 +280,21 @@ body {
   border-color: #ccc;
 }
 
-@media screen and (max-width: 820px)
-{
-  #rings-intro{
+@media screen and (max-width: 820px) {
+  #rings-intro {
     padding: 6%;
     margin-top: 5%;
     font-size: 12px;
   }
+
   .rings-intro-title {
     font-size: 30px;
   }
 }
-#emaillabel,#reviewlabel,#summarylabel{
+
+#emaillabel,
+#reviewlabel,
+#summarylabel {
 
   position: absolute;
   left: 0;

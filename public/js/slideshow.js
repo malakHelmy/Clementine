@@ -13,35 +13,40 @@ buttons.forEach((button) => {
     });
 });
 
-let imgs = [document.getElementById('darkfav'), document.getElementById('fav')];
-const white = document.getElementById('fav');
-const dark = document.getElementById('darkfav');
+var popup = document.getElementById('popup');
 
-async function add() {
-    var prodID = white.dataset.wishid;
-    document
-        .getElementById('fav')
-        .setAttribute('src', '/Images/darkfav.png');
-    const response = await fetch('/add-to-wishlist', {
+$(document).on('click', '.fav', async function () {
+    var prodID = $(this).data('wishid');
+    document.getElementById('fav').setAttribute('src', '/Images/darkfav.png');
+    fetch('/add-to-wishlist', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Content-Type': 'application/json',
         },
         body: JSON.stringify({ prodID }),
-    });
-}
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            let product = data.product;
+            popup.classList.add('open-popup');
+            popup.innerHTML = ``;
+            popup.innerHTML += `You have added <span> ${product.name} </span>to your wishlist`;
+            setTimeout(function () {
+                popup.className = 'popup';
+            }, 3000);
+        });
+});
 
-async function remove() {
-    var wishprodID = dark.dataset.removeid;
+$(document).on('click', '.darkfav', async function () {
+    var wishprodID = $(this).data('wishid');
     document
         .getElementById('darkfav')
         .setAttribute('src', '/Images/whiteheart.png');
-    const response = await fetch('/remove-from-wishlist', {
+    fetch('/remove-from-wishlist', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ wishprodID }),
     });
-}
+});
