@@ -8,8 +8,8 @@ router.get('/', (req,res)=>{
     res.render('pages/cart', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart:req.session.cart == undefined? undefined: req.session.cart,
-
     });
+    
 })
 
 
