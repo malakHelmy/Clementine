@@ -1,45 +1,37 @@
-
-var wishlistIcons = document.querySelectorAll('.ri-heart-line');
-
-wishlistIcons.forEach((icon) => {
-    icon.addEventListener('click', async () => {
-        var prodID = icon.dataset.productid;
-        document
-            .getElementById('heart-icon-' + prodID)
-            .setAttribute('class', 'ri-heart-fill');
-        const response = await fetch('/add-to-wishlist', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ prodID }),
-        });
+// var wishlistIcons = document.querySelectorAll('.ri-heart-line');
+$(document).on('click', '.ri-heart-line', async function () {
+    var prodID = $(this).data('productid');
+    document
+        .getElementById('heart-icon-' + prodID)
+        .setAttribute('class', 'ri-heart-fill');
+    fetch('/add-to-wishlist', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prodID }),
     });
 });
 
-var removeWish = document.querySelectorAll('.ri-heart-fill');
+// var removeWish = document.querySelectorAll('.ri-heart-fill');
 
-removeWish.forEach((closeIcon) => {
-    closeIcon.addEventListener('click', async () => {
-        var wishprodID = closeIcon.dataset.productid;
-        document
-            .getElementById('included-icon-' + wishprodID)
-            .setAttribute('class', 'ri-heart-line');
-        console.log(wishprodID); // Log the value of prodID to the console
+$(document).on('click', '.ri-heart-fill', async function () {
+    var wishprodID = $(this).data('productid');
+    document
+        .getElementById('heart-icon-' + wishprodID)
+        .setAttribute('class', 'ri-heart-line');
 
-        const response = await fetch('/remove-from-wishlist', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ wishprodID }),
-        });
+    fetch('/remove-from-wishlist', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ wishprodID }),
     });
 });
+
 var select = document.getElementById('sort');
 var value = select.options[select.selectedIndex].value;
-
-
 
 // let productContainer = document.querySelector('.product-container');
 
@@ -57,7 +49,7 @@ var value = select.options[select.selectedIndex].value;
 //         let payload = data.payload;
 //         let products = data.product;
 //         productContainer.innerHTML = '';
-        
+
 //         products.forEach((items) => {
 //             productContainer.innerHTML += `<div class="box">`;
 //             if (payload.id == items._id) {
