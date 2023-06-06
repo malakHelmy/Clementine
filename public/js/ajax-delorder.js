@@ -42,7 +42,6 @@ function confirmDelete(event, orderID) {
         return false;
     }
 
-    // Stop the form from submitting before the confirmation dialog is displayed
     confirmForm.addEventListener("submit", function(event) {
         event.stopPropagation();
     });

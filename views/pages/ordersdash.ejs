@@ -81,6 +81,7 @@
                     </a>
                     <form id="deleteForm" method="POST" action="/ordersdash/<%= orders._id.toString() %>">
                       <input type="hidden" name="orderID" value="<%= orders._id.toString() %>">
+                      <!--used to string ashan tnf3 maa el hidden value el bywsl server, somehow it fixed rrhe error ashan converting?-->
                       <button class="btn" type="submit" onclick="return confirmDelete(event, '<%= orders._id %>')"><i class="fa fa-trash"></i></button>
                     </form>
                   <div id="confirmationDialog" class="confirmation-dialog">
