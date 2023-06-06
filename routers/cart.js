@@ -19,10 +19,7 @@ router.post('/remove', (req, res) => {
         }
     });
 
-    req.session.cart.items.forEach((items, index) => {
-        console.log(items);
-    });
-
+   
     res.send({ payload: req.session.cart });
 });
 
