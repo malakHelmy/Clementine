@@ -20,6 +20,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <title>Clementine</title>
+    <style>
+
+#shippingAddress1label{
+
+    position:relative;
+    top: -10px;
+    color: rgb(70, 4, 4);
+
+  }
+  #userfullnamelabel{
+    color: rgb(70, 4, 4);
+  }
+
+    </style>
 </head>
 
 <body>
@@ -52,7 +66,7 @@
                        <% } %>
                         <div class="textfield">
                             <input type="text" name="userfullname" id="userfullname">
-                            <label for="firstname" id="userfullnamelabel"></label>
+                            
                             <img src="/Images/right.png" alt="" width="15px" height="15px" class="true">
                             <img src="/Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                             <span class="sp1"></span>
@@ -62,16 +76,17 @@
 
                             <label for=""> Full Name</label>
                         </div>
-
+                        <label for="firstname" id="userfullnamelabel"></label>
                         <div class="textfield">
                             <input type="text" name="userfullnamelabel" id="shippingAddress1">
-                            <label for="address" id="shippingAddress1label"></label>
+                            
                             <span class="sp1"></span>
                             <div class="br"><br></div>
                             <span class="errors">
                             </span>
                             <label for="">Address</label>
                         </div>
+                        <label for="address" id="shippingAddress1label"></label>
                         <div class="textfield">
                             <input type="text" name="city" id="city">
                             <label for="city" id="citylabel"></label>
