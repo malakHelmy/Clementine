@@ -41,6 +41,7 @@ router.get('/:id', (req, res) => {
             res.render('pages/updatedeletecust', {
                 viewTitle: 'Update Customer',
                 customer: result,
+                isadmin: req.session.admin,
             });
         })
         .catch((err) => {

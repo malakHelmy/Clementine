@@ -23,16 +23,11 @@
     <div class="container">
 
         <%- include('../partials/dashboardsidebar', { currentPage: 'editcustdash' }) %>
-
-
-
-
-
         <main>
             <h1>Customers</h1>
             <div id="customers-container">
                 <div class="addcust" id="addcust">
-                    <form action ="/user" method="POST" class="form">
+                    <form action ="/editcustdash/<%= customer._id %>/update" method="POST" class="form">
                         <div class="add">
                             <h2 class="add-title"><%= customer.firstanme %>  <%= customer.lastname %></h2>
                         </div>
@@ -79,16 +74,9 @@
                         </div>
                     </form>
                 </div>
-
-
                 <div id="update-msg">
                     <span>Customer Updated Successfully.</span>
                 </div>
-
-
-
-
-
 
                 <script src="/js/editcustdash.js"></script>
 
