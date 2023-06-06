@@ -4,14 +4,22 @@ const Employer = require('../models/employer');
 
 router.get('/:id', async (req, res) => {
   try {
-    const employer = await Employer.findById(req.params.id);
-    if (!employer) {
-      return res.status(404).json({ error: 'Employer not found' });
+
+    if(req.session.admin ==true){
+      const employer = await Employer.findById(req.params.id);
+      if (!employer) {
+        return res.status(404).json({ error: 'Employer not found' });
+      }
+      res.render('pages/editemployers', { employer,isadmin:true });
+      
+    }else{
+      res.render('pages/404');
     }
-    res.render('pages/editemployers', { employer });
+  
+
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Server error' });
+    res.status(404).render('pages/404' );
   }
 });
 

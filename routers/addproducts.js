@@ -16,25 +16,28 @@ const productstorage = multer.diskStorage({
 });
 
 const upload = multer({
-  storage: productstorage,
-  fileFilter: (req, file, cb) => {
-      if (file.fieldname === 'img') {
-          cb(null, true);
-      } else {
-          cb(new Error('Invalid field name'), false);
-      }
-  },
+    storage: productstorage,
+    fileFilter: (req, file, cb) => {
+        if (file.fieldname === 'img') {
+            cb(null, true);
+        } else {
+            cb(new Error('Invalid field name'), false);
+        }
+    },
 }).fields([{ name: 'img', maxCount: 4 }]);
 
-
-
 router.get('/', (req, res) => {
-    let invalidInputs = {};
-    let images = []; // intializing an empty array of images
-    res.render('pages/addproducts', {
-        invalidInputs,
-        images,
-    }); // passing the images array to ejs
+    if (req.session.admin != undefined) {
+        let invalidInputs = {};
+        let images = []; // intializing an empty array of images
+        res.render('pages/addproducts', {
+            invalidInputs,
+            images,
+            isadmin: req.session.admin,
+        }); // passing the images array to ejs
+    } else {
+        res.render('pages/404');
+    }
 });
 
 router.post('/', upload, products.addProduct);

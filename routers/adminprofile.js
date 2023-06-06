@@ -3,20 +3,19 @@ const user = require('../models/employer');
 const admins = require('../controllers/adminprofileController');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const saltRounds = 10;
 
 router.get('/', async (req, res) => {
-    if (req.session.user == undefined) {
-        res.redirect('/login');
-        return;
-    }
-
-    const admininfo = await user.findOne({ email: req.session.user });
+    const admininfo = await user.findOne({ email: req.session.employer });
 
     res.render('pages/adminprofile', {
+        isadmin: req.session.admin,
         admin: admininfo,
         currentPage: 'settings',
-        req: req
+        employer:
+            req.session.employer == undefined
+                ? undefined
+                : req.session.employer,
+        req: req,
     });
 });
 
@@ -27,7 +26,7 @@ router.post('/', async (req, res) => {
     const confirmPassword = req.body.confirmPassword;
     let phonevalue = req.body.phone;
     let emailvalue = req.body.email;
-
+    const ad = await user.findOne({ email: req.session.employer });
     let updateObject = {};
     if (phonevalue) {
         updateObject.phone = phonevalue;
@@ -36,22 +35,29 @@ router.post('/', async (req, res) => {
         updateObject.email = emailvalue;
     }
 
-    let admin = await user.findOneAndUpdate({ email: req.session.user }, updateObject, { new: true }).exec();
-
-    const isOldPasswordValid = await bcrypt.compare(oldPassword, admin.password);
+    const isOldPasswordValid = await bcrypt.compare(oldPassword, ad.password);
     if (!isOldPasswordValid) {
-        res.redirect('/adminprofile?success=false&message=Old+password+is+incorrect');
-        return;
+        res.redirect(
+            '/adminprofile?success=false&message=Old+password+is+incorrect'
+        );
     }
     if (newPassword !== confirmPassword) {
-        res.redirect('/adminprofile?success=false&message=New+password+and+confirm+password+do+not+match');
-        return;
+        res.redirect(
+            '/adminprofile?success=false&message=New+password+and+confirm+password+do+not+match'
+        );
     }
 
-    const hashedNewPassword = await bcrypt.hash(newPassword, saltRounds);
-    admin.password = hashedNewPassword;
-    await admin.save();
-
-    res.redirect('/adminprofile?success=true&message=Password+updated+successfully');
+    updateObject.password = await bcrypt.hash(newPassword, 12);
+    let admin = await user.findOneAndUpdate(
+        { email: req.session.employer },
+        updateObject,
+        {
+            new: true,
+        }
+    );
+    console.log(admin);
+    res.redirect(
+        '/adminprofile?success=true&message=Password+updated+successfully'
+    );
 });
 module.exports = router;

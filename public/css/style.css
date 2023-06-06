@@ -1425,19 +1425,3 @@ body {
     cursor: pointer;
 }
 
-.goog-logo-link {
-    display: none !important;
-}
-
-.goog-te-gadget {
-    color: transparent !important;
-}
-
-#google_translate_element select {
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    border-radius: 3px;
-    padding: 6px 8px
-}
-

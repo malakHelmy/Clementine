@@ -202,15 +202,14 @@ body {
     top: 68px;
     color: rgb(131, 6, 6);
 }
-.left #a{
+
+.left #a {
     overflow: hidden;
     margin-left: 4%;
 }
 
 
-@media screen and (max-width: 1024px) {
- 
-}
+@media screen and (max-width: 1024px) {}
 
 @media screen and (max-width: 900px) {
     .signIn {
@@ -236,6 +235,10 @@ body {
         margin-top: 5%;
         width: 100%;
         padding: 0;
+    }
+
+    #a {
+        padding-left: 50px;
     }
 }
 
