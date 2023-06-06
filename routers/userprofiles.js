@@ -9,7 +9,9 @@ const router = express.Router();
 router.get(`/`, async (req, res) => {
     if (req.session.user != undefined) {
         const userProfile = await user.findOne({ email: req.session.user });
-        var userOrder = await Order.find({ userID: { $in: userProfile._id } });
+        var userOrder = await Order.find({ userID: { $in: userProfile._id } })
+            .sort({ date: +1 })
+            .limit(2);
         var wishlistItems = await Product.find({
             _id: { $in: userProfile.wishList },
         });
@@ -17,11 +19,7 @@ router.get(`/`, async (req, res) => {
             console.log('no orders were found');
         }
         res.render('pages/userprofilemain', {
-            employer:
-                req.session.employer == undefined
-                    ? undefined
-                    : req.session.employer,
-            user: req.session.user == undefined ? undefined : req.session.user,
+            user: req.session.user == undefined ? undefined : userProfile,
             cart: req.session.cart == undefined ? undefined : req.session.cart,
             orders: userOrder,
             wishlist: wishlistItems,
@@ -49,11 +47,7 @@ router.get(`/order/:id`, async (req, res) => {
     console.log(orderitem);
 
     res.render('pages/userOrder', {
-        employer:
-            req.session.employer == undefined
-                ? undefined
-                : req.session.employer,
-        user: req.session.user == undefined ? undefined : req.session.user,
+        user: req.session.user == undefined ? undefined : userProfile,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
         order: userOrder,
         orderitems: orderitem,

@@ -73,6 +73,7 @@ router.get(`/resetpassword/:token`, async (req, res) => {
                     req.session.cart == undefined
                         ? undefined
                         : req.session.cart,
+                        employer:req.session.employer== undefined? undefined: req.session.employer
             });
         } else {
             res.send('Token has expired');
@@ -157,6 +158,7 @@ router.get(`/forgetpass`, function (req, res) {
     res.render('pages/forgetpass', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
+        employer:req.session.employer== undefined? undefined: req.session.employer
     });
 });
 

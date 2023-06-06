@@ -206,7 +206,6 @@ router.post('/', async (req, res) => {
                     req.session.employer == undefined
                         ? undefined
                         : req.session.employer,
-
                 cart: req.session.cart,
             });
             console.log('order placed successfuly.');

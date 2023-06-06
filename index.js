@@ -301,11 +301,16 @@ app.get(`/404`, function (req, res) {
 
 /* --------- SIGN UP AND LOG IN ---*/
 app.get(`/signup`, function (req, res) {
+    
+    
     res.render('pages/signup', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
-        error: undefined
+        error:undefined,
+        employer:req.session.employer== undefined? undefined: req.session.employer
     });
+
+
 });
 
 app.post('/sign-up-action', (req, res) => { });
