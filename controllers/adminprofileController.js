@@ -4,7 +4,6 @@ const { Order } = require('../models/order');
 const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcrypt');
 
-
 exports.validateAdmin = async (req, res) => {
     let adminprof = await user.findOne({ email: req.session.user });
 
@@ -20,8 +19,7 @@ exports.validateAdmin = async (req, res) => {
         confirmpasserror: '',
         phoneerror: '',
     };
- 
-    
+
     if (emailvalue == adminprof.email) {
         Error.emailerror = 'Email already exists';
     } else if (emailvalue == '') {
@@ -31,7 +29,6 @@ exports.validateAdmin = async (req, res) => {
         var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         var isValid = emailPattern.test(emailvalue);
         if (isValid) {
-            
         } else {
             Error.emailerror = 'Email is Invalid';
             c++;
@@ -94,7 +91,7 @@ exports.validateAdmin = async (req, res) => {
         Error.phoneerror = '';
         phonevalue = adminprof.phone;
     }
-   
+
     if (c == 0) {
         let updatedAdmin = await user.findOneAndUpdate(
             { _id: adminprof._id },
