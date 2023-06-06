@@ -41,7 +41,7 @@ $(document).on('click', '.checkoutplus', async function () {
 
 
                                 <div class="btn-wrapper">
-                                    <a class="checkoutminus" data-minid="<${
+                                    <a class="checkoutminus" data-minid="${
                                         items.id
                                     }">
                                         <span class="minus">
@@ -157,7 +157,7 @@ $(document).on('click', '.checkoutminus', async function () {
 
 
                                 <div class="btn-wrapper">
-                                    <a class="checkoutminus" data-minid="<${
+                                    <a class="checkoutminus" data-minid="${
                                         items.id
                                     }">
                                         <span class="minus">
