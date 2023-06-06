@@ -13,9 +13,7 @@ const Mailgen = require('mailgen');
 const bcrypt = require('bcrypt');
 const User = require('./models/user');
 
-// for auto refresh
-const livereload = require('livereload');
-const connectLivereload = require('connect-livereload');
+
 
 //openai API key
 const api_key = process.env.OPENAI_API_KEY;
@@ -55,17 +53,7 @@ const api = process.env.API_URL;
 const app = express();
 const port = process.env.PORT || 8080;
 
-// for auto refresh
-const liveReloadServer = livereload.createServer();
-liveReloadServer.watch(path.join(__dirname, 'public'));
 
-app.use(connectLivereload());
-
-liveReloadServer.server.once('connection', () => {
-    setTimeout(() => {
-        liveReloadServer.refresh('/');
-    }, 100);
-});
 
 // middleware
 app.use(express.json());
