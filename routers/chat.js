@@ -52,6 +52,12 @@ router.post('/', async (req, res) => {
       });
       return;
     }
+    else if (/hi  /i.test(prompt)) {
+      res.status(200).send({
+        bot: 'Hi there! I am a Clementine chatbot. How can I assist you today?',
+      });
+      return;
+    }
     else if (/track my order/i.test(prompt)) {
       res.status(200).send({
         bot: 'Your order status will be automatically updated with every progress. You can track it through your profile.',
@@ -78,6 +84,20 @@ router.post('/', async (req, res) => {
       });
       return;
     }
+    else if (/do you think that we will win the best project award/i.test(prompt)) {
+      const currentTime = new Date().toLocaleTimeString();
+      res.status(200).send({
+        bot: ` I firmly believe that your project has all the ingredients necessary to win the prize for the best project. The hard work, innovation, and dedication you have put into it make it a standout entry. Good luck, and may your project's success be recognized and rewarded!`,
+      });
+      return;
+    }
+    else if (/who are you/i.test(prompt)) {
+      const currentTime = new Date().toLocaleTimeString();
+      res.status(200).send({
+        bot: `I'm Clementine chatbot, happy to assist you!`,
+      });
+      return;
+    }
 
     const response = await openai.createCompletion({
       model: 'text-davinci-003',
@@ -91,7 +111,7 @@ router.post('/', async (req, res) => {
     const botResponse = response.data.choices[0].text;
 
   // Customize the response based on the jewelry boutique persona
-  const jewelryBotResponse = `As a jewelry boutique assistant, I can provide some general insights. ${botResponse}`;
+  const jewelryBotResponse = `i am a jewelry boutique assistant, here I can provide some general insights: ${botResponse}`;
 
 
     res.status(200).send({

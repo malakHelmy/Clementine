@@ -220,6 +220,10 @@ router.get(`/`, function (req, res) {
     if (req.session.cart == undefined) {
         res.render('pages/checkout', {
             user: req.session.user == undefined ? undefined : req.session.user,
+            employer:
+                req.session.employer == undefined
+                    ? undefined
+                    : req.session.employer,
             cart: req.session.cart == undefined ? undefined : req.session.cart,
             totalamount: undefined,
             errors: {},
@@ -238,9 +242,14 @@ router.get(`/`, function (req, res) {
         totalAmount += 100;
         res.render('pages/checkout', {
             user: req.session.user == undefined ? undefined : req.session.user,
+            employer:
+                req.session.employer == undefined
+                    ? undefined
+                    : req.session.employer,
             cart: req.session.cart == undefined ? undefined : req.session.cart,
             totalamount: totalAmount,
             errors: {},
+            employer:req.session.employer== undefined? undefined: req.session.employer
         });
     }
 });

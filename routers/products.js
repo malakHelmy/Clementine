@@ -10,6 +10,13 @@ const router = express.Router();
 //new in
 ///////////////////////start of sort-by /////////////////////////////////
 router.post('/products/:material/:category/:body/:title', async (req, res) => {
+    const page = req.query.page || 1;
+    const prodperpage = 4;
+    const count = await Product.countDocuments({
+        material: req.params.material.trim(),
+        category: req.params.category.trim(),
+    });
+
     const User = await user.findOne({ email: req.session.user });
     if (req.body.sort == 'Lowestprice') {
         var body = req.params.body;
@@ -17,10 +24,15 @@ router.post('/products/:material/:category/:body/:title', async (req, res) => {
             material: req.params.material.trim(),
             category: req.params.category.trim(),
         })
+            .skip(prodperpage * page - prodperpage)
+            .limit(prodperpage)
+            .exec()
             .then((result) => {
+                const totalpages = Math.ceil(count / prodperpage);
+                const current = parseInt(page) || 1;
                 result.sort(function (a, b) {
                     return a.price - b.price;
-                });
+                })
 
                 res.render('pages/products', {
                     productTitle: req.params.title.trim(),
@@ -35,8 +47,15 @@ router.post('/products/:material/:category/:body/:title', async (req, res) => {
                             : req.session.cart,
                     products: result,
                     User,
+                    current: current,
+                    pages: totalpages,
                     material: req.params.material.trim(),
                     category: req.params.category.trim(),
+                    employer:
+                        req.session.employer == undefined
+                            ? undefined
+                            : req.session.employer,
+
                 });
             })
             .catch((err) => {
@@ -48,7 +67,12 @@ router.post('/products/:material/:category/:body/:title', async (req, res) => {
             material: req.params.material.trim(),
             category: req.params.category.trim(),
         })
+            .skip(prodperpage * page - prodperpage)
+            .limit(prodperpage)
+            .exec()
             .then((result) => {
+                const totalpages = Math.ceil(count / prodperpage);
+                const current = parseInt(page) || 1;
                 result.sort(function (a, b) {
                     return b.price - a.price;
                 });
@@ -67,6 +91,12 @@ router.post('/products/:material/:category/:body/:title', async (req, res) => {
                     User,
                     material: req.params.material.trim(),
                     category: req.params.category.trim(),
+                    current: current,
+                    pages: totalpages,
+                    employer:
+                        req.session.employer == undefined
+                            ? undefined
+                            : req.session.employer,
                 });
             })
             .catch((err) => {
@@ -91,6 +121,10 @@ router.get('/product/:id', async (req, res) => {
     }
     res.render('pages/productDetails', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        employer:
+            req.session.employer == undefined
+                ? undefined
+                : req.session.employer,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
         products: prod,
         User,
@@ -146,6 +180,10 @@ router.get('/wishlist', async (req, res) => {
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
+                employer:
+                    req.session.employer == undefined
+                        ? undefined
+                        : req.session.employer,
                 cart:
                     req.session.cart == undefined
                         ? undefined
@@ -160,6 +198,10 @@ router.get('/wishlist', async (req, res) => {
 
         res.render('pages/wishlist', {
             user: req.session.user == undefined ? undefined : req.session.user,
+            employer:
+                req.session.employer == undefined
+                    ? undefined
+                    : req.session.employer,
             cart: req.session.cart == undefined ? undefined : req.session.cart,
             products: wishlistItems,
             body: 'your wishlist',
@@ -179,7 +221,6 @@ router.post('/add-to-wishlist', async (req, res) => {
         console.error(error);
         res.status(500);
     }
-    
 });
 
 router.post('/remove-from-wishlist', async (req, res) => {

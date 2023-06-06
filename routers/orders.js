@@ -157,7 +157,6 @@ router.post('/:id/update', async (req, res) => {
         } else if (newStatus.length == 0) {
             updates.status = oldStatus;
         }
-
         if (
             updates.shippingAddress1.length < 6 &&
             updates.shippingAddress1.length != 0
