@@ -216,7 +216,14 @@ app.get(`/editcustdash`, function (req, res) {
 });
 
 app.get(`/addcustomers`, function (req, res) {
-    res.render('pages/addcustomers');
+if(req.session.admin != undefined){
+res.render('pages/addcustomers',{isadmin:req.session.admin});
+
+}else{
+    res.render('pages/404')
+}
+    
+
 });
 
 app.get(`/updatedeletecust`, function (req, res) {
