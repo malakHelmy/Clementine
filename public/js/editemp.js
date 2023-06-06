@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#signInform").on('submit', function (e) {
         e.preventDefault();
-
+        var employeeId = $(this).data('employeeid');
         var checkbox = document.getElementById("isAdmin");
         var check = checkbox.checked;
 
@@ -17,7 +17,7 @@ $(document).ready(function () {
         console.log(inputs)
         let c = 0;
         $.ajax({
-            url: '/editemployers',
+            url: `/editemployers/${employeeId}`,
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({ inputs }),

@@ -4,19 +4,15 @@ const Employer = require('../models/employer');
 
 router.get('/:id', async (req, res) => {
   try {
-
-    if (req.session.admin == true) {
+    if (req.session && req.session.admin === true) {
       const employer = await Employer.findById(req.params.id);
       if (!employer) {
         return res.status(404).json({ error: 'Employer not found' });
       }
       res.render('pages/editemployers', { employer, isadmin: true });
-
     } else {
       res.render('pages/404');
     }
-
-
   } catch (err) {
     console.error(err);
     res.status(404).render('pages/404');
@@ -34,7 +30,7 @@ router.post('/:id', async (req, res) => {
       return res.status(400).json({ error: 'Invalid request' });
     }
 
-    const { name, email, password, phone, isAdmin } = req.body.inputs;
+    const { name, email, password, confirmpassword, phone, isAdmin } = req.body.inputs;
 
     employer.name = name;
     employer.email = email;
@@ -47,6 +43,7 @@ router.post('/:id', async (req, res) => {
       nameerror: '',
       emailerror: '',
       passerror: '',
+      confirmpasserror: '',
       phoneerror: '',
     };
 
@@ -66,6 +63,12 @@ router.post('/:id', async (req, res) => {
     } else {
       Errors.passerror =
         'Password must contain at least 8 characters, one lowercase letter, one uppercase letter and one digit';
+      c++;
+    }
+
+    if (password === confirmpassword) {
+    } else {
+      Errors.confirmpasserror = 'Passwords do not match';
       c++;
     }
 
@@ -103,26 +106,30 @@ router.post('/:id', async (req, res) => {
 });
 
 router.post('/checkemail', (req, res) => {
-  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  var isValid = emailPattern.test(req.body.email);
-  if (isValid) {
-    var query = { email: req.body.email };
-    Employer.find(query)
-      .then((result) => {
-        if (result.length > 0) {
-          res.send('taken');
-        } else {
-          res.send('available');
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  } else {
-    res.send('wrong');
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ error: 'Invalid request' });
+    }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValidEmail = emailPattern.test(email);
+    if (!isValidEmail) {
+      return res.json({ emailerror: 'Email is Invalid' });
+    }
+    Employer.findOne({ email }, (err, employer) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Server error' });
+      }
+      if (employer) {
+        return res.json({ emailerror: 'Email already exists' });
+      }
+      return res.json({});
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
   }
 });
-
-
 
 module.exports = router;

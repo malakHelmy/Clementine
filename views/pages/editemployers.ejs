@@ -20,7 +20,7 @@
             <h1>Edit Employer</h1>
             <div id="employers-container">
                 <div class="addcust" id="addcust">
-                    <form class="form" action="/editemployers/<%= employer.id %>" method="POST">
+                    <form class="form" data-employeeid="<%= employer.id %>" method="POST">
                         <div class="add">
                             <h2 class="add-title">You're updating: <%= employer.name %></h2>
                         </div>
