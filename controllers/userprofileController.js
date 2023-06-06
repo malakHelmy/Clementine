@@ -37,19 +37,19 @@ exports.getUserEditor = asyncHandler(async (req, res) => {
         user: req.session.user == undefined ? undefined : userProfile,
     });
 });
+
 exports.editUser = asyncHandler(async (req, res) => {
     let userProfile = await user.findOne({ email: req.session.user });
 
-    let firstnamevalue = req.body.fname;
-    let lastnamevalue = req.body.lname;
-    console.log(lastnamevalue);
-    let passvalue = req.body.cpass;
-    let confirmpassvalue = req.body.newpass;
-    let phonevalue = req.body.pnumber;
-    let addressval = req.body.address;
-    let emailvalue = req.body.email;
-
+    let firstnamevalue = req.body.inputs.fname;
+    let lastnamevalue = req.body.inputs.lname;
+    let passvalue = req.body.inputs.cpass;
+    let confirmpassvalue = req.body.inputs.newpass;
+    let phonevalue = req.body.inputs.pnumber;
+    let addressval = req.body.inputs.address;
+    let emailvalue = req.body.inputs.email;
     let c = 0;
+    console.log(req.body.inputs);
     let Error = {
         emailerror: '',
         passerror: '',
@@ -57,6 +57,7 @@ exports.editUser = asyncHandler(async (req, res) => {
         phoneerror: '',
         addresserror: '',
     };
+
     if (firstnamevalue == '') {
         firstnamevalue = userProfile.firstname;
     }
@@ -144,6 +145,8 @@ exports.editUser = asyncHandler(async (req, res) => {
         c++;
         addressval = userProfile.address;
     }
+
+
     if (c == 0) {
         let updatedUser = await user.findOneAndUpdate(
             { _id: userProfile._id },
@@ -162,4 +165,8 @@ exports.editUser = asyncHandler(async (req, res) => {
     } else {
         res.redirect('back');
     }
+
+
+
+
 });
