@@ -19,7 +19,7 @@ exports.getAllCoupons = asyncHandler(async (req, res)=>{
         throw new Error(error)
     }
 });
-exports.getAllCoupons = asyncHandler(async (req, res)=>{
+exports.updateCoupon = asyncHandler(async (req, res)=>{
     const { id } = req.params;
     try {
         const updateCoupons = await Coupon.findByIdAndUpdate(id, req.body,{new: true});
