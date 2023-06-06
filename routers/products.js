@@ -91,6 +91,10 @@ router.get('/product/:id', async (req, res) => {
     }
     res.render('pages/productDetails', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        employer:
+            req.session.employer == undefined
+                ? undefined
+                : req.session.employer,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
         products: prod,
         User,
@@ -146,6 +150,10 @@ router.get('/wishlist', async (req, res) => {
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
+                employer:
+                    req.session.employer == undefined
+                        ? undefined
+                        : req.session.employer,
                 cart:
                     req.session.cart == undefined
                         ? undefined
@@ -160,6 +168,10 @@ router.get('/wishlist', async (req, res) => {
 
         res.render('pages/wishlist', {
             user: req.session.user == undefined ? undefined : req.session.user,
+            employer:
+                req.session.employer == undefined
+                    ? undefined
+                    : req.session.employer,
             cart: req.session.cart == undefined ? undefined : req.session.cart,
             products: wishlistItems,
             body: 'your wishlist',
@@ -179,7 +191,6 @@ router.post('/add-to-wishlist', async (req, res) => {
         console.error(error);
         res.status(500);
     }
-    
 });
 
 router.post('/remove-from-wishlist', async (req, res) => {
