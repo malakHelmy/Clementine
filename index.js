@@ -198,6 +198,7 @@ app.get('/dashboard', (req, res) => {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
 
+
         currentPage: 'dashboard'
     });
 });
@@ -236,12 +237,22 @@ app.get(`/updatedeletecust`, function (req, res) {
 });
 
 app.get(`/updateorder`, function (req, res) {
+    res.render('pages/updateorder');
+});
+app.get(`/ordersdash`, function (req, res) {
+    res.render('pages/ordersdash');
+});
+app.get(`/adminprofile`, function (req, res) {
+    if (req.session.admin != undefined) {
+        res.render('pages/addcustomers', { isadmin: req.session.admin });
+    
 
     if (req.session.admin != undefined) {
         res.render('pages/updateorder', { isadmin: req.session.admin });
     } else {
         res.render('pages/404')
     }
+}
 
 });
 // app.get(`/ordersdash`, function (req, res) {
