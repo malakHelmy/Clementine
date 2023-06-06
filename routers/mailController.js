@@ -5,7 +5,7 @@ const express=require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 const ejs = require('ejs');
-
+const mailgunTransport = require('nodemailer-mailgun-transport');
 
 
 router.post('/', async (req, res) => {
@@ -13,19 +13,21 @@ router.post('/', async (req, res) => {
     const { name, subject, email, message } = req.body;
     console.log("email is " + req.body.email);
   
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
+    const auth = {
+      // service: 'gmail',
       auth: {
-        user: 'clementineco2023@gmail.com',
-        pass: 'lmkwmjbyftpuzwhz'
-      }
-    });
+        api_key: '6ac800157976f73359d3af4c549a77ae-6d1c649a-58b339a8',
+        domain: 'sandboxe19a2e0ab2154778abca9d2d22bf130d.mailgun.org'   
+         }
+    };
+    const transporter = nodemailer.createTransport(mailgunTransport(auth));
+
   
     const mailOptions = {
       from: req.body.email,
       to: 'clementineco2023@gmail.com',
       subject: `Message from ${req.body.email}: ${subject}`,
-      text: `Name: ${name}\n${message}`
+      text: `${message}`
     };
   
     transporter.sendMail(mailOptions, (error, info) => {
