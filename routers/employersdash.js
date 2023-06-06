@@ -6,9 +6,15 @@ const router = express.Router();
 
 router.get('/', async(req, res) =>{
     try{
-        const employers = await Employer.find();
-        res.render('pages/employersdash', { employers: employers});
+      if(req.session.admin == true){
 
+        const employers = await Employer.find();
+        res.render('pages/employersdash', { employers: employers,iadmin:true});
+      }else{
+
+        res.render('pages/404')
+        
+      }
     }
     catch(err){
         console.log(error);
@@ -18,9 +24,13 @@ router.get('/', async(req, res) =>{
 
 router.post('/:id', async (req, res) => {
     try {
+
       const empid = req.params.id;
       await Employer.findByIdAndRemove(empid);
       res.redirect('/employersdash');
+    
+    
+    
     } catch (error) {
       console.log('Error deleting employee:', error);
       res.redirect('/employersdash');

@@ -7,17 +7,26 @@ const router = express.Router();
 
 
 router.get('/', async (req, res) => {
-  User.find()
+
+if(req.session.admin != undefined){
+ User.find()
     .then(async (customerslist) => {
       res.render('pages/editcustdash', {
         viewTitle: "Customers",
-        users: customerslist
+        users: customerslist,
+        isadmin:req.session.admin
       });
     })
     .catch((err) => {
       console.log(err);
     });
-});
+
+  
+}else{
+  res.render('pages/404');
+}
+ 
+  });
 
 
 
