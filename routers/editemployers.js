@@ -42,7 +42,7 @@ router.post('/:id', async (req, res) => {
     const emailvalue = req.body.inputs.email;
 
     let c = 0;
-    let Error = {
+    let Errors = {
       nameerror: String,
       emailerror: String,
       passerror: String,
@@ -51,46 +51,26 @@ router.post('/:id', async (req, res) => {
 
     console.log(req.body.inputs);
 
-    if (namevalue.trim() == '') {
-      Error.nameerror = 'Please enter name';
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var isValidEmail = emailPattern.test(req.body.inputs.email);
+    if (isValidEmail) {
+    } else {
+      Errors.emailerror = 'Email is Invalid';
       c++;
     }
 
-    if (emailvalue == '') {
-      Error.emailerror = 'Please enter Email';
-      c++;
+    var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    var isValidPassword = passwordPattern.test(req.body.inputs.password);
+    if (isValidPassword) {
     } else {
-      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      var isValid = emailPattern.test(req.body.inputs.email);
-      if (isValid) {
-      } else {
-        Error.emailerror = 'Email is Invalid';
-        c++;
-      }
+      Errors.passerror =
+        'Password must contain at least 8 characters, one lowercase letter, one uppercase letter and one digit';
+      c++;
     }
 
-    if (passvalue == '') {
-      Error.passerror = 'Please enter Password';
-      c++;
+    if (phonevalue.length == 11) {
     } else {
-      var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-
-      // Test the password against the pattern
-      var isValid = passwordPattern.test(req.body.inputs.password);
-      if (isValid) {
-      } else {
-        Error.passerror =
-          'password must contain at least 8 characters, one lowercase letter,one uppercase letter and one digit';
-        c++;
-      }
-    }
-    if (confirmpassvalue == '') {
-      Error.confirmpasserror = 'Please enter Confirm Password';
-      c++;
-    }
-    if (phonevalue.length == 11 && !isNaN(phonevalue)) {
-    } else {
-      Error.phoneerror = 'Please enter right a phone number';
+      Errors.phoneerror = 'Please enter a valid phone number';
       c++;
     }
 
@@ -103,46 +83,44 @@ router.post('/:id', async (req, res) => {
         isAdmin: req.body.inputs.isAdmin,
       };
 
-      const newEmployer = new Employer(user);
-      const check = Employer.findOne({ email: req.body.inputs.email })
-        .then((result) => {
-          if (result == undefined) {
-            newEmployer
-              .save()
-              .then(() => {
-                res.send('done');
-              })
-              .catch((error) => {
-                res.render('error.ejs', { error });
-              });
-          } else {
-            Error.emailerror = 'existed email';
-            let err = {
-              firsterror: Error.firsterror,
-              lasterror: Error.lasterror,
-              emailerror: Error.emailerror,
-              passerror: Error.passerror,
-              confirmpasserror: Error.confirmpasserror,
-              phoneerror: Error.phoneerror,
-            };
-            res.send(err);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      const check = await Employer.findOne({ email: req.body.inputs.email });
+      if (check) {
+        Errors.emailerror = 'Email already exists';
+        res.send(Errors);
+      } else {
+        employer.set(user);
+        await employer.save();
+        res.send('done');
+      }
     } else {
-      res.send(Error);
+      res.send(Errors);
     }
-
-    await employer.save();
-    res.redirect('/employersdash');
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Server error' });
   }
 });
 
+router.post('/checkemail', (req, res) => {
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var isValid = emailPattern.test(req.body.email);
+  if (isValid) {
+    var query = { email: req.body.email };
+    Employer.find(query)
+      .then((result) => {
+        if (result.length > 0) {
+          res.send('taken');
+        } else {
+          res.send('available');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    res.send('wrong');
+  }
+});
 
 
 
