@@ -11,3 +11,12 @@ exports.createCoupon = asyncHandler(async (req, res)=>{
     }
 });
 
+exports.getAllCoupons = asyncHandler(async (req, res)=>{
+    try {
+        const coupons = await Coupon.find();
+        res.json(coupons);
+    } catch (error) {
+        throw new Error(error)
+    }
+});
+
