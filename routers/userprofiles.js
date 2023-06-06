@@ -22,7 +22,17 @@ router.get(`/`, async (req, res) => {
             orders: userOrder,
             wishlist : wishlistItems
         });
+
+    }else if(req.session.employer != undefined){
+
+        res.redirect('/dashboard', );
+        // req.session.employer=empresult.email;
+        //     req.session.admin=empresult.isAdmin;
     }
+else{
+    res.render('pages/404')
+}
+
 });
 router.get(`/order`, users.getOrders);
 router.get(`/editprofile`, users.getUserEditor);

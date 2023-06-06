@@ -11,7 +11,8 @@ router.get('/', async (req, res) => {
     const orders = await Order.find().sort({ createdAt: -1 }).limit(3);
 
     // Fetch the employer data
-    const employer = await Employer.findOne({ isAdmin: true });
+    console.log(req.session.employer)
+    const employer = await Employer.findOne({ email: req.session.employer });
 
     res.render('pages/dashboard', {
       currentPage: 'dashboard',

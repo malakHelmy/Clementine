@@ -40,6 +40,15 @@ const userSchema = mongoose.Schema(
               ref: 'orders',
             },
           ],
+          cart:[
+            {
+                id: String,
+                name: String,
+                image:String,
+                price: Number,
+                quantity:Number,
+            }
+          ],
           Token:String,
           Tokenexpiry:Date,
 

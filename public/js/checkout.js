@@ -11,15 +11,31 @@ const cardcvv = document.getElementById('cardcvv');
 const state = document.getElementById('statetype');
 const expyear = document.getElementById('expyeardate');
 
+let count;
 
-form.addEventListener('submit', (e) => {
+// form.addEventListener('submit', (e) => {
 
-  e.preventDefault();
+//   e.preventDefault();
 
-  checkinputs();
-});
+//   checkinputs();
+// });
 
 
+// $(document).on('click', '#checkoutform', async function () {
+//   const formData = new FormData(form);
+//   fetch('/checkout', {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify( {form} ),
+// })
+//     .then((res) => res.json())
+//     .then((data) => {
+//       let errors = data.errors;
+//     })
+
+// })
 
 function checkinputs() {
   const fullnamevalue = fullname.value.trim();

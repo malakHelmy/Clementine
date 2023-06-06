@@ -2,6 +2,7 @@
 #checkout-container h2 {
     padding-bottom: 13px;
     border-bottom: 1px solid #adadad;
+
 }
 .accepted{
     padding-top: 20px;
@@ -36,9 +37,7 @@
 h4{
     font-size: 20px;
 }
-#zip{
-    
-}
+  
 
 .place-order {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -97,6 +96,7 @@ h4{
     font-size: 35px;
     padding-top: 100px;
     padding-bottom: 250px;
+    margin-bottom: 50px;
 }
 .errors{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
