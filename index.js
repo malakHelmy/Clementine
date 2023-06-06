@@ -210,7 +210,7 @@ app.get('/addproducts', (req, res) => {
     if (req.session.admin != undefined) {
         res.render('pages/addproducts', { isadmin: req.session.admin });
     } else {
-        res.render('pages/404')
+        res.redirect('/404')
     }
 
 });
@@ -228,7 +228,7 @@ app.get(`/addcustomers`, function (req, res) {
         res.render('pages/addcustomers', { isadmin: req.session.admin });
 
     } else {
-        res.render('pages/404')
+        res.redirect('/404')
     }
 
 
@@ -243,7 +243,7 @@ app.get(`/updateorder`, function (req, res) {
     if (req.session.admin != undefined) {
         res.render('pages/updateorder', { isadmin: req.session.admin });
     } else {
-        res.render('pages/404')
+        res.redirect('/404')
     }
 
 });
@@ -284,7 +284,7 @@ app.get(`/addemployers`, function (req, res) {
     if (req.session.admin == true) {
         res.render('pages/addemployers', { isadmin: true });
     } else {
-        res.render('pages/404')
+        res.redirect('/404')
     }
 
 
