@@ -38,47 +38,38 @@
 
                 <section id="checkout-container">
                     <h2>Billing Address </h2>
-                    <form class="checkoutForm" action="/checkout" method="post" >
+                    <form class="checkoutForm" id="checkoutForm" action="/checkout" method="POST">
 
                         <div class="textfield">
-                            <input type="text" name="userFullName" id="firstname">
+                            <input type="text" name="userfullname" id="firstname">
                             <label for="firstname" id="firstnamelabel"></label>
                             <img src="/Images/right.png" alt="" width="15px" height="15px" class="true">
                             <img src="/Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                             <span class="sp1"></span>
-                            <% if (!errors.userFullName) {%>
-                                <div class="br"><br></div>
-                                <% } %>
-                                    <span class="errors">
-                                        <%= errors && errors.userFullName? errors.userFullName : '' %>
-                                    </span>
+                            <div class="br"><br></div>
 
-                                    <label for=""> Full Name</label>
+                            <span class="errors">
+                            </span>
+
+                            <label for=""> Full Name</label>
                         </div>
 
                         <div class="textfield">
                             <input type="text" name="shippingAddress1" id="address">
                             <label for="address" id="addlabel"></label>
                             <span class="sp1"></span>
-                            <% if (!errors.shippingAddress1) {%>
-                                <div class="br"><br></div>
-                                <% } %>
-                                    <span class="errors">
-                                        <%= errors && errors.shippingAddress1? errors.shippingAddress1 : '' %>
-                                    </span>
-                                    <label for="">Address</label>
+                            <div class="br"><br></div>
+                            <span class="errors">
+                            </span>
+                            <label for="">Address</label>
                         </div>
                         <div class="textfield">
                             <input type="text" name="city" id="city">
                             <label for="city" id="citylabel"></label>
                             <span class="sp1"></span>
-                            <% if (!errors.city) {%>
-                                <div class="br"><br></div>
-                                <% } %>
-                                    <span class="errors">
-                                        <%= errors && errors.city? errors.city : '' %>
-                                    </span>
-                                    <label for="">City</label>
+                            <div class="br"><br></div>
+                            <span class="errors"></span>
+                            <label for="">City</label>
                         </div>
 
 
@@ -92,6 +83,7 @@
                                     <option>Alexandria</option>
                                     <option>Sinai</option>
                                 </select>
+                                <label for="statetype" id="statelabel"></label>
                                 <div class="textfield">
                                     <input type="text" name="zip" id="zipcode">
                                     <label for="zipcode" id="ziplabel"></label>
@@ -139,6 +131,8 @@
                                         <option>2026</option>
                                         <option>2027</option>
                                     </select>
+                                    <label for="expyeardate" id="expirelabel"></label>
+
                                 </label>
 
                                 <div class="textfield">
@@ -160,7 +154,7 @@
 
                     </form>
                     <% } %>
-                        <script src="/js/checkout.js"></script>
+                        <!-- <script src="/js/checkout.js"></script> -->
                         <script src="/js/trial.js"></script>
                         <script src="/js/cart.js"></script>
 
