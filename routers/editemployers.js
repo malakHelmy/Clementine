@@ -31,7 +31,7 @@ router.post('/:id', async (req, res) => {
     }
 
     if (!req.body || !req.body.inputs) {
-      return res.status(400).json({ error: 'Invalid request body' });
+      return res.status(400).json({ error: 'Invalid request' });
     }
 
     const { name, email, password, phone, isAdmin } = req.body.inputs;
