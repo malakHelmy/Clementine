@@ -41,7 +41,7 @@ router.get(`/order/:id`, async (req, res) => {
     const userProfile = await user.findOne({ email: req.session.user });
     if (!userProfile) {
         console.log('user was not found');
-        res.render('pages/404');
+        res.redirect('/404');
     }
     let userOrder = await Order.findOne({ _id: req.params.id });
     console.log(userOrder);
