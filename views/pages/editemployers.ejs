@@ -30,6 +30,8 @@
                                 <div>
                                     <input id="name" type="text" placeholder="Employer name" name="name"
                                         value="<%= employer.name %>">
+                                        <span id="namelabel"></span>
+
                                 </div>
                             </div>
 
@@ -38,6 +40,8 @@
                                 <div>
                                     <input id="email" type="email" placeholder="Employer email" name="email"
                                         value="<%= employer.email %>">
+                                        <span class="errormsg" id="emaillabel"></span>
+
                                 </div>
                             </div>
 
@@ -46,6 +50,8 @@
                                 <div>
                                     <input id="password" type="password" placeholder="Employer password"
                                         name="password" value="<%= employer.password %>">
+                                        <span id="passlabel"></span>
+
                                 </div>
                             </div>
 
@@ -54,6 +60,8 @@
                                 <div>
                                     <input id="phone" type="text" placeholder="Employer phone" name="phone"
                                         value="<%= employer.phone %>">
+                                        <span class="errormsg" id="phonelabel"></span>
+
                                 </div>
                             </div>
 

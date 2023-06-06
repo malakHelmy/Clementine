@@ -51,7 +51,7 @@ router.post('/', async (req, res) => {
         if (isValid) {
         } else {
             Error.passerror =
-                'password must contain at least 8 characters,one lowercase letter,one uppercase letter and one digit';
+                'password must contain at least 8 characters, one lowercase letter,one uppercase letter and one digit';
             c++;
         }
     }
