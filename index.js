@@ -10,12 +10,8 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 const User = require('./models/user');
-
-
-
-
 
 // for auto refresh
 const livereload = require('livereload');
@@ -51,8 +47,6 @@ const reportsRouter = require('./routers/reports');
 const adminprofileRouter = require('./routers/adminprofile');
 const mailgunTransport = require('nodemailer-mailgun-transport');
 const contactusRouter = require('./routers/mailController');
-
-
 
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
@@ -115,7 +109,6 @@ app.use('/reports', reportsRouter);
 app.use('/adminprofile', adminprofileRouter);
 app.use('/contactus', contactusRouter);
 
-
 const { Product } = require('./models/product');
 const { OrderItem } = require('./models/order-items');
 
@@ -143,7 +136,10 @@ app.get(`/`, async (req, res) => {
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
-                employer: req.session.employer == undefined ? undefined : req.session.employer,
+                employer:
+                    req.session.employer == undefined
+                        ? undefined
+                        : req.session.employer,
                 cart:
                     req.session.cart == undefined
                         ? undefined
@@ -155,28 +151,41 @@ app.get(`/`, async (req, res) => {
 app.get(`/home`, function (req, res) {
     res.render('pages/index', {
         user: req.session.user == undefined ? undefined : req.session.user,
-        cart:
-            req.session.cart.items == undefined
+        employer:
+            req.session.employer == undefined
                 ? undefined
-                : req.session.cart.items,
+                : req.session.employer,
+        cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 
 app.get(`/categories`, function (req, res) {
     res.render('pages/categories', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        employer:
+            req.session.employer == undefined
+                ? undefined
+                : req.session.employer,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 app.get(`/checkout`, function (req, res) {
     res.render('pages/checkout', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        employer:
+            req.session.employer == undefined
+                ? undefined
+                : req.session.employer,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        employer:
+            req.session.employer == undefined
+                ? undefined
+                : req.session.employer,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
@@ -184,6 +193,10 @@ app.get(`/wishlist`, function (req, res) {
 app.get('/search', function (req, res) {
     res.render('pages/search', {
         user: req.session.user == undefined ? undefined : req.session.user,
+        employer:
+            req.session.employer == undefined
+                ? undefined
+                : req.session.employer,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
@@ -192,7 +205,10 @@ app.get('/contactus', function (req, res) {
     res.render('pages/contactus', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
-        employer: req.session.employer == undefined ? undefined : req.session.employer
+        employer:
+            req.session.employer == undefined
+                ? undefined
+                : req.session.employer,
     });
 });
 
@@ -202,18 +218,16 @@ app.get('/dashboard', (req, res) => {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
 
-        currentPage: 'dashboard'
+        currentPage: 'dashboard',
     });
 });
 
 app.get('/addproducts', (req, res) => {
-
     if (req.session.admin != undefined) {
         res.render('pages/addproducts', { isadmin: req.session.admin });
     } else {
-        res.render('pages/404')
+        res.render('pages/404');
     }
-
 });
 
 app.get(`/editproducts`, function (req, res) {
@@ -227,12 +241,9 @@ app.get(`/editcustdash`, function (req, res) {
 app.get(`/addcustomers`, function (req, res) {
     if (req.session.admin != undefined) {
         res.render('pages/addcustomers', { isadmin: req.session.admin });
-
     } else {
-        res.render('pages/404')
+        res.render('pages/404');
     }
-
-
 });
 
 app.get(`/updatedeletecust`, function (req, res) {
@@ -240,13 +251,11 @@ app.get(`/updatedeletecust`, function (req, res) {
 });
 
 app.get(`/updateorder`, function (req, res) {
-
     if (req.session.admin != undefined) {
         res.render('pages/updateorder', { isadmin: req.session.admin });
     } else {
-        res.render('pages/404')
+        res.render('pages/404');
     }
-
 });
 // app.get(`/ordersdash`, function (req, res) {
 
@@ -258,19 +267,15 @@ app.get(`/updateorder`, function (req, res) {
 
 // });
 
-app.get(`/adminprofile`, function (req, res) {
-
-})
+app.get(`/adminprofile`, function (req, res) {});
 
 app.get(`/myprofile`, function (req, res) {
     res.render('pages/myprofile', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
         error: undefined,
-
-    })
-})
-
+    });
+});
 
 app.get(`/displayproducts`, function (req, res) {
     res.render('pages/displayproducts');
@@ -285,10 +290,8 @@ app.get(`/addemployers`, function (req, res) {
     if (req.session.admin == true) {
         res.render('pages/addemployers', { isadmin: true });
     } else {
-        res.render('pages/404')
+        res.render('pages/404');
     }
-
-
 });
 app.get(`/editemployers`, function (req, res) {
     res.render('pages/editemployers');
@@ -301,31 +304,29 @@ app.get(`/404`, function (req, res) {
 
 /* --------- SIGN UP AND LOG IN ---*/
 app.get(`/signup`, function (req, res) {
-    
-    
     res.render('pages/signup', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
-        error:undefined,
-        employer:req.session.employer== undefined? undefined: req.session.employer
+        error: undefined,
+        employer:
+            req.session.employer == undefined
+                ? undefined
+                : req.session.employer,
     });
-
-
 });
 
-app.post('/sign-up-action', (req, res) => { });
+app.post('/sign-up-action', (req, res) => {});
 /* --------- SIGN UP AND LOG IN END ---*/
 //CONTACT US MAILER START
 
 // app.post('/contactus', (req, res) => {
-   
+
 //   });
 /* ---------CONTACT US FORM MAILER END --------*/
 
 app.use((req, res) => {
-
     res.status(404).render('pages/404');
-})
+});
 
 app.listen(port, () => {
     console.log('http://localhost:8080');
