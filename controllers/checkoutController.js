@@ -3,7 +3,8 @@ const asyncHandler = require('express-async-handler');
 const Order = require('../models/order');
 const PaymentGateway = require('../models/paymentgateway');
 const cart = require('../models/cart');
-
+const nodemailer = require('nodemailer');
+const ejs = require('ejs');
 
 
 exports.checkoutCont = asyncHandler(async (req, res, next) => {
