@@ -16,7 +16,6 @@ which sells specifically diamond and gold, catered towards women around the age 
 
 <h4> User Authentication: </h4> <p> We included user authentication functionality, allowing customers to create accounts and log in to access their order history, saved items, carts and other personalized features </p>
 
-<h4> User-friendly Navigation: </h4> <p> We made sure to facilitate the experience for both clients and admins dynamically so that they can navigate through the website with ease. </p>
 
 <h4>Search bar functionality: </h4> <p> We implemented a search bar that allows customers to quickly find the product they are looking for. This helps to save time and makes the shopping experience more efficient.</p>
 
