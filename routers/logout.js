@@ -5,33 +5,25 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    
     if (req.session.cart != undefined) {
-          
-
-                if(req.session.cart.items=='')
+        if (req.session.cart.items == '') {
+            console.log('cart is empty');
+            await User.findOneAndUpdate(
+                { email: req.session.user },
                 {
-                    console.log('cart is empty');
-                    await User.findOneAndUpdate(
-                        { email: req.session.user },
-                        {
-                           cart:[]
-                        },
-                        { upsert: true }
-                    );
-                }else{
-                    await User.findOneAndUpdate(
-                        { email: req.session.user },
-                        {
-                           cart:req.session.cart.items
-                        },
-                        { upsert: true }
-                    );
-
-                }
-
-
-       
+                    cart: [],
+                },
+                { upsert: true }
+            );
+        } else {
+            await User.findOneAndUpdate(
+                { email: req.session.user },
+                {
+                    cart: req.session.cart.items,
+                },
+                { upsert: true }
+            );
+        }
     }
     req.session.destroy();
     res.redirect('/');

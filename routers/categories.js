@@ -46,17 +46,19 @@ router.post(`/`, async function (req, res) {
 
 //edit or update an object from the schema
 router.put('/:id', async (req, res) => {
-    const category = await Category.findByIdAndUpdate(req.params.id, {
-        id: req.body.id,
-        name: req.body.name,
-    },
-    {
-        //return updated data
-        new: true
-    });
+    const category = await Category.findByIdAndUpdate(
+        req.params.id,
+        {
+            id: req.body.id,
+            name: req.body.name,
+        },
+        {
+            //return updated data
+            new: true,
+        }
+    );
 
-    if(!category)
-    {
+    if (!category) {
         return res.status(404).send('The Category cannot be updated');
     }
 

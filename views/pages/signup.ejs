@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="/css/Signup.css">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -18,151 +17,164 @@
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-   
+
 
     <title> Sign Up</title>
 </head>
+
 <body>
     <%- include('../partials/navbar') %>
 
-       <% if(error==undefined){  %>
+        <% if(error==undefined){ %>
             <section class="signIn">
 
                 <h2>Sign Up Information </h2>
-                
-                <form class="signInform" id="signInform" >
-                     <div class="textfield"> 
-                         <input type="text" name="firstname"  id="firstname" >
-                          <label for="firstname" id="firstnamelabel"></label>
-                         <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
-                         <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
-                         <span class="sp1"></span>
-                         <label for=""> First Name</label> 
-                     </div>
-                     <div class="textfield" > 
-                         <input type="text" name="lastname" id="lastname" >
-                         <label for="firstname" id="lastnamelabel"></label>
-                         <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
-                         <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
-                         <span class="sp1"></span>
-                         <label for=""> Last Name</label>
-                        </div>
-                     <div class="textfield"> 
-                         <input type="email" name="email" id="email" >  
-                         <label for="firstname" id="emaillabel"></label>
-                         <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
-                         <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
-                         <span class="sp1"></span>          
-                         <label for="">E-mail</label>      
-                     </div>
-                     <div class="textfield"> 
-                         <input type="password" name="password" id="password" >
-                         <label for="firstname" id="passlabel"></label>
-                         <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
-                         <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
-                         <span class="sp1"></span>
-                         <label for="">Password</label>      
-                     </div>
-                     <div class="textfield" >  
-                        <input type="password" name="confirmpassword" id="confirmpassword" >
+
+                <form class="signInform" id="signInform">
+                    <div class="textfield">
+                        <input type="text" name="firstname" id="firstname">
+                        <label for="firstname" id="firstnamelabel"></label>
+                        <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                        <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                        <span class="sp1"></span>
+                        <label for=""> First Name</label>
+                    </div>
+                    <div class="textfield">
+                        <input type="text" name="lastname" id="lastname">
+                        <label for="firstname" id="lastnamelabel"></label>
+                        <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                        <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                        <span class="sp1"></span>
+                        <label for=""> Last Name</label>
+                    </div>
+                    <div class="textfield">
+                        <input type="email" name="email" id="email">
+                        <label for="firstname" id="emaillabel"></label>
+                        <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                        <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                        <span class="sp1"></span>
+                        <label for="">E-mail</label>
+                    </div>
+                    <div class="textfield">
+                        <input type="password" name="password" id="password">
+                        <label for="firstname" id="passlabel"></label>
+                        <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                        <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                        <span class="sp1"></span>
+                        <label for="">Password</label>
+                    </div>
+                    <div class="textfield">
+                        <input type="password" name="confirmpassword" id="confirmpassword">
                         <label for="firstname" id="confirmpasslabel"></label>
                         <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
                         <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                         <span class="sp1"></span>
-                         <label for="">Confirm Password</label>
+                        <label for="">Confirm Password</label>
                     </div>
-                    <div class="textfield" >  
-                        <input type="text" name="phone" id="phone" >
+                    <div class="textfield">
+                        <input type="text" name="phone" id="phone">
                         <label for="firstname" id="phonelabel"></label>
                         <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
                         <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                         <span class="sp1"></span>
-                         <label for="">Phone</label>
+                        <label for="">Phone</label>
                     </div>
-                     <!-- <div class="textfield">
+                    <!-- <div class="textfield">
                           <input type="date" name="dob">     
                      </div> -->
-                    
-                     <p class="disclaimer">By providing your personal information, you agreed to our Privacy & Cookies Policy.
+
+                    <p class="disclaimer">By providing your personal information, you agreed to our Privacy & Cookies
+                        Policy.
                     </p>
-                     <input type="submit" class="submit">
-                     <br><br>
-        
+                    <input type="submit" class="submit">
+                    <br><br>
+
                 </form>
-                
-       <% }else{ %>
-       
-    
-        <section class="signIn">
 
-            <h2>Sign Up Information </h2>
-         
-            <form  method="post"  class="signInform" id="signInform" >
-                 <div class="textfield"> 
-                     <input type="text" name="firstname"  id="firstname" >
-                      <label for="firstname" id="firstnamelabel"><%= error.firsterror %></label>
-                     <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
-                     <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
-                     <span class="sp1"></span>
-                     <label for=""> First Name</label> 
-                 </div>
-                 <div class="textfield" > 
-                     <input type="text" name="lastname" id="lastname" >
-                     <label for="firstname" id="lastnamelabel"><%= error.lasterror %></label>
-                     <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
-                     <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
-                     <span class="sp1"></span>
-                     <label for=""> Last Name</label>
-                    </div>
-                 <div class="textfield"> 
-                     <input type="email" name="email" id="email" >  
-                     <label for="firstname" id="emaillabel"></label>
-                     <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
-                     <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
-                     <span class="sp1"></span>          
-                     <label for="">E-mail</label>      
-                 </div>
-                 <div class="textfield"> 
-                     <input type="password" name="password" id="password" >
-                     <label for="firstname" id="passlabel"><%= error.passerror %></label>
-                     <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
-                     <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
-                     <span class="sp1"></span>
-                     <label for="">Password</label>      
-                 </div>
-                 <div class="textfield" >  
-                    <input type="password" name="confirmpassword" id="confirmpassword" >
-                    <label for="firstname" id="confirmpasslabel"><%= error.confirmpasserror %></label>
-                    <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
-                    <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
-                    <span class="sp1"></span>
-                     <label for="">Confirm Password</label>
-                </div>
-                <div class="textfield" >  
-                    <input type="text" name="phone" id="phone" >
-                    <label for="firstname" id="phonelabel"></label>
-                    <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
-                    <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
-                    <span class="sp1"></span>
-                     <label for="">Phone</label>
-                </div>
-                 <p class="disclaimer">By providing your personal information, you agreed to our Privacy & Cookies Policy.
-                </p>
-                 <input type="submit" class="submit">
-                 <br><br>
-    
-            </form>
-    
-      <% } %>
-        <p id="loginlink">Already have an account?
-            <a href="/login" class="loginlink"> Log In </a> </p>
-          <script src="js/validation.js"></script>
-          <script src="js/ajaxsignup.js"></script>
-     </section>
-  
- <script src="js/ajax.js"></script>
-    <%- include('../partials/footer') %>
+                <% }else{ %>
 
-    
+
+                    <section class="signIn">
+
+                        <h2>Sign Up Information </h2>
+
+                        <form method="post" class="signInform" id="signInform">
+                            <div class="textfield">
+                                <input type="text" name="firstname" id="firstname">
+                                <label for="firstname" id="firstnamelabel">
+                                    <%= error.firsterror %>
+                                </label>
+                                <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                                <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                                <span class="sp1"></span>
+                                <label for=""> First Name</label>
+                            </div>
+                            <div class="textfield">
+                                <input type="text" name="lastname" id="lastname">
+                                <label for="firstname" id="lastnamelabel">
+                                    <%= error.lasterror %>
+                                </label>
+                                <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                                <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                                <span class="sp1"></span>
+                                <label for=""> Last Name</label>
+                            </div>
+                            <div class="textfield">
+                                <input type="email" name="email" id="email">
+                                <label for="firstname" id="emaillabel"></label>
+                                <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                                <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                                <span class="sp1"></span>
+                                <label for="">E-mail</label>
+                            </div>
+                            <div class="textfield">
+                                <input type="password" name="password" id="password">
+                                <label for="firstname" id="passlabel">
+                                    <%= error.passerror %>
+                                </label>
+                                <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                                <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                                <span class="sp1"></span>
+                                <label for="">Password</label>
+                            </div>
+                            <div class="textfield">
+                                <input type="password" name="confirmpassword" id="confirmpassword">
+                                <label for="firstname" id="confirmpasslabel">
+                                    <%= error.confirmpasserror %>
+                                </label>
+                                <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                                <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                                <span class="sp1"></span>
+                                <label for="">Confirm Password</label>
+                            </div>
+                            <div class="textfield">
+                                <input type="text" name="phone" id="phone">
+                                <label for="firstname" id="phonelabel"></label>
+                                <img src="Images/right.png" alt="" width="15px" height="15px" class="true">
+                                <img src="Images/wrongg.png" alt="" width="15px" height="15px" class="false">
+                                <span class="sp1"></span>
+                                <label for="">Phone</label>
+                            </div>
+                            <p class="disclaimer">By providing your personal information, you agreed to our Privacy &
+                                Cookies Policy.
+                            </p>
+                            <input type="submit" class="submit">
+                            <br><br>
+
+                        </form>
+
+                        <% } %>
+                            <p id="loginlink">Already have an account?
+                                <a href="/login" class="loginlink"> Log In </a>
+                            </p>
+                            <script src="js/validation.js"></script>
+                            <script src="js/ajaxsignup.js"></script>
+                    </section>
+
+                    <script src="js/ajax.js"></script>
+                    <%- include('../partials/footer') %>
+
+
 </body>
+
 </html>
