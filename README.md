@@ -27,8 +27,8 @@ which sells specifically diamond and gold, catered towards women around the age 
 
 <h4> Team Collaboration: </h4> <p> We worked collaboratively as a team, communicating effectively to ensure that all elements of the website work together seamlessly. </p>
 
-<h3 align="left">Setbacks: </h3>
-
+<!-- <h3 align="left">Setbacks: </h3>
+ -->
 
 <h3 align="left">The Contributors:</h3>
 <p> This project was delivered to you by
