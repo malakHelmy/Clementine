@@ -10,8 +10,12 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt')
 const User = require('./models/user');
+
+
+
+  
 
 // for auto refresh
 const livereload = require('livereload');
@@ -46,6 +50,8 @@ const addcustRouter = require('./routers/addcustomers');
 const reviewsRouter = require('./routers/reviews');
 const reportsRouter = require('./routers/reports');
 const adminprofileRouter = require('./routers/adminprofile');
+
+
 
 //const updatecustRoute = require('./routers/updatedeletecust');
 // http://localhost:8080/api/v1/products
@@ -107,6 +113,7 @@ app.use('/reviews', reviewsRouter);
 app.use('/reports', reportsRouter);
 app.use('/adminprofile', adminprofileRouter);
 
+
 const { Product } = require('./models/product');
 const { OrderItem } = require('./models/order-items');
 
@@ -129,15 +136,12 @@ app.get(`/`, async (req, res) => {
         .then((result) => {
             const product = result.length > 0 ? result : null; // check if newIn products are available
             res.render('pages/index', {
-                product,
+                product, 
                 user:
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
-                employer:
-                    req.session.employer == undefined
-                        ? undefined
-                        : req.session.employer,
+                employer:req.session.employer== undefined? undefined: req.session.employer,         
                 cart:
                     req.session.cart == undefined
                         ? undefined
@@ -148,42 +152,28 @@ app.get(`/`, async (req, res) => {
 
 app.get(`/home`, function (req, res) {
     res.render('pages/index', {
-        product,
         user: req.session.user == undefined ? undefined : req.session.user,
-        employer:
-            req.session.employer == undefined
+        cart:
+            req.session.cart.items == undefined
                 ? undefined
-                : req.session.employer,
-        cart: req.session.cart == undefined ? undefined : req.session.cart,
+                : req.session.cart.items,
     });
 });
 
 app.get(`/categories`, function (req, res) {
     res.render('pages/categories', {
-        employer:
-            req.session.employer == undefined
-                ? undefined
-                : req.session.employer,
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 app.get(`/checkout`, function (req, res) {
     res.render('pages/checkout', {
-        employer:
-            req.session.employer == undefined
-                ? undefined
-                : req.session.employer,
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
 });
 app.get(`/wishlist`, function (req, res) {
     res.render('pages/wishlist', {
-        employer:
-            req.session.employer == undefined
-                ? undefined
-                : req.session.employer,
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
@@ -191,10 +181,6 @@ app.get(`/wishlist`, function (req, res) {
 
 app.get('/search', function (req, res) {
     res.render('pages/search', {
-        employer:
-            req.session.employer == undefined
-                ? undefined
-                : req.session.employer,
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
     });
@@ -202,39 +188,30 @@ app.get('/search', function (req, res) {
 
 app.get('/contactus', function (req, res) {
     res.render('pages/contactus', {
-        employer:
-            req.session.employer == undefined
-                ? undefined
-                : req.session.employer,
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
-        employer:
-            req.session.employer == undefined
-                ? undefined
-                : req.session.employer,
+        employer:req.session.employer== undefined? undefined: req.session.employer
     });
 });
 
 /* --------- DASHBOARDS -----*/
 app.get('/dashboard', (req, res) => {
     res.render('pages/dashboard', {
-        employer:
-            req.session.employer == undefined
-                ? undefined
-                : req.session.employer,
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
 
-        currentPage: 'dashboard',
+        currentPage: 'dashboard'
     });
 });
 
 app.get('/addproducts', (req, res) => {
-    if (req.session.admin != undefined) {
-        res.render('pages/addproducts', { isadmin: req.session.admin });
-    } else {
-        res.render('pages/404');
+
+    if(req.session.admin != undefined){
+    res.render('pages/addproducts', {isadmin:req.session.admin} );
+    }else{
+        res.render('pages/404')
     }
+
 });
 
 app.get(`/editproducts`, function (req, res) {
@@ -246,11 +223,14 @@ app.get(`/editcustdash`, function (req, res) {
 });
 
 app.get(`/addcustomers`, function (req, res) {
-    if (req.session.admin != undefined) {
-        res.render('pages/addcustomers', { isadmin: req.session.admin });
-    } else {
-        res.render('pages/404');
-    }
+if(req.session.admin != undefined){
+res.render('pages/addcustomers',{isadmin:req.session.admin});
+
+}else{
+    res.render('pages/404')
+}
+    
+
 });
 
 app.get(`/updatedeletecust`, function (req, res) {
@@ -258,40 +238,41 @@ app.get(`/updatedeletecust`, function (req, res) {
 });
 
 app.get(`/updateorder`, function (req, res) {
-    if (req.session.admin != undefined) {
-        res.render('pages/updateorder', { isadmin: req.session.admin });
-    } else {
-        res.render('pages/404');
+
+    if(req.session.admin != undefined){
+    res.render('pages/updateorder',{isadmin:req.session.admin});
+    }else{
+        res.render('pages/404')
     }
+
 });
 // app.get(`/ordersdash`, function (req, res) {
-
+    
 //     if(req.session.admin != undefined){
 //          res.render('pages/ordersdash',{isadmin:req.session.admin});
 //     }else{
 //         res.render('pages/404')
 //     }
-
+   
 // });
 
-app.get(`/adminprofile`, function (req, res) {
+app.get(`/adminprofile`, function(req, res) {
     res.render('pages/adminprofile', {
         user: req.session.user == undefined ? undefined : req.session.user,
-        error: undefined,
-    });
-});
+        error:undefined,
+
+    })
+})
 
 app.get(`/myprofile`, function (req, res) {
     res.render('pages/myprofile', {
-        employer:
-            req.session.employer == undefined
-                ? undefined
-                : req.session.employer,
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
-        error: undefined,
-    });
-});
+        error:undefined,
+
+    })
+})
+
 
 app.get(`/displayproducts`, function (req, res) {
     res.render('pages/displayproducts');
@@ -322,18 +303,19 @@ app.get(`/404`, function (req, res) {
 
 /* --------- SIGN UP AND LOG IN ---*/
 app.get(`/signup`, function (req, res) {
+    
+    
     res.render('pages/signup', {
-        employer:
-            req.session.employer == undefined
-                ? undefined
-                : req.session.employer,
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
-        error: undefined,
+        error:undefined,
+        employer:req.session.employer== undefined? undefined: req.session.employer
     });
+
+
 });
 
-app.post('/sign-up-action', (req, res) => {});
+app.post('/sign-up-action', (req, res) => { });
 /* --------- SIGN UP AND LOG IN END ---*/
 //CONTACT US MAILER START
 
@@ -341,37 +323,38 @@ app.post(`/contactus`, function (req, res) {
     // res.render('pages/contactus');
     if (!req.session.isAuthenticated) {
         return res.status(401).send('Unauthorized');
-    }
+      }
+    
+      var fullname = req.body.name;
+      var uemail = req.body.email;
+      var subject = req.body.subject;
+      var message = req.body.message;
+      var transporter = nodemailer.createTransport(req.body.transport);
 
-    var fullname = req.body.name;
-    var uemail = req.body.email;
-    var subject = req.body.subject;
-    var message = req.body.message;
-    var transporter = nodemailer.createTransport(req.body.transport);
-
-    var mailOptions = {
+      var mailOptions = {
         from: uemail,
         to: 'clementineco2023@gmail.com',
         subject: subject,
         text: message,
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
+      };
+    
+      transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-            console.log(error);
-            res.send('Error.');
+          console.log(error);
+          res.send('Error.');
         } else {
-            console.log('Email sent:' + info.response);
-            res.send('Successfully sent.');
+          console.log('Email sent:' + info.response);
+          res.send('Successfully sent.');
         }
         res.redirect('/');
+      });
     });
-});
 /* ---------CONTACT US FORM MAILER END --------*/
 
-app.use((req, res) => {
+app.use((req,res)=>{
+
     res.status(404).render('pages/404');
-});
+})
 
 app.listen(port, () => {
     console.log('http://localhost:8080');
