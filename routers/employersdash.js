@@ -6,15 +6,17 @@ const router = express.Router();
 
 router.get('/', async(req, res) =>{
     try{
+
       if(req.session.admin == true){
 
         const employers = await Employer.find();
-        res.render('pages/employersdash', { employers: employers,iadmin:true});
+        res.render('pages/employersdash', { employers: employers,isadmin:true});
       }else{
 
         res.render('pages/404')
         
       }
+
     }
     catch(err){
         console.log(error);
