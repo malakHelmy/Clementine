@@ -249,6 +249,7 @@ router.get(`/`, function (req, res) {
             cart: req.session.cart == undefined ? undefined : req.session.cart,
             totalamount: totalAmount,
             errors: {},
+            employer:req.session.employer== undefined? undefined: req.session.employer
         });
     }
 });

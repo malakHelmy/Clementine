@@ -37,8 +37,13 @@
                                                 <div class="prod-content">
                                                     <h3>
                                                         <%= items.name %>
-                                                            <button class="remove-btn"><i
+
+
+                                                            <button class="remove-btn" data-rem="<%= items.id %>"><i
                                                                     class="ri-close-line" data-productid=""></i></button>
+
+
+
                                                     </h3>
                                                     <h4 class="price">
                                                         EGP <%= items.price * items.quantity %>

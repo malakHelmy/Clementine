@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="stylesheet" href="/css/chechkout.css">
     <link rel="stylesheet" type="text/css" href="/css/Signup.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -39,7 +38,18 @@
                 <section id="checkout-container">
                     <h2>Billing Address </h2>
                     <form class="checkoutForm" id="checkoutForm" action="/checkout" method="POST">
+                       <% if(user == undefined){ %>
+                        <div class="textfield">
+                            <input type="email" name="email" id="email">
+                            <label for="address" id="emaillabel"></label>
+                            <span class="sp1"></span>
+                            <div class="br"><br></div>
+                            <span class="errors">
+                            </span>
+                            <label for="">Email</label>
+                        </div>
 
+                       <% } %>
                         <div class="textfield">
                             <input type="text" name="userfullname" id="firstname">
                             <label for="firstname" id="firstnamelabel"></label>
@@ -47,7 +57,6 @@
                             <img src="/Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                             <span class="sp1"></span>
                             <div class="br"><br></div>
-
                             <span class="errors">
                             </span>
 
