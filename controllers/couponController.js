@@ -29,4 +29,15 @@ exports.updateCoupon = asyncHandler(async (req, res)=>{
     }
 });
 
+exports.deleteCoupon = asyncHandler(async (req, res)=>{
+    const { id } = req.params;
+    try {
+        const deleteCoupons = await Coupon.findByIdAndDelete(id);
+        res.json(deleteCoupons);
+    } catch (error) {
+        throw new Error(error)
+    }
+});
+
+
 
