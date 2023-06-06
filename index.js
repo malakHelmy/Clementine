@@ -218,7 +218,7 @@ app.get('/dashboard', (req, res) => {
     res.render('pages/dashboard', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
-
+        isadmin: req.session.admin,
         currentPage: 'dashboard',
     });
 });
