@@ -64,7 +64,7 @@
                 </div>
                 <div class="contactForm">
                     <h2>Send us a message</h2>
-                    <form class="contact-form">
+                    <form action="/contactus" class="contact-form" method="post" > 
 
                         <div class="inputBox">
                             <input type="text" id="name" name="name" required="required">
@@ -77,14 +77,14 @@
                         </div>
 
                         <div class="inputBox">
-                            <input type="text" id="email" name="email" required="required">
+                            <input type="email" id="email" name="email" required="required">
                             <span>Email</span>
-                        </div>
+                          </div>
 
-                        <div class="inputBox">
+                        <!-- <div class="inputBox">
                             <input type="text" id="transport" name="transport"  required="required">
-                            <span label for="transport" >Email</span>
-                        </div>
+                            <span label for="transport" >Transporter</span>
+                        </div> -->
 
 
                         <div class="inputBox">
@@ -102,29 +102,6 @@
         </div>
     </section>
 
-    <script>
-        $('form').on('submit', (e)=>{
-            e.preventDefault();
-
-            const uemail=$('#email').val().trim();
-            const subject = $('#subject').val().trim();
-            const text = $('#message').val().trim();
-
-            const formData = {
-                uemail,
-                subject,
-                text
-            };
-
-            $.post('/checkout', data, function(){
-                console.log('server recieved data');
-
-
-            });
-
-
-        })
-    </script>
 
 
     <%- include('../partials/footer') -%>
