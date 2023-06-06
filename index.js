@@ -187,7 +187,6 @@ app.get(`/wishlist`, function (req, res) {
                 ? undefined
                 : req.session.employer,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
-
     });
 });
 
@@ -218,7 +217,6 @@ app.get('/dashboard', (req, res) => {
     res.render('pages/dashboard', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
-        isadmin: req.session.admin,
         currentPage: 'dashboard',
     });
 });
@@ -259,16 +257,24 @@ app.get(`/ordersdash`, function (req, res) {
 });
 app.get(`/adminprofile`, function (req, res) {
     if (req.session.admin != undefined) {
-        res.render('pages/addcustomers', { isadmin: req.session.admin });
-    
+        res.render('pages/addcustomers', {
+            isadmin: req.session.admin,
+            employer:
+                req.session.employer == undefined
+                    ? undefined
+                    : req.session.employer,
+        });
 
-    if (req.session.admin != undefined) {
-        res.render('pages/updateorder', { isadmin: req.session.admin });
-    } else {
-        res.render('pages/404');
+        if (req.session.admin != undefined) {
+            res.render('pages/updateorder', { isadmin: req.session.admin ,
+                employer:
+                req.session.employer == undefined
+                    ? undefined
+                    : req.session.employer,});
+        } else {
+            res.render('pages/404');
+        }
     }
-}
-
 });
 // app.get(`/ordersdash`, function (req, res) {
 
