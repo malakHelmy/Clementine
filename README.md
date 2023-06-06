@@ -1,4 +1,4 @@
-# Clementine, a Web Development Project.
+a Web Development Project
 
 <h1 align="center">Welcome to Clementine</h1>
 <h3 align="left">Project Description:</h3>
