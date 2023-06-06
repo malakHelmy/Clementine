@@ -14,15 +14,10 @@ const bcrypt = require('bcrypt')
 const User = require('./models/user');
 
 
-<<<<<<< Updated upstream
-=======
-
-
 
 // for auto refresh
-const livereload = require('livereload');
-const connectLivereload = require('connect-livereload');
->>>>>>> Stashed changes
+// const livereload = require('livereload');
+// const connectLivereload = require('connect-livereload');
 
 //openai API key
 const api_key = process.env.OPENAI_API_KEY;
@@ -206,12 +201,7 @@ app.get('/dashboard', (req, res) => {
     res.render('pages/dashboard', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
-<<<<<<< Updated upstream
         currentPage: 'dashboard',
-=======
-
-        currentPage: 'dashboard'
->>>>>>> Stashed changes
     });
 });
 
@@ -249,33 +239,6 @@ app.get(`/updatedeletecust`, function (req, res) {
 });
 
 app.get(`/updateorder`, function (req, res) {
-<<<<<<< Updated upstream
-    res.render('pages/updateorder');
-});
-app.get(`/ordersdash`, function (req, res) {
-    res.render('pages/ordersdash');
-});
-app.get(`/adminprofile`, function (req, res) {
-    if (req.session.admin != undefined) {
-        res.render('pages/addcustomers', {
-            isadmin: req.session.admin,
-            employer:
-                req.session.employer == undefined
-                    ? undefined
-                    : req.session.employer,
-        });
-
-        if (req.session.admin != undefined) {
-            res.render('pages/updateorder', { isadmin: req.session.admin ,
-                employer:
-                req.session.employer == undefined
-                    ? undefined
-                    : req.session.employer,});
-        } else {
-            res.render('pages/404');
-        }
-    }
-=======
 
     if (req.session.admin != undefined) {
         res.render('pages/updateorder', { isadmin: req.session.admin });
@@ -283,7 +246,6 @@ app.get(`/adminprofile`, function (req, res) {
         res.render('pages/404')
     }
 
->>>>>>> Stashed changes
 });
 // app.get(`/ordersdash`, function (req, res) {
 
