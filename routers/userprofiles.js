@@ -9,9 +9,7 @@ const router = express.Router();
 router.get(`/`, async (req, res) => {
     if (req.session.user != undefined) {
         const userProfile = await user.findOne({ email: req.session.user });
-        var userOrder = await Order.find({ userID: { $in: userProfile._id } })
-            .sort({ date: +1 })
-            .limit(2);
+        var userOrder = await Order.find({ userID: { $in: userProfile._id } });
         var wishlistItems = await Product.find({
             _id: { $in: userProfile.wishList },
         });
@@ -22,15 +20,19 @@ router.get(`/`, async (req, res) => {
             user: req.session.user == undefined ? undefined : userProfile,
             cart: req.session.cart == undefined ? undefined : req.session.cart,
             orders: userOrder,
-            wishlist: wishlistItems,
+            wishlist : wishlistItems
         });
-    } else if (req.session.employer != undefined) {
-        res.redirect('/dashboard');
+
+    }else if(req.session.employer != undefined){
+
+        res.redirect('/dashboard', );
         // req.session.employer=empresult.email;
         //     req.session.admin=empresult.isAdmin;
-    } else {
-        res.render('pages/404');
     }
+else{
+    res.render('pages/404')
+}
+
 });
 router.get(`/order`, users.getOrders);
 router.get(`/editprofile`, users.getUserEditor);
@@ -43,17 +45,17 @@ router.get(`/order/:id`, async (req, res) => {
     }
     let userOrder = await Order.findOne({ _id: req.params.id });
     console.log(userOrder);
-    let orderitem = await Product.find({ _id: { $in: userOrder.orderItems } });
+    let orderitem = await Product.find({_id : {$in : userOrder.orderItems}});
     console.log(orderitem);
 
     res.render('pages/userOrder', {
         user: req.session.user == undefined ? undefined : userProfile,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
         order: userOrder,
-        orderitems: orderitem,
+        orderitems : orderitem,
     });
 });
 
-router.post('/editprofile', users.editUser);
+router.post('/editprofile', users.editUser );
 
 module.exports = router;
