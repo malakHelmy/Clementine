@@ -1,18 +1,18 @@
 let form = document.querySelector('.form-horizontal');
 
-console.log('hello')
 
 $('.form-horizontal').on('submit', function (event) {
     event.preventDefault();
-    let data = {
-        fname: document.getElementById('fname').value,
-        lname: document.getElementById('lname').value,
-        email: document.getElementById('email').value,
-        cpass: document.getElementById('cpass').value,
-        newpass: document.getElementById('newpass').value,
-        pnumber: document.getElementById('pnumber').value,
-        address: document.getElementById('address').value,
-    };
+    const data = { 
+        fname:  $('#fname').val(),
+        lname: $('#lname').val(),
+        email: $('#email').val(),
+        cpass: $('#cpass').val(),
+        newpass: $('#newpass').val(),
+        address:$('#address ').val(),
+        pnumber: $('#pnumber').val()
+   };
+   
     let c = 0;
     $.ajax({
         url: '/userprofile/editprofile',
