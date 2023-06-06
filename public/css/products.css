@@ -14,9 +14,10 @@ body {
 }
 
 .popup {
-  margin-left: 75%;
+  margin-left: 80%;
+  position: fixed;
   width: 300px;
-  background-color: #eaeaea;
+  background-color: #f5f5f5;
   padding: 2%;
   text-align: center;
   visibility: hidden;
@@ -29,7 +30,7 @@ body {
   visibility: visible;
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
-  opacity: 0.79;
+  opacity: 0.89;
 }
 
 @-webkit-keyframes fadeIn {
@@ -44,6 +45,7 @@ body {
 .popup span {
   color: #d79e2e;
   font-weight: 400;
+  opacity: 1.21;
 }
 
 .product-container {
