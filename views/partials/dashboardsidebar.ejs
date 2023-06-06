@@ -23,12 +23,12 @@
             <h3>Orders</h3>
         </a>
 
-        <%# if (isAdmin) { %>
+        <% if (isadmin) { %>
         <a href="employersdash" class="<%= currentPage === 'employersdash' ? 'active' : '' %>">
             <span class="material-symbols-sharp">business</span>
             <h3>Employers</h3>
         </a>
-        <%# } %>
+        <% } %>
 
 
     
@@ -48,7 +48,7 @@
             <span class="material-symbols-sharp">home</span>
             <h3>Return to Homepage</h3>
         </a>
-        <a href="/">
+        <a href="/logout">
             <span class="material-symbols-sharp">logout</span>
             <h3>Logout</h3>
         </a>

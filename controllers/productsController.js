@@ -13,6 +13,7 @@ exports.getAllProducts = async (User, req, res) => {
                 User,
                 products: result,
                 Id: req.params.id,
+                employer:req.session.employer== undefined? undefined: req.session.employer
 
             });
         })
@@ -83,6 +84,7 @@ exports.getDrings = async (User, req, res) => {
                 pages: totalpages,
                 material: 'diamond',
                 category: 'ring',
+                employer:req.session.employer== undefined? undefined: req.session.employer
             });
         })
         .catch((err) => {
@@ -124,6 +126,7 @@ exports.getDnecklaces = async (User, req, res) => {
                 category: 'necklace',
                 current: current,
                 pages: totalpages,
+                employer:req.session.employer== undefined? undefined: req.session.employer
             });
         })
         .catch((err) => {
@@ -162,6 +165,7 @@ exports.getDearrings = async (User, req, res) => {
                 category: 'earring',
                 current: current,
                 pages: totalpages,
+                employer:req.session.employer== undefined? undefined: req.session.employer
             });
         })
         .catch((err) => {
@@ -200,6 +204,7 @@ exports.getDbracelets = async (User, req, res) => {
                 category: 'bracelet',
                 current: current,
                 pages: totalpages,
+                employer:req.session.employer== undefined? undefined: req.session.employer
             });
         })
         .catch((err) => {
@@ -239,6 +244,7 @@ exports.getGrings = async (User, req, res) => {
                 category: 'ring',
                 current: current,
                 pages: totalpages,
+                employer:req.session.employer== undefined? undefined: req.session.employer
             });
         })
         .catch((err) => {
@@ -278,6 +284,7 @@ exports.getGnecklaces = async (User, req, res) => {
                 category: 'necklace',
                 current: current,
                 pages: totalpages,
+                employer:req.session.employer== undefined? undefined: req.session.employer
             });
         })
         .catch((err) => {
@@ -316,6 +323,7 @@ exports.getGearrings = async (User, req, res) => {
                 category: 'earring',
                 current: current,
                 pages: totalpages,
+                employer:req.session.employer== undefined? undefined: req.session.employer
             });
         })
         .catch((err) => {
@@ -355,6 +363,7 @@ exports.getGbracelets = async (User, req, res) => {
                 category: 'bracelet',
                 current: current,
                 pages: totalpages,
+                employer:req.session.employer== undefined? undefined: req.session.employer
             });
         })
         .catch((err) => {
@@ -454,6 +463,7 @@ exports.getNewIn = asyncHandler(async (req, res) => {
             category: '',
             current: current,
             pages: totalpages,
+            employer:req.session.employer== undefined? undefined: req.session.employer
         });
     } catch (err) {
         console.log(err);

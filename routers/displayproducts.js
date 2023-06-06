@@ -5,15 +5,19 @@ const { Product } = require('../models/product');
 // Display all products
 router.get('/', async (req, res) => {
   try {
-    // Fetch all products from the database
-    const products = await Product.find();
+   
+    if(req.session.admin != undefined){
+      const products = await Product.find();
+    res.render('pages/displayproducts', { products,isadmin:req.session.admin });
+    }else{
+      res.render('pages/404');
+    }
+  
 
-    // Render the products template and pass the products data
-    res.render('pages/displayproducts', { products });
   } catch (error) {
     console.log(error);
     // Handle any errors that occur
-    res.render('pages/error');
+    res.render('pages/404');
   }
 });
 

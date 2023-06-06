@@ -5,6 +5,16 @@ const bcrypt=require('bcrypt');
 const router = express.Router();
 
 
+// router.get(`/addcustomers`, (req, res)=> {
+
+//   if(req.session.admin != undefined){
+//     res.render('pages/addcustomers', {isadmin:req.session.admin});
+//   }else{
+//     res.status(404).render('pages/404');
+//   }
+  
+// });
+
 router.post('/', async (req, res) => {
  
   const firstnamevalue=req.body.inputs.firstname;
@@ -149,6 +159,7 @@ router.post('/', async (req, res) => {
           }
           res.send(err);
         }
+
   });
 
   router.post('/checkemail', async  (req, res) => {
@@ -174,6 +185,5 @@ router.post('/', async (req, res) => {
       res.send('wrong');
     }
   });
-
   
   module.exports = router;

@@ -25,10 +25,10 @@ $(document).ready(function () {
                 
                 if(response=='employer'){
                     $.ajax({
-                        url: '/dashboard',
+                        url: '/',
                         method: 'GET',
                         success: function (response) {
-                            window.location.href = '/dashboard';
+                            window.location.href = '/';
                         },
                         error:function(err){
                         }

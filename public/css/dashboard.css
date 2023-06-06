@@ -216,6 +216,12 @@ aside .sidebar .message-count {
     border-radius: var(--border-radius-1);
 }
 
+aside .sidebar a:last-child {
+    position: relative;
+    bottom: -9rem;
+    width: calc(100% - 2rem);
+}
+    
 
 
 
@@ -547,10 +553,6 @@ margin-top: 10px;
   
   
   
- 
-
-  
-
   
   
 /* responsive */

@@ -114,7 +114,6 @@ app.use('/reports', reportsRouter);
 app.use('/adminprofile', adminprofileRouter);
 
 
-
 const { Product } = require('./models/product');
 const { OrderItem } = require('./models/order-items');
 
@@ -137,11 +136,12 @@ app.get(`/`, async (req, res) => {
         .then((result) => {
             const product = result.length > 0 ? result : null; // check if newIn products are available
             res.render('pages/index', {
-                product, // pass the products to the template
+                product, 
                 user:
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
+                employer:req.session.employer== undefined? undefined: req.session.employer,         
                 cart:
                     req.session.cart == undefined
                         ? undefined
@@ -190,6 +190,7 @@ app.get('/contactus', function (req, res) {
     res.render('pages/contactus', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
+        employer:req.session.employer== undefined? undefined: req.session.employer
     });
 });
 
@@ -204,7 +205,13 @@ app.get('/dashboard', (req, res) => {
 });
 
 app.get('/addproducts', (req, res) => {
-    res.render('pages/addproducts');
+
+    if(req.session.admin != undefined){
+    res.render('pages/addproducts', {isadmin:req.session.admin} );
+    }else{
+        res.render('pages/404')
+    }
+
 });
 
 app.get(`/editproducts`, function (req, res) {
@@ -216,7 +223,14 @@ app.get(`/editcustdash`, function (req, res) {
 });
 
 app.get(`/addcustomers`, function (req, res) {
-    res.render('pages/addcustomers');
+if(req.session.admin != undefined){
+res.render('pages/addcustomers',{isadmin:req.session.admin});
+
+}else{
+    res.render('pages/404')
+}
+    
+
 });
 
 app.get(`/updatedeletecust`, function (req, res) {
@@ -224,11 +238,24 @@ app.get(`/updatedeletecust`, function (req, res) {
 });
 
 app.get(`/updateorder`, function (req, res) {
-    res.render('pages/updateorder');
+
+    if(req.session.admin != undefined){
+    res.render('pages/updateorder',{isadmin:req.session.admin});
+    }else{
+        res.render('pages/404')
+    }
+
 });
-app.get(`/ordersdash`, function (req, res) {
-    res.render('pages/ordersdash');
-});
+// app.get(`/ordersdash`, function (req, res) {
+    
+//     if(req.session.admin != undefined){
+//          res.render('pages/ordersdash',{isadmin:req.session.admin});
+//     }else{
+//         res.render('pages/404')
+//     }
+   
+// });
+
 app.get(`/adminprofile`, function(req, res) {
     res.render('pages/adminprofile', {
         user: req.session.user == undefined ? undefined : req.session.user,
@@ -283,41 +310,40 @@ app.post('/sign-up-action', (req, res) => { });
 
 app.post(`/contactus`, function (req, res) {
     // res.render('pages/contactus');
+    if (!req.session.isAuthenticated) {
+        return res.status(401).send('Unauthorized');
+      }
+    
+      var fullname = req.body.name;
+      var uemail = req.body.email;
+      var subject = req.body.subject;
+      var message = req.body.message;
+      var transporter = nodemailer.createTransport(req.body.transport);
 
-    var fullname = req.body.name;
-    var uemail = req.body.email;
-    var subject = req.body.subject;
-    var message = req.body.message;
-
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'clementineco2023@gmail.com',
-            pass: 'lmkwmjbyftpuzwhz',
-        },
-    });
-
-    var mailOptions = {
+      var mailOptions = {
         from: uemail,
         to: 'clementineco2023@gmail.com',
         subject: subject,
         text: message,
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
+      };
+    
+      transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-            console.log(error);
-            res.send('Error.');
+          console.log(error);
+          res.send('Error.');
         } else {
-            console.log('Email sent:' + info.response);
-            res.send('Successfully sent.');
+          console.log('Email sent:' + info.response);
+          res.send('Successfully sent.');
         }
         res.redirect('/');
+      });
     });
-});
 /* ---------CONTACT US FORM MAILER END --------*/
 
+app.use((req,res)=>{
 
+    res.status(404).render('pages/404');
+})
 
 app.listen(port, () => {
     console.log('http://localhost:8080');
