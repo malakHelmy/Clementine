@@ -30,37 +30,38 @@ router.post('/:id', async (req, res) => {
       return res.status(404).json({ error: 'Employer not found' });
     }
 
-    employer.name = req.body.name;
-    employer.email = req.body.email;
-    employer.password = req.body.password;
-    employer.phone = req.body.phone;
-    employer.isAdmin = req.body.isAdmin === 'on';
+    if (!req.body || !req.body.inputs) {
+      return res.status(400).json({ error: 'Invalid request body' });
+    }
 
-    const namevalue = req.body.inputs.name;
-    const passvalue = req.body.inputs.password;
-    const phonevalue = req.body.inputs.phone;
-    const emailvalue = req.body.inputs.email;
+    const { name, email, password, phone, isAdmin } = req.body.inputs;
+
+    employer.name = name;
+    employer.email = email;
+    employer.password = password;
+    employer.phone = phone;
+    employer.isAdmin = isAdmin === 'on';
 
     let c = 0;
     let Errors = {
-      nameerror: String,
-      emailerror: String,
-      passerror: String,
-      phoneerror: String,
+      nameerror: '',
+      emailerror: '',
+      passerror: '',
+      phoneerror: '',
     };
 
     console.log(req.body.inputs);
 
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    var isValidEmail = emailPattern.test(req.body.inputs.email);
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValidEmail = emailPattern.test(email);
     if (isValidEmail) {
     } else {
       Errors.emailerror = 'Email is Invalid';
       c++;
     }
 
-    var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    var isValidPassword = passwordPattern.test(req.body.inputs.password);
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    const isValidPassword = passwordPattern.test(password);
     if (isValidPassword) {
     } else {
       Errors.passerror =
@@ -68,7 +69,7 @@ router.post('/:id', async (req, res) => {
       c++;
     }
 
-    if (phonevalue.length == 11) {
+    if (phone.length == 11) {
     } else {
       Errors.phoneerror = 'Please enter a valid phone number';
       c++;
@@ -76,14 +77,14 @@ router.post('/:id', async (req, res) => {
 
     if (c == 0) {
       const user = {
-        name: req.body.inputs.name,
-        email: req.body.inputs.email,
-        password: await bcrypt.hash(req.body.inputs.password, 12),
-        phone: req.body.inputs.phone,
-        isAdmin: req.body.inputs.isAdmin,
+        name,
+        email,
+        password: await bcrypt.hash(password, 12),
+        phone,
+        isAdmin,
       };
 
-      const check = await Employer.findOne({ email: req.body.inputs.email });
+      const check = await Employer.findOne({ email });
       if (check) {
         Errors.emailerror = 'Email already exists';
         res.send(Errors);
