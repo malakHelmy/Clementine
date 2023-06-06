@@ -717,7 +717,7 @@ th {
 .confirm-button:hover,
 .cancel-button:hover {
     opacity: 0.8;
-    
+
 }
 
 .success-message {
@@ -727,13 +727,50 @@ th {
     padding: 0.75rem 1.25rem;
     margin-bottom: 1rem;
     border-radius: 0.25rem;
-  }
-  
-  .error-message {
+}
+
+.error-message {
     background-color: #f8d7da;
     border-color: #f5c6cb;
     color: #721c24;
     padding: 0.75rem 1.25rem;
     margin-bottom: 1rem;
     border-radius: 0.25rem;
-  }
+}
+
+#confirmpasslabel,
+#passlabel,
+#emaillabel,
+#firstnamelabel,
+#lastnamelabel,
+#phonelabel {
+    font-size: 15px;
+    color: #92000f;
+    padding-left: 250px;
+    letter-spacing: 0.5px;
+    font-style: italic;
+}
+
+@media (max-width: 1000px) {
+
+    #confirmpasslabel,
+    #passlabel,
+    #emaillabel,
+    #firstnamelabel,
+    #lastnamelabel,
+    #phonelabel {
+
+        font-size: 13pX;
+        padding-left: 20px;
+        position: absolute;
+    }
+
+    .input-group{
+        margin-top: 40px;
+        width: 250px;
+    }
+
+    #add{
+        margin-top: 50px;
+    }
+}
