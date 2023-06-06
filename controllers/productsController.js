@@ -63,7 +63,7 @@ exports.getDrings = async (User, req, res) => {
         material: 'diamond',
         category: 'ring',
     });
-
+ 
     var body = `The brilliance and sparkle of a diamond is unmatched, creating a stunning statement piece that will make any outfit shine. From delicate solitaires to intricate halo designs, there are endless options for diamond rings to suit every taste and budget. Whether you prefer a classic round cut or a unique fancy shape, a diamond ring is a timeless investment that will be treasured for generations to come.`;
     Product.find({ material: 'diamond', category: 'ring' })
         .skip(prodperpage * page - prodperpage)
