@@ -41,7 +41,6 @@ exports.editUser = asyncHandler(async (req, res) => {
     let userProfile = await user.findOne({ email: req.session.user });
 
     let firstnamevalue = req.body.fname;
-
     let lastnamevalue = req.body.lname;
     console.log(lastnamevalue);
     let passvalue = req.body.cpass;

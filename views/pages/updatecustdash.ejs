@@ -28,69 +28,67 @@
 
 
 
-        <main>
-            <h1>Customers</h1>
-            <div id="customers-container">
-                <div class="addcust" id="addcust">
-                    <form action ="/user" method="POST" class="form">
-                        <div class="add">
-                            <h2 class="add-title"><%= customer.firstanme %>  <%= customer.lastname %></h2>
-                        </div>
-                        <div class="customers-container" style="display: block;">
-                            <div class="input-group">
-                                <label for="firstanme">First Name</label>
-                                <div><input id="firstanme" type="text" placeholder="First Name" name="firstanme">
-                                </div>
-                                <span class="errormsg"></span>
+            <main>
+                <h1>Customers</h1>
+                <div id="customers-container">
+                    <div class="addcust" id="addcust">
+                        <form action="/user" method="POST" class="form">
+                            <div class="add">
+                                <h2 class="add-title">
+                                    <%= customer.firstanme %>
+                                        <%= customer.lastname %>
+                                </h2>
                             </div>
-
-                            <div class="input-group">
-                                <label for="lastname">Last Name</label>
-                                <div><input id="lastname" type="text" placeholder="Last Name" name="lastname">
+                            <div class="customers-container" style="display: block;">
+                                <div class="input-group">
+                                    <label for="firstanme">First Name</label>
+                                    <div><input id="firstanme" type="text" placeholder="First Name" name="firstanme">
+                                    </div>
+                                    <span class="errormsg"></span>
                                 </div>
-                                <span class="errormsg"></span>
-                            </div>
 
-                            <div class="input-group">
-                                <label for="email">Email</label>
-                                <div><input id="custemail" type="email" placeholder="Customer's Email" name="email">
+                                <div class="input-group">
+                                    <label for="lastname">Last Name</label>
+                                    <div><input id="lastname" type="text" placeholder="Last Name" name="lastname">
+                                    </div>
+                                    <span class="errormsg"></span>
                                 </div>
-                                <span class="errormsg"></span>
-                            </div>
 
-                            <div class="input-group">
-                                <label for="pass">Password</label>
-                                <div> <input id="password" type="password" placeholder="Customer's Password" name="psw">
+                                <div class="input-group">
+                                    <label for="email">Email</label>
+                                    <div><input id="custemail" type="email" placeholder="Customer's Email" name="email">
+                                    </div>
+                                    <span class="errormsg"></span>
                                 </div>
-                                <span class="errormsg"></span>
-                            </div>
 
-                            <div class="input-group">
-                                <label for="phone">Phone Number</label>
-                                <div><input id="phone" type="text" placeholder="Phone Number" name="phone">
+                                <div class="input-group">
+                                    <label for="pass">Password</label>
+                                    <div> <input id="password" type="password" placeholder="Customer's Password"
+                                            name="psw">
+                                    </div>
+                                    <span class="errormsg"></span>
                                 </div>
-                                <span class="errormsg"></span>
+
+                                <div class="input-group">
+                                    <label for="phone">Phone Number</label>
+                                    <div><input id="phone" type="text" placeholder="Phone Number" name="phone">
+                                    </div>
+                                    <span class="errormsg"></span>
+                                </div>
+
+                                <button type="input" id="add">Update User</button>
+                                <button type="delete" id="add">Delete User</button>
+                                <button id="cancel" href="editcustdash" style="margin-bottom: 150px;">Cancel</button>
+
                             </div>
-
-                            <button type="add" id="add">Update User</button>
-                            <button type="delete" id="add">Delete User</button>
-                            <button id="cancel" href="editcustdash" style="margin-bottom: 150px;">Cancel</button>
-
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
 
 
-                <div id="update-msg">
-                    <span>Customer Updated Successfully.</span>
-                </div>
-
-
-
-
-
-
-                <script src="/js/editcustdash.js"></script>
+                    <div id="update-msg">
+                        <span>Customer Updated Successfully.</span>
+                    </div>
+        <script src="js/addcuts.js"></script>
 
 </body>
 

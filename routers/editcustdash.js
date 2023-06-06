@@ -50,30 +50,39 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/:id/update', async (req, res) => {
-    try {
-        const customerId = req.params.id;
-        const userProfile = await User.findOne({ _id: customerId });
-        const updates = req.body;
-        let c = 0;
-        let errors = {
-            firsterror: String,
-            lasterror: String,
-            emailerror: String,
-            passerror: String,
-            confirmpasserror: String,
-            phoneerror: String,
-        };
-        if (updates.firstname.length < 3) {
-            errors.firsterror = 'Enter a valid first name';
-            c++;
-        }
+router.post('/update/:id', async (req, res) => {
+    const customerId = req.params.id;
+    const userProfile = await User.findOne({ _id: customerId });
+    
+    const updates = req.body.inputs;
+    
+    
+    console.log( updates.lastname)
+    let c = 0;
+    let errors = {
+        firsterror: String,
+        lasterror: String,
+        emailerror: String,
+        passerror: String,
+        confirmpasserror: String,
+        phoneerror: String,
+    };
+    if (updates.firstname.length < 2 && updates.firstname != '') {
+        errors.firsterror = 'Enter a valid first name';
+        c++;
+    } else if (updates.firstname == '') {
+        updates.firstname = userProfile.firstname;
+    }
 
-        if (updates.lastname.length < 3) {
-            errors.lasterror = 'Enter a valid last name';
-            c++;
-        }
-
+    if (updates.lastname.length < 2 && updates.lastname != '') {
+        errors.lasterror = 'Enter a valid last name';
+        c++;
+    } else if (updates.lastname == '') {
+        updates.lastname = userProfile.lastname;
+    }
+    if (updates.email == '') {
+        updates.email = userProfile.email;
+    } else {
         var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         var isValid = emailPattern.test(updates.email);
         if (isValid) {
@@ -81,13 +90,21 @@ router.post('/:id/update', async (req, res) => {
             errors.emailerror = 'Email is Invalid';
             c++;
         }
-        if (updates.password != '' && updates.confirmpass == '') {
-            errors.confirmpasserror = `Please enter the user's new Password`;
-            c++;
-        } else if (updates.password == '' && updates.confirmpass != '') {
-            errors.passerror = `Please enter the user's new password`;
-            c++;
-        } else if (updates.confirmpass == updates.password) {
+    }
+    if (updates.phone.length == 11 && !isNaN(phonevalue)) {
+    } else if (updates.phone.length == 0) {
+        updates.phone = userProfile.phone;
+    } else {
+        Error.phoneerror = 'Please enter right a phone number';
+        c++;
+    }
+    if (updates.password != '' && updates.confirmpass == '') {
+        errors.confirmpasserror = `Please enter the user's new Password`;
+        c++;
+    } else if (updates.confirmpass == updates.password) {
+        if (updates.password == '' && updates.confirmpass == '') {
+            updates.password = userProfile.password;
+        } else {
             var passwordPattern =
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
             // Test the password against the pattern
@@ -111,20 +128,28 @@ router.post('/:id/update', async (req, res) => {
                     c++;
                 }
             }
-        } else {
-            errors.confirmpasserror = `This confirm password doesn't match the password`;
-            c++;
         }
+    } else {
+        errors.confirmpasserror = `This confirm password doesn't match the password`;
+        c++;
+    }
 
-        if (c == 0) {
-            await User.findByIdAndUpdate(customerId, updates);
-            res.redirect('/editcustdash');
-        } else {
-            console.log(errors);
-        }
-    } catch (error) {
-        console.log('Error updating customer:', error);
-        res.redirect('back');
+    if (c == 0) {
+        let newUser = await User.findByIdAndUpdate(customerId, updates);
+        console.log(newUser);
+        res.send('done');
+
+    } else {
+        console.log(errors);
+        let err = {
+            firsterror: errors.firsterror,
+            lasterror: errors.lasterror,
+            emailerror: errors.emailerror,
+            passerror: errors.passerror,
+            confirmpasserror: errors.confirmpasserror,
+            phoneerror: errors.phoneerror,
+        };
+        res.send(err);
     }
 });
 
