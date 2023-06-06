@@ -23,7 +23,7 @@ $(document).ready(function () {
       contentType: 'application/json',
       data: JSON.stringify({inputs:data }),
       success: function (Error) {
-
+        console.log(Error)
             let c = 0;
             if(Error == 'done'){
                 console.log('successful')
@@ -38,109 +38,74 @@ $(document).ready(function () {
                 });
             }
 
-            if (Error.length > 0) {
+            
+
                 if (Error.userFullName != undefined) {
-                    $('#firstnamelabel').html(errors.userFullName);
-                    const pass = document.getElementById('firstname');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield failed';
+                    $('#userfullnamelabel').html(Error.userFullName);
+
                     c++;
                 } else {
-                    $('#firstnamelabel').html('');
-                    const pass = document.getElementById('firstname');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield success';
+                    $('#userfullnamelabel').html('');
+                  
                 }
                 if (Error.shippingAddress1 != undefined) {
-                    $('#addlabel').html(errors.shippingAddress1);
-                    const pass = document.getElementById('address');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield failed';
-                    c++;
+                    $('#shippingAddress1label').html(Error.shippingAddress1);
+                   
                 } else {
-                    $('#addlabel').html('');
-                    const pass = document.getElementById('address');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield success';
+                    $('#shippingAddress1label').html('');
+                  
                 }
                 if (Error.city != undefined) {
-                    $('#citylabel').html(errors.city);
-                    const pass = document.getElementById('city');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield failed';
+                    $('#citylabel').html(Error.city);
+                  
                     c++;
                 } else {
                     $('#citylabel').html('');
-                    const pass = document.getElementById('city');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield success';
+                
                 }
                 if (Error.state != undefined) {
-                    $('#statelabel').html(errors.state);
+                    $('#statelabel').html(Error.state);
                     c++;
                 } else {
                     $('#statelabel').html('');
                 }
                 if (Error.zip != undefined) {
-                    $('#ziplabel').html(errors.zip);
-                    const pass = document.getElementById('zipcode');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield failed';
+                    $('#ziplabel').html(Error.zip);
+                
                     c++;
                 } else {
                     $('#ziplabel').html('');
-                    const pass = document.getElementById('zipcode');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield success';
+                
                 }
                 if (Error.CreditCardNumber != undefined) {
-                    $('#cardlabel').html(errors.CreditCardNumber);
-                    const pass = document.getElementById('card');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield failed';
+                    $('#cardlabel').html(Error.CreditCardNumber);
+           
                     c++;
                 } else {
                     $('#cardlabel').html('');
-                    const pass = document.getElementById('card');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield success';
+                 
                 }
                 if (Error.exp_month != undefined) {
-                    $('#cardexlabel').html(errors.exp_month);
-                    const pass = document.getElementById('cardexp');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield failed';
-                    c++;
+                    $('#cardexlabel').html(Error.exp_month);
+                 
                 } else {
                     $('#cardexlabel').html('');
-                    const pass = document.getElementById('cardexp');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield success';
+          
                 }
                 if (Error.exp_year != undefined) {
-                    $('#expirelabel').html(errors.exp_year);
+                    $('#expirelabel').html(Error.exp_year);
                     c++;
                 } else {
                     $('#expirelabel').html('');
                 }
                 if (Error.cvv != undefined) {
-                    $('#cardcvvlabel').html(errors.cvv);
-                    const pass = document.getElementById('cardcvv');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield failed';
+                    $('#cardcvvlabel').html(Error.cvv);
+                    
                     c++;
                 } else {
                     $('#cardcvvlabel').html('');
-                    const pass = document.getElementById('cardcvv');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield success';
+                 
                 }
-            }
-       
-       
-       
-       
-       
         }})})
 });
 
