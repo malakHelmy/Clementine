@@ -19,4 +19,14 @@ exports.getAllCoupons = asyncHandler(async (req, res)=>{
         throw new Error(error)
     }
 });
+exports.getAllCoupons = asyncHandler(async (req, res)=>{
+    const { id } = req.params;
+    try {
+        const updateCoupons = await Coupon.findByIdAndUpdate(id, req.body,{new: true});
+        res.json(updateCoupons);
+    } catch (error) {
+        throw new Error(error)
+    }
+});
+
 
