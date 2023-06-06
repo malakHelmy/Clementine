@@ -5,7 +5,6 @@ const router = express.Router();
 
 
 
-
 router.get('/', async (req, res) => {
 
 if(req.session.admin != undefined){
@@ -29,8 +28,6 @@ if(req.session.admin != undefined){
   });
 
 
-
-
 router.post('/:id', async (req, res) => {
   try {
     const customerId = req.params.id;
@@ -43,6 +40,7 @@ router.post('/:id', async (req, res) => {
     res.status(500)
       .json({ error: 'Failed to delete customer, please try again.' });
   }
+
 });
 
 

@@ -5,7 +5,10 @@ const router = express.Router();
 const products = require('../controllers/addProductController');
 
 router.get('/view', (req, res) => {
+
     res.render('pages/displayproducts');
+
+
 });
 
 const productstorage = multer.diskStorage({
@@ -29,12 +32,21 @@ const upload = multer({
 
 
 router.get('/', (req, res) => {
-    let invalidInputs = {};
+
+    if(req.session.admin != undefined){
+          let invalidInputs = {};
     let images = []; // intializing an empty array of images
     res.render('pages/addproducts', {
         invalidInputs,
         images,
+        isadmin:req.session.admin
     }); // passing the images array to ejs
+
+    }
+  else{
+    res.render('pages/404')
+  }
+
 });
 
 router.post('/', upload, products.addProduct);

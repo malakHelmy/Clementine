@@ -204,7 +204,13 @@ app.get('/dashboard', (req, res) => {
 });
 
 app.get('/addproducts', (req, res) => {
-    res.render('pages/addproducts');
+
+    if(req.session.admin != undefined){
+    res.render('pages/addproducts', {isadmin:req.session.admin} );
+    }else{
+        res.render('pages/404')
+    }
+
 });
 
 app.get(`/editproducts`, function (req, res) {
@@ -231,11 +237,24 @@ app.get(`/updatedeletecust`, function (req, res) {
 });
 
 app.get(`/updateorder`, function (req, res) {
-    res.render('pages/updateorder');
+
+    if(req.session.admin != undefined){
+    res.render('pages/updateorder',{isadmin:req.session.admin});
+    }else{
+        res.render('pages/404')
+    }
+
 });
-app.get(`/ordersdash`, function (req, res) {
-    res.render('pages/ordersdash');
-});
+// app.get(`/ordersdash`, function (req, res) {
+    
+//     if(req.session.admin != undefined){
+//          res.render('pages/ordersdash',{isadmin:req.session.admin});
+//     }else{
+//         res.render('pages/404')
+//     }
+   
+// });
+
 app.get(`/adminprofile`, function(req, res) {
     res.render('pages/adminprofile', {
         user: req.session.user == undefined ? undefined : req.session.user,
