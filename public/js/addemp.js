@@ -17,7 +17,7 @@ $(document).ready(function () {
         console.log(inputs)
         let c = 0;
         $.ajax({
-            url: '/addemployers',
+            url: '/editemployers',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({ inputs }),
