@@ -227,6 +227,7 @@ router.get(`/`, function (req, res) {
             cart: req.session.cart == undefined ? undefined : req.session.cart,
             totalamount: undefined,
             errors: {},
+            employer:req.session.employer== undefined? undefined: req.session.employer
         });
     } else {
         let totalAmount = 0;

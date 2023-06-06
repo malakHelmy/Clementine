@@ -1,5 +1,5 @@
 const hbars = require('nodemailer-express-handlebars');
-const {resolveHostname} = require('nodemailer/lib/shared');
+const { resolveHostname } = require('nodemailer/lib/shared');
 const Mailgen = require('mailgen');
 const express=require('express');
 const router = express.Router();
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
       from: req.body.email,
       to: 'clementineco2023@gmail.com',
       subject: `Message from ${req.body.email}: ${subject}`,
-      text: `Name: ${name}\nEmail: ${email}\n`
+      text: `Name: ${name}\n${message}`
     };
   
     transporter.sendMail(mailOptions, (error, info) => {
@@ -34,7 +34,8 @@ router.post('/', async (req, res) => {
         res.status(500).send('Error.');
       } else {
         console.log('Email sent:' + info.response);
-        res.status(200).send('Successfully sent.');
+        res.render('pages/contactus');
+        // res.status(200).send('Successfully sent.');
       }
     });
   })

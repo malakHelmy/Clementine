@@ -77,17 +77,21 @@ router.get(`/`, async (req, res) => {
 router.get('/:id', (req, res) => {
     if (req.session.admin != undefined) {
         Order.findById(req.params.id)
-            // .populate('userID', '_id')
-            .then((result) => {
-                res.render('pages/updateorder', {
-                    viewTitle: 'Update Order',
-                    order: result,
-                    isadmin: req.session.admin,
-                });
-            })
-            .catch((err) => {
-                console.log(err);
+        // .populate('userID', '_id')
+        .then((result) => {
+            res.render('pages/updateorder', {
+                viewTitle: 'Update Order',
+                order: result,
+                isadmin:req.session.admin
             });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }else{
+
+        res.redirect('/404');
+
     }
 });
 // router.delete('/:id', async (req, res) => {
