@@ -758,7 +758,19 @@ th {
     #emaillabel,
     #firstnamelabel,
     #lastnamelabel,
-    #phonelabe {
+    #phonelabel {
 
+        font-size: 13pX;
+        padding-left: 20px;
+        position: absolute;
+    }
+
+    .input-group{
+        margin-top: 40px;
+        width: 250px;
+    }
+
+    #add{
+        margin-top: 50px;
     }
 }
