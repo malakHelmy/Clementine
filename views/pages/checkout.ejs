@@ -20,6 +20,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <title>Clementine</title>
+    <style>
+
+#shippingAddress1label{
+
+    position:relative;
+    top: -10px;
+    color: rgb(70, 4, 4);
+
+  }
+  #userfullnamelabel{
+    color: rgb(70, 4, 4);
+  }
+
+    </style>
 </head>
 
 <body>
@@ -37,7 +51,7 @@
 
                 <section id="checkout-container">
                     <h2>Billing Address </h2>
-                    <form class="checkoutForm" id="checkoutForm" action="/checkout" method="POST">
+                    <form class="checkoutForm" id="checkoutForm"  >
                        <% if(user == undefined){ %>
                         <div class="textfield">
                             <input type="email" name="email" id="email">
@@ -51,8 +65,8 @@
 
                        <% } %>
                         <div class="textfield">
-                            <input type="text" name="userfullname" id="firstname">
-                            <label for="firstname" id="firstnamelabel"></label>
+                            <input type="text" name="userfullname" id="userfullname">
+                            
                             <img src="/Images/right.png" alt="" width="15px" height="15px" class="true">
                             <img src="/Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                             <span class="sp1"></span>
@@ -62,16 +76,17 @@
 
                             <label for=""> Full Name</label>
                         </div>
-
+                        <label for="firstname" id="userfullnamelabel"></label>
                         <div class="textfield">
-                            <input type="text" name="shippingAddress1" id="address">
-                            <label for="address" id="addlabel"></label>
+                            <input type="text" name="userfullnamelabel" id="shippingAddress1">
+                            
                             <span class="sp1"></span>
                             <div class="br"><br></div>
                             <span class="errors">
                             </span>
                             <label for="">Address</label>
                         </div>
+                        <label for="address" id="shippingAddress1label"></label>
                         <div class="textfield">
                             <input type="text" name="city" id="city">
                             <label for="city" id="citylabel"></label>
@@ -85,7 +100,7 @@
                         <div id="zip">
                             <label>
                                 <h4>State</h4>
-                                <select id="statetype" name="state">
+                                <select id="statetype" name="statetype">
                                     <option value="selectstate">Choose State..</option>
                                     <option>Cairo</option>
                                     <option>Giza</option>
@@ -94,7 +109,7 @@
                                 </select>
                                 <label for="statetype" id="statelabel"></label>
                                 <div class="textfield">
-                                    <input type="text" name="zip" id="zipcode">
+                                    <input type="text" name="zipcode" id="zipcode">
                                     <label for="zipcode" id="ziplabel"></label>
                                     <span class="sp1"></span>
                                     <label for="">Zip Code</label>
@@ -111,7 +126,7 @@
 
 
                             <div class="textfield">
-                                <input type="text" name="CreditCardNumber" id="card">
+                                <input type="text" name="CreditCardNumber" id="CreditCardNumber">
                                 <label for="card" id="cardlabel"></label>
                                 <span class="sp1"></span>
                                 <% if (!errors.CreditCardNumber) {%>
@@ -124,7 +139,7 @@
                             </div>
 
                             <div class="textfield">
-                                <input type="text" name="exp_month" id="cardexp">
+                                <input type="text" name="exp_month" id="exp_month">
                                 <label for="cardexp" id="cardexlabel"></label>
                                 <span class="sp1"></span>
                                 <label for="">Expiry Month</label>
@@ -145,7 +160,7 @@
                                 </label>
 
                                 <div class="textfield">
-                                    <input type="text" name="cvv" id="cardcvv">
+                                    <input type="text" name="cvv" id="cvv">
                                     <label for="caedcvv" id="cardcvvlabel"></label>
                                     <span class="sp1"></span>
                                     <label for="">CVV</label>
@@ -163,7 +178,8 @@
 
                     </form>
                     <% } %>
-                        <!-- <script src="/js/checkout.js"></script> -->
+                        <script src="/js/checkout.js"></script>
+
                         <script src="/js/trial.js"></script>
                         <script src="/js/cart.js"></script>
 

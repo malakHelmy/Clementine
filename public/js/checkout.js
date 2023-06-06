@@ -1,120 +1,111 @@
 
 
-
 $(document).ready(function () {
   $("#checkoutForm").on('submit', function (e) {
       e.preventDefault();
-    let form = document.querySelector('.checkoutForm');
-    const formData = new FormData(form);
-    const data = {};
-    for (const [key, value] of formData.entries()) {
-        data[key] = value;
-    }
+  
+      const data = { 
+        userfullname:  $('#userfullname').val(),
+        shippingAddress1: $('#shippingAddress1').val(),
+        email: $('#email').val(),
+        city: $('#city').val(),
+        state: $('#statetype').val(),
+        zip: $('#zipcode').val(),
+        CreditCardNumber:$('#CreditCardNumber').val(),
+        exp_month:$('#exp_month').val(),
+        exp_year:$('#expyeardate').val(),
+        cvv:$('#cvv').val()
+   };
+
     $.ajax({
       url: '/checkout',
       method: 'POST',
       contentType: 'application/json',
-      data: JSON.stringify({ data }),
-      success: function (errors) {
+      data: JSON.stringify({inputs:data }),
+      success: function (Error) {
+        console.log(Error)
             let c = 0;
-            if (errors.length > 0) {
-                if (errors.userFullName != undefined) {
-                    $('#firstnamelabel').html(errors.userFullName);
-                    const pass = document.getElementById('firstname');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield failed';
+            if(Error == 'done'){
+                console.log('successful')
+                $.ajax({
+                    url: '/placeorder',
+                    method: 'GET',
+                    success: function (response) {
+                        window.location.href = '/placeorder';
+                    },
+                    error:function(err){
+                    }
+                });
+            }
+
+            
+
+                if (Error.userFullName != undefined) {
+                    $('#userfullnamelabel').html(Error.userFullName);
+
                     c++;
                 } else {
-                    $('#firstnamelabel').html('');
-                    const pass = document.getElementById('firstname');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield success';
+                    $('#userfullnamelabel').html('');
+                  
                 }
-                if (errors.shippingAddress1 != undefined) {
-                    $('#addlabel').html(errors.shippingAddress1);
-                    const pass = document.getElementById('address');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield failed';
-                    c++;
+                if (Error.shippingAddress1 != undefined) {
+                    $('#shippingAddress1label').html(Error.shippingAddress1);
+                   
                 } else {
-                    $('#addlabel').html('');
-                    const pass = document.getElementById('address');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield success';
+                    $('#shippingAddress1label').html('');
+                  
                 }
-                if (errors.city != undefined) {
-                    $('#citylabel').html(errors.city);
-                    const pass = document.getElementById('city');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield failed';
+                if (Error.city != undefined) {
+                    $('#citylabel').html(Error.city);
+                  
                     c++;
                 } else {
                     $('#citylabel').html('');
-                    const pass = document.getElementById('city');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield success';
+                
                 }
-                if (errors.state != undefined) {
-                    $('#statelabel').html(errors.state);
+                if (Error.state != undefined) {
+                    $('#statelabel').html(Error.state);
                     c++;
                 } else {
                     $('#statelabel').html('');
                 }
-                if (errors.zip != undefined) {
-                    $('#ziplabel').html(errors.zip);
-                    const pass = document.getElementById('zipcode');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield failed';
+                if (Error.zip != undefined) {
+                    $('#ziplabel').html(Error.zip);
+                
                     c++;
                 } else {
                     $('#ziplabel').html('');
-                    const pass = document.getElementById('zipcode');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield success';
+                
                 }
-                if (errors.CreditCardNumber != undefined) {
-                    $('#cardlabel').html(errors.CreditCardNumber);
-                    const pass = document.getElementById('card');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield failed';
+                if (Error.CreditCardNumber != undefined) {
+                    $('#cardlabel').html(Error.CreditCardNumber);
+           
                     c++;
                 } else {
                     $('#cardlabel').html('');
-                    const pass = document.getElementById('card');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield success';
+                 
                 }
-                if (errors.exp_month != undefined) {
-                    $('#cardexlabel').html(errors.exp_month);
-                    const pass = document.getElementById('cardexp');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield failed';
-                    c++;
+                if (Error.exp_month != undefined) {
+                    $('#cardexlabel').html(Error.exp_month);
+                 
                 } else {
                     $('#cardexlabel').html('');
-                    const pass = document.getElementById('cardexp');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield success';
+          
                 }
-                if (errors.exp_year != undefined) {
-                    $('#expirelabel').html(errors.exp_year);
+                if (Error.exp_year != undefined) {
+                    $('#expirelabel').html(Error.exp_year);
                     c++;
                 } else {
                     $('#expirelabel').html('');
                 }
-                if (errors.cvv != undefined) {
-                    $('#cardcvvlabel').html(errors.cvv);
-                    const pass = document.getElementById('cardcvv');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield failed';
+                if (Error.cvv != undefined) {
+                    $('#cardcvvlabel').html(Error.cvv);
+                    
                     c++;
                 } else {
                     $('#cardcvvlabel').html('');
-                    const pass = document.getElementById('cardcvv');
-                    const formc = pass.parentElement;
-                    formc.className = 'textfield success';
+                 
                 }
-            }
         }})})
 });
 
