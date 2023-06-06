@@ -102,17 +102,19 @@ router.get('/:id', (req, res) => {
 //   });
 
 router.post('/:id', async (req, res) => {
-    try {
-        const orderID = req.params.id;
-        await Order.findOneAndDelete({ _id: orderID });
-        console.log(`Order with ID ${orderID} deleted.`);
-        res.redirect('/ordersdash');
-    } catch (error) {
-        console.log('Error deleting order: ', error);
-        res.redirect('/ordersdash');
+  try {
+    const orderID = req.params.id;
+    const deletedOrder = await Order.findByIdAndDelete(orderID);
+    if (!deletedOrder) {
+      throw new Error(`Order with ID ${orderID} not found`);
     }
+    console.log(`Order with ID ${orderID} deleted.`);
+    res.redirect('/ordersdash');
+  } catch (error) {
+    console.log('Error deleting order: ', error);
+    res.redirect('/ordersdash');
+  }
 });
-
 router.post('/:id/update', async (req, res) => {
     try {
         const orderID = req.params.id;

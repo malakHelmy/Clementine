@@ -1442,3 +1442,11 @@ body {
     padding: 6px 8px
 }
 
+#weglot_here{
+    font-size: 5px;
+    color: #ff0000;
+}
+.country-selector{
+    font-size: 5px;
+    color: #ff0000;
+}
