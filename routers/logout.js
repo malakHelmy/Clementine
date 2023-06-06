@@ -15,7 +15,17 @@ router.get('/', async (req, res) => {
                 },
                 { upsert: true }
             );
-        } else {
+        }else if(req.session.cart == undefined){
+
+            await User.findOneAndUpdate(
+                { email: req.session.user },
+                {
+                    cart: [],
+                },
+                { upsert: true }
+            );
+        } 
+        else {
             await User.findOneAndUpdate(
                 { email: req.session.user },
                 {

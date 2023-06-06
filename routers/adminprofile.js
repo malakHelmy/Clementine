@@ -55,7 +55,6 @@ router.post('/', async (req, res) => {
             new: true,
         }
     );
-    console.log(admin);
     res.redirect(
         '/adminprofile?success=true&message=Password+updated+successfully'
     );

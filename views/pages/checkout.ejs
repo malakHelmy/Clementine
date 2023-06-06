@@ -37,7 +37,7 @@
 
                 <section id="checkout-container">
                     <h2>Billing Address </h2>
-                    <form class="checkoutForm" id="checkoutForm" action="/checkout" method="POST">
+                    <form class="checkoutForm" id="checkoutForm"  >
                        <% if(user == undefined){ %>
                         <div class="textfield">
                             <input type="email" name="email" id="email">
@@ -51,8 +51,8 @@
 
                        <% } %>
                         <div class="textfield">
-                            <input type="text" name="userfullname" id="firstname">
-                            <label for="firstname" id="firstnamelabel"></label>
+                            <input type="text" name="userfullname" id="userfullname">
+                            <label for="firstname" id="userfullnamelabel"></label>
                             <img src="/Images/right.png" alt="" width="15px" height="15px" class="true">
                             <img src="/Images/wrongg.png" alt="" width="15px" height="15px" class="false">
                             <span class="sp1"></span>
@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="textfield">
-                            <input type="text" name="shippingAddress1" id="address">
+                            <input type="text" name="shippingAddress1" id="shippingAddress1">
                             <label for="address" id="addlabel"></label>
                             <span class="sp1"></span>
                             <div class="br"><br></div>
@@ -85,7 +85,7 @@
                         <div id="zip">
                             <label>
                                 <h4>State</h4>
-                                <select id="statetype" name="state">
+                                <select id="statetype" name="statetype">
                                     <option value="selectstate">Choose State..</option>
                                     <option>Cairo</option>
                                     <option>Giza</option>
@@ -94,7 +94,7 @@
                                 </select>
                                 <label for="statetype" id="statelabel"></label>
                                 <div class="textfield">
-                                    <input type="text" name="zip" id="zipcode">
+                                    <input type="text" name="zipcode" id="zipcode">
                                     <label for="zipcode" id="ziplabel"></label>
                                     <span class="sp1"></span>
                                     <label for="">Zip Code</label>
@@ -111,7 +111,7 @@
 
 
                             <div class="textfield">
-                                <input type="text" name="CreditCardNumber" id="card">
+                                <input type="text" name="CreditCardNumber" id="CreditCardNumber">
                                 <label for="card" id="cardlabel"></label>
                                 <span class="sp1"></span>
                                 <% if (!errors.CreditCardNumber) {%>
@@ -124,7 +124,7 @@
                             </div>
 
                             <div class="textfield">
-                                <input type="text" name="exp_month" id="cardexp">
+                                <input type="text" name="exp_month" id="exp_month">
                                 <label for="cardexp" id="cardexlabel"></label>
                                 <span class="sp1"></span>
                                 <label for="">Expiry Month</label>
@@ -145,7 +145,7 @@
                                 </label>
 
                                 <div class="textfield">
-                                    <input type="text" name="cvv" id="cardcvv">
+                                    <input type="text" name="cvv" id="cvv">
                                     <label for="caedcvv" id="cardcvvlabel"></label>
                                     <span class="sp1"></span>
                                     <label for="">CVV</label>
@@ -163,7 +163,8 @@
 
                     </form>
                     <% } %>
-                        <!-- <script src="/js/checkout.js"></script> -->
+                        <script src="/js/checkout.js"></script>
+
                         <script src="/js/trial.js"></script>
                         <script src="/js/cart.js"></script>
 
