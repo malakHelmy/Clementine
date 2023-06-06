@@ -114,7 +114,6 @@ app.use('/reports', reportsRouter);
 app.use('/adminprofile', adminprofileRouter);
 
 
-
 const { Product } = require('./models/product');
 const { OrderItem } = require('./models/order-items');
 
@@ -137,11 +136,12 @@ app.get(`/`, async (req, res) => {
         .then((result) => {
             const product = result.length > 0 ? result : null; // check if newIn products are available
             res.render('pages/index', {
-                product, // pass the products to the template
+                product, 
                 user:
                     req.session.user == undefined
                         ? undefined
                         : req.session.user,
+                employer:req.session.employer== undefined? undefined: req.session.employer,         
                 cart:
                     req.session.cart == undefined
                         ? undefined
@@ -317,7 +317,10 @@ app.post(`/contactus`, function (req, res) {
 });
 /* ---------CONTACT US FORM MAILER END --------*/
 
+app.use((req,res)=>{
 
+    res.status(404).render('pages/404');
+})
 
 app.listen(port, () => {
     console.log('http://localhost:8080');

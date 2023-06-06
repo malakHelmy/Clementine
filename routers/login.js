@@ -166,6 +166,7 @@ router.get(`/`, function (req, res) {
     res.render('pages/login', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
+        employer:req.session.employer== undefined? undefined: req.session.employer
     });
 });
 
@@ -222,8 +223,9 @@ router.post(`/`, async (req, res) => {
     
         if (await bcrypt.compare(req.body.inputs.password, empresult.password)) {
 
-            req.session.user=empresult.email;
+            req.session.employer=empresult.email;
             req.session.admin=empresult.isAdmin;
+
             res.send('employer')
             
         }else{
