@@ -284,7 +284,13 @@ app.get(`/employersdash`, function (req, res) {
     res.render('pages/employersdash');
 });
 app.get(`/addemployers`, function (req, res) {
-    res.render('pages/addemployers');
+    if(req.session.admin == true){
+        res.render('pages/addemployers',{isadmin:true});
+    }else{
+        res.render('pages/404')
+    }
+    
+
 });
 app.get(`/editemployers`, function (req, res) {
     res.render('pages/editemployers');
