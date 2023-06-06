@@ -13,18 +13,18 @@
             <span class="material-symbols-sharp">dashboard</span>
             <h3>Dashboard</h3>
         </a>
-        <a href="editcustdash" class="<%= currentPage === 'editcustdash' ? 'active' : '' %>">
+        <a href="/editcustdash" class="<%= currentPage === 'editcustdash' ? 'active' : '' %>">
             <span class="material-symbols-sharp">person</span>
             <h3>Customers</h3>
         </a>
 
-        <a href="ordersdash" class="<%= currentPage === 'ordersdash' ? 'active' : '' %>">
+        <a href="/ordersdash" class="<%= currentPage === 'ordersdash' ? 'active' : '' %>">
             <span class="material-symbols-sharp">receipt_long</span>
             <h3>Orders</h3>
         </a>
 
         <% if (isadmin) { %>
-        <a href="employersdash" class="<%= currentPage === 'employersdash' ? 'active' : '' %>">
+        <a href="/employersdash" class="<%= currentPage === 'employersdash' ? 'active' : '' %>">
             <span class="material-symbols-sharp">business</span>
             <h3>Employers</h3>
         </a>

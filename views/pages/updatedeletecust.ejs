@@ -16,77 +16,74 @@
     <title>Admin Dashboard</title>
 </head>
 
-
-
-
 <body>
 
 
     <div class="container">
 
-       
         <%- include('../partials/dashboardsidebar', { currentPage: 'editcustdash' }) %>
+            <main>
+                <h1>Update Customers</h1>
+                <div id="products-container">
+                    <div class="addcust" id="addcust">
+                        <form method="POST" action="/editcustdash/<%= customer._id %>/update" class="signInform"
+                            onsubmit="return checkinputs()">
 
-
- 
-
-
-        <main>
-            <h1>Update Customers</h1>
-            <div id="products-container">
-                <div class="addcust" id="addcust">
-                    <form method="POST" action="/editcustdash/<%= customer._id %>/update" class="signInform" onsubmit="return checkinputs()">
-                        
-                        <div class="input-group">
-                            <h2 class="add-title">You're updating: <%= customer.firstname %> <%= customer.lastname  %> </h2>
-                            <label for="firstname">First Name</label>
-                            <input type="text" id="firstname" name="firstname" value="<%= customer.firstname %>" required>
-                        </div>
-    
-                        <div class="input-group">
-                            <label for="lastname">Last Name</label>
-                            <input type="text" id="lastname" name="lastname" value="<%= customer.lastname %>" required>
-                        </div>
-    
-                        <div class="input-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" value="<%= customer.email %>" required>
-                        </div>
-    
-                        <div class="input-group">
-                            <label for="pass">Password</label>
-                            <input type="password" id="pass" name="password" value="<%= customer.password %>" required>
-                        </div>
-                        <span id="passlabel"></span>
-                    </div>
-    
-                        <div class="input-group">
-                            <label for="pass">Confirm password</label>
-                            <div> <input id="confirmpass" type="password" placeholder="Customer's Password"
-                                    name="confirmpass" value="<%= customer.password %>">
+                            <div class="input-group">
+                                <h2 class="add-title">You're updating: <%= customer.firstname %>
+                                        <%= customer.lastname %>
+                                </h2>
+                                <label for="firstname">First Name</label>
+                                <input type="text" id="firstname" name="firstname" value="<%= customer.firstname %>"
+                                    required>
                             </div>
-                            <span id="confirmpasslabel"></span>
-                        </div>
-    
-                        <div class="input-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone" value="<%= customer.phone %>">
-                        </div>
-                        <span id="phonelabel"></span>
+
+                            <div class="input-group">
+                                <label for="lastname">Last Name</label>
+                                <input type="text" id="lastname" name="lastname" value="<%= customer.lastname %>"
+                                    required>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" value="<%= customer.email %>" required>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="pass">Password</label>
+                                <input type="password" id="pass" name="password" value="<%= customer.password %>"
+                                    required>
+                            </div>
+                            <span id="passlabel"></span>
                     </div>
-                            <input type="submit" id="update" class="update-btn" value="Update"></button>
-                            <button id="cancel" href="/editcustdash" id="cancel" class="delete-btn">Cancel</button>
-                    </form>
-                    <script src="/js/validation.js"></script>
 
+                    <div class="input-group">
+                        <label for="pass">Confirm password</label>
+                        <div> <input id="confirmpass" type="password" placeholder="Customer's Password"
+                                name="confirmpass" value="<%= customer.password %>">
+                        </div>
+                        <span id="confirmpasslabel"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" value="<%= customer.phone %>">
+                    </div>
+                    <span id="phonelabel"></span>
                 </div>
-
-
-
-              
-                <script src="/js/editcustdash.js"></script>
-                <script src="/js/dashsearch.js"></script>
+                <input type="submit" id="update" class="update-btn" value="Update"></button>
+                <button id="cancel" href="/editcustdash" id="cancel" class="delete-btn">Cancel</button>
+                </form>
                 <script src="/js/validation.js"></script>
+
+    </div>
+
+
+
+
+    <script src="/js/editcustdash.js"></script>
+    <script src="/js/dashsearch.js"></script>
+    <script src="/js/validation.js"></script>
 
 </body>
 

@@ -78,7 +78,6 @@ exports.editUser = asyncHandler(async (req, res) => {
         } else {
             Error.emailerror = 'Email is Invalid';
             c++;
-            emailvalue = userProfile.email;
         }
     }
 
@@ -90,12 +89,9 @@ exports.editUser = asyncHandler(async (req, res) => {
         if (passvalue != '' && confirmpassvalue == '') {
             Error.confirmpasserror = 'Please enter your new Password';
             c++;
-            confirmpassvalue = userProfile.password;
         } else if (passvalue == '' && confirmpassvalue != '') {
             Error.passerror = 'Please enter your current password';
             c++;
-            passvalue = userProfile.password;
-            confirmpassvalue = userProfile.password;
         } else if (confirmpassvalue != passvalue) {
             var passwordPattern =
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
@@ -109,21 +105,16 @@ exports.editUser = asyncHandler(async (req, res) => {
                     Error.confirmpasserror =
                         'password must contain at least 8 characters,one lowercase letter,one uppercase letter and one digit';
                     c++;
-                    confirmpassvalue = userProfile.password;
                 }
             } else {
                 Error.passerror = `This password doesn't match the current password`;
                 c++;
-                passVal = userProfile.password;
-                confirmpassvalue = userProfile.password;
             }
         }
         if (confirmpassvalue == passvalue) {
             Error.confirmpasserror =
                 'Please enter a new different Password or leave both fields empty';
             c++;
-            passvalue = userProfile.password;
-            confirmpassvalue = userProfile.password;
         }
     }
     if (phonevalue != '') {
@@ -131,7 +122,6 @@ exports.editUser = asyncHandler(async (req, res) => {
         } else {
             Error.phoneerror = 'Please enter right a phone number';
             c++;
-            phonevalue = userProfile.phone;
         }
     }
     if (phonevalue == '') {
@@ -140,10 +130,9 @@ exports.editUser = asyncHandler(async (req, res) => {
     }
     if (addressval == '') {
         addressval = userProfile.address;
-    } else if (addressval.length < 6) {
+    } else if (addressval.length < 6 && addressval.length != 0) {
         Error.addresserror = 'Enter a valid address with more details';
         c++;
-        addressval = userProfile.address;
     }
     if (c == 0) {
         let updatedUser = await user.findOneAndUpdate(
@@ -161,6 +150,7 @@ exports.editUser = asyncHandler(async (req, res) => {
         console.log(updatedUser);
         res.redirect('back');
     } else {
+        console.log(Error);
         res.redirect('back');
     }
 });
