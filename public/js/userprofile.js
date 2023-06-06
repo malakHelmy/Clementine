@@ -1,5 +1,7 @@
 let form = document.querySelector('.form-horizontal');
 
+console.log('hello')
+
 $('.form-horizontal').on('submit', function (event) {
     event.preventDefault();
     let data = {
