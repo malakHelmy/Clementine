@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
         res.status(500).send('Error.');
       } else {
         console.log('Email sent:' + info.response);
-        res.render('pages/contactus');
+        res.redirect('/');
         // res.status(200).send('Successfully sent.');
       }
     });
