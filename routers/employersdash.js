@@ -9,7 +9,7 @@ router.get('/', async(req, res) =>{
       if(req.session.admin == true){
 
         const employers = await Employer.find();
-        res.render('pages/employersdash', { employers: employers,isadmin:true});
+        res.render('pages/employersdash', { employers: employers , isadmin:true});
       }else{
 
         res.render('pages/404')
@@ -24,6 +24,7 @@ router.get('/', async(req, res) =>{
 });
 
 router.post('/:id', async (req, res) => {
+  
     try {
         const empid = req.params.id;
         await Employer.findByIdAndRemove(empid);
@@ -32,6 +33,8 @@ router.post('/:id', async (req, res) => {
         console.log('Error deleting employee:', error);
         res.redirect('/employersdash');
     }
+
+
 });
 
 module.exports = router;
