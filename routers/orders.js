@@ -77,21 +77,19 @@ router.get(`/`, async (req, res) => {
 router.get('/:id', (req, res) => {
     if (req.session.admin != undefined) {
         Order.findById(req.params.id)
-        // .populate('userID', '_id')
-        .then((result) => {
-            res.render('pages/updateorder', {
-                viewTitle: 'Update Order',
-                order: result,
-                isadmin:req.session.admin
+            // .populate('userID', '_id')
+            .then((result) => {
+                res.render('pages/updateorder', {
+                    viewTitle: 'Update Order',
+                    order: result,
+                    isadmin: req.session.admin,
+                });
+            })
+            .catch((err) => {
+                console.log(err);
             });
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    }else{
-
+    } else {
         res.redirect('/404');
-
     }
 });
 // router.delete('/:id', async (req, res) => {
@@ -128,134 +126,134 @@ router.post('/:id', async (req, res) => {
     }
 });
 
-router.post('/:id/update', async (req, res) => {
-    try {
-        const orderID = req.params.id;
-        const updates = req.body;
-        const orderr = await Order.findById(orderID).populate('orderItems');
-        const orderitems = orderr.name;
-        const order = await Order.findById(orderID).populate('userID');
-        if (!order) {
-            return res.status(404).send('Order not found');
+router.post('/update/:id', async (req, res) => {
+    const orderID = req.params.id;
+    const updates = req.body.inputs;
+    const orderr = await Order.findById(orderID).populate('orderItems');
+    const orderitems = orderr.name;
+    const order = await Order.findById(orderID).populate('userID');
+    if (!order) {
+        return res.status(404).send('Order not found');
+    }
+    let Error = {
+        statusError: String,
+        shippingAdd: String,
+        cityError: String,
+    };
+    let newStatus = updates.status;
+    let oldStatus = order.status;
+    let c = 0;
+    if (
+        newStatus !== 'Delivered' &&
+        newStatus !== 'Shipped' &&
+        newStatus !== 'Cancelled' &&
+        newStatus !== 'Pending'
+    ) {
+        Error.statusError = `Invalid Status, please write one of the following : Delivered/Shipped/Cancelled/Pending`;
+        c++;
+    } else if (newStatus.length == 0) {
+        updates.status = oldStatus;
+    }
+    if (
+        updates.shippingAddress1.length < 6 &&
+        updates.shippingAddress1.length != 0
+    ) {
+        Error.shippingAdd = 'Enter a valid address with more details';
+        c++;
+    } else if (updates.shippingAddress1.length == 0) {
+        updates.shippingAddress1 = order.shippingAddress1;
+    }
+    if (updates.city < 3 && updates.city != 0) {
+        Error.cityError = 'Enter a valid city name';
+        c++;
+    } else if (updates.city.length == 0) {
+        updates.city = order.city;
+    }
+    if (c == 0) {
+        await Order.findByIdAndUpdate(orderID, updates);
+
+        if (newStatus === 'Cancelled' && oldStatus !== 'Cancelled') {
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'clementineco2023@gmail.com',
+                    pass: 'lmkwmjbyftpuzwhz',
+                },
+            });
+
+            const user = order.userID;
+            const mailOptions = {
+                from: 'clementineco2023@gmail.com',
+                to: user.email,
+                subject: 'Order Cancelled',
+                text: `Dear ${order.userFullName},\n\nYour order with Order ID ${orderID} has been cancelled.\n\nThank you.`,
+            };
+
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error(error);
+                } else {
+                    console.log(`Email sent: ${info.response}`);
+                }
+            });
+        } else if (newStatus === 'Shipped' && oldStatus !== 'Shipped') {
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'clementineco2023@gmail.com',
+                    pass: 'lmkwmjbyftpuzwhz',
+                },
+            });
+
+            const user = order.userID;
+            const mailOptions = {
+                from: 'clementineco2023@gmail.com',
+                to: user.email,
+                subject: 'Order Shipped',
+                text: `Dear ${order.userFullName},\n\nYour order with Order ID ${orderID} has been shipped!\n\nThank you.`,
+            };
+
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error(error);
+                } else {
+                    console.log(`Email sent: ${info.response}`);
+                }
+            });
+        } else if (newStatus === 'Delivered' && oldStatus !== 'Delivered') {
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'clementineco2023@gmail.com',
+                    pass: 'lmkwmjbyftpuzwhz',
+                },
+            });
+
+            const user = order.userID;
+            const mailOptions = {
+                from: 'clementineco2023@gmail.com',
+                to: user.email,
+                subject: 'Order Delivered',
+                text: `Dear ${order.userFullName},\n\n Your order should have been delivered to you. Please let us know your feedback and if you have any inquiries.\n\nWith love, \n\nClementine.`,
+            };
+
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error(error);
+                } else {
+                    console.log(`Email sent: ${info.response}`);
+                }
+            });
         }
-        let Error = {
-            statusError: String,
-            shippingAdd: String,
-            cityError: String,
+        res.send('done');
+    } else {
+        console.log(Error);
+        let err = {
+            statusError: Error.statusError,
+            shippingAdd: Error.shippingAdd,
+            cityError: Error.cityError,
         };
-        let newStatus = updates.status;
-        let oldStatus = order.status;
-        let c = 0;
-        if (
-            newStatus !== 'Delivered' &&
-            newStatus !== 'Shipped' &&
-            newStatus !== 'Cancelled' &&
-            newStatus !== 'Pending'
-        ) {
-            Error.statusError = `Invalid Status, please write one of the following : Delivered/Shipped/Cancelled/Pending`;
-            c++;
-        } else if (newStatus.length == 0) {
-            updates.status = oldStatus;
-        }
-        if (
-            updates.shippingAddress1.length < 6 &&
-            updates.shippingAddress1.length != 0
-        ) {
-            Error.shippingAdd = 'Enter a valid address with more details';
-            c++;
-        } else if (updates.shippingAddress1.length == 0) {
-            updates.shippingAddress1 = order.shippingAddress1;
-        }
-        if (updates.city < 6 && updates.city != 0) {
-            Error.cityError = 'Enter a valid city name';
-            c++;
-        } else if (updates.city.length == 0) {
-            updates.city = order.city;
-        }
-        if (c == 0) {
-            await Order.findByIdAndUpdate(orderID, updates);
-
-            if (newStatus === 'Cancelled' && oldStatus !== 'Cancelled') {
-                const transporter = nodemailer.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        user: 'clementineco2023@gmail.com',
-                        pass: 'lmkwmjbyftpuzwhz',
-                    },
-                });
-
-                const user = order.userID;
-                const mailOptions = {
-                    from: 'clementineco2023@gmail.com',
-                    to: user.email,
-                    subject: 'Order Cancelled',
-                    text: `Dear ${order.userFullName},\n\nYour order with Order ID ${orderID} has been cancelled.\n\nThank you.`,
-                };
-
-                transporter.sendMail(mailOptions, (error, info) => {
-                    if (error) {
-                        console.error(error);
-                    } else {
-                        console.log(`Email sent: ${info.response}`);
-                    }
-                });
-            } else if (newStatus === 'Shipped' && oldStatus !== 'Shipped') {
-                const transporter = nodemailer.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        user: 'clementineco2023@gmail.com',
-                        pass: 'lmkwmjbyftpuzwhz',
-                    },
-                });
-
-                const user = order.userID;
-                const mailOptions = {
-                    from: 'clementineco2023@gmail.com',
-                    to: user.email,
-                    subject: 'Order Shipped',
-                    text: `Dear ${order.userFullName},\n\nYour order with Order ID ${orderID} has been shipped!\n\nThank you.`,
-                };
-
-                transporter.sendMail(mailOptions, (error, info) => {
-                    if (error) {
-                        console.error(error);
-                    } else {
-                        console.log(`Email sent: ${info.response}`);
-                    }
-                });
-            } else if (newStatus === 'Delivered' && oldStatus !== 'Delivered') {
-                const transporter = nodemailer.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        user: 'clementineco2023@gmail.com',
-                        pass: 'lmkwmjbyftpuzwhz',
-                    },
-                });
-
-                const user = order.userID;
-                const mailOptions = {
-                    from: 'clementineco2023@gmail.com',
-                    to: user.email,
-                    subject: 'Order Delivered',
-                    text: `Dear ${order.userFullName},\n\n Your order should have been delivered to you. Please let us know your feedback and if you have any inquiries.\n\nWith love, \n\nClementine.`,
-                };
-
-                transporter.sendMail(mailOptions, (error, info) => {
-                    if (error) {
-                        console.error(error);
-                    } else {
-                        console.log(`Email sent: ${info.response}`);
-                    }
-                });
-            }
-            res.redirect('/ordersdash');
-        } else {
-            console.log(Error);
-            res.redirect('back');
-        }
-    } catch (error) {
-        console.error('Error updating order:', error);
-        res.redirect('/ordersdash');
+        res.send(err);
     }
 });
 

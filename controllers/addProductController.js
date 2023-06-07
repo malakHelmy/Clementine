@@ -4,12 +4,65 @@ const user = require('../models/user');
 const asyncHandler = require('express-async-handler');
 const path = require('path');
 
+exports.validateProduct = asyncHandler(async (req, res) => {
+    let imgFile;
+    let uploadPath;
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files were uploaded.');
+    }
+    imgFile = req.files['img'][0];
+    uploadPath = path.join(req.body.id + path.extname(imgFile.name));
+    const { count } = require('../models/cart');
+    const { name, price, description, material, category, countInStock } =
+        req.body;
+    let invalidInputs = {};
+    let files = req.files;
+    let images = [];
+    let priceformat = !/^\d+(.\d{1,2})?$/;
+    let countformat = !/^\d+$/;
+
+    if (!name || name.trim() === '') {
+        invalidInputs.name = 'Invalid jewelry name, please try again.';
+    }
+
+    if (!description || description.trim() === '') {
+        invalidInputs.description = 'You must define the product.';
+    }
+
+    if (!material || material.trim() === '') {
+        invalidInputs.material = 'Please enter the material of the jewelry.';
+    }
+
+    if (!price || price.trim() === '') {
+        invalidInputs.price = 'You must enter a price value.';
+    } else if (!price.match(priceformat)) {
+        invalidInputs.price = 'Invalid price input.';
+    }
+
+    if (!category || category.trim() === '') {
+        invalidInputs.category = 'Please enter the category.';
+    }
+
+    if (!countInStock || countInStock.trim() === '') {
+        invalidInputs.countInStock = 'Please enter the count in stock.';
+    } else if (!count.match(countformat)) {
+        invalidInputs.countInStock =
+            'Count in stock must be a positive integer.';
+    }
+    if (!req.files || Object.keys(req.files).length === 0) {
+        invalidInputs.files = 'Please upload files';
+    }
+    if (!req.files.img || req.files.img.length === 0) {
+        invalidInputs.files = 'Please upload files';
+    }
+});
+
 exports.addProduct = asyncHandler(async function (req, res, next) {
     const { id, name, price, description, material, category, countInStock } =
         req.body;
     let imgFiles = [];
     let uploadPaths = [];
-    let c = 0;
+    let c =0;
     let invalidInputs = {
         name: String,
         price: String,
@@ -17,7 +70,7 @@ exports.addProduct = asyncHandler(async function (req, res, next) {
         material: String,
         countInStock: String,
     };
-    let priceformat = /^[1-9]\d*$/;
+    let priceformat = /^[1-9]\d*$/;    
     let countformat = /^[1-9]\d*$/;
 
     if (!name || name.trim() === '') {
@@ -28,16 +81,19 @@ exports.addProduct = asyncHandler(async function (req, res, next) {
     if (!description || description.trim() === '') {
         invalidInputs.description = 'You must define the product.';
         c++;
+
     }
 
     if (!material || material.trim() === '') {
         invalidInputs.material = 'Please enter the material of the jewelry.';
         c++;
+
     }
 
     if (!price || price.trim() === '') {
         invalidInputs.price = 'You must enter a price value.';
         c++;
+
     } else if (!price.match(priceformat)) {
         invalidInputs.price = 'Invalid price input.';
         c++;
@@ -54,7 +110,7 @@ exports.addProduct = asyncHandler(async function (req, res, next) {
     } else if (!countInStock.match(countformat)) {
         invalidInputs.countInStock =
             'Count in stock must be a positive integer.';
-        c++;
+            c++;
     }
 
     if (
@@ -65,47 +121,49 @@ exports.addProduct = asyncHandler(async function (req, res, next) {
     ) {
         invalidInputs.files = 'Please upload at least 4 images of the product.';
         c++;
-    } else {
-        if (Array.isArray(req.files.img)) {
-            imgFiles = [...req.files.img];
-        } else {
-            imgFiles.push(req.files.img);
-        }
-        let imageFile;
-        let i = 0;
-        imgFiles.forEach((imgFile) => {
-            imageFile = imgFile.path;
-            if (i < 4) {
-                imageFile = path.basename(imageFile);
-                uploadPaths.push(imageFile);
-                i++;
-            }
-        });
-        let image = req.files['img'][0].path;
-        image = path.basename(image);
     }
-    if (c == 0) {
-        const product = new Product({
-            id,
-            name,
-            image,
-            images: uploadPaths,
-            price,
-            description,
-            material,
-            category,
-            countInStock,
-            // save the uploaded image path to the database
-        });
-        product
-            .save()
-            .then((result) => {
-                res.redirect('/displayproducts');
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+
+    if (Array.isArray(req.files.img)) {
+        imgFiles = [...req.files.img];
     } else {
+        imgFiles.push(req.files.img);
+    }
+    let imageFile;
+    let i = 0;
+    imgFiles.forEach((imgFile) => {
+        imageFile = imgFile.path;
+        if (i < 4) {
+            imageFile = path.basename(imageFile);
+            uploadPaths.push(imageFile);
+            i++;
+        }
+    });
+    let image = req.files['img'][0].path;
+    image = path.basename(image);
+    if (c == 0){
+    const product = new Product({
+        id,
+        name,
+        image,
+        images: uploadPaths,
+        price,
+        description,
+        material,
+        category,
+        countInStock,
+        // save the uploaded image path to the database
+    });
+    product
+        .save()
+        .then((result) => {
+            res.redirect('/displayproducts');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }
+    else 
+    {
         console.log(invalidInputs);
         res.redirect('back');
     }

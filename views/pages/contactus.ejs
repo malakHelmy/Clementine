@@ -17,99 +17,100 @@
 </head>
 
 <body>
-      
+
     <%- include('../partials/navbar') %>
 
-    <section>
-        <div class="bodyimage">
-            <img src="Images/contact.jpeg" alt="">
-        </div>
-    </section>
-    <section class="contact">
-        <div class="content">
+        <section>
+            <div class="bodyimage">
+                <img src="Images/contact.jpeg" alt="">
+            </div>
+        </section>
+        <section class="contact">
+            <div class="content">
 
-            <h2>Contact us</h2>
-            <p>If you have a question or require further information,
-                then please feel free to contact us using the form below. We would be happy to help.
-            </p>
-            <div class="containers">
-                <div class="contactInfo">
-                    <div class="box">
-                        <div class="icon"><i class="ri-map-pin-line"></i></div>
-                        <div class="text">
-                            <h3>Address</h3>
-                            <p>S4, Area (A) city center, 5th District, Road 90,
-                                <br>New Cairo Store No.22 Building, Cairo Governorate<br>11211
-                            </p>
+                <h2>Contact us</h2>
+                <p>If you have a question or require further information,
+                    then please feel free to contact us using the form below. We would be happy to help.
+                </p>
+                <div class="containers">
+                    <div class="contactInfo">
+                        <div class="box">
+                            <div class="icon"><i class="ri-map-pin-line"></i></div>
+                            <div class="text">
+                                <h3>Address</h3>
+                                <p>S4, Area (A) city center, 5th District, Road 90,
+                                    <br>New Cairo Store No.22 Building, Cairo Governorate<br>11211
+                                </p>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="icon"><i class="ri-mail-open-line"></i></div>
+                            <div class="text">
+                                <h3>Email</h3>
+                                <p>
+                                    Clementine@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="icon"><i class="ri-phone-line"></i></div>
+                            <div class="text">
+                                <h3>Phone Number</h3>
+                                <p>
+                                    19012
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="box">
-                        <div class="icon"><i class="ri-mail-open-line"></i></div>
-                        <div class="text">
-                            <h3>Email</h3>
-                            <p>
-                                Clementine@gmail.com
-                            </p>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="icon"><i class="ri-phone-line"></i></div>
-                        <div class="text">
-                            <h3>Phone Number</h3>
-                            <p>
-                                19012
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contactForm">
-                    <h2>Send us a message</h2>
-                    <h5 class="note">*If your inquiry concerns an order, kindly provide it's ID</h5>
-                    <form action="/contactus" class="contact-form" method="post" > 
+                    <div class="contactForm">
+                        <h2>Send us a message</h2>
+                        <h5 class="note">*If your inquiry concerns an order, kindly provide it's ID</h5>
+                        <form action="/contactus" class="contact-form" method="post">
 
-                        <div class="inputBox">
-                            <input type="text" id="name" name="name" required="required">
-                            <span>Full Name</span>
-                        </div>
+                            <div class="inputBox">
+                                <input type="text" id="name" name="name" required="required">
+                                <span>Full Name</span>
+                            </div>
 
-                        <div class="inputBox">
-                            <input type="text" id="subject" name="subject" required="required">
-                            <span>Subject</span>
-                        </div>
+                            <div class="inputBox">
+                                <input type="text" id="subject" name="subject" required="required">
+                                <span>Subject</span>
+                            </div>
 
-                        <div class="inputBox">
-                            <input type="email" id="email" name="email" required="required">
-                            <span>Email</span>
-                          </div>
+                            <div class="inputBox">
+                                <input type="email" id="email" name="email" required="required"><span id="emaillabel"></span>
+                                <span>Email</span>
+                            </div>
 
-                        <!-- <div class="inputBox">
+                            <!-- <div class="inputBox">
                             <input type="text" id="transport" name="transport"  required="required">
                             <span label for="transport" >Transporter</span>
                         </div> -->
 
 
-                        <div class="inputBox">
-                            <textarea id = "message" name="message" cols="30" rows="5" required="required"></textarea>
-                            <span>Message</span>
-                        </div>
+                            <div class="inputBox">
+                                <textarea id="message" name="message" cols="30" rows="5" required="required"></textarea>
+                                <span>Message</span>
+                            </div>
 
 
-                        <div class="inputBox">
-                            <input type="submit" name="" value="SEND">
-                        </div>
-                    </form>
+                            <div class="inputBox">
+                                <input type="submit" name="" value="SEND">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
 
 
-    <%- include('../partials/footer') -%>
-    
-    <!-- <script src="/js/contactus.js"></script>  -->
-    <!-- <script src="/js/trial.js"></script> -->
-    <script src="/js/cart.js"></script>
+        <%- include('../partials/footer') -%>
+
+            <!-- <script src="/js/contactus.js"></script>  -->
+            <!-- <script src="/js/trial.js"></script> -->
+            <script src="/js/cart.js"></script>
+            <script src="/js/prod.js"></script>
 </body>
 
 </html>
