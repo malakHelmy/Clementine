@@ -6,8 +6,9 @@ const bcrypt = require('bcrypt');
 
 router.get('/', async (req, res) => {
     const admininfo = await user.findOne({ email: req.session.employer });
+    if(req.session.employer != undefined){
 
-    res.render('pages/adminprofile', {
+         res.render('pages/adminprofile', {
         isadmin: req.session.admin,
         admin: admininfo,
         currentPage: 'settings',
@@ -17,6 +18,10 @@ router.get('/', async (req, res) => {
                 : req.session.employer,
         req: req,
     });
+    }else{
+        res.redirect('/404')
+    }
+   
 });
 
 router.post('/', async (req, res) => {
