@@ -628,7 +628,9 @@ body {
 }
 
 
-
+#quick{
+transform: translateY(-31px);
+}
 /*                                 finish styling form */
 .footer {
   margin-top: 100px;
