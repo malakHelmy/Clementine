@@ -14,7 +14,6 @@ $(document).ready(function () {
             isAdmin: check
         };
 
-        console.log(inputs)
         let c = 0;
         $.ajax({
             url: `/editemployers/${employeeId}`,
@@ -24,25 +23,15 @@ $(document).ready(function () {
             success: function (response) {
 
                 if (response == 'done') {
-                    var email = document.getElementById("email");
-                    email.value = "";
-                    $('#emaillabel').html('');
-
-                    var summary = document.getElementById("confirmpassword");
-                    summary.value = "";
-                    $('#confirmpasslabel').html('');
-
-                    var review = document.getElementById("password");
-                    review.value = "";
-                    $('#passlabel').html('');
-
-                    var first = document.getElementById("name");
-                    first.value = "";
-                    $('#namelabel').html('');
-
-                    var phone = document.getElementById("phone");
-                    phone.value = "";
-                    $('#phonelabel').html('');
+                    $.ajax({
+                        url: '/employersdash',
+                        method: 'GET',
+                        success: function (response) {
+                            window.location.href = '/employersdash';
+                        },
+                        error:function(err){
+                        }
+                    });
 
                 } else {
                     if (response.nameerror == undefined) {

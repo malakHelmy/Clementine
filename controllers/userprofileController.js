@@ -153,13 +153,16 @@ exports.editUser = asyncHandler(async (req, res) => {
     
     
         if (c == 0) {
+
+
+             let pas = await bcrypt.hash(confirmpassvalue,12);
             let updatedUser = await user.findOneAndUpdate(
                 { _id: userProfile._id },
                 {
                     firstname: firstnamevalue,
                     lastname: lastnamevalue,
                     email: emailvalue,
-                    password: confirmpassvalue,
+                    password: pas,
                     phone: phonevalue,
                     address: addressval,
                 },

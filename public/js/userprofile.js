@@ -37,7 +37,7 @@ $('.form-horizontal').on('submit', function (event) {
                 }
 
                 if (response.confirmpasserror != '') {
-                    $('#newpasslabel').html(response. confirmpasserror );
+                    $('#newpasslabel').html(response.confirmpasserror );
                 
                 }
                 if (response.pnumbererror != '') {
