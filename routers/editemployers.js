@@ -52,7 +52,6 @@ router.post('/:id', async (req, res) => {
     let isadminval = req.body.inputs.isAdmin;
     let emailval = req.body.inputs.email;
 
-    
    
    if(email ==''){
 
@@ -68,7 +67,6 @@ router.post('/:id', async (req, res) => {
     }
    }
 
-
    if(password==''){
     passval=employer.password
 
@@ -82,7 +80,6 @@ router.post('/:id', async (req, res) => {
          c++;
         }
    }
-   
     if (confirmpassword == '' && password == '') {
 
     } else if(confirmpassword == password  && password!=''){
@@ -91,8 +88,6 @@ router.post('/:id', async (req, res) => {
       Errors.confirmpasserror = 'Passwords do not match';
       c++;
     }
-
-
      if(phone == '')
      {
       phoneval=employer.phone;
@@ -121,6 +116,7 @@ router.post('/:id', async (req, res) => {
             password:passval,
             phone:phoneval,
             isAdmin,
+            
         },
         { new: true })
         res.send('done');

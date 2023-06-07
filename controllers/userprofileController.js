@@ -40,7 +40,7 @@ exports.getUserEditor = asyncHandler(async (req, res) => {
 
 exports.editUser = asyncHandler(async (req, res) => {
     let userProfile = await user.findOne({ email: req.session.user });
-
+    
     if(req.body.inputs ==''){
       console.log('empty changes');
         res.send('There is no changes');
@@ -52,6 +52,7 @@ exports.editUser = asyncHandler(async (req, res) => {
         let phonevalue = req.body.inputs.pnumber;
         let addressval = req.body.inputs.address;
         let emailvalue = req.body.inputs.email;
+
         let c = 0;
         console.log( "inputs: " + req.body.inputs);
     
@@ -154,7 +155,6 @@ exports.editUser = asyncHandler(async (req, res) => {
     
         if (c == 0) {
 
-
              let pas = await bcrypt.hash(confirmpassvalue,12);
             let updatedUser = await user.findOneAndUpdate(
                 { _id: userProfile._id },
@@ -170,6 +170,7 @@ exports.editUser = asyncHandler(async (req, res) => {
             );
            console.log('done')
             res.send('done');
+
         } else {
 
             res.send(Error);
