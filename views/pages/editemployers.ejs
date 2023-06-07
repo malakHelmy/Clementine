@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- material icons cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
     <link rel="stylesheet" href="/css/editcustdash.css">
     <link rel="stylesheet" href="/css/dashboard.css">
@@ -20,7 +21,7 @@
             <h1>Edit Employer</h1>
             <div id="employers-container">
                 <div class="addcust" id="addcust">
-                    <form class="form" action="/editemployers/<%= employer.id %>" method="POST">
+                    <form class="form" data-employeeid="<%= employer.id %>" method="POST">
                         <div class="add">
                             <h2 class="add-title">You're updating: <%= employer.name %></h2>
                         </div>
@@ -30,6 +31,8 @@
                                 <div>
                                     <input id="name" type="text" placeholder="Employer name" name="name"
                                         value="<%= employer.name %>">
+                                        <span id="namelabel"></span>
+
                                 </div>
                             </div>
 
@@ -38,6 +41,8 @@
                                 <div>
                                     <input id="email" type="email" placeholder="Employer email" name="email"
                                         value="<%= employer.email %>">
+                                        <span class="errormsg" id="emaillabel"></span>
+
                                 </div>
                             </div>
 
@@ -46,6 +51,8 @@
                                 <div>
                                     <input id="password" type="password" placeholder="Employer password"
                                         name="password" value="<%= employer.password %>">
+                                        <span id="passlabel"></span>
+
                                 </div>
                             </div>
 
@@ -54,6 +61,8 @@
                                 <div>
                                     <input id="phone" type="text" placeholder="Employer phone" name="phone"
                                         value="<%= employer.phone %>">
+                                        <span class="errormsg" id="phonelabel"></span>
+
                                 </div>
                             </div>
 
@@ -78,6 +87,8 @@
                 </div>
 
                 <script src="/js/orders.js"></script>
+                <script src="/js/addemp.js"></script>
+
             </div>
         </main>
 

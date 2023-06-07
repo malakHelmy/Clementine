@@ -1,16 +1,18 @@
 let form = document.querySelector('.form-horizontal');
 
+
 $('.form-horizontal').on('submit', function (event) {
     event.preventDefault();
-    let data = {
-        fname: document.getElementById('fname').value,
-        lname: document.getElementById('lname').value,
-        email: document.getElementById('email').value,
-        cpass: document.getElementById('cpass').value,
-        newpass: document.getElementById('newpass').value,
-        pnumber: document.getElementById('pnumber').value,
-        address: document.getElementById('address').value,
-    };
+    const data = { 
+        fname:  $('#fname').val(),
+        lname: $('#lname').val(),
+        email: $('#email').val(),
+        cpass: $('#cpass').val(),
+        newpass: $('#newpass').val(),
+        address:$('#address ').val(),
+        pnumber: $('#pnumber').val()
+   };
+    
     let c = 0;
     $.ajax({
         url: '/userprofile/editprofile',
@@ -19,45 +21,7 @@ $('.form-horizontal').on('submit', function (event) {
         data: JSON.stringify({ inputs: data }),
         success: function (response) {
             {
-                if (response.passerror != '') {
-                    let resp = document.getElementById('cpass');
-                    resp.innerHTML = '';
-                    resp.innerHTML += response.passerror;
-                    resp.className = 'formerror show';
-                    c++;
-                }
-
-                if (response.confirmpasserror != '') {
-                    let resp = document.getElementById('cpassErr');
-                    resp.innerHTML = '';
-                    resp.innerHTML += response.confirmpasserror;
-                    resp.className = 'formerror show';
-                    c++;
-                }
-                if (response.pnumbererror != '') {
-                    let resp = document.getElementById('pnumbErr');
-                    resp.innerHTML = '';
-                    resp.innerHTML += response.pnumbererror;
-                    resp.className = 'formerror show';
-                    c++;
-                }
-                if (response.emailerror != '') {
-                    let resp = document.getElementById('emailErr');
-                    resp.innerHTML = '';
-                    resp.innerHTML += response.emailerror;
-                    resp.className = 'formerror show';
-                    c++;
-                }
-                if (response.addresserror != '') {
-                    let resp = document.getElementById('addErr');
-                    resp.innerHTML = '';
-                    resp.innerHTML += response.addresserror;
-                    resp.className = 'formerror show';
-                    c++;
-                }
-                if (c == 0) {
-                    let resp = document.getElementById('fnameErr');
-                    resp.className = 'formerror show';
+                if (response == 'done') {
                     $.ajax({
                         url: '/editprofile',
                         method: 'GET',
@@ -67,6 +31,28 @@ $('.form-horizontal').on('submit', function (event) {
                         error: function (err) {},
                     });
                 }
+                if (response.passerror != '') {
+                    $('#cpasslabel').html(response.passerror);
+                    
+                }
+
+                if (response.confirmpasserror != '') {
+                    $('#newpasslabel').html(response. confirmpasserror );
+                
+                }
+                if (response.pnumbererror != '') {
+                    $('#pnumberlabel').html(response.phoneerror);
+                
+                }
+                if (response.emailerror != '') {
+                    $('#emaillabel').html(response.emailerror );
+              
+                }
+                if (response.addresserror != '') {
+           
+                    $('#adresslabel').html(response.addresserror );
+                }
+               
             }
         },
         error: function (err) {},
