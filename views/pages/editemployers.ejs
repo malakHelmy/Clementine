@@ -21,7 +21,7 @@
             <h1>Edit Employer</h1>
             <div id="employers-container">
                 <div class="addcust" id="addcust">
-                    <form class="form" data-employeeid="<%= employer.id %>" method="POST">
+                    <form class="form" id="signInform" data-employeeid="<%= employer._id %>" method="POST">
                         <div class="add">
                             <h2 class="add-title">You're updating: <%= employer.name %></h2>
                         </div>
@@ -29,8 +29,8 @@
                             <div class="input-group">
                                 <label for="name">Employer Name</label>
                                 <div>
-                                    <input id="name" type="text" placeholder="Employer name" name="name"
-                                        value="<%= employer.name %>">
+                                    <input id="name" type="text"  name="name"
+                                        placeholder="<%= employer.name %>">
                                         <span id="namelabel"></span>
 
                                 </div>
@@ -39,28 +39,38 @@
                             <div class="input-group">
                                 <label for="email">Employer Email</label>
                                 <div>
-                                    <input id="email" type="email" placeholder="Employer email" name="email"
-                                        value="<%= employer.email %>">
+                                    <input id="email" type="email"  name="email"
+                                       placeholder ="<%= employer.email %>">
                                         <span class="errormsg" id="emaillabel"></span>
 
                                 </div>
                             </div>
 
                             <div class="input-group">
-                                <label for="password">Employer Password</label>
+                                <label for="password">Employer new password (if you want to change old password) </label>
                                 <div>
-                                    <input id="password" type="password" placeholder="Employer password"
-                                        name="password" value="<%= employer.password %>">
+                                    <input id="password" type="password" placeholder="new password"
+                                        name="password"  >
                                         <span id="passlabel"></span>
 
                                 </div>
                             </div>
+                            <div class="input-group">
+                                <label for="password">Confirm new password   </label>
+                                <div>
+                                    <input id="confirmpassword" type="password" placeholder="confirm new password"
+                                        name="password"  >
+                                        <span id="confirmpasslabel"></span>
+
+                                </div>
+                            </div>
+
 
                             <div class="input-group">
                                 <label for="phone">Employer Phone</label>
                                 <div>
-                                    <input id="phone" type="text" placeholder="Employer phone" name="phone"
-                                        value="<%= employer.phone %>">
+                                    <input id="phone" type="text"  name="phone"
+                                        placeholder="<%= employer.phone %>">
                                         <span class="errormsg" id="phonelabel"></span>
 
                                 </div>
@@ -69,12 +79,13 @@
                             <div class="input-group">
                                 <label for="isAdmin">Is Admin?</label>
                                 <div>
-                                    <input id="isAdmin" type="checkbox" name="isAdmin" <% if(employer.isAdmin) { %>checked<% } %>>
+                                    <input id="isAdmin" type="checkbox" name="isAdmin" >
                                 </div>
                             </div>
 
                             <button type="submit" id="update">Update</button>
-                            <a href="/employers" id="cancel">Cancel</a>
+                            <a href="/employersdash" id="cancel">Cancel</a>   
+                            
                         </div>
                     </form>
                 </div>
@@ -87,7 +98,7 @@
                 </div>
 
                 <script src="/js/orders.js"></script>
-                <script src="/js/addemp.js"></script>
+                <script src="/js/editemp.js"></script>
 
             </div>
         </main>
