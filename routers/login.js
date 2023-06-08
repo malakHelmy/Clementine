@@ -108,6 +108,7 @@ router.post(`/resetpassword`, async (req, res) => {
                 );
                 console.log(doc);
                 console.log(token);
+                // https://clementine.website/login/forgetpass
                 const resetLink = `http://localhost:8080/login/resetpassword/${token}`;
                 var transporter = nodemailer.createTransport({
                     service: 'gmail',
