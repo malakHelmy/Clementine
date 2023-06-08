@@ -30,18 +30,18 @@ let cartwrap = document.querySelector('.cart-wrapper');
 // });
 
 
-$(document).on('click', '.ri-close-line', async function () {
+$(document).on('click', '#remove', async function () {
     var c = $(this).data('cartpro');
     fetch('/cart/remove', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify( {payload:c} ),
+        body: JSON.stringify( {id:c} ),
     })
         .then((res) => res.json())
         .then((data) => {
-            cartwrap.innerHTML = '';
+
             cartwrap.innerHTML = ` <h2 class="ShopBag">My Shopping Bag</h2>
             <div class="line"></div>`;
                 let payload = data.payload;
@@ -50,7 +50,10 @@ $(document).on('click', '.ri-close-line', async function () {
                     payload.items.forEach((items) => {
                         if (items.quantity > 0) {
                             cartwrap.innerHTML += `<div class="cart-item">
-                            <a id="remove" data-cartpro=${items.id} class="ri-close-line"> </a>
+                            <a class="remove-btn" id="remove" data-cartpro=${items.id}>
+                            <i class="ri-close-line"></i>
+                            </a>
+                                
                         <img src="/Images/${items.image}" alt="">
                         <div class="details">
                             <div class="name">
@@ -90,9 +93,9 @@ $(document).on('click', '.ri-close-line', async function () {
                 } else {
                     cartwrap.innerHTML += ` <div class="cart-item">
 
-            <div class="empty">Your cart is empty</div>
-        </div>`;
-            }
+                <div class="empty">Your cart is empty</div>
+            </div>`;
+                }
 
                 cartwrap.innerHTML += `<div class="total">
             <div class="shipping">
@@ -132,7 +135,11 @@ $(document).on('click', '.cartplus', async function () {
                 payload.items.forEach((items) => {
                     if (items.quantity > 0) {
                         cartwrap.innerHTML += `<div class="cart-item">
-                         <a id="remove" data-cartpro=${items.id} class="ri-close-line"> </a>
+                        <a class="remove-btn" id="remove" data-cartpro=${items.id}>
+                            <i class="ri-close-line"></i>
+                            </a>
+
+
                         <img src="/Images/${items.image}" alt="">
                         <div class="details">
                             <div class="name">
@@ -299,8 +306,9 @@ addtocart.forEach((cart) => {
                     payload.items.forEach((items) => {
                         if (items.quantity > 0) {
                             cartwrap.innerHTML += `<div class="cart-item">
-                                                        <a id="remove" data-cartpro=${items.id} class="ri-close-line"> </a>
-
+                            <a class="remove-btn" id="remove" data-cartpro=${items.id}>
+                            <i class="ri-close-line"></i>
+                            </a>
                         <img src="/Images/${items.image}" alt="">
                         <div class="details">
                             <div class="name">
@@ -384,8 +392,9 @@ atc.forEach((cart) => {
                     payload.items.forEach((items) => {
                         if (items.quantity > 0) {
                             cartwrap.innerHTML += `<div class="cart-item">
-                                                        <a id="remove" data-cartpro=${items.id} class="ri-close-line"> </a>
-
+                            <a class="remove-btn" id="remove" data-cartpro=${items.id}>
+                            <i class="ri-close-line"></i>
+                            </a>
                         <img src="/Images/${items.image}" alt="">
                         <div class="details">
                             <div class="name">
@@ -468,8 +477,9 @@ cartButton.forEach((cart) => {
                     payload.items.forEach((items) => {
                         if (items.quantity > 0) {
                             cartwrap.innerHTML += `<div class="cart-item">
-                                                        <a id="remove" data-cartpro=${items.id} class="ri-close-line"> </a>
-
+                            <a class="remove-btn" id="remove" data-cartpro=${items.id}>
+                            <i class="ri-close-line"></i>
+                            </a>
                         <img src="/Images/${items.image}" alt="">
                         <div class="details">
                             <div class="name">
