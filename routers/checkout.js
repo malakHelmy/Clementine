@@ -94,7 +94,7 @@ router.post('/', async (req, res) => {
                 Error.zip = 'Zip is required';
                 count++;
 
-            } else if (zip.length < 5 || isNaN(zip)) {
+            } else if (zip.length < 4 || isNaN(zip)) {
                 Error.zip = 'Zip code must be 4 integers long.';
                 count++;
             }
