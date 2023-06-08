@@ -44,10 +44,11 @@
                             </div>
 
                             <div class="input-group">
-                                <label for="image">Product Image</label>
-                                <div>
-                                  <br>  <input type="file" id="image" name="image">
-                                </div>
+                                <label class="add-photo-btn">Upload Image
+
+                                    <input type="file" name="img" multiple required>
+
+                                </label>
                             </div>
                             <br>
                             <div class="input-group">
@@ -57,7 +58,7 @@
                                         value="<%= product.price %>">
                                 </div>
                             </div>
-
+ 
                             <div class="input-group">
                                 <label for="description">Product Description</label>
                                 <div>
