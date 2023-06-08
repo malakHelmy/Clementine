@@ -6,7 +6,7 @@
     <div class="navigation">
         <div class="container">
             <div class="navbar">
-                
+
                 <div class="logo-toggle-container">
                     <a href="/">
                         <img src="/Images/logoo copy.png">
@@ -19,7 +19,7 @@
                 </div>
 
                 <ul class="menu">
-                    
+
                     <li><a href="/">HOME</a></li>
                     <li><a href="/newin">NEW IN</a></li>
                     <li><a href="/drings">DIAMOND +</a>
@@ -48,7 +48,7 @@
 
                     <li><a href="/search"><i class="ri-search-line"></i></a></li>
 
-                    <% if(user!=undefined || employer!= undefined){%>
+                    <% if(user!=undefined || employer!=undefined){%>
                         <li><a href="/userprofile"><i class="ri-account-circle-line"></i></a>
                             <ul>
                                 <li><a href="/userprofile">ACCOUNT DETAILS</a></li>
@@ -71,7 +71,7 @@
                                     <!-- wishlist end -->
 
                                     <!--Cart Start-->
-                                <li><a  id="cart-icon"><i class="ri-shopping-bag-line"></i></a>
+                                <li><a id="cart-icon"><i class="ri-shopping-bag-line"></i></a>
                                     <div class="cart" id="cart">
                                         <div class="cart-window" id="sidebar">
                                             <button id="closesidebarbtn" onclick="closesidebar()"><span
@@ -84,11 +84,10 @@
                                                     <% cart.items.forEach((items)=> {%>
                                                         <% if(items.quantity>0){ %>
                                                             <div class="cart-item">
-                                                                <a class="remove-btn" id="remove" data-cartpro="<%= items.id %>"><i
-                                                                        class="ri-close-line"></i>
-                                
+                                                                <a id="remove" data-cartpro="<%= items.id %>"
+                                                                    class="ri-close-line">
                                                                 </a>
-                                                                        
+
                                                                 <img src="/Images/<%- items.image %>" alt="">
                                                                 <div class="details">
                                                                     <div class="name">
@@ -120,41 +119,56 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                         <%} }) }else{ %>
-                                                            <div class="cart-item">
+                                                            <%} }) }else{ %>
+                                                                <div class="cart-item">
 
-                                                                <div class="empty">Your cart is empty</div>
-                                                            </div>
-                                                             <% } %>
-                                                            <div class="total">
-                                                                <div class="shipping">
-                                                                        <p><span>Subtotal</span> <span>EGP <span id="total-before">
-                                                                            <% var price=0 %>
-                                                                            <% if(cart!=undefined && cart.items!='' ){ var price=0%>
-                                                                                <% cart.items.forEach((items)=> {%>
-                                                                                    <%if(items.quantity> 0){ %>
-                                                                                        <% price +=(items.price * items.quantity) %>
-                                                                                            <% }})} %>
-                                                                                         <%= price%>
-                                                                                    </span></span></p>
-                                                                        <p><span>Shipping</span> <span>EGP<span>100</span></span>
-                                                                        </p>
+                                                                    <div class="empty">Your cart is empty</div>
                                                                 </div>
-                                                                <p><span>Total</span> <span>EGP <span id="total-after">
+                                                                <% } %>
+                                                                    <div class="total">
+                                                                        <div class="shipping">
+                                                                            <p><span>Subtotal</span> <span>EGP <span
+                                                                                        id="total-before">
+                                                                                        <% var price=0 %>
+                                                                                            <% if(cart!=undefined &&
+                                                                                                cart.items!='' ){ var
+                                                                                                price=0%>
+                                                                                                <%
+                                                                                                    cart.items.forEach((items)=>
+                                                                                                    {%>
+                                                                                                    <%if(items.quantity>
+                                                                                                        0){ %>
+                                                                                                        <% price
+                                                                                                            +=(items.price
+                                                                                                            *
+                                                                                                            items.quantity)
+                                                                                                            %>
+                                                                                                            <% }})} %>
+                                                                                                                <%=
+                                                                                                                    price%>
+                                                                                    </span></span></p>
+                                                                            <p><span>Shipping</span>
+                                                                                <span>EGP<span>100</span></span>
+                                                                            </p>
+                                                                        </div>
+                                                                        <p><span>Total</span> <span>EGP <span
+                                                                                    id="total-after">
                                                                                     <%=price +=100%>
-                                                                    </span></span>
-                                                                </p>
-                                                            </div>
-                                                            <div class="checkout-btn">
-                                                                <button class="checkout" onclick="location.href='/cart'">CHECKOUT</button>
-                                                            </div>
+                                                                                </span></span>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="checkout-btn">
+                                                                        <button class="checkout"
+                                                                            onclick="location.href='/cart'">CHECKOUT</button>
+                                                                    </div>
                                             </div>
                                         </div>
                                     </div>
                                     <!--Cart End-->
                                 </li>
                                 <li>
-                          <div id="weglot_here"></div></li>
+                                    <div id="weglot_here"></div>
+                                </li>
                 </ul>
             </div>
         </div>
@@ -169,12 +183,13 @@
             $(".navigation .menu").stop().slideToggle();
         });
     });
-    
-  Weglot.initialize({
-        api_key: 'wg_0bf2bb7e290e72f3fd8b2539acb64ed99'});
+
+    Weglot.initialize({
+        api_key: 'wg_0bf2bb7e290e72f3fd8b2539acb64ed99'
+    });
 </script>
- 
 
 
-  
+
+
 <!-- Navigation Bar End -->

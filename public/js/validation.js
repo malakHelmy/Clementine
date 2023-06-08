@@ -6,6 +6,11 @@ const pass = document.getElementById('pass');
 const confpass = document.getElementById('confirmpass');
 const phone = document.getElementById('phone');
 
+const status = document.getElementById('status');
+const shippingAddress1 = document.getElementById('shippingAddress1');
+const city = document.getElementById('city');
+
+
 function checkinputs2() {
     const firstnamevalue = firstname.value.trim();
     const lastnamevalue = lastname.value.trim();
@@ -71,7 +76,7 @@ function checkinputs2() {
         const formc = phone.parentElement;
         formc.className = 'textfield success';
         l.innerHTML = '';
-    } else if (phonevalue != '' && phonevalue.length < 11 ) {
+    } else if (phonevalue != '' && phonevalue.length < 11) {
         const l = document.getElementById('phonelabel');
         const formc = phone.parentElement;
         formc.className = 'textfield failed';
