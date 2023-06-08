@@ -3,6 +3,8 @@ const { Product } = require('../models/product');
 const user = require('../models/user');
 const asyncHandler = require('express-async-handler');
 const path = require('path');
+const fs = require('fs');
+
 
 exports.validateProduct = asyncHandler(async (req, res) => {
     let imgFile;
