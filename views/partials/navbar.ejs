@@ -84,9 +84,11 @@
                                                     <% cart.items.forEach((items)=> {%>
                                                         <% if(items.quantity>0){ %>
                                                             <div class="cart-item">
-                                                                <button class="remove-btn" id="remove" ><i
-                                                                        class="ri-close-line"></i></button>
-                                                                        <label for="" class="<%= items.id %>" id="productid" ></label>
+                                                                <a class="remove-btn" id="remove" data-cartpro="<%= items.id %>"><i
+                                                                        class="ri-close-line"></i>
+                                
+                                                                </a>
+                                                                        
                                                                 <img src="/Images/<%- items.image %>" alt="">
                                                                 <div class="details">
                                                                     <div class="name">
