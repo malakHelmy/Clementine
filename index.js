@@ -12,6 +12,7 @@ const hbars = require('nodemailer-express-handlebars');
 const Mailgen = require('mailgen');
 const bcrypt = require('bcrypt')
 const User = require('./models/user');
+const favicon = require('express-favicon');
 
 
 
@@ -81,6 +82,9 @@ app.use(
         resave: false,
     })
 );
+
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+
 // Routers
 if (process.env.NODE_ENV === 'production') {
     app.use('/addproducts', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), addProdRouter);
