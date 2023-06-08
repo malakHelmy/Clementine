@@ -62,7 +62,7 @@ exports.addProduct = asyncHandler(async function (req, res, next) {
         req.body;
     let imgFiles = [];
     let uploadPaths = [];
-    let c =0;
+    let c = 0;
     let invalidInputs = {
         name: String,
         price: String,
@@ -70,7 +70,7 @@ exports.addProduct = asyncHandler(async function (req, res, next) {
         material: String,
         countInStock: String,
     };
-    let priceformat = /^[1-9]\d*$/;    
+    let priceformat = /^[1-9]\d*$/;
     let countformat = /^[1-9]\d*$/;
 
     if (!name || name.trim() === '') {
@@ -81,19 +81,16 @@ exports.addProduct = asyncHandler(async function (req, res, next) {
     if (!description || description.trim() === '') {
         invalidInputs.description = 'You must define the product.';
         c++;
-
     }
 
     if (!material || material.trim() === '') {
         invalidInputs.material = 'Please enter the material of the jewelry.';
         c++;
-
     }
 
     if (!price || price.trim() === '') {
         invalidInputs.price = 'You must enter a price value.';
         c++;
-
     } else if (!price.match(priceformat)) {
         invalidInputs.price = 'Invalid price input.';
         c++;
@@ -110,7 +107,7 @@ exports.addProduct = asyncHandler(async function (req, res, next) {
     } else if (!countInStock.match(countformat)) {
         invalidInputs.countInStock =
             'Count in stock must be a positive integer.';
-            c++;
+        c++;
     }
 
     if (
@@ -140,35 +137,112 @@ exports.addProduct = asyncHandler(async function (req, res, next) {
     });
     let image = req.files['img'][0].path;
     image = path.basename(image);
-    if (c == 0){
-    const product = new Product({
-        id,
-        name,
-        image,
-        images: uploadPaths,
-        price,
-        description,
-        material,
-        category,
-        countInStock,
-        // save the uploaded image path to the database
-    });
-    product
-        .save()
-        .then((result) => {
-            res.redirect('/displayproducts');
-        })
-        .catch((err) => {
-            console.log(err);
+    if (c == 0) {
+        const product = new Product({
+            id,
+            name,
+            image,
+            images: uploadPaths,
+            price,
+            description,
+            material,
+            category,
+            countInStock,
+            // save the uploaded image path to the database
         });
-    }
-    else 
-    {
+        product
+            .save()
+            .then((result) => {
+                res.redirect('/displayproducts');
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    } else {
         console.log(invalidInputs);
         res.redirect('back');
     }
 });
+exports.editProduct = asyncHandler(async (req, res) => {
+    const productId = req.params.id;
+    let { name, price, description, material, category, countInStock } =
+        req.body;
+    const product = await Product.findOne({ id: productId });
 
+    let priceformat = /^[1-9]\d*$/;
+    let countformat = /^[1-9]\d*$/;
+    
+    let image;
+    let imgFiles = [];
+    let uploadPaths = [];
+
+    if (!name || name.trim() === '') {
+        name = product.name;
+    }
+    if (!description || description.trim() === '') {
+        description = product.description;
+    }
+    if (!material || material.trim() === '') {
+        material = product.material;
+    }
+    if (!price || price.trim() === '') {
+        price = product.price;
+    } else if (!price.match(priceformat)) {
+        price = product.price;
+    }
+    if (!category || category.trim() === '') {
+        category = product.category;
+    }
+    if (!countInStock || countInStock.trim() === '') {
+        countInStock = product.countInStock;
+    } else if (!countInStock.match(countformat)) {
+        console.log('Count in stock must be a positive integer.');
+        countInStock = product.countInStock;
+    }
+
+    if (!req.files || req.files.img.length === 0 || req.files.img.length > 4) {
+        image = product.image;
+        uploadPaths = product.images;
+    } else {
+        if (Array.isArray(req.files.img)) {
+            imgFiles = [...req.files.img];
+        } else {
+            imgFiles.push(req.files.img);
+        }
+        let imageFile;
+        let i = 0;
+        imgFiles.forEach((imgFile) => {
+            imageFile = imgFile.path;
+            if (i < 4) {
+                imageFile = path.basename(imageFile);
+                uploadPaths.push(imageFile);
+                i++;
+            }
+        });
+        image = uploadPaths[0];
+        console.log(uploadPaths);
+    }
+    let updatedProduct = await Product.findOneAndUpdate(
+        { id: productId },
+        {
+            name,
+            image,
+            images: uploadPaths,
+            price,
+            description,
+            material,
+            category,
+            countInStock,
+        },
+        { new: true }
+    );
+    if (updatedProduct) {
+        console.log('Updated product data:', updatedProduct);
+        res.redirect('/displayproducts');
+    } else {
+        res.status(404).render('pages/404');
+    }
+});
 // async function addProduct(req, res, next) {
 //     const { name, price, description, material, category, countInStock } =
 //         req.body;

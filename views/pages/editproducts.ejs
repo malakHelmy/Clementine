@@ -22,7 +22,7 @@
             <h1>Jewelry</h1>
             <div id="products-container">
                 <div class="addcust" id="addcust">
-                    <form class="form" action="/editproducts/<%= product.id %>" method="POST">
+                    <form class="form" action="/editproducts/<%= product.id %>" method="POST"  enctype="multipart/form-data">
                         <div class="add">
                             <h2 class="add-title">You're updating: <%=product.name%></h2>
                         </div>
