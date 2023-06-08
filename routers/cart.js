@@ -12,11 +12,13 @@ router.get('/', (req, res) => {
 });
 
 router.post('/remove', (req, res) => {
-    req.session.cart.items.forEach((items) => {
-        if (items.id == req.body.payload) {
-            items.quantity -= items.quantity;
+    let i = 0;
+    req.session.cart.items.forEach((items, index) => {
+        if (items.id == req.body.id) {
+            req.session.cart.items.splice(index, 1);
         }
     });
+
    
     res.send({ payload: req.session.cart });
 });
