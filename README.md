@@ -16,7 +16,7 @@ which sells specifically diamond and gold, catered towards women around the age 
 <h4> User Authentication: </h4> <p> We included user authentication functionality, allowing customers to create accounts and log in to access their order history, saved items, carts and other personalized features. We verify every logged in user to make sure the process is secure. We also allow users who forgot their passwords to reset them by mail as well. </p>
 
 
-<h4>Search bar functionality: </h4> <p> We implemented a search bar that allows customers to quickly find the product they are looking for using AJAX. This helps to save time and makes the shopping experience more efficient. We also integrated sorting features to make the customer as satisfied as possbile.</p>
+<h4>Search bar functionality: </h4> <p> We implemented a search bar that allows customers to quickly find the product they are looking for using AJAX. This helps to save time and makes the shopping experience more efficient. We also integrated sorting features to make the customer's shopping experience as smooth as possbile.</p>
 
 <h4>Communication: </h4> <p> To make the customer as satisfied as possible, we offer many ways of communication. Through the user profile panel, the user can easily chat with out chatGBT chatbot that is well trained to answer and handle customer's inquiries. We also offer communication by mail through the contact us page. We integrated nodemailer and MailGun APIs to make sure the process is smooth and th customers' concerns are delivered. Last but not least, as we care about our customers' feedback on our products, we allow the customers to leave their reviews and ratings in the product's details page.</p>
 
