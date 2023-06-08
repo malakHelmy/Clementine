@@ -65,7 +65,11 @@ const port = process.env.PORT || 8080;
 app.use(express.json());
 app.use(morgan('tiny')); //displays log requests
 
-app.use(express.static(path.join(__dirname, 'public')));
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'public'), { maxAge: '1d' }));
+} else {
+    app.use(express.static(path.join(__dirname, 'public')));
+}
 
 app.set('view engine', 'ejs'); //set the template engine
 //app.use(express.static(path.join(process.cwd(), "/images")));
@@ -78,32 +82,57 @@ app.use(
     })
 );
 // Routers
-
-app.use('/addproducts', addProdRouter);
-app.use('/employersdash', employersRouter);
-app.use('/', productsRouter);
-app.use('/categories', categoriesRouter);
-app.use('/ordersdash', ordersRouter);
-app.use('/user', usersRouter);
-app.use('/userprofile', userprofileRouter);
-app.use('/login', users_loginRouter);
-app.use('/editcustdash', cust_contRouter);
-app.use('/editproducts', editProdRouter);
-app.use('/chat', chatRouter);
-app.use('/cart', cartRouter);
-app.use('/displayproducts', displayProdRouter);
-app.use('/', searchRoutes);
-app.use('/logout', logoutroute);
-app.use('/addemployers', addempRouter);
-app.use('/editemployers', editempRouter);
-app.use('/checkout', checkoutRouter);
-app.use('/customers', addcustRouter);
-app.use('/dashboard', dashboardRouter);
-app.use('/reviews', reviewsRouter);
-app.use('/reports', reportsRouter);
-app.use('/adminprofile', adminprofileRouter);
-app.use('/contactus', contactusRouter);
-
+if (process.env.NODE_ENV === 'production') {
+    app.use('/addproducts', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), addProdRouter);
+    app.use('/employersdash', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), employersRouter);
+    app.use('/', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), productsRouter);
+    app.use('/categories', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), categoriesRouter);
+    app.use('/ordersdash', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), ordersRouter);
+    app.use('/user', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), usersRouter);
+    app.use('/userprofile', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), userprofileRouter);
+    app.use('/login', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), users_loginRouter);
+    app.use('/editcustdash', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), cust_contRouter);
+    app.use('/editproducts', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), editProdRouter);
+    app.use('/chat', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), chatRouter);
+    app.use('/cart', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), cartRouter);
+    app.use('/displayproducts', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), displayProdRouter);
+    app.use('/', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), searchRoutes);
+    app.use('/logout', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), logoutroute);
+    app.use('/addemployers', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), addempRouter);
+    app.use('/editemployers', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), editempRouter);
+    app.use('/checkout', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), checkoutRouter);
+    app.use('/customers', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), addcustRouter);
+    app.use('/dashboard', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), dashboardRouter);
+    app.use('/reviews', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), reviewsRouter);
+    app.use('/reports', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), reportsRouter);
+    app.use('/adminprofile', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), adminprofileRouter);
+    app.use('/contactus', express.static(path.join(__dirname, 'public'), { maxAge: '1d' }), contactusRouter);
+} else {
+    app.use('/addproducts', addProdRouter);
+    app.use('/employersdash', employersRouter);
+    app.use('/', productsRouter);
+    app.use('/categories', categoriesRouter);
+    app.use('/ordersdash', ordersRouter);
+    app.use('/user', usersRouter);
+    app.use('/userprofile', userprofileRouter);
+    app.use('/login', users_loginRouter);
+    app.use('/editcustdash', cust_contRouter);
+    app.use('/editproducts', editProdRouter);
+    app.use('/chat', chatRouter);
+    app.use('/cart', cartRouter);
+    app.use('/displayproducts', displayProdRouter);
+    app.use('/', searchRoutes);
+    app.use('/logout', logoutroute);
+    app.use('/addemployers', addempRouter);
+    app.use('/editemployers', editempRouter);
+    app.use('/checkout', checkoutRouter);
+    app.use('/customers', addcustRouter);
+    app.use('/dashboard', dashboardRouter);
+    app.use('/reviews', reviewsRouter);
+    app.use('/reports', reportsRouter);
+    app.use('/adminprofile', adminprofileRouter);
+    app.use('/contactus', contactusRouter);
+}
 
 const { Product } = require('./models/product');
 const { OrderItem } = require('./models/order-items');
@@ -142,17 +171,19 @@ app.get(`/`, async (req, res) => {
 });
 
 
-app.get('/placeorder',(req,res)=>{
+app.get('/placeorder', (req, res) => {
 
-res.render('pages/placedOrder',{   user:
-    req.session.user == undefined
-        ? undefined
-        : req.session.user,
-employer: req.session.employer == undefined ? undefined : req.session.employer,
-cart:
-    req.session.cart == undefined
-        ? undefined
-        : req.session.cart,});
+    res.render('pages/placedOrder', {
+        user:
+            req.session.user == undefined
+                ? undefined
+                : req.session.user,
+        employer: req.session.employer == undefined ? undefined : req.session.employer,
+        cart:
+            req.session.cart == undefined
+                ? undefined
+                : req.session.cart,
+    });
 
 })
 
@@ -304,8 +335,8 @@ app.get(`/signup`, function (req, res) {
     res.render('pages/signup', {
         user: req.session.user == undefined ? undefined : req.session.user,
         cart: req.session.cart == undefined ? undefined : req.session.cart,
-        error:undefined,
-        employer:req.session.employer== undefined? undefined: req.session.employer
+        error: undefined,
+        employer: req.session.employer == undefined ? undefined : req.session.employer
     });
 });
 
@@ -314,7 +345,7 @@ app.post('/sign-up-action', (req, res) => { });
 //CONTACT US MAILER START
 
 // app.post('/contactus', (req, res) => {
-   
+
 //   });
 /* ---------CONTACT US FORM MAILER END --------*/
 
