@@ -165,84 +165,100 @@ exports.addProduct = asyncHandler(async function (req, res, next) {
 });
 exports.editProduct = asyncHandler(async (req, res) => {
     const productId = req.params.id;
-    let { name, price, description, material, category, countInStock } =
-        req.body;
+  
     const product = await Product.findOne({ id: productId });
-
+  
+    if (!product) {
+      res.status(404).render('pages/404');
+      return;
+    }
+  
+    let { id, name, price, description, category, countInStock } = req.body;
+  
     let priceformat = /^[1-9]\d*$/;
     let countformat = /^[1-9]\d*$/;
-    
-    let image;
-    let imgFiles = [];
-    let uploadPaths = [];
-
+  
+    let images = product.images;
+    let removedImages = req.body.removedImages;
+  
     if (!name || name.trim() === '') {
-        name = product.name;
+      name = product.name;
     }
-    if (!description || description.trim() === '') {
-        description = product.description;
-    }
-    if (!material || material.trim() === '') {
-        material = product.material;
-    }
+  
     if (!price || price.trim() === '') {
-        price = product.price;
+      price = product.price;
     } else if (!price.match(priceformat)) {
-        price = product.price;
+      price = product.price;
     }
+  
+    if (!description || description.trim() === '') {
+      description = product.description;
+    }
+  
     if (!category || category.trim() === '') {
-        category = product.category;
+      category = product.category;
     }
+  
     if (!countInStock || countInStock.trim() === '') {
-        countInStock = product.countInStock;
+      countInStock = product.countInStock;
     } else if (!countInStock.match(countformat)) {
-        console.log('Count in stock must be a positive integer.');
-        countInStock = product.countInStock;
+      console.log('Count in stock must be a positive integer.');
+      countInStock = product.countInStock;
     }
-
-    if (!req.files || req.files.img.length === 0 || req.files.img.length > 4) {
-        image = product.image;
-        uploadPaths = product.images;
-    } else {
-        if (Array.isArray(req.files.img)) {
-            imgFiles = [...req.files.img];
-        } else {
-            imgFiles.push(req.files.img);
+  
+    // Check if any new image files were uploaded
+    if (req.files && req.files.img && req.files.img.length > 0) {
+      const imgFiles = Array.isArray(req.files.img) ? req.files.img : [req.files.img];
+      const uploadPaths = [];
+  
+      for (let i = 0; i < imgFiles.length && i < 4; i++) {
+        const imgFile = imgFiles[i];
+        const imageFile = imgFile.path;
+        const basename = path.basename(imageFile);
+        uploadPaths.push(basename);
+      }
+  
+      images = uploadPaths;
+    }
+  
+    // Remove images that were selected to be removed
+    if (Array.isArray(removedImages)) {
+      images = images.filter((image, index) => !removedImages.includes(index.toString()));
+  
+      for (const removedImage of removedImages) {
+        const imagePath = product.images[removedImage];
+        const imagePathWithoutPrefix = path.join('public', imagePath).replace(/^public\//, '');
+        try {
+          fs.unlinkSync(imagePathWithoutPrefix);
+          console.log(`Deleted image: ${imagePathWithoutPrefix}`);
+        } catch (error) {
+          console.error(`Error deleting image ${imagePathWithoutPrefix}:`, error);
         }
-        let imageFile;
-        let i = 0;
-        imgFiles.forEach((imgFile) => {
-            imageFile = imgFile.path;
-            if (i < 4) {
-                imageFile = path.basename(imageFile);
-                uploadPaths.push(imageFile);
-                i++;
-            }
-        });
-        image = uploadPaths[0];
-        console.log(uploadPaths);
+      }
     }
-    let updatedProduct = await Product.findOneAndUpdate(
-        { id: productId },
-        {
-            name,
-            image,
-            images: uploadPaths,
-            price,
-            description,
-            material,
-            category,
-            countInStock,
-        },
-        { new: true }
+  
+    const updatedProduct = await Product.findOneAndUpdate(
+      { id: productId },
+      {
+        id,
+        name,
+        image: images[0],
+        images,
+        price,
+        description,
+        category,
+        countInStock,
+      },
+      { new: true }
     );
+  
     if (updatedProduct) {
-        console.log('Updated product data:', updatedProduct);
-        res.redirect('/displayproducts');
+      console.log('Updated product data:', updatedProduct);
+      res.redirect('/displayproducts');
     } else {
-        res.status(404).render('pages/404');
+      res.status(404).render('pages/404');
     }
-});
+  });
 // async function addProduct(req, res, next) {
 //     const { name, price, description, material, category, countInStock } =
 //         req.body;
