@@ -10,117 +10,91 @@ function closesidebar() {
 
 let cartwrap = document.querySelector('.cart-wrapper');
 
-// $(document).ready(function () {
-//     $("#removebtn").on('click', function (e) {
-//         e.preventDefault();
-//         console.log('y')
-//     let c=0;
-//         $.ajax({
-//             url: '/cart/remove',
-//             method: 'POST',
-//             contentType: 'application/json',
-//             data: JSON.stringify({ inputs: data }),
-//             success: function (response) {
-                 
-//             },
-//             error:function(err){
-//             }
-//         });
-//     });
-// });
-
-
-$(document).on('click', '#remove ', async function () {
-    
-    let c=document.getElementById('productid');
-    
+$(document).on('click', '.ri-close-line ', async function () {
+    let cartID = $(this).data('prodid');
     fetch('/cart/remove', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify( {id:c.className} ),
+        body: JSON.stringify({ payload: cartID }),
     })
         .then((res) => res.json())
         .then((data) => {
-
+            cartwrap.innerHTML = '';
             cartwrap.innerHTML = ` <h2 class="ShopBag">My Shopping Bag</h2>
-            <div class="line"></div>`;
-                let payload = data.payload;
-                var price = 0;
-                if (payload != undefined && payload.items != '') {
-                    payload.items.forEach((items) => {
-                        if (items.quantity > 0) {
-                            cartwrap.innerHTML += `<div class="cart-item">
-                        <button class="remove-btn" id="remove" onclick=""><i
-                                class="ri-close-line"></i></button>
-                                <label for="" class="${items.id}" id="productid" ></label>
-                        <img src="/Images/${items.image}" alt="">
-                        <div class="details">
-                            <div class="name">
-                            ${items.name}
-                            </div>
-                            <div class="btn-wrapper">
-                                <a class="cartminus"
-                                    data-minusid="${items.id}">
-                                    <span class="minus">
-                                        -
-                                    </span>
-                                </a>
-                                <span class="num">
-                                  ${items.quantity}
-                                </span>
-                                <a class="cartplus"
-                                    data-addid="${items.id}">
-                                    <span class="add" >
-                                        +
-                                    </span>
-                                </a>
-                            </div>
-                            <button class="wishlist-btn"
-                                data-productid="${items.id}">Add to
-                                Wishlist
-                            </button>
-                            <div class="price"> Price: ${
-                                items.price * items.quantity
-                            }
-                            </div>
+        <div class="line"></div>`;
+            let payload = data.payload;
+            var price = 0;
+            if (payload != undefined && payload.items != '') {
+                payload.items.forEach((items) => {
+                    if (items.quantity > 0) {
+                        cartwrap.innerHTML += `<div class="cart-item">
+                    <button class="remove-btn" id="remove" onclick=""><i
+                            class="ri-close-line"></i></button>
+                            <label for="" class="${
+                                items.id
+                            }" id="productid" ></label>
+                    <img src="/Images/${items.image}" alt="">
+                    <div class="details">
+                        <div class="name">
+                        ${items.name}
                         </div>
-                    </div>`;
-                            price += items.price * items.quantity;
+                        <div class="btn-wrapper">
+                            <a class="cartminus"
+                                data-minusid="${items.id}">
+                                <span class="minus">
+                                    -
+                                </span>
+                            </a>
+                            <span class="num">
+                              ${items.quantity}
+                            </span>
+                            <a class="cartplus"
+                                data-addid="${items.id}">
+                                <span class="add" >
+                                    +
+                                </span>
+                            </a>
+                        </div>
+                        <button class="wishlist-btn"
+                            data-productid="${items.id}"
+                            onclick="wishlist()">Add to
+                            Wishlist
+                        </button>
+                        <div class="price"> Price: ${
+                            items.price * items.quantity
                         }
-                    });
-                    $('.cart-window').fadeToggle('slow');
-                } else {
-                    cartwrap.innerHTML += ` <div class="cart-item">
+                        </div>
+                    </div>
+                </div>`;
+                        price += items.price * items.quantity;
+                    }
+                });
+            } else {
+                cartwrap.innerHTML += ` <div class="cart-item">
 
-                <div class="empty">Your cart is empty</div>
-            </div>`;
-                }
-
-                cartwrap.innerHTML += `<div class="total">
-            <div class="shipping">
-                    <p><span>Subtotal</span> <span>EGP <span id="total-before">
-                        ${price}</span></span></p>
-                    <p><span>Shipping</span> <span>EGP<span>100</span></span>
-                    </p>
-            </div>
-            <p><span>Total</span> <span>EGP <span id="total-after">
-                                ${price + 100}
-                </span></span>
-            </p>
-        </div>
-        <div class="checkout-btn">
-            <button class="checkout" onclick="location.href='/cart'">CHECKOUT</button>
+            <div class="empty">Your cart is empty</div>
         </div>`;
-            });
+            }
 
+            cartwrap.innerHTML += `<div class="total">
+        <div class="shipping">
+                <p><span>Subtotal</span> <span>EGP <span id="total-before">
+                    ${price}</span></span></p>
+                <p><span>Shipping</span> <span>EGP<span>100</span></span>
+                </p>
+        </div>
+        <p><span>Total</span> <span>EGP <span id="total-after">
+                            ${price + 100}
+            </span></span>
+        </p>
+    </div>
+    <div class="checkout-btn">
+        <button class="checkout" onclick="location.href='/cart'">CHECKOUT</button>
+    </div>`;
         });
-
-
-  
-    
-
+});
 
 $(document).on('click', '.cartplus', async function () {
     var plusID = $(this).data('addid');
@@ -144,7 +118,9 @@ $(document).on('click', '.cartplus', async function () {
                         cartwrap.innerHTML += `<div class="cart-item">
                         <button class="remove-btn" id="remove" onclick=""><i
                                 class="ri-close-line"></i></button>
-                                <label for="" class="${items.id}" id="productid" ></label>
+                                <label for="" class="${
+                                    items.id
+                                }" id="productid" ></label>
                         <img src="/Images/${items.image}" alt="">
                         <div class="details">
                             <div class="name">
@@ -228,7 +204,9 @@ $(document).on('click', '.cartminus', async function () {
                         cartwrap.innerHTML += `<div class="cart-item">
                         <button class="remove-btn" id="remove" onclick=""><i
                         class="ri-close-line"></i></button>
-                        <label for="" class="${items.id}" id="productid" ></label>
+                        <label for="" class="${
+                            items.id
+                        }" id="productid" ></label>
                             <img src="/Images/${items.image}" alt="">
                             <div class="details">
                                 <div class="name">
@@ -313,7 +291,9 @@ addtocart.forEach((cart) => {
                             cartwrap.innerHTML += `<div class="cart-item">
                             <button class="remove-btn" id="remove" onclick=""><i
                             class="ri-close-line"></i></button>
-                            <label for="" class="${items.id}" id="productid" ></label>
+                            <label for="" class="${
+                                items.id
+                            }" id="productid" ></label>
                         <img src="/Images/${items.image}" alt="">
                         <div class="details">
                             <div class="name">
@@ -399,7 +379,9 @@ atc.forEach((cart) => {
                             cartwrap.innerHTML += `<div class="cart-item">
                             <button class="remove-btn" id="remove" onclick=""><i
                             class="ri-close-line"></i></button>
-                            <label for="" class="${items.id}" id="productid" ></label>
+                            <label for="" class="${
+                                items.id
+                            }" id="productid" ></label>
                         <img src="/Images/${items.image}" alt="">
                         <div class="details">
                             <div class="name">
@@ -484,7 +466,9 @@ cartButton.forEach((cart) => {
                             cartwrap.innerHTML += `<div class="cart-item">
                        <button class="remove-btn" id="remove" onclick=""><i
                                 class="ri-close-line"></i></button>
-                                <label for="" class="${items.id}" id="productid" ></label>
+                                <label for="" class="${
+                                    items.id
+                                }" id="productid" ></label>
                         <img src="/Images/${items.image}" alt="">
                         <div class="details">
                             <div class="name">
