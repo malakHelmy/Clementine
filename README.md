@@ -9,10 +9,10 @@ which sells specifically diamond and gold, catered towards women around the age 
 <p> We wanted to deliver a nicely done website that satisifies all the requirements for our team project while ensuring that our knowledge on web development is expanding. </p>
 
 <p>Our website ensures that the products are displayed in a sophisticated matter, while also maintaining eye-catching features. Keeping the user experience in mind by easing up the navigation through the website was also a priority, using a sophisticated and minimalist design and allowing the website to be responsive to different screen ratios</p>
-<p>This project will hopefully act as a guideline to any of us( the contributors ) if we needed to develop a website in the future</p>
+<p>This project will hopefully act as a guideline to any of us ( the contributors ) if we needed to develop a website in the future.</p>
 
 <h3 align="left">Our Features:</h3>
-<h4> Sophisticated Product Display: </h4> <p> We ensured that the products are displayed in a sophisticated manner, with high-quality images and detailed product descriptions. This helps customers make informed decisions while shopping and to draw the user's attention and make the website more engaging. Our products pages are all paginated and have a sorting feature to satisfy the user's experience. </p>
+<h4> Sophisticated Product Display: </h4> <p> We ensured that the products are displayed in a sophisticated manner, with high-quality images and detailed product descriptions. This helps customers make informed decisions while shopping and to draw the user's attention and make the website more engaging. Our products pages are all paginated and have a sorting feature to satisfy the user's experience. If the product is out of stock, the add to cart button won't appear. </p>
 
 <h4> User Authentication: </h4> <p> We included user authentication functionality, allowing customers to create accounts and log in to access their order history, saved items, carts and other personalized features. We verify every logged in user to make sure the process is secure. We also allow users who forgot their passwords to reset them by mail as well. </p>
 
