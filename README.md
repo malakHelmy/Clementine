@@ -2,7 +2,7 @@ a Web Development Project
 
 <h1 align="center">Welcome to Clementine</h1>
 <h3 align="left">Project Description:</h3>
-<p>We developed a fully responsive website for a luxury jewelry brand under the name of Clementine (https://www.clementine.website/) 
+<p>We developed a fully responsive and secure website for a luxury jewelry brand under the name of Clementine (https://www.clementine.website/) 
 which sells specifically diamond and gold, catered towards women around the age of 18-45. Our website offers a seamless shopping experience for customers, and facilitated management for admins.</p>
 
 <h3 align="left">Our Goals:</h3>
