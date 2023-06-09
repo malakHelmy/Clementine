@@ -51,6 +51,7 @@
                                             <% product.images.forEach((image, index) => { %>
                                                 <div class="image-container">
                                                     <img src="<%= image %>" alt="Product Image" width="100">
+                                                    <p><%= basename(image) %></p>
                                                     <button type="button" class="remove-image" data-index="<%= index %>">Remove</button>
                                                 </div>
                                             <% }); %>

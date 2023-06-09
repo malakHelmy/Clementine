@@ -1,9 +1,9 @@
-const { basename } = require('path');
 const { Product } = require('../models/product');
 const user = require('../models/user');
 const asyncHandler = require('express-async-handler');
 const path = require('path');
 const fs = require('fs');
+const { basename } = require('path');
 
 
 exports.validateProduct = asyncHandler(async (req, res) => {
@@ -239,26 +239,21 @@ exports.editProduct = asyncHandler(async (req, res) => {
       }
     }
   
-    const updatedProduct = await Product.findOneAndUpdate(
-      { id: productId },
-      {
-        id,
-        name,
-        image: images[0],
-        images,
-        price,
-        description,
-        category,
-        countInStock,
-      },
-      { new: true }
-    );
+    product.id = id;
+    product.name = name;
+    product.images = images; // set images property to the updated array
+    product.price = price;
+    product.description = description;
+    product.category = category;
+    product.countInStock = countInStock
   
-    if (updatedProduct) {
-      console.log('Updated product data:', updatedProduct);
+    try {
+      await product.save();
+      console.log('Updated product data:', product);
       res.redirect('/displayproducts');
-    } else {
-      res.status(404).render('pages/404');
+    } catch (error) {
+      console.error('Error updating product:', error);
+      res.status(500).render('pages/500');
     }
   });
 // async function addProduct(req, res, next) {

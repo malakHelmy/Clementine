@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
 const { basename } = require('path');
 const {Product} = require('../models/product');
 const path = require('path');
@@ -34,6 +35,7 @@ router.get('/:id', async (req, res) => {
             res.render('pages/editproducts', {
                 product,
                 isadmin: req.session.admin,
+                basename: basename
             });
         } else {
             res.status(404).render('pages/404');
